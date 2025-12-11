@@ -1,0 +1,8 @@
+# CircuitPython files (don't commit secrets)
+settings.toml
+
+# macOS files
+.Trashes
+.fseventsd
+.metadata_never_index
+.DS_Store
