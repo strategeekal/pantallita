@@ -105,7 +105,7 @@ def show(weather_data, duration):
 		state.font_large,
 		text=temp_text,
 		color=config.Colors.WHITE,
-		x=config.Layout.WEATHER_TEMP_X,
+		x=config.Layout.LEFT_EDGE,
 		y=config.Layout.WEATHER_TEMP_Y
 	)
 	state.main_group.append(temp_label)
@@ -201,7 +201,7 @@ def show(weather_data, duration):
 	
 	while pixels_drawn < uv_pixels:
 		# Draw pixel at current position (white)
-		rect = Rect(position, config.Layout.UV_BAR_Y, 1, 1, fill=config.Colors.WHITE)
+		rect = Rect(position + config.Layout.LEFT_EDGE, config.Layout.UV_BAR_Y, 1, 1, fill=config.Colors.WHITE)
 		state.main_group.append(rect)
 		pixels_drawn += 1
 		position += 1
@@ -227,7 +227,7 @@ def show(weather_data, duration):
 	
 	while pixels_drawn < humidity_pixels:
 		# Draw pixel at current position
-		rect = Rect(position, config.Layout.HUMIDITY_BAR_Y, 1, 1, fill=config.Colors.WHITE)
+		rect = Rect(position + config.Layout.LEFT_EDGE, config.Layout.HUMIDITY_BAR_Y, 1, 1, fill=config.Colors.WHITE)
 		state.main_group.append(rect)
 		pixels_drawn += 1
 		position += 1

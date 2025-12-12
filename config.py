@@ -25,16 +25,15 @@ class Layout:
 	HEIGHT = 32
 	RIGHT_EDGE = 63
 	BOTTOM_EDGE = 31
+	LEFT_EDGE = 1
 	
 	# Weather display
-	WEATHER_TEMP_X = 1
 	WEATHER_TEMP_Y = 20
 	WEATHER_TIME_Y = 18
 	FEELSLIKE_Y = 10
 	FEELSLIKE_SHADE_Y = 18  # ADD THIS LINE
 	UV_BAR_Y = 27
 	HUMIDITY_BAR_Y = 29
-	BAR_MAX_LENGTH = 40
 
 # ============================================================================
 # COLORS
