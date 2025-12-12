@@ -13,6 +13,11 @@ import config
 import state
 import hardware
 
+# Import weather modules (Phase 1)
+import weather_api
+import display_weather
+
+
 # ============================================================================
 # LOGGING
 # ============================================================================
@@ -80,40 +85,59 @@ def show_clock():
 # ============================================================================
 
 def run_test_cycle():
-	"""Run one bootstrap test cycle"""
+	"""Run one display cycle - now shows weather!"""
 	state.cycle_count += 1
-
+	
 	log(f"=== Cycle {state.cycle_count} ===", config.LogLevel.DEBUG)
-
+	
+	# Check WiFi status
 	if not hardware.is_wifi_connected():
 		log("WiFi disconnected!", config.LogLevel.WARNING)
 		show_message("NO WIFI", config.Colors.RED)
 		time.sleep(5)
-
+	
+		# Try to reconnect
 		if hardware.reconnect_wifi():
 			show_message("WIFI OK", config.Colors.GREEN)
 			time.sleep(2)
 		else:
-			log("WiFi reconnect failed - continuing without network", config.LogLevel.ERROR)
+			log("WiFi reconnect failed - showing clock", config.LogLevel.ERROR)
+			# Show clock as fallback
+			try:
+				show_clock()
+			except Exception as e:
+				log(f"Clock display error: {e}", config.LogLevel.ERROR)
+				time.sleep(10)
 		return
-
-	show_clock()
-
-	sleep_time = config.Timing.CLOCK_UPDATE_INTERVAL
-	end_time = time.monotonic() + sleep_time
-
-	while time.monotonic() < end_time:
-		if hardware.button_up_pressed():
-			log("UP button pressed - exiting", config.LogLevel.INFO)
-			raise KeyboardInterrupt
-		time.sleep(0.1)
-
+	
+	# Fetch weather data
+	try:
+		weather_data = weather_api.fetch_current()
+		
+		if weather_data:
+			# Display weather
+			display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
+		else:
+			log("No weather data - showing clock", config.LogLevel.WARNING)
+			show_clock()
+			
+	except KeyboardInterrupt:
+		raise  # Button pressed, exit
+	except Exception as e:
+		log(f"Weather cycle error: {e}", config.LogLevel.ERROR)
+		# Fall back to clock
+		try:
+			show_clock()
+		except:
+			time.sleep(10)
+	
+	# Memory check (inline)
 	if state.cycle_count % config.Timing.MEMORY_CHECK_INTERVAL == 0:
 		free_before = state.last_memory_free
 		gc.collect()
 		free_after = gc.mem_free()
 		state.last_memory_free = free_after
-
+	
 		if free_before > 0:
 			delta = free_after - free_before
 			delta_sign = "+" if delta >= 0 else ""
@@ -121,13 +145,14 @@ def run_test_cycle():
 		else:
 			log(f"Memory: {free_after} bytes free", config.LogLevel.INFO)
 
+
 # ============================================================================
 # INITIALIZATION
 # ============================================================================
 
 def initialize():
 	"""Initialize all hardware and services"""
-	log("=== Pantallita 3.0 Bootstrap Test ===")
+	log("=== Pantallita 3.0 Phase 1: Weather Display ===")
 	
 	try:
 		# Initialize display FIRST (before show_message)
@@ -159,7 +184,7 @@ def initialize():
 	
 		log("=== Initialization complete ===")
 		log("Press UP button to stop test")
-		log("Running bootstrap test - target: 1 hour")
+		log("Starting weather display cycle")
 	
 		return True
 	

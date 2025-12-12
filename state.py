@@ -1,5 +1,5 @@
 """
-Pantallita 3.0 - Global State Module (Bootstrap Version)
+Pantallita 3.0 - Global State Module
 Global variables shared across modules
 """
 
@@ -41,3 +41,15 @@ cycle_count = 0
 
 # Last memory check
 last_memory_free = 0
+
+# ============================================================================
+# WEATHER CACHE (Phase 1)
+# ============================================================================
+
+# Cached weather data
+last_weather_data = None
+last_weather_time = 0  # monotonic time of last fetch
+
+# Weather fetch tracking
+weather_fetch_count = 0
+weather_fetch_errors = 0

@@ -1,6 +1,5 @@
 """
-Pantallita 3.0 - Configuration Module (Bootstrap Version)
-Minimal config for foundation testing
+Pantallita 3.0 - Configuration Module
 """
 
 import os
@@ -14,6 +13,28 @@ class Display:
 	WIDTH = 64
 	HEIGHT = 32
 	BIT_DEPTH = 4
+
+# ============================================================================
+# LAYOUT & POSITIONING
+# ============================================================================
+
+class Layout:
+	"""Display positioning constants"""
+	# Display dimensions
+	WIDTH = 64
+	HEIGHT = 32
+	RIGHT_EDGE = 63
+	BOTTOM_EDGE = 31
+	
+	# Weather display
+	WEATHER_TEMP_X = 1
+	WEATHER_TEMP_Y = 20
+	WEATHER_TIME_Y = 18
+	FEELSLIKE_Y = 10
+	FEELSLIKE_SHADE_Y = 18  # ADD THIS LINE
+	UV_BAR_Y = 27
+	HUMIDITY_BAR_Y = 29
+	BAR_MAX_LENGTH = 40
 
 # ============================================================================
 # COLORS
@@ -50,6 +71,13 @@ class Env:
 
 	# Timezone
 	TIMEZONE = None
+	
+	# AccuWeather API (Phase 1)
+	ACCUWEATHER_KEY = None
+	ACCUWEATHER_LOCATION = None
+	
+	# Temperature unit
+	TEMPERATURE_UNIT = "C"
 
 	@classmethod
 	def load(cls):
@@ -57,6 +85,20 @@ class Env:
 		cls.WIFI_SSID = os.getenv("CIRCUITPY_WIFI_SSID")
 		cls.WIFI_PASSWORD = os.getenv("CIRCUITPY_WIFI_PASSWORD")
 		cls.TIMEZONE = os.getenv("TIMEZONE", "America/Chicago")
+		
+		# AccuWeather (Phase 1) - ADD THIS
+		cls.ACCUWEATHER_KEY = os.getenv("ACCUWEATHER_API_KEY_TYPE1")
+		cls.ACCUWEATHER_LOCATION = os.getenv("ACCUWEATHER_LOCATION_KEY")
+
+# ============================================================================
+# API ENDPOINTS
+# ============================================================================
+
+class API:
+	"""API endpoints and configuration"""
+	# AccuWeather
+	ACCUWEATHER_BASE = "http://dataservice.accuweather.com"
+	ACCUWEATHER_CURRENT = "/currentconditions/v1/{location}?details=true"
 
 # ============================================================================
 # PATHS
@@ -66,6 +108,9 @@ class Paths:
 	"""File system paths"""
 	FONT_LARGE = "/fonts/bigbit10-16.bdf"
 	FONT_SMALL = "/fonts/tinybit6-16.bdf"
+	
+	# Images (Phase 1) - ADD THIS
+	WEATHER_IMAGES = "/img/weather"
 
 # ============================================================================
 # LOGGING
@@ -90,6 +135,11 @@ class Timing:
 	"""Timing constants in seconds"""
 	CLOCK_UPDATE_INTERVAL = 10  # Update clock every 10 seconds
 	MEMORY_CHECK_INTERVAL = 10  # Check memory every 10 cycles
+	
+	# Weather display (Phase 1) - ADD THIS
+	WEATHER_DISPLAY_DURATION = 240  # 4 minutes
+	WEATHER_UPDATE_INTERVAL = 300   # 5 minutes
+	WEATHER_CACHE_MAX_AGE = 900     # 15 minutes
 
 # Load environment variables at import
 Env.load()
