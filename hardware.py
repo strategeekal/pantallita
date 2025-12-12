@@ -196,6 +196,7 @@ def get_timezone_offset():
 		return 0
 	
 	url = f"http://worldtimeapi.org/api/timezone/{config.Env.TIMEZONE}"
+	response = None  # Initialize
 	
 	try:
 		log(f"Fetching timezone data for {config.Env.TIMEZONE}...")
@@ -213,34 +214,43 @@ def get_timezone_offset():
 			dst_status = "DST" if is_dst else "Standard"
 			
 			log(f"Timezone: {config.Env.TIMEZONE} = UTC{total_offset:+.1f} ({dst_status})")
-			
-			response.close()
 			return int(total_offset)
 		else:
 			log(f"Timezone API error: {response.status_code}", config.LogLevel.ERROR)
-			response.close()
 			return -6  # Default to CST
 			
 	except Exception as e:
 		log(f"Timezone fetch failed: {e}", config.LogLevel.ERROR)
 		return -6  # Default to CST
+	
+	finally:
+		# Always close response to prevent socket leak
+		if response:
+			try:
+				response.close()
+			except:
+				pass
 
 def sync_time(rtc):
 	"""Sync RTC with NTP server using correct timezone"""
 	log("Syncing time with NTP...")
-
+	
 	if not state.session:
 		log("No network session available", config.LogLevel.ERROR)
 		return False
-
+	
 	try:
+		# Give network time to settle (socket pool needs to be ready)
+		import time as time_module
+		time_module.sleep(2)
+		
 		# Get correct timezone offset
 		tz_offset = get_timezone_offset()
 		
 		# Get time from NTP with timezone offset
 		ntp = adafruit_ntp.NTP(state.socket_pool, tz_offset=tz_offset)
 		rtc.datetime = ntp.datetime
-
+	
 		# Format for display
 		now = rtc.datetime
 		hour_12 = now.tm_hour % 12
@@ -250,9 +260,10 @@ def sync_time(rtc):
 		
 		log(f"Time synced: {now.tm_mon}/{now.tm_mday} {hour_12}:{now.tm_min:02d} {ampm}")
 		return True
-
+	
 	except Exception as e:
 		log(f"NTP sync failed: {e}", config.LogLevel.WARNING)
 		log("Continuing with RTC time (may be incorrect)", config.LogLevel.WARNING)
 		return False
+
 
