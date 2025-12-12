@@ -189,8 +189,44 @@ def reconnect_wifi():
 # TIME SYNCHRONIZATION
 # ============================================================================
 
+def get_timezone_offset():
+	"""Get timezone offset from worldtimeapi.org"""
+	if not config.Env.TIMEZONE:
+		log("No TIMEZONE in settings.toml, using UTC", config.LogLevel.WARNING)
+		return 0
+	
+	url = f"http://worldtimeapi.org/api/timezone/{config.Env.TIMEZONE}"
+	
+	try:
+		log(f"Fetching timezone data for {config.Env.TIMEZONE}...")
+		response = state.session.get(url, timeout=10)
+		
+		if response.status_code == 200:
+			data = response.json()
+			
+			# Get UTC offset in seconds, convert to hours
+			offset_seconds = data.get("raw_offset", 0)
+			dst_offset = data.get("dst_offset", 0)
+			total_offset = (offset_seconds + dst_offset) / 3600
+			
+			is_dst = data.get("dst", False)
+			dst_status = "DST" if is_dst else "Standard"
+			
+			log(f"Timezone: {config.Env.TIMEZONE} = UTC{total_offset:+.1f} ({dst_status})")
+			
+			response.close()
+			return int(total_offset)
+		else:
+			log(f"Timezone API error: {response.status_code}", config.LogLevel.ERROR)
+			response.close()
+			return -6  # Default to CST
+			
+	except Exception as e:
+		log(f"Timezone fetch failed: {e}", config.LogLevel.ERROR)
+		return -6  # Default to CST
+
 def sync_time(rtc):
-	"""Sync RTC with NTP server"""
+	"""Sync RTC with NTP server using correct timezone"""
 	log("Syncing time with NTP...")
 
 	if not state.session:
@@ -198,14 +234,25 @@ def sync_time(rtc):
 		return False
 
 	try:
-		# Get time from NTP
-		ntp = adafruit_ntp.NTP(state.socket_pool, tz_offset=0)
+		# Get correct timezone offset
+		tz_offset = get_timezone_offset()
+		
+		# Get time from NTP with timezone offset
+		ntp = adafruit_ntp.NTP(state.socket_pool, tz_offset=tz_offset)
 		rtc.datetime = ntp.datetime
 
-		log(f"Time synced successfully: {rtc.datetime}")
+		# Format for display
+		now = rtc.datetime
+		hour_12 = now.tm_hour % 12
+		if hour_12 == 0:
+			hour_12 = 12
+		ampm = "AM" if now.tm_hour < 12 else "PM"
+		
+		log(f"Time synced: {now.tm_mon}/{now.tm_mday} {hour_12}:{now.tm_min:02d} {ampm}")
 		return True
 
 	except Exception as e:
 		log(f"NTP sync failed: {e}", config.LogLevel.WARNING)
 		log("Continuing with RTC time (may be incorrect)", config.LogLevel.WARNING)
 		return False
+
