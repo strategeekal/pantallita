@@ -186,48 +186,55 @@ def show(weather_data, duration):
 
 	
 	# ========================================================================
-	# UV INDEX BAR (Inline - no add_indicator_bar() helper)
+	# UV INDEX BAR (Inline - white bar with gaps every 3 pixels)
 	# ========================================================================
 	uv = weather_data.get('uv', 0)
 	
-	# Calculate bar length inline (no calculate_uv_bar_length())
-	uv_length = int((uv / 11) * config.Layout.BAR_MAX_LENGTH)
-	uv_length = min(uv_length, config.Layout.BAR_MAX_LENGTH)  # Clamp
+	# UV index is 0-11+ scale, use directly as pixel count (don't scale)
+	uv_pixels = int(uv)
+	uv_pixels = min(uv_pixels, 11)  # Cap at 11 (though UV can go higher)
 	
-	# Choose color inline (no get_uv_color())
-	if uv < 3:
-		uv_color = config.Colors.GREEN
-	elif uv < 6:
-		uv_color = config.Colors.ORANGE
-	elif uv < 8:
-		uv_color = 0xFFA500  # Orange
-	else:
-		uv_color = config.Colors.RED
+	# Draw pixels with gaps inserted every 3 pixels for readability
+	# Pattern: *** *** *** (gaps don't count toward UV index)
+	pixels_drawn = 0
+	position = 0
 	
-	# Draw bar inline (no loop helper)
-	for i in range(uv_length):
-		rect = Rect(i, config.Layout.UV_BAR_Y, 1, 1, fill=uv_color)
+	while pixels_drawn < uv_pixels:
+		# Draw pixel at current position (white)
+		rect = Rect(position, config.Layout.UV_BAR_Y, 1, 1, fill=config.Colors.WHITE)
 		state.main_group.append(rect)
-	
+		pixels_drawn += 1
+		position += 1
+		
+		# Insert gap every 3 pixels drawn (but not after the last pixel)
+		if pixels_drawn % 3 == 0 and pixels_drawn < uv_pixels:
+			position += 1  # Skip one position to create gap
+
+		
 	# ========================================================================
-	# HUMIDITY BAR (Inline - same pattern as UV)
+	# HUMIDITY BAR (Inline - white with gaps every 2 pixels)
 	# ========================================================================
 	humidity = weather_data.get('humidity', 0)
 	
-	# Calculate bar length inline
-	humidity_length = int((humidity / 100) * config.Layout.BAR_MAX_LENGTH)
-	humidity_length = min(humidity_length, config.Layout.BAR_MAX_LENGTH)
+	# Calculate: 1 pixel per 10% humidity (0-100% = 0-10 pixels)
+	humidity_pixels = int(round(humidity / 10))
+	humidity_pixels = min(humidity_pixels, 10)
 	
-	# Humidity color is always blue
-	humidity_color = config.Colors.BLUE
+	# Draw pixels with gaps inserted for readability
+	# Pattern: ** ** ** ** * (gaps don't count toward humidity)
+	pixels_drawn = 0
+	position = 0
 	
-	# Draw bar with gaps for readability (inline)
-	for i in range(humidity_length):
-		# Add gap every 10 pixels
-		if i % 10 == 0 and i > 0:
-			continue  # Skip this pixel to create gap
-		rect = Rect(i, config.Layout.HUMIDITY_BAR_Y, 1, 1, fill=humidity_color)
+	while pixels_drawn < humidity_pixels:
+		# Draw pixel at current position
+		rect = Rect(position, config.Layout.HUMIDITY_BAR_Y, 1, 1, fill=config.Colors.WHITE)
 		state.main_group.append(rect)
+		pixels_drawn += 1
+		position += 1
+		
+		# Insert gap every 2 pixels drawn (but not after the last pixel)
+		if pixels_drawn % 2 == 0 and pixels_drawn < humidity_pixels:
+			position += 1  # Skip one position to create gap
 	
 	# ========================================================================
 	# INTERRUPTIBLE SLEEP (Inline - no sleep() helper)
