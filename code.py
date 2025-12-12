@@ -45,17 +45,17 @@ def show_clock():
 	"""Show current time from RTC"""
 	while len(state.main_group) > 0:
 		state.main_group.pop()
-
+	
 	now = state.rtc.datetime
 	hour = now.tm_hour
 	minute = now.tm_min
-	second = now.tm_sec
-
+	# Remove: second = now.tm_sec
+	
 	hour_12 = hour % 12
 	if hour_12 == 0:
 		hour_12 = 12
 	ampm = "AM" if hour < 12 else "PM"
-
+	
 	time_text = f"{hour_12}:{minute:02d}"
 	time_label = bitmap_label.Label(
 		state.font_large,
@@ -65,7 +65,7 @@ def show_clock():
 		y=12
 	)
 	state.main_group.append(time_label)
-
+	
 	ampm_label = bitmap_label.Label(
 		state.font_large,
 		text=ampm,
@@ -74,16 +74,6 @@ def show_clock():
 		y=24
 	)
 	state.main_group.append(ampm_label)
-
-	if second % 2 == 0:
-		dot_label = bitmap_label.Label(
-			state.font_small,
-			text=".",
-			color=config.Colors.ORANGE,
-			x=58,
-			y=12
-		)
-		state.main_group.append(dot_label)
 
 # ============================================================================
 # MAIN LOOP
@@ -138,38 +128,47 @@ def run_test_cycle():
 def initialize():
 	"""Initialize all hardware and services"""
 	log("=== Pantallita 3.0 Bootstrap Test ===")
-
-	show_message("INIT...", config.Colors.GREEN, 16)
-
+	
 	try:
+		# Initialize display FIRST (before show_message)
+		log("Initializing display...")
 		hardware.init_display()
-
+		
+		# NOW we can show messages
+		show_message("INIT...", config.Colors.GREEN, 16)
+	
+		# Initialize RTC
 		show_message("RTC...", config.Colors.GREEN, 16)
 		hardware.init_rtc()
-
+	
+		# Initialize buttons
 		show_message("BUTTONS", config.Colors.GREEN, 16)
 		hardware.init_buttons()
-
+	
+		# Connect to WiFi
 		show_message("WIFI...", config.Colors.GREEN, 16)
 		hardware.connect_wifi()
-
+	
+		# Sync time
 		show_message("SYNC...", config.Colors.GREEN, 16)
 		hardware.sync_time(state.rtc)
-
+	
+		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)
 		time.sleep(2)
-
+	
 		log("=== Initialization complete ===")
 		log("Press UP button to stop test")
 		log("Running bootstrap test - target: 1 hour")
-
+	
 		return True
-
+	
 	except Exception as e:
 		log(f"Initialization failed: {e}", config.LogLevel.ERROR)
 		traceback.print_exception(e)
 		show_message("INIT ERR", config.Colors.RED, 16)
 		return False
+	
 
 # ============================================================================
 # MAIN FUNCTION
