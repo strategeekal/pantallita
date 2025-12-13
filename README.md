@@ -21,6 +21,7 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ✅ Feels like temperature (right-aligned when different)
 - ✅ Feels shade temperature (right-aligned below feels when different)
 - ✅ Clock display (centered or right-aligned based on shade visibility)
+- ✅ Clock refresh (checked 10 time per second but only update clock lable once minute changes to avoid flicker)
 - ✅ UV bar (white, gaps every 3 pixels, 1 pixel = 1 UV index)
 - ✅ Humidity bar (white, gaps every 2 pixels, 1 pixel = 10% humidity)
 - ✅ Live clock updates (refreshes every second during display)
@@ -62,6 +63,7 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 ### Issues Encountered
 ⚠️ Socket timing - Need 2-second delay after WiFi for API calls - Still failing to sync at times
 ⚠️ Library dependencies - adafruit_ticks required by display_text in CP10
+⚠️ Fast refreshes lead to slight but noticeable blinking (e.g. refresh clock per second)
 
 ### Memory Baseline
 - Startup: 2,000,672 bytes free
@@ -321,6 +323,54 @@ Free:                 ~1,995KB (75% headroom) ✅
 ---
 
 ## Refactoring Plan
+
+## Phase 1.5: Logging and monitoring
+**Goal** Clean logs to make it easier to spot errors and issues during refactoring
+
+**Example of old logs:**
+
+[2025-12-07 03:03:55] INFO: === STARTUP ===
+[2025-12-07 03:03:55] INFO: Debug level: INFO (3)
+[2025-12-07 03:03:55] INFO: MatrixPortal buttons initialized - UP=stop, DOWN=advance
+[2025-12-07 03:03:56] INFO: GitHub stocks: 16 symbols
+[2025-12-07 03:03:56] INFO: GitHub config loaded for matrix type1: 13 settings
+[2025-12-07 03:03:56] INFO: Market hours (local time): 08:30 - 15:00
+[2025-12-07 03:03:56] INFO: Hardware ready | 12 schedules (imported) | 16 stocks (imported) | 66 events (25 imported) | Today: No events
+[2025-12-07 03:04:08] INFO: Time synced to America/Chicago (UTC-6)
+[2025-12-07 03:04:08] INFO: Fetching time and weather for: Sheffield And Depaul, IL
+[2025-12-07 03:04:08] INFO: Active displays: weather, forecast, events, stocks, transit, weekday indicator
+[2025-12-07 03:04:08] INFO: == STARTING MAIN DISPLAY LOOP == 
+
+[2025-12-07 03:04:08] INFO: ## CYCLE 1 ##
+[2025-12-07 03:04:08] INFO: Weather: Snow, 0.1°C
+[2025-12-07 03:04:09] INFO: Forecast: 12 hours (fresh) | Next: -4.9°C
+[2025-12-07 03:04:11] INFO: Displaying Forecast: Current 0°C → Next: -5°C, -5°C (1 min) [Fresh]
+[2025-12-07 03:05:32] INFO: Displaying Weather: Snow, 0°C (4 min)
+[2025-12-07 03:09:41] INFO: Outside market hours with no cache for CRM - fetching once to create cache
+[2025-12-07 03:09:41] INFO: Fetching intraday data for CRM (5min interval, 78 points)
+[2025-12-07 03:09:43] INFO: Markets Closed: Latest data from 2025-12-05, today is 2025-12-07
+[2025-12-07 03:09:54] INFO: Chart: CRM +5.30% ($260.57) with 78 data points (fetched to cache)
+[2025-12-07 03:10:27] WARNING: CTA Bus API error: No service scheduled
+[2025-12-07 03:10:37] INFO: Transit: Brn/Ppl=0, Red=2, Bus8=0
+[2025-12-07 03:11:08] INFO: Cycle #1 complete in 7.00 min | UT: 00:07:13 | Mem: 12.6% | API: Total=4/350, Current=1, Forecast=1, Stocks=2/800
+
+**Desired Log Features**
+- prevent unnecessary nesting and code depth. Can we do this inline in a sustainable way? is that better?
+- Timestamp -> use rtc stored 
+- Log Level -> Errors and Warnings clearly displayed. Additional details when debug or verbose active
+- Hopefully integrated inline
+- Memmory tracking in % on key places
+- Uptime monitoring on key places displayed in hours and minutes
+- API tracking and monitoring 
+- Indicators for fresh data or cached data used
+- separation between cycles
+- key data about information being displayed (points used, display duration, temperature, etc.)
+- NEW Code Area for Debugging (e.g. MAIN, WEATHER, STOCKS, HW)
+
+**Open questions**
+- Should we include GitHub imports now to develop the system with full configuration in place?
+
+---
 
 ## Phase 2: Forecast Display (Week 2)
 
