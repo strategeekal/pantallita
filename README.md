@@ -28,10 +28,13 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ✅ Timezone support with fallback
 - ✅ WiFi recovery
 - ✅ Button control (UP to stop)
+- ✅ Centralized logging system (Phase 1.5)
+- ✅ Memory tracking as % used (not bytes free)
+- ✅ Human-readable cache age (e.g., "12m old")
+- ✅ Cycle separators and module area prefixes
+- ✅ Accurate uptime tracking
 
-## Status: Phase 1 - Weather Display
-
-**Goal:** Implement weather fetching and display
+## Status: Phase 1.5 - Logging & Monitoring
 
 **Completed:**
 - ✅ **Phase 0: Bootstrap** - Foundation validated (2+ hour test)
@@ -40,14 +43,25 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
   - Timezone handling with DST support
   - Memory stable (no leaks)
   - 740 cycles without crashes
-- ✅ **Phase 1: Weather Display**
+
+- ✅ **Phase 1: Weather Display** - 8+ hour test successful
   - Created weather_api.py (fetch from AccuWeather)
   - Created display_weather.py (inline rendering)
   - Updated code.py (show weather instead of clock)
-  
+  - 95 cycles, zero crashes, memory stable
+
+- ✅ **Phase 1.5: Centralized Logging** - Deployed
+  - Created logger.py (centralized logging module)
+  - Memory shown as % used (easier to spot leaks)
+  - Cache age in human-readable format (e.g., "12m old")
+  - Module area prefixes (MAIN, HW, WEATHER, DISPLAY)
+  - Configurable timestamps and log levels
+  - Accurate uptime tracking with monotonic time
+
 **In Progress:**
-   - ⏳ **Phase 1: Weather Display TESTING**
-   - Run 24-hour stability test
+   - ⏳ **Phase 1 + 1.5: Overnight Stability Test**
+   - Testing logging system and weather display
+   - Target: 12+ hour uptime
 
 ---
 
@@ -72,7 +86,7 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 
 ### 📋 Remaining Phases
 
-- **Phase 1.5:** Add Logging, Monitoring and Configuration functionality 
+- ~~**Phase 1.5:** Add Logging, Monitoring and Configuration functionality~~ ✅ **COMPLETE**
 - **Phase 2:** Forecast display (12-hour forecast, 3-column layout)
 - **Phase 3:** Stock display (with intraday charts)
 - **Phase 4:** Events, schedules, transit displays
@@ -324,51 +338,62 @@ Free:                 ~1,995KB (75% headroom) ✅
 
 ## Refactoring Plan
 
-## Phase 1.5: Logging and monitoring
-**Goal** Clean logs to make it easier to spot errors and issues during refactoring
+## Phase 1.5: Logging and Monitoring ✅ COMPLETE
 
-**Example of old logs:**
+**Goal:** Centralized logging system for easier debugging and monitoring
 
-[2025-12-07 03:03:55] INFO: === STARTUP ===
-[2025-12-07 03:03:55] INFO: Debug level: INFO (3)
-[2025-12-07 03:03:55] INFO: MatrixPortal buttons initialized - UP=stop, DOWN=advance
-[2025-12-07 03:03:56] INFO: GitHub stocks: 16 symbols
-[2025-12-07 03:03:56] INFO: GitHub config loaded for matrix type1: 13 settings
-[2025-12-07 03:03:56] INFO: Market hours (local time): 08:30 - 15:00
-[2025-12-07 03:03:56] INFO: Hardware ready | 12 schedules (imported) | 16 stocks (imported) | 66 events (25 imported) | Today: No events
-[2025-12-07 03:04:08] INFO: Time synced to America/Chicago (UTC-6)
-[2025-12-07 03:04:08] INFO: Fetching time and weather for: Sheffield And Depaul, IL
-[2025-12-07 03:04:08] INFO: Active displays: weather, forecast, events, stocks, transit, weekday indicator
-[2025-12-07 03:04:08] INFO: == STARTING MAIN DISPLAY LOOP == 
+**Implemented:**
 
-[2025-12-07 03:04:08] INFO: ## CYCLE 1 ##
-[2025-12-07 03:04:08] INFO: Weather: Snow, 0.1°C
-[2025-12-07 03:04:09] INFO: Forecast: 12 hours (fresh) | Next: -4.9°C
-[2025-12-07 03:04:11] INFO: Displaying Forecast: Current 0°C → Next: -5°C, -5°C (1 min) [Fresh]
-[2025-12-07 03:05:32] INFO: Displaying Weather: Snow, 0°C (4 min)
-[2025-12-07 03:09:41] INFO: Outside market hours with no cache for CRM - fetching once to create cache
-[2025-12-07 03:09:41] INFO: Fetching intraday data for CRM (5min interval, 78 points)
-[2025-12-07 03:09:43] INFO: Markets Closed: Latest data from 2025-12-05, today is 2025-12-07
-[2025-12-07 03:09:54] INFO: Chart: CRM +5.30% ($260.57) with 78 data points (fetched to cache)
-[2025-12-07 03:10:27] WARNING: CTA Bus API error: No service scheduled
-[2025-12-07 03:10:37] INFO: Transit: Brn/Ppl=0, Red=2, Bus8=0
-[2025-12-07 03:11:08] INFO: Cycle #1 complete in 7.00 min | UT: 00:07:13 | Mem: 12.6% | API: Total=4/350, Current=1, Forecast=1, Stocks=2/800
+### Centralized Logger (`logger.py`)
+- **`log(message, level, area)`** - Main logging function with early exit for performance
+- **`log_memory(area, level)`** - Memory as % used (not bytes free)
+- **`format_cache_age(seconds)`** - Human-readable age (e.g., "2m", "15m", "1h 5m")
+- **`format_uptime(seconds)`** - Formatted uptime display
+- **`log_cycle_start(cycle_num)`** - Cycle separator markers
 
-**Desired Log Features**
-- prevent unnecessary nesting and code depth. Can we do this inline in a sustainable way? is that better?
-- Timestamp -> use rtc stored 
-- Log Level -> Errors and Warnings clearly displayed. Additional details when debug or verbose active
-- Hopefully integrated inline
-- Memmory tracking in % on key places
-- Uptime monitoring on key places displayed in hours and minutes
-- API tracking and monitoring 
-- Indicators for fresh data or cached data used
-- separation between cycles
-- key data about information being displayed (points used, display duration, temperature, etc.)
-- NEW Code Area for Debugging (e.g. MAIN, WEATHER, STOCKS, HW)
+### Configuration Options (`config.py`)
+```python
+class LogLevel:
+    PRODUCTION = 0  # Only critical errors
+    ERROR = 1
+    WARNING = 2
+    INFO = 3        # Default
+    DEBUG = 4
+    VERBOSE = 5
 
-**Open questions**
-- Should we include GitHub imports now to develop the system with full configuration in place?
+class Logging:
+    USE_TIMESTAMPS = False  # RTC timestamps (OFF for performance)
+    SHOW_CYCLE_SEPARATOR = True  # "## CYCLE N ##" markers
+
+class Hardware:
+    TOTAL_MEMORY = 2000000  # For % calculations
+```
+
+### Example Log Output
+
+**Without timestamps (production mode):**
+```
+[MAIN:INFO] ## CYCLE 1 ##
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -4°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #1, Errors: 0
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 3.8% used (76KB) [+0]
+```
+
+**With timestamps (debugging):**
+```
+[12-13 14:30:45] [MAIN:INFO] ## CYCLE 1 ##
+[12-13 14:30:45] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 14:30:46] [MAIN:INFO] Memory: 3.8% used (76KB) [+0]
+```
+
+### Code Cleanup
+- Removed duplicate `log()` functions from all modules
+- All modules use `logger.log(message, level, area="MODULE")`
+- Zero additional stack depth (inline implementation with early return)
+- Module area prefixes: MAIN, HW, WEATHER, DISPLAY
 
 ---
 
