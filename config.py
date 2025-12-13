@@ -76,7 +76,7 @@ class Env:
 	ACCUWEATHER_LOCATION = None
 	
 	# Temperature unit
-	TEMPERATURE_UNIT = None
+	TEMPERATURE_UNIT = "C"
 
 	@classmethod
 	def load(cls):

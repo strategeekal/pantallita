@@ -189,9 +189,6 @@ def show(weather_data, duration):
 	# UV INDEX BAR (Inline - white bar with gaps every 3 pixels)
 	# ========================================================================
 	uv = weather_data.get('uv', 0)
-				
-	# Testing fixed variable
-	uv = 5
 	
 	# UV index is 0-11+ scale, use directly as pixel count (don't scale)
 	uv_pixels = int(uv)
