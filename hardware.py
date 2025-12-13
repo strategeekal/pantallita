@@ -222,8 +222,15 @@ def get_timezone_offset():
 			except:
 				pass
 
-def sync_time(rtc):
-	"""Sync RTC with NTP server using correct timezone"""
+def sync_time(rtc, timezone_offset=None):
+	"""
+	Sync RTC with NTP server using correct timezone.
+
+	Args:
+		rtc: RTC object
+		timezone_offset: Optional int UTC offset in hours (e.g., -6 for CST)
+		                 If None, will fetch from worldtimeapi.org as fallback
+	"""
 	logger.log("Syncing time with NTP...", config.LogLevel.DEBUG, area="HW")
 
 	if not state.session:
@@ -235,8 +242,13 @@ def sync_time(rtc):
 		import time as time_module
 		time_module.sleep(2)
 
-		# Get correct timezone offset
-		tz_offset = get_timezone_offset()
+		# Get timezone offset (use provided or fallback to worldtimeapi.org)
+		if timezone_offset is not None:
+			tz_offset = timezone_offset
+			logger.log(f"Using timezone offset from AccuWeather: UTC{tz_offset:+d}", config.LogLevel.DEBUG, area="HW")
+		else:
+			logger.log("No timezone offset provided, falling back to worldtimeapi.org", config.LogLevel.DEBUG, area="HW")
+			tz_offset = get_timezone_offset()
 
 		# Get time from NTP with timezone offset
 		ntp = adafruit_ntp.NTP(state.socket_pool, tz_offset=tz_offset)
