@@ -20,16 +20,7 @@ import time
 
 import config
 import state
-
-# ============================================================================
-# LOGGING
-# ============================================================================
-
-def log(message, level=config.LogLevel.INFO):
-	"""Simple logging"""
-	if level <= config.CURRENT_LOG_LEVEL:
-		level_name = ["", "ERROR", "WARN", "INFO", "DEBUG", "VERBOSE"][level]
-		print(f"[HW:{level_name}] {message}")
+import logger
 
 # ============================================================================
 # DISPLAY INITIALIZATION
@@ -37,7 +28,7 @@ def log(message, level=config.LogLevel.INFO):
 
 def init_display():
 	"""Initialize RGB matrix display"""
-	log("Initializing display...")
+	logger.log("Initializing display...", area="HW")
 
 	# Release any existing displays
 	displayio.release_displays()
@@ -72,17 +63,17 @@ def init_display():
 	# Load fonts
 	try:
 		state.font_large = bitmap_font.load_font(config.Paths.FONT_LARGE)
-		log("Large font loaded")
+		logger.log("Large font loaded", area="HW")
 	except Exception as e:
-		log(f"Failed to load large font: {e}", config.LogLevel.ERROR)
+		logger.log(f"Failed to load large font: {e}", config.LogLevel.ERROR, area="HW")
 
 	try:
 		state.font_small = bitmap_font.load_font(config.Paths.FONT_SMALL)
-		log("Small font loaded")
+		logger.log("Small font loaded", area="HW")
 	except Exception as e:
-		log(f"Failed to load small font: {e}", config.LogLevel.WARNING)
+		logger.log(f"Failed to load small font: {e}", config.LogLevel.WARNING, area="HW")
 
-	log("Display initialized successfully")
+	logger.log("Display initialized successfully", area="HW")
 
 # ============================================================================
 # RTC INITIALIZATION
@@ -90,15 +81,15 @@ def init_display():
 
 def init_rtc():
 	"""Initialize DS3231 RTC module"""
-	log("Initializing RTC...")
+	logger.log("Initializing RTC...", area="HW")
 
 	try:
 		i2c = busio.I2C(board.SCL, board.SDA)
 		state.rtc = adafruit_ds3231.DS3231(i2c)
-		log(f"RTC initialized - Current time: {state.rtc.datetime}")
+		logger.log(f"RTC initialized - Current time: {state.rtc.datetime}", area="HW")
 		return state.rtc
 	except Exception as e:
-		log(f"RTC initialization failed: {e}", config.LogLevel.ERROR)
+		logger.log(f"RTC initialization failed: {e}", config.LogLevel.ERROR, area="HW")
 		raise
 
 # ============================================================================
@@ -107,7 +98,7 @@ def init_rtc():
 
 def init_buttons():
 	"""Initialize MatrixPortal S3 built-in buttons"""
-	log("Initializing buttons...")
+	logger.log("Initializing buttons...", area="HW")
 
 	try:
 		# UP button (stop)
@@ -118,11 +109,11 @@ def init_buttons():
 		state.button_down = digitalio.DigitalInOut(board.BUTTON_DOWN)
 		state.button_down.switch_to_input(pull=digitalio.Pull.UP)
 
-		log("Buttons initialized - UP=stop, DOWN=reserved")
+		logger.log("Buttons initialized - UP=stop, DOWN=reserved", area="HW")
 		return True
 
 	except Exception as e:
-		log(f"Button initialization failed: {e}", config.LogLevel.WARNING)
+		logger.log(f"Button initialization failed: {e}", config.LogLevel.WARNING, area="HW")
 		state.button_up = None
 		state.button_down = None
 		return False
@@ -145,16 +136,16 @@ def button_down_pressed():
 
 def connect_wifi():
 	"""Connect to WiFi network"""
-	log(f"Connecting to WiFi: {config.Env.WIFI_SSID}...")
+	logger.log(f"Connecting to WiFi: {config.Env.WIFI_SSID}...", area="HW")
 
 	if not config.Env.WIFI_SSID or not config.Env.WIFI_PASSWORD:
-		log("WiFi credentials not found in settings.toml", config.LogLevel.ERROR)
+		logger.log("WiFi credentials not found in settings.toml", config.LogLevel.ERROR, area="HW")
 		raise ValueError("Missing WiFi credentials")
 
 	try:
 		# Connect to WiFi
 		wifi.radio.connect(config.Env.WIFI_SSID, config.Env.WIFI_PASSWORD)
-		log(f"WiFi connected - IP: {wifi.radio.ipv4_address}")
+		logger.log(f"WiFi connected - IP: {wifi.radio.ipv4_address}", area="HW")
 
 		# Create socket pool
 		state.socket_pool = socketpool.SocketPool(wifi.radio)
@@ -164,12 +155,12 @@ def connect_wifi():
 			state.socket_pool,
 			ssl.create_default_context()
 		)
-		log("HTTP session created")
+		logger.log("HTTP session created", area="HW")
 
 		return True
 
 	except Exception as e:
-		log(f"WiFi connection failed: {e}", config.LogLevel.ERROR)
+		logger.log(f"WiFi connection failed: {e}", config.LogLevel.ERROR, area="HW")
 		raise
 
 def is_wifi_connected():
@@ -178,11 +169,11 @@ def is_wifi_connected():
 
 def reconnect_wifi():
 	"""Attempt to reconnect WiFi"""
-	log("Attempting WiFi reconnect...")
+	logger.log("Attempting WiFi reconnect...", area="HW")
 	try:
 		return connect_wifi()
 	except Exception as e:
-		log(f"WiFi reconnect failed: {e}", config.LogLevel.ERROR)
+		logger.log(f"WiFi reconnect failed: {e}", config.LogLevel.ERROR, area="HW")
 		return False
 
 # ============================================================================
@@ -192,37 +183,37 @@ def reconnect_wifi():
 def get_timezone_offset():
 	"""Get timezone offset from worldtimeapi.org"""
 	if not config.Env.TIMEZONE:
-		log("No TIMEZONE in settings.toml, using UTC", config.LogLevel.WARNING)
+		logger.log("No TIMEZONE in settings.toml, using UTC", config.LogLevel.WARNING, area="HW")
 		return 0
-	
+
 	url = f"http://worldtimeapi.org/api/timezone/{config.Env.TIMEZONE}"
 	response = None  # Initialize
-	
+
 	try:
-		log(f"Fetching timezone data for {config.Env.TIMEZONE}...")
+		logger.log(f"Fetching timezone data for {config.Env.TIMEZONE}...", area="HW")
 		response = state.session.get(url, timeout=10)
-		
+
 		if response.status_code == 200:
 			data = response.json()
-			
+
 			# Get UTC offset in seconds, convert to hours
 			offset_seconds = data.get("raw_offset", 0)
 			dst_offset = data.get("dst_offset", 0)
 			total_offset = (offset_seconds + dst_offset) / 3600
-			
+
 			is_dst = data.get("dst", False)
 			dst_status = "DST" if is_dst else "Standard"
-			
-			log(f"Timezone: {config.Env.TIMEZONE} = UTC{total_offset:+.1f} ({dst_status})")
+
+			logger.log(f"Timezone: {config.Env.TIMEZONE} = UTC{total_offset:+.1f} ({dst_status})", area="HW")
 			return int(total_offset)
 		else:
-			log(f"Timezone API error: {response.status_code}", config.LogLevel.ERROR)
+			logger.log(f"Timezone API error: {response.status_code}", config.LogLevel.ERROR, area="HW")
 			return -6  # Default to CST
-			
+
 	except Exception as e:
-		log(f"Timezone fetch failed: {e}", config.LogLevel.ERROR)
+		logger.log(f"Timezone fetch failed: {e}", config.LogLevel.ERROR, area="HW")
 		return -6  # Default to CST
-	
+
 	finally:
 		# Always close response to prevent socket leak
 		if response:
@@ -233,37 +224,37 @@ def get_timezone_offset():
 
 def sync_time(rtc):
 	"""Sync RTC with NTP server using correct timezone"""
-	log("Syncing time with NTP...")
-	
+	logger.log("Syncing time with NTP...", area="HW")
+
 	if not state.session:
-		log("No network session available", config.LogLevel.ERROR)
+		logger.log("No network session available", config.LogLevel.ERROR, area="HW")
 		return False
-	
+
 	try:
 		# Give network time to settle (socket pool needs to be ready)
 		import time as time_module
 		time_module.sleep(2)
-		
+
 		# Get correct timezone offset
 		tz_offset = get_timezone_offset()
-		
+
 		# Get time from NTP with timezone offset
 		ntp = adafruit_ntp.NTP(state.socket_pool, tz_offset=tz_offset)
 		rtc.datetime = ntp.datetime
-	
+
 		# Format for display
 		now = rtc.datetime
 		hour_12 = now.tm_hour % 12
 		if hour_12 == 0:
 			hour_12 = 12
 		ampm = "AM" if now.tm_hour < 12 else "PM"
-		
-		log(f"Time synced: {now.tm_mon}/{now.tm_mday} {hour_12}:{now.tm_min:02d} {ampm}")
+
+		logger.log(f"Time synced: {now.tm_mon}/{now.tm_mday} {hour_12}:{now.tm_min:02d} {ampm}", area="HW")
 		return True
-	
+
 	except Exception as e:
-		log(f"NTP sync failed: {e}", config.LogLevel.WARNING)
-		log("Continuing with RTC time (may be incorrect)", config.LogLevel.WARNING)
+		logger.log(f"NTP sync failed: {e}", config.LogLevel.WARNING, area="HW")
+		logger.log("Continuing with RTC time (may be incorrect)", config.LogLevel.WARNING, area="HW")
 		return False
 
 

@@ -19,17 +19,8 @@ import hardware
 import weather_api
 import display_weather
 
-
-# ============================================================================
-# LOGGING
-# ============================================================================
-
-def log(message, level=config.LogLevel.INFO):
-	"""Simple logging"""
-	if level <= config.CURRENT_LOG_LEVEL:
-		
-		level_name = ["", "ERROR", "WARN", "INFO", "DEBUG", "VERBOSE"][level]
-		print(f"[MAIN:{level_name}] {message}")
+# Import centralized logger (Phase 1.5)
+import logger
 
 # ============================================================================
 # DISPLAY FUNCTIONS
@@ -90,63 +81,55 @@ def show_clock():
 def run_test_cycle():
 	"""Run one display cycle - now shows weather!"""
 	state.cycle_count += 1
-	
-	log(f"=== Cycle {state.cycle_count} ===", config.LogLevel.DEBUG)
+
+	# Log cycle separator (v2.5 style)
+	if config.Logging.SHOW_CYCLE_SEPARATOR:
+		logger.log_cycle_start(state.cycle_count, config.LogLevel.INFO)
 	
 	# Check WiFi status
 	if not hardware.is_wifi_connected():
-		log("WiFi disconnected!", config.LogLevel.WARNING)
+		logger.log("WiFi disconnected!", config.LogLevel.WARNING)
 		show_message("NO WIFI", config.Colors.RED)
 		time.sleep(5)
-	
+
 		# Try to reconnect
 		if hardware.reconnect_wifi():
 			show_message("WIFI OK", config.Colors.GREEN)
 			time.sleep(2)
 		else:
-			log("WiFi reconnect failed - showing clock", config.LogLevel.ERROR)
+			logger.log("WiFi reconnect failed - showing clock", config.LogLevel.ERROR)
 			# Show clock as fallback
 			try:
 				show_clock()
 			except Exception as e:
-				log(f"Clock display error: {e}", config.LogLevel.ERROR)
+				logger.log(f"Clock display error: {e}", config.LogLevel.ERROR)
 				time.sleep(10)
 		return
 	
 	# Fetch weather data
 	try:
 		weather_data = weather_api.fetch_current()
-		
+
 		if weather_data:
-			# Display weather			
+			# Display weather
 			display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
 		else:
-			log("No weather data - showing clock", config.LogLevel.WARNING)
+			logger.log("No weather data - showing clock", config.LogLevel.WARNING)
 			show_clock()
-			
+
 	except KeyboardInterrupt:
 		raise  # Button pressed, exit
 	except Exception as e:
-		log(f"Weather cycle error: {e}", config.LogLevel.ERROR)
+		logger.log(f"Weather cycle error: {e}", config.LogLevel.ERROR)
 		# Fall back to clock
 		try:
 			show_clock()
 		except:
 			time.sleep(10)
-	
-	# Memory check (inline)
+
+	# Memory check using centralized logger
 	if state.cycle_count % config.Timing.MEMORY_CHECK_INTERVAL == 0:
-		free_before = state.last_memory_free
-		gc.collect()
-		free_after = gc.mem_free()
-		state.last_memory_free = free_after
-	
-		if free_before > 0:
-			delta = free_after - free_before
-			delta_sign = "+" if delta >= 0 else ""
-			log(f"Memory: {free_after} bytes free ({delta_sign}{delta})", config.LogLevel.INFO)
-		else:
-			log(f"Memory: {free_after} bytes free", config.LogLevel.INFO)
+		logger.log_memory("MAIN", config.LogLevel.INFO)
 
 
 # ============================================================================
@@ -155,44 +138,44 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	log("=== Pantallita 3.0 Phase 1: Weather Display ===")
-	
+	logger.log("=== Pantallita 3.0 Phase 1: Weather Display ===")
+
 	try:
 		# Initialize display FIRST (before show_message)
-		log("Initializing display...")
+		logger.log("Initializing display...")
 		hardware.init_display()
-		
+
 		# NOW we can show messages
 		show_message("INIT...", config.Colors.GREEN, 16)
-	
+
 		# Initialize RTC
 		show_message("RTC...", config.Colors.GREEN, 16)
 		hardware.init_rtc()
-	
+
 		# Initialize buttons
 		show_message("BUTTONS", config.Colors.GREEN, 16)
 		hardware.init_buttons()
-	
+
 		# Connect to WiFi
 		show_message("WIFI...", config.Colors.GREEN, 16)
 		hardware.connect_wifi()
-	
+
 		# Sync time
 		show_message("SYNC...", config.Colors.GREEN, 16)
 		hardware.sync_time(state.rtc)
-	
+
 		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)
 		time.sleep(2)
-	
-		log("=== Initialization complete ===")
-		log("Press UP button to stop test")
-		log("Starting weather display cycle")
-	
+
+		logger.log("=== Initialization complete ===")
+		logger.log("Press UP button to stop test")
+		logger.log("Starting weather display cycle")
+
 		return True
-	
+
 	except Exception as e:
-		log(f"Initialization failed: {e}", config.LogLevel.ERROR)
+		logger.log(f"Initialization failed: {e}", config.LogLevel.ERROR)
 		traceback.print_exception(e)
 		show_message("INIT ERR", config.Colors.RED, 16)
 		return False
@@ -204,18 +187,23 @@ def initialize():
 
 def main():
 	"""Main entry point"""
-	
+
 	start_time = time.monotonic()
 
 	if not initialize():
-		log("Cannot continue - initialization failed", config.LogLevel.ERROR)
+		logger.log("Cannot continue - initialization failed", config.LogLevel.ERROR)
 		time.sleep(10)
 		return
 
 	try:
 		gc.collect()
 		state.last_memory_free = gc.mem_free()
-		log(f"Baseline memory: {state.last_memory_free} bytes free")
+
+		# Log baseline memory as percentage
+		used_bytes = config.Hardware.TOTAL_MEMORY - state.last_memory_free
+		used_percent = (used_bytes / config.Hardware.TOTAL_MEMORY) * 100
+		used_kb = used_bytes // 1024
+		logger.log(f"Baseline memory: {used_percent:.1f}% used ({used_kb}KB)")
 
 		# Track actual start time for accurate uptime
 		state.start_time = time.monotonic()
@@ -224,26 +212,28 @@ def main():
 			run_test_cycle()
 
 	except KeyboardInterrupt:
-		log("=== Bootstrap test stopped by button press ===")
+		logger.log("=== Bootstrap test stopped by button press ===")
 		show_message("STOPPED", config.Colors.ORANGE, 16)
 		time.sleep(2)
 
 		# Final statistics
 		gc.collect()
 		final_memory = gc.mem_free()
-		log(f"Final memory: {final_memory} bytes free")
-		log(f"Total cycles: {state.cycle_count}")
-		log(f"Weather fetches: {state.weather_fetch_count}")
-		log(f"Weather errors: {state.weather_fetch_errors}")
+		used_bytes = config.Hardware.TOTAL_MEMORY - final_memory
+		used_percent = (used_bytes / config.Hardware.TOTAL_MEMORY) * 100
+		used_kb = used_bytes // 1024
 
-		# Calculate actual uptime (not estimated)
+		logger.log(f"Final memory: {used_percent:.1f}% used ({used_kb}KB)")
+		logger.log(f"Total cycles: {state.cycle_count}")
+		logger.log(f"Weather fetches: {state.weather_fetch_count}")
+		logger.log(f"Weather errors: {state.weather_fetch_errors}")
+
+		# Calculate actual uptime using logger helper
 		uptime_seconds = time.monotonic() - state.start_time
-		uptime_hours = uptime_seconds / 3600
-		uptime_minutes = uptime_seconds / 60
-		log(f"Uptime: {uptime_hours:.1f} hours ({uptime_minutes:.1f} minutes)")
+		logger.log(f"Uptime: {logger.format_uptime(uptime_seconds)}")
 
 	except Exception as e:
-		log(f"Bootstrap test error: {e}", config.LogLevel.ERROR)
+		logger.log(f"Bootstrap test error: {e}", config.LogLevel.ERROR)
 		traceback.print_exception(e)
 		show_message("ERROR!", config.Colors.RED, 16)
 		time.sleep(10)

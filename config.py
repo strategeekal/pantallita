@@ -14,6 +14,10 @@ class Display:
 	HEIGHT = 32
 	BIT_DEPTH = 4
 
+class Hardware:
+	"""Hardware specifications"""
+	TOTAL_MEMORY = 2000000  # ESP32-S3 SRAM in bytes (~2MB)
+
 # ============================================================================
 # LAYOUT & POSITIONING
 # ============================================================================
@@ -117,11 +121,17 @@ class Paths:
 
 class LogLevel:
 	"""Logging levels"""
+	PRODUCTION = 0  # Only critical errors
 	ERROR = 1
 	WARNING = 2
 	INFO = 3
 	DEBUG = 4
 	VERBOSE = 5
+
+class Logging:
+	"""Logging configuration"""
+	USE_TIMESTAMPS = False  # OFF by default (turn ON for debugging)
+	SHOW_CYCLE_SEPARATOR = True  # Show "## CYCLE N ##" markers
 
 # Current log level
 CURRENT_LOG_LEVEL = LogLevel.INFO

@@ -8,16 +8,7 @@ import time
 
 import config
 import state
-
-# ============================================================================
-# LOGGING
-# ============================================================================
-
-def log(message, level=config.LogLevel.INFO):
-	"""Simple logging"""
-	if level <= config.CURRENT_LOG_LEVEL:
-		level_name = ["", "ERROR", "WARN", "INFO", "DEBUG", "VERBOSE"][level]
-		print(f"[WEATHER:{level_name}] {message}")
+import logger
 
 # ============================================================================
 # WEATHER FETCHING (INLINE - NO HELPERS)
@@ -43,16 +34,18 @@ def fetch_current():
 	# Check if cache is still fresh
 	cache_age = time.monotonic() - state.last_weather_time
 	if state.last_weather_data and cache_age < config.Timing.WEATHER_CACHE_MAX_AGE:
-		log(f"Using cached weather (age: {int(cache_age)}s)")
+		# Use human-readable cache age
+		cache_age_str = logger.format_cache_age(cache_age)
+		logger.log(f"Using cached weather ({cache_age_str} old)", area="WEATHER")
 		return state.last_weather_data
-	
+
 	# Validate configuration
 	if not config.Env.ACCUWEATHER_KEY:
-		log("No AccuWeather API key configured", config.LogLevel.ERROR)
+		logger.log("No AccuWeather API key configured", config.LogLevel.ERROR, area="WEATHER")
 		return state.last_weather_data  # Return cache if available
-	
+
 	if not config.Env.ACCUWEATHER_LOCATION:
-		log("No AccuWeather location configured", config.LogLevel.ERROR)
+		logger.log("No AccuWeather location configured", config.LogLevel.ERROR, area="WEATHER")
 		return state.last_weather_data
 	
 	# Build URL (inline - no function)
@@ -61,25 +54,25 @@ def fetch_current():
 		   f"&apikey={config.Env.ACCUWEATHER_KEY}")
 	
 	response = None
-	
+
 	try:
-		log(f"Fetching weather from AccuWeather...")
-		
+		logger.log(f"Fetching weather from AccuWeather...", area="WEATHER")
+
 		# Fetch from API
 		response = state.session.get(url, timeout=10)
-		
+
 		# Check status
 		if response.status_code != 200:
-			log(f"API error: HTTP {response.status_code}", config.LogLevel.ERROR)
+			logger.log(f"API error: HTTP {response.status_code}", config.LogLevel.ERROR, area="WEATHER")
 			state.weather_fetch_errors += 1
 			return state.last_weather_data
-		
+
 		# Parse JSON (inline - no helper function)
 		data = response.json()
-		
+
 		# AccuWeather returns a list with one item
 		if not data or len(data) == 0:
-			log("API returned empty data", config.LogLevel.ERROR)
+			logger.log("API returned empty data", config.LogLevel.ERROR, area="WEATHER")
 			state.weather_fetch_errors += 1
 			return state.last_weather_data
 		
@@ -95,7 +88,7 @@ def fetch_current():
 		# Temperature (fetch in desired unit directly)
 		temp = weather.get("Temperature", {}).get(temp_unit, {}).get("Value")
 		if temp is None:
-			log("Missing temperature data", config.LogLevel.ERROR)
+			logger.log("Missing temperature data", config.LogLevel.ERROR, area="WEATHER")
 			state.weather_fetch_errors += 1
 			return state.last_weather_data
 		
@@ -144,21 +137,22 @@ def fetch_current():
 
 		# Use correct temperature unit symbol
 		unit_symbol = "°C" if config.Env.TEMPERATURE_UNIT == "C" else "°F"
-		log(f"Weather: {weather_data['temp']}{unit_symbol}, {weather_data['condition']}, UV:{weather_data['uv']}")
-		log(f"Fetch #{state.weather_fetch_count}, Errors: {state.weather_fetch_errors}")
+		logger.log(f"Weather: {weather_data['temp']}{unit_symbol}, {weather_data['condition']}, UV:{weather_data['uv']}", area="WEATHER")
+		logger.log(f"Fetch #{state.weather_fetch_count}, Errors: {state.weather_fetch_errors}", area="WEATHER")
 
 		return weather_data
-		
+
 	except Exception as e:
-		log(f"Weather fetch failed: {e}", config.LogLevel.ERROR)
+		logger.log(f"Weather fetch failed: {e}", config.LogLevel.ERROR, area="WEATHER")
 		state.weather_fetch_errors += 1
-		
+
 		# Return cached data if available
 		if state.last_weather_data:
 			cache_age = time.monotonic() - state.last_weather_time
-			log(f"Using stale cache (age: {int(cache_age)}s)", config.LogLevel.WARNING)
+			cache_age_str = logger.format_cache_age(cache_age)
+			logger.log(f"Using stale cache ({cache_age_str} old)", config.LogLevel.WARNING, area="WEATHER")
 			return state.last_weather_data
-		
+
 		return None
 		
 	finally:

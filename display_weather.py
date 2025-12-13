@@ -13,16 +13,7 @@ import adafruit_imageload
 import config
 import state
 import hardware
-
-# ============================================================================
-# LOGGING
-# ============================================================================
-
-def log(message, level=config.LogLevel.INFO):
-	"""Simple logging"""
-	if level <= config.CURRENT_LOG_LEVEL:
-		level_name = ["", "ERROR", "WARN", "INFO", "DEBUG", "VERBOSE"][level]
-		print(f"[DISPLAY:{level_name}] {message}")
+import logger
 
 # ============================================================================
 # WEATHER DISPLAY (EVERYTHING INLINE)
@@ -42,10 +33,10 @@ def show(weather_data, duration):
 	"""
 	
 	if not weather_data:
-		log("No weather data to display", config.LogLevel.WARNING)
+		logger.log("No weather data to display", config.LogLevel.WARNING, area="DISPLAY")
 		return
-	
-	log(f"Displaying weather: {weather_data['temp']}° {weather_data['condition']}")
+
+	logger.log(f"Displaying weather: {weather_data['temp']}° {weather_data['condition']}", area="DISPLAY")
 	
 	# ========================================================================
 	# CLEAR DISPLAY (Inline - CircuitPython safe method)
@@ -62,13 +53,13 @@ def show(weather_data, duration):
 	# ========================================================================
 	icon_num = weather_data['icon']
 	icon_path = f"{config.Paths.WEATHER_IMAGES}/{icon_num}.bmp"
-	
+
 	try:
-		log(f"Loading icon: {icon_path}", config.LogLevel.DEBUG)
-		
+		logger.log(f"Loading icon: {icon_path}", config.LogLevel.DEBUG, area="DISPLAY")
+
 		# Use OnDiskBitmap for full-screen BMPs
 		bitmap = displayio.OnDiskBitmap(icon_path)
-		
+
 		# Create TileGrid with the bitmap's pixel shader
 		tile_grid = displayio.TileGrid(
 			bitmap,
@@ -76,15 +67,15 @@ def show(weather_data, duration):
 			x=0,
 			y=0
 		)
-		
+
 		state.main_group.append(tile_grid)
-		log("Icon displayed successfully", config.LogLevel.DEBUG)
-		
+		logger.log("Icon displayed successfully", config.LogLevel.DEBUG, area="DISPLAY")
+
 	except OSError as e:
-		log(f"Weather icon {icon_num} not found: {e}", config.LogLevel.WARNING)
+		logger.log(f"Weather icon {icon_num} not found: {e}", config.LogLevel.WARNING, area="DISPLAY")
 		# Continue without icon
 	except Exception as e:
-		log(f"Icon loading error: {e}", config.LogLevel.ERROR)
+		logger.log(f"Icon loading error: {e}", config.LogLevel.ERROR, area="DISPLAY")
 		import traceback
 		traceback.print_exception(e)
 		# Continue without icon
@@ -246,7 +237,7 @@ def show(weather_data, duration):
 		# Check button inline (import hardware only when needed to avoid circular imports)
 		import hardware
 		if hardware.button_up_pressed():
-			log("UP button pressed during weather display", config.LogLevel.INFO)
+			logger.log("UP button pressed during weather display", config.LogLevel.INFO, area="DISPLAY")
 			raise KeyboardInterrupt
 	
 		# Update clock only when minute changes (prevents blinking)
@@ -266,5 +257,5 @@ def show(weather_data, duration):
 	
 		time.sleep(0.1)
 
-	
-	log("Weather display complete")
+
+	logger.log("Weather display complete", area="DISPLAY")
