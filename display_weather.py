@@ -36,7 +36,8 @@ def show(weather_data, duration):
 		logger.log("No weather data to display", config.LogLevel.WARNING, area="DISPLAY")
 		return
 
-	logger.log(f"Displaying weather: {weather_data['temp']}° {weather_data['condition']}", area="DISPLAY")
+	unit_symbol = "°C" if config.Env.TEMPERATURE_UNIT == "C" else "°F"
+	logger.log(f"Displaying weather: {weather_data['temp']}{unit_symbol} {weather_data['condition']}", area="DISPLAY")
 	
 	# ========================================================================
 	# CLEAR DISPLAY (Inline - CircuitPython safe method)
