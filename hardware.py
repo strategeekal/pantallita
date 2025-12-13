@@ -63,17 +63,17 @@ def init_display():
 	# Load fonts
 	try:
 		state.font_large = bitmap_font.load_font(config.Paths.FONT_LARGE)
-		logger.log("Large font loaded", area="HW")
+		logger.log("Large font loaded", config.LogLevel.DEBUG , area="HW")
 	except Exception as e:
 		logger.log(f"Failed to load large font: {e}", config.LogLevel.ERROR, area="HW")
 
 	try:
 		state.font_small = bitmap_font.load_font(config.Paths.FONT_SMALL)
-		logger.log("Small font loaded", area="HW")
+		logger.log("Small font loaded", config.LogLevel.DEBUG, area="HW")
 	except Exception as e:
 		logger.log(f"Failed to load small font: {e}", config.LogLevel.WARNING, area="HW")
 
-	logger.log("Display initialized successfully", area="HW")
+	logger.log("Display initialized successfully", config.LogLevel.DEBUG, area="HW")
 
 # ============================================================================
 # RTC INITIALIZATION
@@ -86,7 +86,7 @@ def init_rtc():
 	try:
 		i2c = busio.I2C(board.SCL, board.SDA)
 		state.rtc = adafruit_ds3231.DS3231(i2c)
-		logger.log(f"RTC initialized - Current time: {state.rtc.datetime}", area="HW")
+		logger.log(f"RTC initialized - Current time: {state.rtc.datetime}", config.LogLevel.DEBUG, area="HW")
 		return state.rtc
 	except Exception as e:
 		logger.log(f"RTC initialization failed: {e}", config.LogLevel.ERROR, area="HW")
@@ -98,7 +98,7 @@ def init_rtc():
 
 def init_buttons():
 	"""Initialize MatrixPortal S3 built-in buttons"""
-	logger.log("Initializing buttons...", area="HW")
+	logger.log("Initializing buttons...", config.LogLevel.DEBUG, area="HW")
 
 	try:
 		# UP button (stop)
@@ -109,7 +109,7 @@ def init_buttons():
 		state.button_down = digitalio.DigitalInOut(board.BUTTON_DOWN)
 		state.button_down.switch_to_input(pull=digitalio.Pull.UP)
 
-		logger.log("Buttons initialized - UP=stop, DOWN=reserved", area="HW")
+		logger.log("Buttons initialized - UP=stop, DOWN=reserved", config.LogLevel.DEBUG, area="HW")
 		return True
 
 	except Exception as e:
@@ -155,7 +155,7 @@ def connect_wifi():
 			state.socket_pool,
 			ssl.create_default_context()
 		)
-		logger.log("HTTP session created", area="HW")
+		logger.log("HTTP session created", config.LogLevel.DEBUG, area="HW")
 
 		return True
 
@@ -190,7 +190,7 @@ def get_timezone_offset():
 	response = None  # Initialize
 
 	try:
-		logger.log(f"Fetching timezone data for {config.Env.TIMEZONE}...", area="HW")
+		logger.log(f"Fetching timezone data for {config.Env.TIMEZONE}...", config.LogLevel.DEBUG, area="HW")
 		response = state.session.get(url, timeout=10)
 
 		if response.status_code == 200:
@@ -224,7 +224,7 @@ def get_timezone_offset():
 
 def sync_time(rtc):
 	"""Sync RTC with NTP server using correct timezone"""
-	logger.log("Syncing time with NTP...", area="HW")
+	logger.log("Syncing time with NTP...", config.LogLevel.DEBUG, area="HW")
 
 	if not state.session:
 		logger.log("No network session available", config.LogLevel.ERROR, area="HW")

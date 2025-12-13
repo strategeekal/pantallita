@@ -142,4 +142,4 @@ def log_cycle_start(cycle_number, level=config.LogLevel.INFO, area="MAIN"):
 	if level > config.CURRENT_LOG_LEVEL:
 		return
 
-	log(f"## CYCLE {cycle_number} ##", level, area)
+	log(f"### CYCLE {cycle_number} ###", level, area)

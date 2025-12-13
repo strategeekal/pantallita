@@ -138,11 +138,11 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	logger.log("=== Pantallita 3.0 Phase 1: Weather Display ===")
+	logger.log("==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====")
 
 	try:
 		# Initialize display FIRST (before show_message)
-		logger.log("Initializing display...")
+		logger.log("Initializing display...", config.LogLevel.DEBUG)
 		hardware.init_display()
 
 		# NOW we can show messages

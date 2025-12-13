@@ -112,7 +112,7 @@ class Paths:
 	FONT_LARGE = "/fonts/bigbit10-16.bdf"
 	FONT_SMALL = "/fonts/tinybit6-16.bdf"
 	
-	# Images (Phase 1) - ADD THIS
+	# Images (Phase 1)
 	WEATHER_IMAGES = "/img/weather"
 
 # ============================================================================
@@ -142,13 +142,13 @@ CURRENT_LOG_LEVEL = LogLevel.INFO
 
 class Timing:
 	"""Timing constants in seconds"""
-	CLOCK_UPDATE_INTERVAL = 10  # Update clock every 10 seconds
-	MEMORY_CHECK_INTERVAL = 10  # Check memory every 10 cycles
+	CLOCK_UPDATE_INTERVAL = 10  # Update clock every 10 seconds << CLOCK DISPLAY
+	MEMORY_CHECK_INTERVAL = 5  # Check memory every 10 cycles
 	
 	# Weather display (Phase 1)
-	WEATHER_DISPLAY_DURATION = 240  # 4 minutes
+	WEATHER_DISPLAY_DURATION = 300  # 4 minutes
 	WEATHER_UPDATE_INTERVAL = 300   # 5 minutes
-	WEATHER_CACHE_MAX_AGE = 900     # 15 minutes
+	WEATHER_CACHE_MAX_AGE = 300     # 15 minutes
 
 # Load environment variables at import
 Env.load()
