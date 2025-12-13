@@ -39,6 +39,9 @@ socket_pool = None
 # Cycle counter
 cycle_count = 0
 
+# Start time (monotonic)
+start_time = 0
+
 # Last memory check
 last_memory_free = 0
 
