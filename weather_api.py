@@ -142,7 +142,8 @@ def fetch_current():
 		state.last_weather_time = time.monotonic()
 		state.weather_fetch_count += 1
 		
-		log(f"Weather: {weather_data['temp']}°F, {weather_data['condition']}, UV:{weather_data['uv']}")
+		unit_symbol = "°C" if config.Env.TEMPERATURE_UNIT == "C" else "°F"
+		log(f"Weather: {weather_data['temp']}{unit_symbol}, {weather_data['condition']}, UV:{weather_data['uv']}")
 		log(f"Fetch #{state.weather_fetch_count}, Errors: {state.weather_fetch_errors}")
 		
 		return weather_data

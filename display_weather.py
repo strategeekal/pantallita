@@ -89,7 +89,6 @@ def show(weather_data, duration):
 		traceback.print_exception(e)
 		# Continue without icon
 
-	log(weather_data)
 	# ========================================================================
 	# TEMPERATURE LABELS (v2 Logic - Correct)
 	# ========================================================================

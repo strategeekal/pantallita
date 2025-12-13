@@ -204,6 +204,8 @@ def initialize():
 
 def main():
 	"""Main entry point"""
+	
+	start_time = time.monotonic()
 
 	if not initialize():
 		log("Cannot continue - initialization failed", config.LogLevel.ERROR)
