@@ -76,7 +76,7 @@ class Env:
 	ACCUWEATHER_LOCATION = None
 	
 	# Temperature unit
-	TEMPERATURE_UNIT = "C"
+	TEMPERATURE_UNIT = None
 
 	@classmethod
 	def load(cls):
@@ -135,7 +135,7 @@ class Timing:
 	CLOCK_UPDATE_INTERVAL = 10  # Update clock every 10 seconds
 	MEMORY_CHECK_INTERVAL = 10  # Check memory every 10 cycles
 	
-	# Weather display (Phase 1) - ADD THIS
+	# Weather display (Phase 1)
 	WEATHER_DISPLAY_DURATION = 240  # 4 minutes
 	WEATHER_UPDATE_INTERVAL = 300   # 5 minutes
 	WEATHER_CACHE_MAX_AGE = 900     # 15 minutes

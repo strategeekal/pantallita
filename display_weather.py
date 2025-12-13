@@ -189,6 +189,9 @@ def show(weather_data, duration):
 	# UV INDEX BAR (Inline - white bar with gaps every 3 pixels)
 	# ========================================================================
 	uv = weather_data.get('uv', 0)
+				
+	# Testing fixed variable
+	uv = 5
 	
 	# UV index is 0-11+ scale, use directly as pixel count (don't scale)
 	uv_pixels = int(uv)
@@ -237,15 +240,39 @@ def show(weather_data, duration):
 			position += 1  # Skip one position to create gap
 	
 	# ========================================================================
-	# INTERRUPTIBLE SLEEP (Inline - no sleep() helper)
+	# INTERRUPTIBLE SLEEP WITH LIVE CLOCK UPDATES
 	# ========================================================================
 	end_time = time.monotonic() + duration
+	last_second = -1  # Track last second to detect changes
 	
 	while time.monotonic() < end_time:
-		# Check button inline (only hardware call allowed)
+		# Check button inline (import hardware only when needed)
+		import hardware
 		if hardware.button_up_pressed():
-			raise KeyboardInterrupt  # Clean exit
+			log("UP button pressed during weather display", config.LogLevel.INFO)
+			raise KeyboardInterrupt
 		
-		time.sleep(0.1)  # Small delay to prevent CPU spinning
+		# Update clock every second (like v2)
+		now = state.rtc.datetime
+		current_second = now.tm_sec
+		
+		if current_second != last_second:
+			# Second changed - update the clock display
+			hour = now.tm_hour
+			minute = now.tm_min
+			
+			# Convert to 12-hour format inline
+			hour_12 = hour % 12
+			if hour_12 == 0:
+				hour_12 = 12
+			
+			# Update the clock label text
+			new_time_text = f"{hour_12}:{minute:02d}"
+			time_label.text = new_time_text
+			
+			last_second = current_second
+		
+		time.sleep(0.1)  # Check 10 times per second
+
 	
 	log("Weather display complete")

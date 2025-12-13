@@ -1,0 +1,463 @@
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+[MAIN:INFO] === Pantallita 3.0 Phase 1: Weather Display ===
+[MAIN:INFO] Initializing display...
+[HW:INFO] Initializing display...
+[HW:INFO] Large font loaded
+[HW:INFO] Small font loaded
+[HW:INFO] Display initialized successfully
+[HW:INFO] Initializing RTC...
+[HW:INFO] RTC initialized - Current time: struct_time(tm_year=2025, tm_mon=12, tm_mday=12, tm_hour=2, tm_min=45, tm_sec=14, tm_wday=4, tm_yday=-1, tm_isdst=-1)
+[HW:INFO] Initializing buttons...
+[HW:INFO] Buttons initialized - UP=stop, DOWN=reserved
+[HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[HW:INFO] WiFi connected - IP: 192.168.101.249
+[HW:INFO] HTTP session created
+[HW:INFO] Syncing time with NTP...
+[HW:INFO] Fetching timezone data for America/Chicago...
+[HW:INFO] Timezone: America/Chicago = UTC-6.0 (Standard)
+[HW:INFO] Time synced: 12/12 2:45 AM
+[MAIN:INFO] === Initialization complete ===
+[MAIN:INFO] Press UP button to stop test
+[MAIN:INFO] Starting weather display cycle
+[MAIN:INFO] Baseline memory: 1981360 bytes free
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -4°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #1, Errors: 0
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 79}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 79}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 79}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 721s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 79}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -4°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #2, Errors: 0
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 80}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 80}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 80}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly cloudy', 'feels_like': -2, 'uv': 0, 'humidity': 80}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -4°F, Partly cloudy, UV:0
+[WEATHER:INFO] Fetch #3, Errors: 0
+[DISPLAY:INFO] Displaying weather: -4° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -3, 'temp': -4, 'condition': 'Partly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 81}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -4° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -3, 'temp': -4, 'condition': 'Partly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 81}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1924720 bytes free (-56640)
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -4° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -3, 'temp': -4, 'condition': 'Partly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 81}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -4° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -3, 'temp': -4, 'condition': 'Partly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 81}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -7°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #4, Errors: 0
+[DISPLAY:INFO] Displaying weather: -7° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -6, 'temp': -7, 'condition': 'Mostly cloudy', 'feels_like': -6, 'uv': 0, 'humidity': 76}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -7° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -6, 'temp': -7, 'condition': 'Mostly cloudy', 'feels_like': -6, 'uv': 0, 'humidity': 76}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -7° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -6, 'temp': -7, 'condition': 'Mostly cloudy', 'feels_like': -6, 'uv': 0, 'humidity': 76}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -7° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -6, 'temp': -7, 'condition': 'Mostly cloudy', 'feels_like': -6, 'uv': 0, 'humidity': 76}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly clear, UV:0
+[WEATHER:INFO] Fetch #5, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly clear
+[DISPLAY:INFO] {'icon': 34, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly clear', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly clear
+[DISPLAY:INFO] {'icon': 34, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly clear', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly clear
+[DISPLAY:INFO] {'icon': 34, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly clear', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly clear
+[DISPLAY:INFO] {'icon': 34, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly clear', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1924048 bytes free (-672)
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #6, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #7, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #8, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1924048 bytes free (+0)
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #9, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #10, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1924048 bytes free (+0)
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #11, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -5, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -5, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -5, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -5, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #12, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #13, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1924048 bytes free (+0)
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #14, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly cloudy, UV:0
+[WEATHER:INFO] Fetch #15, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly cloudy
+[DISPLAY:INFO] {'icon': 38, 'feels_shade': -3, 'temp': -5, 'condition': 'Mostly cloudy', 'feels_like': -3, 'uv': 0, 'humidity': 89}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1923872 bytes free (-176)
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -6°F, Partly cloudy, UV:0
+[WEATHER:INFO] Fetch #16, Errors: 0
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 92}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 92}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 92}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 92}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -6°F, Partly cloudy, UV:0
+[WEATHER:INFO] Fetch #17, Errors: 0
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -6°F, Partly cloudy, UV:0
+[WEATHER:INFO] Fetch #18, Errors: 0
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1923728 bytes free (-144)
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -6° Partly cloudy
+[DISPLAY:INFO] {'icon': 35, 'feels_shade': -4, 'temp': -6, 'condition': 'Partly cloudy', 'feels_like': -4, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -6°F, Partly sunny, UV:0
+[WEATHER:INFO] Fetch #19, Errors: 0
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -5, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -5, 'uv': 0, 'humidity': 93}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -6°F, Partly sunny, UV:0
+[WEATHER:INFO] Fetch #20, Errors: 0
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -6° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -6, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 86}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1923728 bytes free (+0)
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Partly sunny, UV:0
+[WEATHER:INFO] Fetch #21, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -5, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -5, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -5, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Partly sunny
+[DISPLAY:INFO] {'icon': 3, 'feels_shade': -3, 'temp': -5, 'condition': 'Partly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 87}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -5°F, Mostly sunny, UV:0
+[WEATHER:INFO] Fetch #22, Errors: 0
+[DISPLAY:INFO] Displaying weather: -5° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -5° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -4, 'temp': -5, 'condition': 'Mostly sunny', 'feels_like': -3, 'uv': 0, 'humidity': 88}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -4°F, Mostly sunny, UV:0
+[WEATHER:INFO] Fetch #23, Errors: 0
+[DISPLAY:INFO] Displaying weather: -4° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -3, 'temp': -4, 'condition': 'Mostly sunny', 'feels_like': -2, 'uv': 0, 'humidity': 91}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -3, 'temp': -4, 'condition': 'Mostly sunny', 'feels_like': -2, 'uv': 0, 'humidity': 91}
+[DISPLAY:INFO] Weather display complete
+[MAIN:INFO] Memory: 1922656 bytes free (-1072)
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -3, 'temp': -4, 'condition': 'Mostly sunny', 'feels_like': -2, 'uv': 0, 'humidity': 91}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 720s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -3, 'temp': -4, 'condition': 'Mostly sunny', 'feels_like': -2, 'uv': 0, 'humidity': 91}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Fetching weather from AccuWeather...
+[WEATHER:INFO] Weather: -4°F, Mostly sunny, UV:0
+[WEATHER:INFO] Fetch #24, Errors: 0
+[DISPLAY:INFO] Displaying weather: -4° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly sunny', 'feels_like': -1, 'uv': 0, 'humidity': 91}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 240s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly sunny', 'feels_like': -1, 'uv': 0, 'humidity': 91}
+[DISPLAY:INFO] Weather display complete
+[WEATHER:INFO] Using cached weather (age: 480s)
+[DISPLAY:INFO] Displaying weather: -4° Mostly sunny
+[DISPLAY:INFO] {'icon': 2, 'feels_shade': -2, 'temp': -4, 'condition': 'Mostly sunny', 'feels_like': -1, 'uv': 0, 'humidity': 91}
+[MAIN:INFO] === Bootstrap test stopped by button press ===
+[MAIN:INFO] Final memory: 1932384 bytes free
+[MAIN:INFO] Total cycles: 95
+[MAIN:INFO] Uptime: 15.8 minutes

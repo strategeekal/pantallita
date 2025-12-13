@@ -25,6 +25,7 @@ import display_weather
 def log(message, level=config.LogLevel.INFO):
 	"""Simple logging"""
 	if level <= config.CURRENT_LOG_LEVEL:
+		
 		level_name = ["", "ERROR", "WARN", "INFO", "DEBUG", "VERBOSE"][level]
 		print(f"[MAIN:{level_name}] {message}")
 
@@ -115,7 +116,7 @@ def run_test_cycle():
 		weather_data = weather_api.fetch_current()
 		
 		if weather_data:
-			# Display weather
+			# Display weather			
 			display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
 		else:
 			log("No weather data - showing clock", config.LogLevel.WARNING)
@@ -220,13 +221,19 @@ def main():
 		show_message("STOPPED", config.Colors.ORANGE, 16)
 		time.sleep(2)
 
+		# Final statistics
 		gc.collect()
 		final_memory = gc.mem_free()
 		log(f"Final memory: {final_memory} bytes free")
 		log(f"Total cycles: {state.cycle_count}")
-
-		uptime_minutes = state.cycle_count * config.Timing.CLOCK_UPDATE_INTERVAL / 60
-		log(f"Uptime: {uptime_minutes:.1f} minutes")
+		log(f"Weather fetches: {state.weather_fetch_count}")
+		log(f"Weather errors: {state.weather_fetch_errors}")
+		
+		# Calculate uptime in hours
+		uptime_seconds = state.cycle_count * config.Timing.WEATHER_DISPLAY_DURATION
+		uptime_hours = uptime_seconds / 3600
+		uptime_minutes = uptime_seconds / 60
+		log(f"Uptime: {uptime_hours:.1f} hours ({uptime_minutes:.0f} minutes)")
 
 	except Exception as e:
 		log(f"Bootstrap test error: {e}", config.LogLevel.ERROR)
