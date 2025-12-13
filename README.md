@@ -160,20 +160,24 @@ def show(weather_data, duration):
 ## Module Structure
 
 ```
-Screeny/
-├── code.py              # Main entry point (~200 lines)
+pantallita/
+├── code.py              # Main entry point (~250 lines) ✅ DONE
 │                        # - Calls modules directly, no nesting
 │                        # - Hardware init, main loop only
 │
-├── config.py            # Constants (~400 lines) ✅ DONE
-│                        # - Display, Colors, Paths, Timing
+├── config.py            # Constants (~145 lines) ✅ DONE
+│                        # - Display, Colors, Paths, Timing, Logging
 │                        # - Zero runtime cost (pure data)
 │
-├── state.py             # Global state (~200 lines) ✅ DONE
+├── state.py             # Global state (~60 lines) ✅ DONE
 │                        # - Display objects, RTC, buttons
-│                        # - HTTP session, caches
+│                        # - HTTP session, caches, tracking
 │
-├── hardware.py          # Hardware init (~300 lines) ✅ DONE
+├── logger.py            # Centralized logging (Phase 1.5) ✅ DONE
+│                        # - log(), log_memory(), format helpers
+│                        # - Inline implementation, zero stack overhead
+│
+├── hardware.py          # Hardware init (~270 lines) ✅ DONE
 │                        # - init_display(), init_rtc()
 │                        # - connect_wifi(), init_buttons()
 │                        # - Timezone handling with DST
@@ -249,6 +253,33 @@ ACCUWEATHER_LOCATION_KEY = "your-location-key"
 TWELVE_DATA_API_KEY = "your-key"
 CTA_API_KEY = "your-key"
 
+```
+
+**Logging Configuration** (in config.py):
+
+```python
+# Log level control (Phase 1.5)
+CURRENT_LOG_LEVEL = config.LogLevel.INFO  # PRODUCTION=0, ERROR=1, WARNING=2, INFO=3, DEBUG=4, VERBOSE=5
+
+# Logging options
+class Logging:
+    USE_TIMESTAMPS = False  # Turn ON for debugging, OFF for production (saves RTC overhead)
+    SHOW_CYCLE_SEPARATOR = True  # Show "## CYCLE N ##" markers
+
+# Temperature unit
+TEMPERATURE_UNIT = "F"  # "F" or "C"
+```
+
+**Examples:**
+
+```python
+# For debugging: enable timestamps and verbose logging
+CURRENT_LOG_LEVEL = config.LogLevel.DEBUG
+config.Logging.USE_TIMESTAMPS = True
+
+# For production: minimal logging, no timestamps
+CURRENT_LOG_LEVEL = config.LogLevel.ERROR
+config.Logging.USE_TIMESTAMPS = False
 ```
 
 ---
@@ -791,27 +822,31 @@ git push -u origin weather-display
 1. **Share context:**
 
    ```
-   
+
    I'm working on Pantallita v3.0, a CircuitPython refactor to fix pystack
-   exhaustion. I've completed Phase 0 (bootstrap test). Currently starting
-   Phase 1 (weather display). Here's the README: [paste this file]
+   exhaustion. I've completed Phase 0 (bootstrap), Phase 1 (weather display),
+   and Phase 1.5 (centralized logging). Currently testing overnight stability
+   before starting Phase 2 (forecast). Here's the README: [paste this file]
 
    ```
 
-2. **Current status:** Phase 1 - Implementing weather_api.py and display_weather.py
+2. **Current status:** Phase 1.5 complete - Testing overnight before Phase 2
 
 3. **Key files completed:**
 
-   - config.py (constants)
-   - state.py (global state)
+   - config.py (constants + logging config)
+   - state.py (global state + start_time tracking)
    - hardware.py (init functions with timezone handling)
-   - code.py (bootstrap test - shows clock)
+   - logger.py (centralized logging system - NEW in Phase 1.5)
+   - weather_api.py (fetch from AccuWeather with caching)
+   - display_weather.py (inline rendering, live clock)
+   - code.py (main loop with weather display)
 
 4. **Next steps:**
 
-   - Create weather_api.py (fetch from AccuWeather)
-   - Create display_weather.py (inline rendering)
-   - Update code.py (replace clock with weather)
+   - Complete overnight stability test
+   - Review test results (memory, errors, uptime)
+   - Start Phase 2: display_forecast.py (12-hour forecast)
 
 ---
 
