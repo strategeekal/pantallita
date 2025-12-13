@@ -170,7 +170,7 @@ def initialize():
 
 		logger.log("=== Initialization complete ===")
 		logger.log("Press UP button to stop test")
-		logger.log("Starting weather display cycle")
+		logger.log("=== Starting weather display cycle === \n")
 
 		return True
 
@@ -203,7 +203,7 @@ def main():
 		used_bytes = config.Hardware.TOTAL_MEMORY - state.last_memory_free
 		used_percent = (used_bytes / config.Hardware.TOTAL_MEMORY) * 100
 		used_kb = used_bytes // 1024
-		logger.log(f"Baseline memory: {used_percent:.1f}% used ({used_kb}KB)")
+		logger.log(f"Baseline memory: {used_percent:.1f}% used ({used_kb}KB) \n")
 
 		# Track actual start time for accurate uptime
 		state.start_time = time.monotonic()
@@ -212,7 +212,7 @@ def main():
 			run_test_cycle()
 
 	except KeyboardInterrupt:
-		logger.log("=== Bootstrap test stopped by button press ===")
+		logger.log("=== Weather test stopped by button press ===")
 		show_message("STOPPED", config.Colors.ORANGE, 16)
 		time.sleep(2)
 
@@ -233,7 +233,7 @@ def main():
 		logger.log(f"Uptime: {logger.format_uptime(uptime_seconds)}")
 
 	except Exception as e:
-		logger.log(f"Bootstrap test error: {e}", config.LogLevel.ERROR)
+		logger.log(f"Weather test error: {e}", config.LogLevel.ERROR)
 		traceback.print_exception(e)
 		show_message("ERROR!", config.Colors.RED, 16)
 		time.sleep(10)

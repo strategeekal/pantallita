@@ -130,7 +130,7 @@ class LogLevel:
 
 class Logging:
 	"""Logging configuration"""
-	USE_TIMESTAMPS = False  # OFF by default (turn ON for debugging)
+	USE_TIMESTAMPS = True  # OFF by default (turn ON for debugging)
 	SHOW_CYCLE_SEPARATOR = True  # Show "## CYCLE N ##" markers
 
 # Current log level
