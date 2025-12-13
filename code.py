@@ -1,6 +1,8 @@
 """
-Pantallita 3.0 - Bootstrap Test
-Tests CircuitPython 10 foundation before implementing features
+Pantallita 3.0.1 - Weather Test
+Tests CircuitPython 10 foundation before implementing features (v3.0.0)
+Implement and test current weather display (v3.0.1)
+
 """
 
 import time
