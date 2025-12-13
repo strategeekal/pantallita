@@ -217,6 +217,9 @@ def main():
 		state.last_memory_free = gc.mem_free()
 		log(f"Baseline memory: {state.last_memory_free} bytes free")
 
+		# Track actual start time for accurate uptime
+		state.start_time = time.monotonic()
+
 		while True:
 			run_test_cycle()
 
@@ -232,12 +235,12 @@ def main():
 		log(f"Total cycles: {state.cycle_count}")
 		log(f"Weather fetches: {state.weather_fetch_count}")
 		log(f"Weather errors: {state.weather_fetch_errors}")
-		
-		# Calculate uptime in hours
-		uptime_seconds = state.cycle_count * config.Timing.WEATHER_DISPLAY_DURATION
+
+		# Calculate actual uptime (not estimated)
+		uptime_seconds = time.monotonic() - state.start_time
 		uptime_hours = uptime_seconds / 3600
 		uptime_minutes = uptime_seconds / 60
-		log(f"Uptime: {uptime_hours:.1f} hours ({uptime_minutes:.0f} minutes)")
+		log(f"Uptime: {uptime_hours:.1f} hours ({uptime_minutes:.1f} minutes)")
 
 	except Exception as e:
 		log(f"Bootstrap test error: {e}", config.LogLevel.ERROR)
