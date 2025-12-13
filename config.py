@@ -14,6 +14,10 @@ class Display:
 	HEIGHT = 32
 	BIT_DEPTH = 4
 
+class Hardware:
+	"""Hardware specifications"""
+	TOTAL_MEMORY = 2000000  # ESP32-S3 SRAM in bytes (~2MB)
+
 # ============================================================================
 # LAYOUT & POSITIONING
 # ============================================================================
@@ -108,7 +112,7 @@ class Paths:
 	FONT_LARGE = "/fonts/bigbit10-16.bdf"
 	FONT_SMALL = "/fonts/tinybit6-16.bdf"
 	
-	# Images (Phase 1) - ADD THIS
+	# Images (Phase 1)
 	WEATHER_IMAGES = "/img/weather"
 
 # ============================================================================
@@ -117,11 +121,17 @@ class Paths:
 
 class LogLevel:
 	"""Logging levels"""
+	PRODUCTION = 0  # Only critical errors
 	ERROR = 1
 	WARNING = 2
 	INFO = 3
 	DEBUG = 4
 	VERBOSE = 5
+
+class Logging:
+	"""Logging configuration"""
+	USE_TIMESTAMPS = True  # OFF by default (turn ON for debugging)
+	SHOW_CYCLE_SEPARATOR = True  # Show "## CYCLE N ##" markers
 
 # Current log level
 CURRENT_LOG_LEVEL = LogLevel.INFO
@@ -132,13 +142,13 @@ CURRENT_LOG_LEVEL = LogLevel.INFO
 
 class Timing:
 	"""Timing constants in seconds"""
-	CLOCK_UPDATE_INTERVAL = 10  # Update clock every 10 seconds
-	MEMORY_CHECK_INTERVAL = 10  # Check memory every 10 cycles
+	CLOCK_UPDATE_INTERVAL = 10  # Update clock every 10 seconds << CLOCK DISPLAY
+	MEMORY_CHECK_INTERVAL = 5  # Check memory every 10 cycles
 	
 	# Weather display (Phase 1)
-	WEATHER_DISPLAY_DURATION = 240  # 4 minutes
+	WEATHER_DISPLAY_DURATION = 300  # 4 minutes
 	WEATHER_UPDATE_INTERVAL = 300   # 5 minutes
-	WEATHER_CACHE_MAX_AGE = 900     # 15 minutes
+	WEATHER_CACHE_MAX_AGE = 300     # 15 minutes
 
 # Load environment variables at import
 Env.load()

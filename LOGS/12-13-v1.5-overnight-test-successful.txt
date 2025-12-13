@@ -1,0 +1,555 @@
+[MAIN:INFO] === Pantallita 3.0 Phase 1: Weather Display ===
+[MAIN:INFO] Initializing display...
+[HW:INFO] Initializing display...
+[HW:INFO] Large font loaded
+[HW:INFO] Small font loaded
+[HW:INFO] Display initialized successfully
+[HW:INFO] Initializing RTC...
+[12-13 03:05:44] [HW:INFO] RTC initialized - Current time: struct_time(tm_year=2025, tm_mon=12, tm_mday=13, tm_hour=3, tm_min=5, tm_sec=44, tm_wday=5, tm_yday=-1, tm_isdst=-1)
+[12-13 03:05:44] [HW:INFO] Initializing buttons...
+[12-13 03:05:44] [HW:INFO] Buttons initialized - UP=stop, DOWN=reserved
+[12-13 03:05:44] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-13 03:05:44] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-13 03:05:44] [HW:INFO] HTTP session created
+[12-13 03:05:44] [HW:INFO] Syncing time with NTP...
+[12-13 03:05:46] [HW:INFO] Fetching timezone data for America/Chicago...
+[12-13 03:05:47] [HW:INFO] Timezone: America/Chicago = UTC-6.0 (Standard)
+[12-13 03:05:47] [HW:INFO] Time synced: 12/13 3:05 AM
+[12-13 03:05:49] [MAIN:INFO] === Initialization complete ===
+[12-13 03:05:49] [MAIN:INFO] Press UP button to stop test
+[12-13 03:05:49] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-13 03:05:49] [MAIN:INFO] Baseline memory: 2.7% used (52KB) 
+
+[12-13 03:05:49] [MAIN:INFO] ## CYCLE 1 ##
+[12-13 03:05:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 03:05:51] [WEATHER:INFO] Weather: -6°C, Mostly cloudy, UV:0
+[12-13 03:05:51] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-13 03:05:51] [DISPLAY:INFO] Displaying weather: -6°C Mostly cloudy
+[12-13 03:09:52] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:09:52] [MAIN:INFO] ## CYCLE 2 ##
+[12-13 03:09:52] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 03:09:52] [DISPLAY:INFO] Displaying weather: -6°C Mostly cloudy
+[12-13 03:13:52] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:13:52] [MAIN:INFO] ## CYCLE 3 ##
+[12-13 03:13:52] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 03:13:52] [DISPLAY:INFO] Displaying weather: -6°C Mostly cloudy
+[12-13 03:17:52] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:17:52] [MAIN:INFO] ## CYCLE 4 ##
+[12-13 03:17:52] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 03:17:52] [DISPLAY:INFO] Displaying weather: -6°C Mostly cloudy
+[12-13 03:21:52] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:21:52] [MAIN:INFO] ## CYCLE 5 ##
+[12-13 03:21:52] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 03:21:54] [WEATHER:INFO] Weather: -7°C, Mostly cloudy, UV:0
+[12-13 03:21:54] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-13 03:21:54] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:25:54] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:25:54] [MAIN:INFO] ## CYCLE 6 ##
+[12-13 03:25:54] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 03:25:54] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:29:54] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:29:54] [MAIN:INFO] ## CYCLE 7 ##
+[12-13 03:29:54] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 03:29:54] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:33:54] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:33:54] [MAIN:INFO] ## CYCLE 8 ##
+[12-13 03:33:54] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 03:33:54] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:37:55] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:37:55] [MAIN:INFO] ## CYCLE 9 ##
+[12-13 03:37:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 03:37:57] [WEATHER:INFO] Weather: -7°C, Mostly cloudy, UV:0
+[12-13 03:37:57] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-13 03:37:57] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:41:57] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:41:57] [MAIN:INFO] ## CYCLE 10 ##
+[12-13 03:41:57] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 03:41:57] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:45:57] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:45:57] [MAIN:INFO] Memory: 3.9% used (75KB) [-24096]
+[12-13 03:45:57] [MAIN:INFO] ## CYCLE 11 ##
+[12-13 03:45:57] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 03:45:57] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:49:57] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:49:57] [MAIN:INFO] ## CYCLE 12 ##
+[12-13 03:49:57] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 03:49:57] [DISPLAY:INFO] Displaying weather: -7°C Mostly cloudy
+[12-13 03:53:57] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:53:57] [MAIN:INFO] ## CYCLE 13 ##
+[12-13 03:53:57] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 03:53:59] [WEATHER:INFO] Weather: -7°C, Partly cloudy, UV:0
+[12-13 03:53:59] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-13 03:53:59] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 03:57:59] [DISPLAY:INFO] Weather display complete 
+
+[12-13 03:57:59] [MAIN:INFO] ## CYCLE 14 ##
+[12-13 03:57:59] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 03:57:59] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 04:02:00] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:02:00] [MAIN:INFO] ## CYCLE 15 ##
+[12-13 04:02:00] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 04:02:00] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 04:06:00] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:06:00] [MAIN:INFO] ## CYCLE 16 ##
+[12-13 04:06:00] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 04:06:00] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 04:10:00] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:10:00] [MAIN:INFO] ## CYCLE 17 ##
+[12-13 04:10:00] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 04:10:02] [WEATHER:INFO] Weather: -7°C, Partly cloudy, UV:0
+[12-13 04:10:02] [WEATHER:INFO] Fetch #5, Errors: 0
+[12-13 04:10:02] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 04:14:02] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:14:02] [MAIN:INFO] ## CYCLE 18 ##
+[12-13 04:14:02] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 04:14:02] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 04:18:02] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:18:02] [MAIN:INFO] ## CYCLE 19 ##
+[12-13 04:18:02] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 04:18:02] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 04:22:02] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:22:02] [MAIN:INFO] ## CYCLE 20 ##
+[12-13 04:22:02] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 04:22:02] [DISPLAY:INFO] Displaying weather: -7°C Partly cloudy
+[12-13 04:26:02] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:26:02] [MAIN:INFO] Memory: 3.9% used (75KB) [+144]
+[12-13 04:26:02] [MAIN:INFO] ## CYCLE 21 ##
+[12-13 04:26:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 04:26:04] [WEATHER:INFO] Weather: -8°C, Mostly cloudy, UV:0
+[12-13 04:26:04] [WEATHER:INFO] Fetch #6, Errors: 0
+[12-13 04:26:04] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:30:05] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:30:05] [MAIN:INFO] ## CYCLE 22 ##
+[12-13 04:30:05] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 04:30:05] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:34:05] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:34:05] [MAIN:INFO] ## CYCLE 23 ##
+[12-13 04:34:05] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 04:34:05] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:38:05] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:38:05] [MAIN:INFO] ## CYCLE 24 ##
+[12-13 04:38:05] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 04:38:05] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:42:05] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:42:05] [MAIN:INFO] ## CYCLE 25 ##
+[12-13 04:42:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 04:42:07] [WEATHER:INFO] Weather: -8°C, Mostly cloudy, UV:0
+[12-13 04:42:07] [WEATHER:INFO] Fetch #7, Errors: 0
+[12-13 04:42:07] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:46:07] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:46:07] [MAIN:INFO] ## CYCLE 26 ##
+[12-13 04:46:07] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 04:46:07] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:50:07] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:50:07] [MAIN:INFO] ## CYCLE 27 ##
+[12-13 04:50:07] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 04:50:07] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:54:08] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:54:08] [MAIN:INFO] ## CYCLE 28 ##
+[12-13 04:54:08] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 04:54:08] [DISPLAY:INFO] Displaying weather: -8°C Mostly cloudy
+[12-13 04:58:08] [DISPLAY:INFO] Weather display complete 
+
+[12-13 04:58:08] [MAIN:INFO] ## CYCLE 29 ##
+[12-13 04:58:08] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 04:58:10] [WEATHER:INFO] Weather: -9°C, Mostly cloudy, UV:0
+[12-13 04:58:10] [WEATHER:INFO] Fetch #8, Errors: 0
+[12-13 04:58:10] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 05:02:10] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:02:10] [MAIN:INFO] ## CYCLE 30 ##
+[12-13 05:02:10] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 05:02:10] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 05:06:10] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:06:10] [MAIN:INFO] Memory: 3.9% used (75KB) [-288]
+[12-13 05:06:10] [MAIN:INFO] ## CYCLE 31 ##
+[12-13 05:06:10] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 05:06:10] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 05:10:10] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:10:10] [MAIN:INFO] ## CYCLE 32 ##
+[12-13 05:10:10] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 05:10:10] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 05:14:11] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:14:11] [MAIN:INFO] ## CYCLE 33 ##
+[12-13 05:14:11] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 05:14:13] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 05:14:13] [WEATHER:INFO] Fetch #9, Errors: 0
+[12-13 05:14:13] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:18:13] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:18:13] [MAIN:INFO] ## CYCLE 34 ##
+[12-13 05:18:13] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 05:18:13] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:22:13] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:22:13] [MAIN:INFO] ## CYCLE 35 ##
+[12-13 05:22:13] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 05:22:13] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:26:13] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:26:13] [MAIN:INFO] ## CYCLE 36 ##
+[12-13 05:26:13] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 05:26:13] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:30:13] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:30:13] [MAIN:INFO] ## CYCLE 37 ##
+[12-13 05:30:13] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 05:30:15] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 05:30:15] [WEATHER:INFO] Fetch #10, Errors: 0
+[12-13 05:30:15] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:34:15] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:34:15] [MAIN:INFO] ## CYCLE 38 ##
+[12-13 05:34:15] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 05:34:15] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:38:16] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:38:16] [MAIN:INFO] ## CYCLE 39 ##
+[12-13 05:38:16] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 05:38:16] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:42:16] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:42:16] [MAIN:INFO] ## CYCLE 40 ##
+[12-13 05:42:16] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 05:42:16] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 05:46:16] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:46:16] [MAIN:INFO] Memory: 3.9% used (76KB) [-336]
+[12-13 05:46:16] [MAIN:INFO] ## CYCLE 41 ##
+[12-13 05:46:16] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 05:46:18] [WEATHER:INFO] Weather: -9°C, Mostly cloudy, UV:0
+[12-13 05:46:18] [WEATHER:INFO] Fetch #11, Errors: 0
+[12-13 05:46:18] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 05:50:18] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:50:18] [MAIN:INFO] ## CYCLE 42 ##
+[12-13 05:50:18] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 05:50:18] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 05:54:18] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:54:18] [MAIN:INFO] ## CYCLE 43 ##
+[12-13 05:54:18] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 05:54:18] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 05:58:18] [DISPLAY:INFO] Weather display complete 
+
+[12-13 05:58:18] [MAIN:INFO] ## CYCLE 44 ##
+[12-13 05:58:18] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 05:58:18] [DISPLAY:INFO] Displaying weather: -9°C Mostly cloudy
+[12-13 06:02:18] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:02:18] [MAIN:INFO] ## CYCLE 45 ##
+[12-13 06:02:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 06:02:20] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 06:02:20] [WEATHER:INFO] Fetch #12, Errors: 0
+[12-13 06:02:20] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:06:21] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:06:21] [MAIN:INFO] ## CYCLE 46 ##
+[12-13 06:06:21] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 06:06:21] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:10:21] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:10:21] [MAIN:INFO] ## CYCLE 47 ##
+[12-13 06:10:21] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 06:10:21] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:14:21] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:14:21] [MAIN:INFO] ## CYCLE 48 ##
+[12-13 06:14:21] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 06:14:21] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:18:21] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:18:21] [MAIN:INFO] ## CYCLE 49 ##
+[12-13 06:18:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 06:18:23] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 06:18:23] [WEATHER:INFO] Fetch #13, Errors: 0
+[12-13 06:18:23] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:22:23] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:22:23] [MAIN:INFO] ## CYCLE 50 ##
+[12-13 06:22:23] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 06:22:23] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:26:23] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:26:23] [MAIN:INFO] Memory: 3.9% used (76KB) [-256]
+[12-13 06:26:23] [MAIN:INFO] ## CYCLE 51 ##
+[12-13 06:26:23] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 06:26:23] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:30:24] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:30:24] [MAIN:INFO] ## CYCLE 52 ##
+[12-13 06:30:24] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 06:30:24] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:34:24] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:34:24] [MAIN:INFO] ## CYCLE 53 ##
+[12-13 06:34:24] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 06:34:26] [WEATHER:INFO] Weather: -10°C, Cloudy, UV:0
+[12-13 06:34:26] [WEATHER:INFO] Fetch #14, Errors: 0
+[12-13 06:34:26] [DISPLAY:INFO] Displaying weather: -10°C Cloudy
+[12-13 06:38:26] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:38:26] [MAIN:INFO] ## CYCLE 54 ##
+[12-13 06:38:26] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 06:38:26] [DISPLAY:INFO] Displaying weather: -10°C Cloudy
+[12-13 06:42:26] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:42:26] [MAIN:INFO] ## CYCLE 55 ##
+[12-13 06:42:26] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 06:42:26] [DISPLAY:INFO] Displaying weather: -10°C Cloudy
+[12-13 06:46:26] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:46:26] [MAIN:INFO] ## CYCLE 56 ##
+[12-13 06:46:26] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 06:46:26] [DISPLAY:INFO] Displaying weather: -10°C Cloudy
+[12-13 06:50:26] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:50:26] [MAIN:INFO] ## CYCLE 57 ##
+[12-13 06:50:26] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 06:50:28] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 06:50:28] [WEATHER:INFO] Fetch #15, Errors: 0
+[12-13 06:50:28] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:54:28] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:54:28] [MAIN:INFO] ## CYCLE 58 ##
+[12-13 06:54:28] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 06:54:28] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 06:58:29] [DISPLAY:INFO] Weather display complete 
+
+[12-13 06:58:29] [MAIN:INFO] ## CYCLE 59 ##
+[12-13 06:58:29] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 06:58:29] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:02:29] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:02:29] [MAIN:INFO] ## CYCLE 60 ##
+[12-13 07:02:29] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 07:02:29] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:06:29] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:06:29] [MAIN:INFO] Memory: 3.9% used (76KB) [+256]
+[12-13 07:06:29] [MAIN:INFO] ## CYCLE 61 ##
+[12-13 07:06:29] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 07:06:31] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 07:06:31] [WEATHER:INFO] Fetch #16, Errors: 0
+[12-13 07:06:31] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:10:31] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:10:31] [MAIN:INFO] ## CYCLE 62 ##
+[12-13 07:10:31] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 07:10:31] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:14:31] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:14:31] [MAIN:INFO] ## CYCLE 63 ##
+[12-13 07:14:31] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 07:14:31] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:18:32] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:18:32] [MAIN:INFO] ## CYCLE 64 ##
+[12-13 07:18:32] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 07:18:32] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:22:32] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:22:32] [MAIN:INFO] ## CYCLE 65 ##
+[12-13 07:22:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 07:22:34] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 07:22:34] [WEATHER:INFO] Fetch #17, Errors: 0
+[12-13 07:22:34] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:26:34] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:26:34] [MAIN:INFO] ## CYCLE 66 ##
+[12-13 07:26:34] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 07:26:34] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:30:34] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:30:34] [MAIN:INFO] ## CYCLE 67 ##
+[12-13 07:30:34] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 07:30:34] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:34:34] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:34:34] [MAIN:INFO] ## CYCLE 68 ##
+[12-13 07:34:34] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 07:34:34] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:38:34] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:38:34] [MAIN:INFO] ## CYCLE 69 ##
+[12-13 07:38:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 07:38:36] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 07:38:36] [WEATHER:INFO] Fetch #18, Errors: 0
+[12-13 07:38:36] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:42:37] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:42:37] [MAIN:INFO] ## CYCLE 70 ##
+[12-13 07:42:37] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 07:42:37] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:46:37] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:46:37] [MAIN:INFO] Memory: 3.9% used (76KB) [-256]
+[12-13 07:46:37] [MAIN:INFO] ## CYCLE 71 ##
+[12-13 07:46:37] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 07:46:37] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:50:37] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:50:37] [MAIN:INFO] ## CYCLE 72 ##
+[12-13 07:50:37] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 07:50:37] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:54:37] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:54:37] [MAIN:INFO] ## CYCLE 73 ##
+[12-13 07:54:37] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 07:54:39] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 07:54:39] [WEATHER:INFO] Fetch #19, Errors: 0
+[12-13 07:54:39] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 07:58:39] [DISPLAY:INFO] Weather display complete 
+
+[12-13 07:58:39] [MAIN:INFO] ## CYCLE 74 ##
+[12-13 07:58:39] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 07:58:39] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:02:39] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:02:39] [MAIN:INFO] ## CYCLE 75 ##
+[12-13 08:02:39] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 08:02:39] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:06:40] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:06:40] [MAIN:INFO] ## CYCLE 76 ##
+[12-13 08:06:40] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 08:06:40] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:10:40] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:10:40] [MAIN:INFO] ## CYCLE 77 ##
+[12-13 08:10:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 08:10:42] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 08:10:42] [WEATHER:INFO] Fetch #20, Errors: 0
+[12-13 08:10:42] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:14:42] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:14:42] [MAIN:INFO] ## CYCLE 78 ##
+[12-13 08:14:42] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 08:14:42] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:18:42] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:18:42] [MAIN:INFO] ## CYCLE 79 ##
+[12-13 08:18:42] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 08:18:42] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:22:42] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:22:42] [MAIN:INFO] ## CYCLE 80 ##
+[12-13 08:22:42] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 08:22:42] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:26:42] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:26:42] [MAIN:INFO] Memory: 3.9% used (76KB) [+256]
+[12-13 08:26:42] [MAIN:INFO] ## CYCLE 81 ##
+[12-13 08:26:42] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 08:26:44] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 08:26:44] [WEATHER:INFO] Fetch #21, Errors: 0
+[12-13 08:26:44] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:30:44] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:30:44] [MAIN:INFO] ## CYCLE 82 ##
+[12-13 08:30:44] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 08:30:44] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:34:45] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:34:45] [MAIN:INFO] ## CYCLE 83 ##
+[12-13 08:34:45] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 08:34:45] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:38:45] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:38:45] [MAIN:INFO] ## CYCLE 84 ##
+[12-13 08:38:45] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 08:38:45] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:42:45] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:42:45] [MAIN:INFO] ## CYCLE 85 ##
+[12-13 08:42:45] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 08:42:47] [WEATHER:INFO] Weather: -10°C, Mostly cloudy, UV:0
+[12-13 08:42:47] [WEATHER:INFO] Fetch #22, Errors: 0
+[12-13 08:42:47] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:46:47] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:46:47] [MAIN:INFO] ## CYCLE 86 ##
+[12-13 08:46:47] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 08:46:47] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:50:47] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:50:47] [MAIN:INFO] ## CYCLE 87 ##
+[12-13 08:50:47] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 08:50:47] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:54:47] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:54:47] [MAIN:INFO] ## CYCLE 88 ##
+[12-13 08:54:47] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 08:54:47] [DISPLAY:INFO] Displaying weather: -10°C Mostly cloudy
+[12-13 08:58:48] [DISPLAY:INFO] Weather display complete 
+
+[12-13 08:58:48] [MAIN:INFO] ## CYCLE 89 ##
+[12-13 08:58:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 08:58:50] [WEATHER:INFO] Weather: -11°C, Cloudy, UV:0
+[12-13 08:58:50] [WEATHER:INFO] Fetch #23, Errors: 0
+[12-13 08:58:50] [DISPLAY:INFO] Displaying weather: -11°C Cloudy
+[12-13 09:02:50] [DISPLAY:INFO] Weather display complete 
+
+[12-13 09:02:50] [MAIN:INFO] ## CYCLE 90 ##
+[12-13 09:02:50] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 09:02:50] [DISPLAY:INFO] Displaying weather: -11°C Cloudy
+[12-13 09:06:50] [DISPLAY:INFO] Weather display complete 
+
+[12-13 09:06:50] [MAIN:INFO] Memory: 3.9% used (76KB) [-256]
+[12-13 09:06:50] [MAIN:INFO] ## CYCLE 91 ##
+[12-13 09:06:50] [WEATHER:INFO] Using cached weather (8m old)
+[12-13 09:06:50] [DISPLAY:INFO] Displaying weather: -11°C Cloudy
+[12-13 09:10:50] [DISPLAY:INFO] Weather display complete 
+
+[12-13 09:10:50] [MAIN:INFO] ## CYCLE 92 ##
+[12-13 09:10:50] [WEATHER:INFO] Using cached weather (12m old)
+[12-13 09:10:50] [DISPLAY:INFO] Displaying weather: -11°C Cloudy
+[12-13 09:14:50] [DISPLAY:INFO] Weather display complete 
+
+[12-13 09:14:50] [MAIN:INFO] ## CYCLE 93 ##
+[12-13 09:14:50] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 09:14:52] [WEATHER:INFO] Weather: -10°C, Cloudy, UV:0
+[12-13 09:14:53] [WEATHER:INFO] Fetch #24, Errors: 0
+[12-13 09:14:53] [DISPLAY:INFO] Displaying weather: -10°C Cloudy
+[12-13 09:18:53] [DISPLAY:INFO] Weather display complete 
+
+[12-13 09:18:53] [MAIN:INFO] ## CYCLE 94 ##
+[12-13 09:18:53] [WEATHER:INFO] Using cached weather (4m old)
+[12-13 09:18:53] [DISPLAY:INFO] Displaying weather: -10°C Cloudy
+[12-13 09:18:58] [DISPLAY:INFO] UP button pressed during weather display
+[12-13 09:18:58] [MAIN:INFO] === Weather test stopped by button press ===
+[12-13 09:19:00] [MAIN:INFO] Final memory: 3.5% used (68KB)
+[12-13 09:19:00] [MAIN:INFO] Total cycles: 94
+[12-13 09:19:00] [MAIN:INFO] Weather fetches: 24
+[12-13 09:19:00] [MAIN:INFO] Weather errors: 0
+[12-13 09:19:00] [MAIN:INFO] Uptime: 6.2 hours (373.2 minutes)
