@@ -36,7 +36,7 @@ def show(weather_data, duration):
 		logger.log("No weather data to display", config.LogLevel.WARNING, area="DISPLAY")
 		return
 
-	unit_symbol = "°C" if config.Env.TEMPERATURE_UNIT == "C" else "°F"
+	unit_symbol = "\u00b0C" if config.Env.TEMPERATURE_UNIT == "C" else "\u00b0F"
 	logger.log(f"Displaying weather: {weather_data['temp']}{unit_symbol} {weather_data['condition']}", area="DISPLAY")
 	
 	# ========================================================================
