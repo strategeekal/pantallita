@@ -29,6 +29,7 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ✅ WiFi recovery
 - ✅ Button control (UP to stop)
 - ✅ Centralized logging system (Phase 1.5)
+- ✅ Location & timezone from AccuWeather (Phase 1.5)
 - ✅ Memory tracking as % used (not bytes free)
 - ✅ Human-readable cache age (e.g., "12m old")
 - ✅ Cycle separators and module area prefixes
@@ -50,18 +51,22 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
   - Updated code.py (show weather instead of clock)
   - 95 cycles, zero crashes, memory stable
 
-- ✅ **Phase 1.5: Centralized Logging** - Deployed
+- ✅ **Phase 1.5: Centralized Logging & Location/Timezone** - Deployed
   - Created logger.py (centralized logging module)
+  - Location & timezone from AccuWeather Location API
+  - Weather and time always in sync (same API source)
   - Memory shown as % used (easier to spot leaks)
   - Cache age in human-readable format (e.g., "12m old")
   - Module area prefixes (MAIN, HW, WEATHER, DISPLAY)
   - Configurable timestamps and log levels
   - Accurate uptime tracking with monotonic time
+  - 6-hour overnight test successful (94 cycles, 0 errors)
 
 **In Progress:**
-   - ⏳ **Phase 1 + 1.5: Overnight Stability Test**
-   - Testing logging system and weather display
-   - Target: 12+ hour uptime
+   - ⏳ **Phase 1.5: Stress Test** - Testing overnight
+   - AccuWeather location/timezone integration
+   - Socket exhaustion testing (5-min fetch interval)
+   - Target: 8-12 hour uptime, ~100 cycles
 
 ---
 
@@ -182,7 +187,8 @@ pantallita/
 │                        # - connect_wifi(), init_buttons()
 │                        # - Timezone handling with DST
 │
-├── weather_api.py       # Weather fetching (Phase 1) ✅ DONE
+├── weather_api.py       # Weather fetching (Phase 1 + 1.5) ✅ DONE
+│                        # - fetch_location_info() - location & timezone
 │                        # - fetch_current() - inline parsing
 │                        # - Returns: {temp, uv, humidity, icon, condition}
 │
@@ -381,6 +387,27 @@ Free:                 ~1,995KB (75% headroom) ✅
 - **`format_cache_age(seconds)`** - Human-readable age (e.g., "2m", "15m", "1h 5m")
 - **`format_uptime(seconds)`** - Formatted uptime display
 - **`log_cycle_start(cycle_num)`** - Cycle separator markers
+
+### Location & Timezone Integration (`weather_api.py`)
+- **`fetch_location_info()`** - Fetches location and timezone from AccuWeather Location API
+- Returns: timezone name, UTC offset, DST status, city, state, formatted location
+- **Primary timezone source:** AccuWeather Location API
+- **Fallback chain:** settings.toml TIMEZONE → worldtimeapi.org → continue with RTC time
+- **Benefits:** Weather and time always in sync (same API source), eliminates worldtimeapi.org dependency
+
+**Initialization flow:**
+```python
+# code.py initialize()
+1. hardware.connect_wifi()
+2. location_info = weather_api.fetch_location_info()  # AccuWeather Location API
+3. hardware.sync_time(rtc, timezone_offset=location_info['offset'])  # Use AccuWeather timezone
+```
+
+**Log output:**
+```
+[WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[HW:INFO] Time synced: 12/13 9:53 AM
+```
 
 ### Configuration Options (`config.py`)
 ```python
