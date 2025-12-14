@@ -160,14 +160,24 @@ def initialize():
 		show_message("WIFI...", config.Colors.GREEN, 16)
 		hardware.connect_wifi()
 
-		# Sync time
+		# Fetch location info from AccuWeather (for timezone)
+		show_message("LOCATION", config.Colors.GREEN, 16)
+		location_info = weather_api.fetch_location_info()
+
+		# Sync time (with timezone from AccuWeather or fallback)
 		show_message("SYNC...", config.Colors.GREEN, 16)
-		hardware.sync_time(state.rtc)
+		if location_info:
+			hardware.sync_time(state.rtc, timezone_offset=location_info['offset'])
+		else:
+			# Fallback to worldtimeapi.org
+			logger.log("Using settings.toml timezone as fallback", config.LogLevel.WARNING, area="MAIN")
+			hardware.sync_time(state.rtc)
 
 		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)
 		time.sleep(2)
 
+		logger.log("Hardware ready", area="MAIN")
 		logger.log("=== Initialization complete ===")
 		logger.log("Press UP button to stop test")
 		logger.log("=== Starting weather display cycle === \n")

@@ -11,6 +11,94 @@ import state
 import logger
 
 # ============================================================================
+# LOCATION INFO (INLINE - NO HELPERS)
+# ============================================================================
+
+def fetch_location_info():
+	"""
+	Fetch location and timezone info from AccuWeather Location API.
+
+	Returns dict with:
+		- name: str (timezone name, e.g., "America/Chicago")
+		- offset: int (UTC offset in hours, e.g., -6)
+		- is_dst: bool (daylight saving time active)
+		- city: str (city name, e.g., "Sheffield And Depaul")
+		- state: str (state code, e.g., "IL")
+		- location: str (formatted location, e.g., "Sheffield And Depaul, IL")
+
+	Returns None if fetch fails.
+
+	CRITICAL: All parsing is INLINE to minimize stack depth.
+	"""
+
+	# Validate configuration
+	if not config.Env.ACCUWEATHER_KEY:
+		logger.log("No AccuWeather API key configured", config.LogLevel.ERROR, area="WEATHER")
+		return None
+
+	if not config.Env.ACCUWEATHER_LOCATION:
+		logger.log("No AccuWeather location key configured", config.LogLevel.ERROR, area="WEATHER")
+		return None
+
+	# Build URL (inline - no function)
+	url = f"http://dataservice.accuweather.com/locations/v1/{config.Env.ACCUWEATHER_LOCATION}?apikey={config.Env.ACCUWEATHER_KEY}"
+
+	response = None
+
+	try:
+		logger.log("Fetching location info from AccuWeather...", config.LogLevel.DEBUG, area="WEATHER")
+
+		# Fetch from API
+		response = state.session.get(url, timeout=10)
+
+		# Check status
+		if response.status_code != 200:
+			logger.log(f"Location API error: HTTP {response.status_code}", config.LogLevel.WARNING, area="WEATHER")
+			return None
+
+		# Parse JSON (inline - no helper function)
+		data = response.json()
+
+		# Extract timezone info
+		timezone_info = data.get("TimeZone", {})
+
+		# Extract location details
+		city = data.get("LocalizedName", "Unknown")
+		state_code = data.get("AdministrativeArea", {}).get("ID", "")
+
+		# Build location string
+		if state_code:
+			location_str = f"{city}, {state_code}"
+		else:
+			location_str = city
+
+		# Build result dict (inline)
+		location_data = {
+			"name": timezone_info.get("Name", config.Env.TIMEZONE),
+			"offset": int(timezone_info.get("GmtOffset", -6)),
+			"is_dst": timezone_info.get("IsDaylightSaving", False),
+			"city": city,
+			"state": state_code,
+			"location": location_str
+		}
+
+		logger.log(f"Location: {location_data['location']} | Timezone: {location_data['name']} (UTC{location_data['offset']:+d})", area="WEATHER")
+
+		return location_data
+
+	except Exception as e:
+		logger.log(f"Location fetch failed: {e}", config.LogLevel.WARNING, area="WEATHER")
+		return None
+
+	finally:
+		# Always close response to prevent socket leak
+		if response:
+			try:
+				response.close()
+			except:
+				pass
+
+# ============================================================================
 # WEATHER FETCHING (INLINE - NO HELPERS)
 # ============================================================================
 
