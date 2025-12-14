@@ -68,3 +68,15 @@ last_forecast_time = 0  # monotonic time of last fetch
 # Forecast fetch tracking
 forecast_fetch_count = 0
 forecast_fetch_errors = 0
+
+# ============================================================================
+# IMAGE CACHE (Phase 2)
+# ============================================================================
+
+# Shared LRU image cache for all displays (weather, forecast, schedules, events)
+# - Stores OnDiskBitmap objects by file path
+# - LRU eviction: removes oldest when cache exceeds IMAGE_CACHE_MAX
+# - Reduces SD card reads and memory churn
+image_cache = {}  # {path: OnDiskBitmap}
+image_cache_order = []  # LRU tracking list (oldest first, newest last)
+IMAGE_CACHE_MAX = 12  # Max images to cache (like v2.5)

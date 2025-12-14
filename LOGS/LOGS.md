@@ -67,6 +67,31 @@ This file tracks all stability test logs throughout the refactoring process. Eac
 
 ---
 
+---
+
+## Phase 2: 12-Hour Forecast Display
+
+- **12-13-v2-initial-test.txt** [LATEST] ⚠️ **SHORT TEST - BUTTON STOPPED**
+  - **Phase:** 2.0 (Weather + 12-Hour Forecast with Smart Precipitation)
+  - **Duration:** 0.4 hours (20:56 - 21:20, 24 minutes)
+  - **Cycles:** 4
+  - **API Calls:** 4 weather fetches + 2 forecast fetches (1 location fetch at startup)
+  - **Memory:** Baseline 3.3% → Final 6.3% (delta: +3.0%, +59KB)
+  - **Errors:** 0 critical, 0 warnings
+  - **Notable:** First Phase 2 test - 3-column forecast display with smart precipitation logic, separate cache timers (weather: 5 min, forecast: 15 min), test intentionally stopped by button press
+  - **Result:** ⚠️ SHORT TEST - Functional but insufficient duration for stability assessment
+
+  **Key Findings:**
+  - ✅ **Forecast display:** 3-column layout working correctly
+  - ✅ **Smart logic:** Showing consecutive hours (10P, 11P) with correct color coding
+  - ✅ **Forecast cache:** Working correctly (cycles 2-3 used cached data, refreshed at cycle 4)
+  - ✅ **API separation:** Weather fetched every ~6 min, forecast every ~15 min as configured
+  - ✅ **Temperature unit:** Celsius working correctly (-13°C, -25°C feels like)
+  - ⚠️ **Memory delta:** +3.0% increase needs monitoring in longer test (may be normal for forecast data)
+  - ⚠️ **Test duration:** Only 24 minutes - need extended test to validate stability
+
+---
+
 ## Archive Strategy
 
 **Keep:**

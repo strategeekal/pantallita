@@ -34,8 +34,14 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ✅ Human-readable cache age (e.g., "12m old")
 - ✅ Cycle separators and module area prefixes
 - ✅ Accurate uptime tracking
+- ✅ 12-hour forecast display (Phase 2)
+- ✅ Smart precipitation detection (shows when rain starts/stops)
+- ✅ 3-column forecast layout with 13×13 icons
+- ✅ Separate cache timers (weather: 5 min, forecast: 15 min)
+- ✅ Color-coded time labels (white: consecutive, mint: jumped hours)
+- ✅ Live clock in forecast column 1
 
-## Status: Phase 1.5 - Logging & Monitoring
+## Status: Phase 2 - Forecast Display
 
 **Completed:**
 - ✅ **Phase 0: Bootstrap** - Foundation validated (2+ hour test)
@@ -57,16 +63,22 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
   - Weather and time always in sync (same API source)
   - Memory shown as % used (easier to spot leaks)
   - Cache age in human-readable format (e.g., "12m old")
-  - Module area prefixes (MAIN, HW, WEATHER, DISPLAY)
+  - Module area prefixes (MAIN, HW, WEATHER, DISPLAY, FORECAST)
   - Configurable timestamps and log levels
   - Accurate uptime tracking with monotonic time
-  - 6-hour overnight test successful (94 cycles, 0 errors)
+  - 9.5-hour stress test successful (115 cycles, 0 errors)
 
 **In Progress:**
-   - ⏳ **Phase 1.5: Stress Test** - Testing overnight
-   - AccuWeather location/timezone integration
-   - Socket exhaustion testing (5-min fetch interval)
-   - Target: 8-12 hour uptime, ~100 cycles
+   - ⏳ **Phase 2: Forecast Display** - Initial test complete (24 min, 4 cycles)
+   - Created display_forecast.py with smart precipitation logic (inline, flattened)
+   - Added fetch_forecast() to weather_api.py (12-hour forecast)
+   - 3-column layout with 13×13 icons
+   - Smart column selection (shows when rain starts/stops)
+   - Color cascade logic (white for consecutive, mint for jumped hours)
+   - Separate cache timers (weather: 5 min, forecast: 15 min)
+   - Fixed color bug (col3 now compares to col2, not current hour)
+   - Fixed positioning (equal column spacing, text not cut off)
+   - Next: Extended stability test (8-12 hours)
 
 ---
 
@@ -187,16 +199,21 @@ pantallita/
 │                        # - connect_wifi(), init_buttons()
 │                        # - Timezone handling with DST
 │
-├── weather_api.py       # Weather fetching (Phase 1 + 1.5) ✅ DONE
+├── weather_api.py       # Weather fetching (Phase 1 + 1.5 + 2) ✅ DONE
 │                        # - fetch_location_info() - location & timezone
-│                        # - fetch_current() - inline parsing
-│                        # - Returns: {temp, uv, humidity, icon, condition}
+│                        # - fetch_current() - inline parsing (current weather)
+│                        # - fetch_forecast() - 12-hour forecast (Phase 2)
+│                        # - Separate cache timers (weather: 5 min, forecast: 15 min)
 │
 ├── display_weather.py   # Weather rendering (Phase 1) ✅ DONE
 │                        # - show() - everything inline
 │                        # - No helper functions
 │
-├── display_forecast.py  # Forecast rendering (Phase 2)
+├── display_forecast.py  # Forecast rendering (Phase 2) ✅ DONE
+│                        # - show() - smart precipitation logic inline
+│                        # - 3-column layout with color cascade
+│                        # - Live clock in column 1
+│
 ├── stocks_api.py        # Stock fetching (Phase 3)
 ├── display_stocks.py    # Stock rendering (Phase 3)
 └── display_other.py     # Events, schedules, transit, clock
@@ -455,30 +472,39 @@ class Hardware:
 
 ---
 
-## Phase 2: Forecast Display (Week 2)
+## Phase 2: Forecast Display ⏳ IN PROGRESS
 
-### Step 2.1: Add Forecast Fetching
-- [ ] `weather_api.py`: Add `fetch_forecast()` function
-- [ ] Parse 12-hour forecast data
-- [ ] Implement smart column selection logic (inline, no helpers)
-- [ ] Cache forecast data with timestamps
+### Step 2.1: Add Forecast Fetching ✅ COMPLETE
+- [x] `weather_api.py`: Add `fetch_forecast()` function
+- [x] Parse 12-hour forecast data (inline, no helpers)
+- [x] Implement smart column selection logic (inline, flattened)
+- [x] Cache forecast data with timestamps
+- [x] Separate cache timer (15 min vs 5 min for weather)
 
-### Step 2.2: Implement Forecast Rendering
-- [ ] Create `display_forecast.py`
-- [ ] Inline ALL positioning logic (no calculate_position helpers)
-- [ ] Inline image loading (no load_bmp_image wrapper)
-- [ ] Inline text rendering (no right_align_text helper)
-- [ ] 3-column layout with precipitation detection
+### Step 2.2: Implement Forecast Rendering ✅ COMPLETE
+- [x] Create `display_forecast.py`
+- [x] Inline ALL positioning logic (no calculate_position helpers)
+- [x] Inline image loading (OnDiskBitmap for 13×13 icons)
+- [x] Inline text rendering (no right_align_text helper)
+- [x] 3-column layout with smart precipitation detection
+- [x] Color cascade logic (mint for jumped hours)
+- [x] Live clock updates for column 1
 
-### Step 2.3: Integrate with Main Loop
-- [ ] `code.py`: Add forecast to display rotation
-- [ ] Implement display cycle timing
-- [ ] Add forecast cache age checking
+### Step 2.3: Integrate with Main Loop ✅ COMPLETE
+- [x] `code.py`: Add forecast to display rotation
+- [x] Implement display cycle timing (5 min weather + 1 min forecast)
+- [x] Add forecast cache age checking
+- [x] Update config.py with forecast constants
+- [x] Update state.py with forecast tracking
 
-### Step 2.4: Test & Validate
-- [ ] Test column selection logic (various weather conditions)
-- [ ] Verify image loading fallback (missing icons)
-- [ ] Run for 24 hours
+### Step 2.4: Test & Validate ⏳ IN PROGRESS
+- [x] Test column selection logic (clear sky - consecutive hours)
+- [x] Verify image loading (13×13 BMPs working)
+- [x] Fix color bug (col3 comparing to col2 correctly)
+- [x] Fix positioning (equal column spacing)
+- [ ] Test precipitation scenarios (rain starts/stops)
+- [ ] Run extended stability test (8-12 hours)
+- [ ] Verify memory stability over time
 - [ ] Compare stack depth to Phase 1
 
 **Success Criteria:** Weather + Forecast rotation runs 24+ hours, no stack exhaustion
@@ -852,33 +878,35 @@ git push -u origin weather-display
 
    I'm working on Pantallita v3.0, a CircuitPython refactor to fix pystack
    exhaustion. I've completed Phase 0 (bootstrap), Phase 1 (weather display),
-   and Phase 1.5 (centralized logging). Currently testing overnight stability
-   before starting Phase 2 (forecast). Here's the README: [paste this file]
+   Phase 1.5 (centralized logging), and Phase 2 implementation (12-hour forecast
+   with smart precipitation). Currently testing Phase 2 stability. Here's the
+   README: [paste this file]
 
    ```
 
-2. **Current status:** Phase 1.5 complete - Testing overnight before Phase 2
+2. **Current status:** Phase 2 implementation complete - Testing stability before finalizing
 
 3. **Key files completed:**
 
-   - config.py (constants + logging config)
-   - state.py (global state + start_time tracking)
+   - config.py (constants + logging config + forecast layout)
+   - state.py (global state + forecast cache tracking)
    - hardware.py (init functions with timezone handling)
-   - logger.py (centralized logging system - NEW in Phase 1.5)
-   - weather_api.py (fetch from AccuWeather with caching)
+   - logger.py (centralized logging system)
+   - weather_api.py (current weather + 12-hour forecast with separate caches)
    - display_weather.py (inline rendering, live clock)
-   - code.py (main loop with weather display)
+   - display_forecast.py (3-column forecast with smart precipitation logic - NEW in Phase 2)
+   - code.py (main loop with weather + forecast rotation)
 
 4. **Next steps:**
 
-   - Complete overnight stability test
-   - Review test results (memory, errors, uptime)
-   - Start Phase 2: display_forecast.py (12-hour forecast)
+   - Run extended stability test (8-12 hours)
+   - Test precipitation scenarios (rain start/stop logic)
+   - Verify memory stability with forecast data
+   - Finalize Phase 2, move to Phase 3 (stocks)
 
 ---
 
 **Repository:** https://github.com/strategeekal/pantallita
-**Branch:** bootstrap-test (Phase 0 complete)
-**Next Branch:** weather-display (Phase 1)
-**Last Updated:** 2025-12-11
+**Branch:** claude/refactor-rgb-matrix-01LCK6gcPJ9dAaYc9Ft476Nb (Phase 2 in progress)
+**Last Updated:** 2025-12-13
 **CircuitPython Version:** 10.0.1

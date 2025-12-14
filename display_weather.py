@@ -50,16 +50,33 @@ def show(weather_data, duration):
 
 	
 	# ========================================================================
-	# LOAD WEATHER ICON (Inline - OnDiskBitmap for full-screen images)
+	# LOAD WEATHER ICON WITH LRU CACHE (INLINE)
 	# ========================================================================
 	icon_num = weather_data['icon']
 	icon_path = f"{config.Paths.WEATHER_IMAGES}/{icon_num}.bmp"
 
 	try:
-		logger.log(f"Loading icon: {icon_path}", config.LogLevel.DEBUG, area="DISPLAY")
+		# LRU Cache check (inline - no helper functions)
+		if icon_path in state.image_cache:
+			# Cache hit - move to end (mark as recently used)
+			state.image_cache_order.remove(icon_path)
+			state.image_cache_order.append(icon_path)
+			bitmap = state.image_cache[icon_path]
+			logger.log(f"Using cached icon: {icon_path}", config.LogLevel.DEBUG, area="DISPLAY")
+		else:
+			# Cache miss - load from SD card
+			logger.log(f"Loading icon from SD: {icon_path}", config.LogLevel.DEBUG, area="DISPLAY")
+			bitmap = displayio.OnDiskBitmap(icon_path)
 
-		# Use OnDiskBitmap for full-screen BMPs
-		bitmap = displayio.OnDiskBitmap(icon_path)
+			# Add to cache
+			state.image_cache[icon_path] = bitmap
+			state.image_cache_order.append(icon_path)
+
+			# LRU eviction: remove oldest if cache is full
+			if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
+				oldest_path = state.image_cache_order.pop(0)  # Remove oldest
+				del state.image_cache[oldest_path]  # Free memory
+				logger.log(f"Evicted oldest image from cache: {oldest_path}", config.LogLevel.DEBUG, area="DISPLAY")
 
 		# Create TileGrid with the bitmap's pixel shader
 		tile_grid = displayio.TileGrid(
