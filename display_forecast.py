@@ -227,34 +227,25 @@ def show(current_data, forecast_data, duration):
 			# Continue without icon
 
 	# ========================================================================
-	# CREATE TIME LABELS - APPROXIMATELY CENTERED (INLINE)
+	# CREATE TIME LABELS (INLINE)
 	# ========================================================================
 
-	# Calculate approximate X offsets for centering (inline, zero stack depth)
-	# Clock is ~5 chars @ 4px/char = 20px, offset by ~10px from center
-	# 2-3 char times @ 4px/char = 8-12px, offset by ~4-6px from center
-	col1_center_x = config.Layout.FORECAST_COL1_X + config.Layout.FORECAST_COLUMN_WIDTH // 2  # 11
-	col2_center_x = config.Layout.FORECAST_COL2_X + config.Layout.FORECAST_COLUMN_WIDTH // 2  # 32
-	col3_center_x = config.Layout.FORECAST_COL3_X + config.Layout.FORECAST_COLUMN_WIDTH // 2  # 53
-
 	# Column 1 time (will update live - start with placeholder)
-	# "10:00" is ~20px wide, so start at center - 10
 	col1_time_label = bitmap_label.Label(
 		state.font_small,
 		text="00:00",  # Placeholder, will update immediately
 		color=config.Colors.DIMMEST_WHITE,
-		x=col1_center_x - 10,
+		x=config.Layout.FORECAST_COL1_X,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col1_time_label)
 
 	# Column 2 time (static)
-	# 2-3 chars ~8-12px wide, so start at center - 5
 	col2_time_label = bitmap_label.Label(
 		state.font_small,
 		text=col2_time,
 		color=col2_color,
-		x=col2_center_x - 5,
+		x=config.Layout.FORECAST_COL2_X,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col2_time_label)
@@ -264,24 +255,24 @@ def show(current_data, forecast_data, duration):
 		state.font_small,
 		text=col3_time,
 		color=col3_color,
-		x=col3_center_x - 5,
+		x=config.Layout.FORECAST_COL3_X,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col3_time_label)
 
 	# ========================================================================
-	# CREATE TEMPERATURE LABELS - APPROXIMATELY CENTERED (INLINE)
+	# CREATE TEMPERATURE LABELS (INLINE)
 	# ========================================================================
 
-	# Temperature labels are 3-4 chars (~12-16px), offset by ~6-8px from center
-	temp_x_offsets = [col1_center_x - 7, col2_center_x - 7, col3_center_x - 7]
+	# Use column X positions (not icon X positions)
+	temp_columns_x = [config.Layout.FORECAST_COL1_X, config.Layout.FORECAST_COL2_X, config.Layout.FORECAST_COL3_X]
 
 	for i, col in enumerate(columns_data):
 		temp_label = bitmap_label.Label(
 			state.font_small,
 			text=col["temp"],
 			color=config.Colors.DIMMEST_WHITE,
-			x=temp_x_offsets[i],
+			x=temp_columns_x[i],
 			y=config.Layout.FORECAST_TEMP_Y
 		)
 		state.main_group.append(temp_label)
