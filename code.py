@@ -1,7 +1,8 @@
 """
-Pantallita 3.0.1 - Weather Test
+Pantallita 3.0 - Phase 2: Forecast Display
 Tests CircuitPython 10 foundation before implementing features (v3.0.0)
-Implement and test current weather display (v3.0.1)
+Phase 1: Current weather display (v3.0.1)
+Phase 2: 12-hour forecast with smart precipitation detection (v3.0.2)
 
 """
 
@@ -18,6 +19,9 @@ import hardware
 # Import weather modules (Phase 1)
 import weather_api
 import display_weather
+
+# Import forecast module (Phase 2)
+import display_forecast
 
 # Import centralized logger (Phase 1.5)
 import logger
@@ -106,13 +110,20 @@ def run_test_cycle():
 				time.sleep(10)
 		return
 	
-	# Fetch weather data
+	# Fetch weather and forecast data
 	try:
 		weather_data = weather_api.fetch_current()
+		forecast_data = weather_api.fetch_forecast()
 
 		if weather_data:
-			# Display weather
+			# Display current weather
 			display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
+
+			# Display forecast (uses current weather for column 1)
+			if forecast_data:
+				display_forecast.show(weather_data, forecast_data, config.Timing.FORECAST_DISPLAY_DURATION)
+			else:
+				logger.log("No forecast data - skipping forecast display", config.LogLevel.WARNING, area="MAIN")
 		else:
 			logger.log("No weather data - showing clock", config.LogLevel.WARNING)
 			show_clock()

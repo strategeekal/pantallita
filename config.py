@@ -39,6 +39,15 @@ class Layout:
 	UV_BAR_Y = 27
 	HUMIDITY_BAR_Y = 29
 
+	# Forecast display (Phase 2) - 3 columns
+	FORECAST_COL1_X = 3
+	FORECAST_COL2_X = 25
+	FORECAST_COL3_X = 48
+	FORECAST_COLUMN_WIDTH = 13
+	FORECAST_COLUMN_Y = 9  # Icon Y position
+	FORECAST_TIME_Y = 1     # Time label Y position
+	FORECAST_TEMP_Y = 25    # Temperature label Y position
+
 # ============================================================================
 # COLORS
 # ============================================================================
@@ -52,6 +61,7 @@ class Colors:
 	BLUE = 0x0000FF
 	ORANGE = 0xFFA500
 	DIMMEST_WHITE = 0x4A4A3C
+	MINT = 0x288C3C  # For forecast time labels (jumped hours)
 
 # ============================================================================
 # ENVIRONMENT VARIABLES
@@ -102,6 +112,7 @@ class API:
 	# AccuWeather
 	ACCUWEATHER_BASE = "http://dataservice.accuweather.com"
 	ACCUWEATHER_CURRENT = "/currentconditions/v1/{location}?details=true"
+	ACCUWEATHER_FORECAST = "/forecasts/v1/hourly/12hour/{location}?details=true"
 
 # ============================================================================
 # PATHS
@@ -111,9 +122,12 @@ class Paths:
 	"""File system paths"""
 	FONT_LARGE = "/fonts/bigbit10-16.bdf"
 	FONT_SMALL = "/fonts/tinybit6-16.bdf"
-	
+
 	# Images (Phase 1)
 	WEATHER_IMAGES = "/img/weather"
+
+	# Forecast column images (Phase 2)
+	FORECAST_IMAGES = "/img/weather/columns"
 
 # ============================================================================
 # LOGGING
@@ -144,11 +158,16 @@ class Timing:
 	"""Timing constants in seconds"""
 	CLOCK_UPDATE_INTERVAL = 10  # Update clock every 10 seconds << CLOCK DISPLAY
 	MEMORY_CHECK_INTERVAL = 5  # Check memory every 10 cycles
-	
+
 	# Weather display (Phase 1)
 	WEATHER_DISPLAY_DURATION = 300  # 4 minutes
 	WEATHER_UPDATE_INTERVAL = 300   # 5 minutes
 	WEATHER_CACHE_MAX_AGE = 300     # 15 minutes
+
+	# Forecast display (Phase 2)
+	FORECAST_DISPLAY_DURATION = 60   # 1 minute
+	FORECAST_UPDATE_INTERVAL = 900   # 15 minutes
+	FORECAST_CACHE_MAX_AGE = 900     # 15 minutes
 
 # Load environment variables at import
 Env.load()
