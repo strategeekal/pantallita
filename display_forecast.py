@@ -265,11 +265,11 @@ def show(current_data, forecast_data, duration):
 	# CREATE TEMPERATURE LABELS - V2.5 STYLE (INLINE)
 	# ========================================================================
 
-	# Center temps within 13px icon width
-	# Temp labels: "25°" ~12px, offset = (13 - 12) / 2 ≈ 1px
-	temp_offset = 1
+	# Left-align temps at column X (negative temps ~18px, don't fit in 13px)
+	# Positive temps "25°" ~12px also left-align for consistency
+	temp_offset = 0
 
-	# Use column X positions with centering offset
+	# Use column X positions (left-aligned)
 	temp_columns_x = [
 		config.Layout.FORECAST_COL1_X + temp_offset,
 		config.Layout.FORECAST_COL2_X + temp_offset,
