@@ -48,9 +48,9 @@ def show(current_data, forecast_data, duration):
 	col2_index = 0
 	col3_index = 1
 
-	# Extract precipitation flags for first 6 hours (inline - avoid nested access)
+	# Extract precipitation flags for ALL 12 hours (was only checking first 6)
 	current_has_precip = current_data.get('has_precipitation', False)
-	precip_flags = [h.get('has_precipitation', False) for h in forecast_data[:min(6, len(forecast_data))]]
+	precip_flags = [h.get('has_precipitation', False) for h in forecast_data]
 
 	# Precipitation logic (inline - sequential, not nested)
 	if current_has_precip:

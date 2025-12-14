@@ -247,7 +247,7 @@ TEST 1: CURRENTLY RAINING, STOPPING LATER [WORKING]:
 
 ====================================================================================================================
 
-TEST 2: N RAIN NOW, RAINING LATER [WORKING]:
+TEST 2: N RAIN NOW, RAINING LATER [ERROR - DOES NOT SHOW WHEN RAIN STOPS]:
 
 === RAW API DATA ====
 
@@ -491,3 +491,255 @@ TEST 2: N RAIN NOW, RAINING LATER [WORKING]:
 [12-14 02:39:54] [MAIN:INFO] Weather fetches: 1
 [12-14 02:39:54] [MAIN:INFO] Weather errors: 0
 [12-14 02:39:54] [MAIN:INFO] Uptime: 0.0 hours (0.4 minutes)
+
+
+====================================================================================================================
+
+TEST 3: REPEAT OF TEST 2 WITH REVISED LOGIC (CHECK 12 HOUR FORECAST FOR RAIN STOP INSTEAD OF ONLY 6 HOURS [WORKING 
+
+======= API RAW DATA ======
+
+[
+  {
+	"DateTime": "2025-12-14T04:00:00-05:00",
+	"EpochDateTime": 1765702800,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 34,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=4&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=4&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T05:00:00-05:00",
+	"EpochDateTime": 1765706400,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2.2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 37,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=5&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=5&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T06:00:00-05:00",
+	"EpochDateTime": 1765710000,
+	"WeatherIcon": 29,
+	"IconPhrase": "Rain and snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Mixed",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2.5,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 40,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=6&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=6&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T07:00:00-05:00",
+	"EpochDateTime": 1765713600,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2.7,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 70,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=7&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=7&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T08:00:00-05:00",
+	"EpochDateTime": 1765717200,
+	"WeatherIcon": 19,
+	"IconPhrase": "Flurries",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 1.9,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 62,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=8&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=8&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T09:00:00-05:00",
+	"EpochDateTime": 1765720800,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 0.8,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 70,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=9&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=9&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T10:00:00-05:00",
+	"EpochDateTime": 1765724400,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -0.2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 81,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=10&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=10&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T11:00:00-05:00",
+	"EpochDateTime": 1765728000,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -0.4,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 79,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=11&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=11&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T12:00:00-05:00",
+	"EpochDateTime": 1765731600,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -0.8,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 79,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=12&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=12&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T13:00:00-05:00",
+	"EpochDateTime": 1765735200,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -1.3,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 25,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=13&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=13&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T14:00:00-05:00",
+	"EpochDateTime": 1765738800,
+	"WeatherIcon": 6,
+	"IconPhrase": "Mostly cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -1.5,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 20,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=14&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=14&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T15:00:00-05:00",
+	"EpochDateTime": 1765742400,
+	"WeatherIcon": 6,
+	"IconPhrase": "Mostly cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -1.9,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 20,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=15&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=15&unit=c&lang=en-us"
+  }
+]
+
+
+====== TEST 3 LOGS ======
+
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-14 17:04:48] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-14 17:04:48] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-14 17:04:50] [WEATHER:INFO] Location: Parksley, VA | Timezone: America/New_York (UTC-5)
+[12-14 03:04:53] [HW:INFO] Time synced: 12/14 3:04 AM
+[12-14 03:04:55] [MAIN:INFO] Hardware ready
+[12-14 03:04:55] [MAIN:INFO] === Initialization complete ===
+[12-14 03:04:55] [MAIN:INFO] Press UP button to stop test
+[12-14 03:04:55] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-14 03:04:55] [MAIN:INFO] Baseline memory: 3.3% used (64KB) 
+
+[12-14 03:04:55] [MAIN:INFO] ### CYCLE 1 ###
+[12-14 03:04:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:04:55] [WEATHER:INFO] Weather: 1°C, Clear, UV:0
+[12-14 03:04:55] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-14 03:04:55] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 03:04:56] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Cloudy
+[12-14 03:04:56] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-14 03:04:56] [FORECAST:INFO] Displaying forecast: Current 3°C → 6A -2°C, 1P -10°C
+[12-14 03:05:57] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:05:57] [DISPLAY:INFO] Displaying weather: 1°C Clear
+[12-14 03:05:58] [DISPLAY:INFO] UP button pressed during weather display
+[12-14 03:05:58] [MAIN:INFO] === Weather test stopped by button press ===
+[12-14 03:06:01] [MAIN:INFO] Final memory: 7.2% used (141KB)
+[12-14 03:06:01] [MAIN:INFO] Total cycles: 1
+[12-14 03:06:01] [MAIN:INFO] Weather fetches: 1
+[12-14 03:06:01] [MAIN:INFO] Weather errors: 0
+[12-14 03:06:01] [MAIN:INFO] Uptime: 0.0 hours (1.1 minutes)

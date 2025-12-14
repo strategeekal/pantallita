@@ -71,7 +71,49 @@ This file tracks all stability test logs throughout the refactoring process. Eac
 
 ## Phase 2: 12-Hour Forecast Display
 
-- **12-13-v2-initial-test.txt** [LATEST] ⚠️ **SHORT TEST - BUTTON STOPPED**
+- **12-14-v2-precipitation-tests.txt** [LATEST] ⚠️ **BUG FOUND & FIXED**
+  - **Phase:** 2.0 (Weather + 12-Hour Forecast - Smart Precipitation Testing)
+  - **Duration:** 2 short tests (3.8 min + 0.4 min)
+  - **Cycles:** 1 per test
+  - **Tests:** 2 precipitation scenarios
+  - **Memory:** Baseline 3.3% → Final 7.0% (delta: +3.7%, +72KB)
+  - **Errors:** 0 critical, 0 warnings
+  - **Notable:** Targeted tests to validate smart precipitation logic - **Test 2 revealed critical bug**
+  - **Result:** ⚠️ **BUG FOUND** - Logic only checked first 6 hours, missed rain stop at hour 10
+
+  **Test Scenarios:**
+  - ✅ **Test 1 - Currently Raining (stops later):**
+    - Current: 21°C Cloudy with precipitation
+    - Forecast: Rain hours 0-2 (3AM-5AM), stops at hour 3 (6AM), resumes hour 5-6
+    - Expected: Show when rain stops (6AM) + next hour (7AM)
+    - Actual Display: "Current 22°C → 3A 21°C, 6A 21°C"
+    - Analysis: ✅ WORKING - Shows hour 0 (3AM, still raining) and hour 3 (6AM, when it stops)
+    - Note: Worked because rain stops within first 6 hours
+
+  - ⚠️ **Test 2 - Not Raining (will rain later) - BUG FOUND:**
+    - Current: 3°C Clear, no precipitation
+    - Forecast: No rain hours 0-2, starts hour 3 (6AM), continues hours 4-9, **stops hour 10 (1PM)**
+    - Expected: Show when rain starts (6AM) + **when it stops (1PM)**
+    - Actual Display: "Current 3°C → 6A -2°C, **2P** -10°C"
+    - Analysis: ⚠️ **BUG** - Shows 6AM correctly but shows **2PM instead of 1PM**
+    - **Root Cause:** Logic only checked first 6 hours; rain continued past hour 6, stop time not found
+    - **Fix Applied:** Changed precip_flags to check all 12 hours instead of first 6
+
+  **Bug Details:**
+  - **Issue:** `precip_flags = [...forecast_data[:min(6, len(forecast_data))]]` limited search to 6 hours
+  - **Impact:** When rain extends beyond hour 6, stop time defaults to last hour (11) instead of actual stop
+  - **Fix:** `precip_flags = [...forecast_data]` - now checks all 12 hours
+  - **Commit:** eaea31f "Fix smart logic bug: check all 12 hours for precipitation"
+
+  **Key Findings:**
+  - ⚠️ **Critical bug:** Smart logic only checked 6 hours, not full 12-hour forecast
+  - ✅ **Fix validated:** Now properly searches all 12 hours for precipitation patterns
+  - ✅ **Negative temps:** Labels display correctly (-2°C, -10°C) with left alignment
+  - ✅ **v2.5 layout:** 3-column layout (x=3, 25, 48) working as expected
+  - ✅ **Memory consistency:** +3.7% delta consistent with initial test (+3.0%)
+  - 📋 **Retest needed:** Should rerun Test 2 scenario to verify fix shows 1PM correctly
+
+- **12-13-v2-initial-test.txt** ⚠️ **SHORT TEST - BUTTON STOPPED**
   - **Phase:** 2.0 (Weather + 12-Hour Forecast with Smart Precipitation)
   - **Duration:** 0.4 hours (20:56 - 21:20, 24 minutes)
   - **Cycles:** 4
