@@ -45,9 +45,9 @@ class Layout:
 	FORECAST_COL2_X = 22     # Column 2 starts at x=22
 	FORECAST_COL3_X = 43     # Column 3 starts at x=43
 	FORECAST_COLUMN_WIDTH = 20  # Each column is 20 pixels wide (with 1px margins)
-	FORECAST_COLUMN_Y = 9    # Icon Y position (unchanged)
-	FORECAST_TIME_Y = -5     # Time label Y position (adjusted for font metrics ~6px shift)
-	FORECAST_TEMP_Y = 19     # Temperature label Y position (adjusted for font metrics, was 25)
+	FORECAST_COLUMN_Y = 9    # Icon Y position
+	FORECAST_TIME_Y = 1      # Time label Y position
+	FORECAST_TEMP_Y = 25     # Temperature label Y position
 
 # ============================================================================
 # COLORS
