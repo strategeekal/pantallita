@@ -39,14 +39,14 @@ class Layout:
 	UV_BAR_Y = 27
 	HUMIDITY_BAR_Y = 29
 
-	# Forecast display (Phase 2) - 3 columns
-	FORECAST_COL1_X = 3
-	FORECAST_COL2_X = 25
-	FORECAST_COL3_X = 48
-	FORECAST_COLUMN_WIDTH = 13
-	FORECAST_COLUMN_Y = 9  # Icon Y position
-	FORECAST_TIME_Y = 1     # Time label Y position
-	FORECAST_TEMP_Y = 25    # Temperature label Y position
+	# Forecast display (Phase 2) - 3 equal columns
+	FORECAST_COL1_X = 1      # Column 1 starts at x=1
+	FORECAST_COL2_X = 22     # Column 2 starts at x=22
+	FORECAST_COL3_X = 43     # Column 3 starts at x=43
+	FORECAST_COLUMN_WIDTH = 21  # Each column is 21 pixels wide (64/3)
+	FORECAST_COLUMN_Y = 9    # Icon Y position
+	FORECAST_TIME_Y = 1      # Time label Y position
+	FORECAST_TEMP_Y = 25     # Temperature label Y position
 
 # ============================================================================
 # COLORS

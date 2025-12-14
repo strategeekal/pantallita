@@ -142,29 +142,30 @@ def show(current_data, forecast_data, duration):
 	col3_icon = forecast_data[col3_index]['icon']
 	col3_hour = int(forecast_data[col3_index]['datetime'][11:13]) % 24
 
-	# Calculate hours ahead for column 3
-	col3_hours_ahead = (col3_hour - current_hour) % 24
+	# Calculate gap between col3 and col2 (not from current hour!)
+	col3_col2_gap = (col3_hour - col2_hour) % 24
 
 	# Color cascade: if col2 is MINT, col3 is ALWAYS MINT
+	# Otherwise, check if col3 jumped from col2
 	if col2_color == config.Colors.MINT:
 		col3_color = config.Colors.MINT
-	elif col3_hours_ahead <= 1:
+	elif col3_col2_gap <= 1:
 		col3_color = config.Colors.DIMMEST_WHITE
 	else:
 		col3_color = config.Colors.MINT
 
-	# Format time labels for columns 2 and 3 (12-hour format with a/p suffix)
+	# Format time labels for columns 2 and 3 (12-hour format with A/P suffix)
 	# Inline 12-hour conversion
 	col2_hour_12 = col2_hour % 12
 	if col2_hour_12 == 0:
 		col2_hour_12 = 12
-	col2_suffix = "a" if col2_hour < 12 else "p"
+	col2_suffix = "A" if col2_hour < 12 else "P"
 	col2_time = f"{col2_hour_12}{col2_suffix}"
 
 	col3_hour_12 = col3_hour % 12
 	if col3_hour_12 == 0:
 		col3_hour_12 = 12
-	col3_suffix = "a" if col3_hour < 12 else "p"
+	col3_suffix = "A" if col3_hour < 12 else "P"
 	col3_time = f"{col3_hour_12}{col3_suffix}"
 
 	# Log what we're displaying
