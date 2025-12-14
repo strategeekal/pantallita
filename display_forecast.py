@@ -173,7 +173,7 @@ def show(current_data, forecast_data, duration):
 	logger.log(f"Displaying forecast: Current {col1_temp[:-1]}{unit_symbol} \u2192 {col2_time} {col2_temp[:-1]}{unit_symbol}, {col3_time} {col3_temp[:-1]}{unit_symbol}", area="FORECAST")
 
 	# ========================================================================
-	# LOAD COLUMN ICONS (INLINE)
+	# LOAD COLUMN ICONS WITH LRU CACHE (INLINE)
 	# ========================================================================
 
 	columns_data = [
@@ -186,8 +186,24 @@ def show(current_data, forecast_data, duration):
 		icon_path = f"{config.Paths.FORECAST_IMAGES}/{col['icon']}.bmp"
 
 		try:
-			# Use OnDiskBitmap for column images
-			bitmap = displayio.OnDiskBitmap(icon_path)
+			# LRU Cache check (inline - no helper functions)
+			if icon_path in state.image_cache:
+				# Cache hit - move to end (mark as recently used)
+				state.image_cache_order.remove(icon_path)
+				state.image_cache_order.append(icon_path)
+				bitmap = state.image_cache[icon_path]
+			else:
+				# Cache miss - load from SD card
+				bitmap = displayio.OnDiskBitmap(icon_path)
+
+				# Add to cache
+				state.image_cache[icon_path] = bitmap
+				state.image_cache_order.append(icon_path)
+
+				# LRU eviction: remove oldest if cache is full
+				if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
+					oldest_path = state.image_cache_order.pop(0)  # Remove oldest
+					del state.image_cache[oldest_path]  # Free memory
 
 			# Create TileGrid
 			tile_grid = displayio.TileGrid(
@@ -207,51 +223,58 @@ def show(current_data, forecast_data, duration):
 			# Continue without icon
 
 	# ========================================================================
-	# CREATE TIME LABELS (INLINE)
+	# CREATE TIME LABELS - CENTERED WITHIN COLUMNS (INLINE)
 	# ========================================================================
+
+	# Calculate column centers inline (simple arithmetic, zero stack depth)
+	col1_center_x = config.Layout.FORECAST_COL1_X + config.Layout.FORECAST_COLUMN_WIDTH // 2  # 1 + 10 = 11
+	col2_center_x = config.Layout.FORECAST_COL2_X + config.Layout.FORECAST_COLUMN_WIDTH // 2  # 22 + 10 = 32
+	col3_center_x = config.Layout.FORECAST_COL3_X + config.Layout.FORECAST_COLUMN_WIDTH // 2  # 43 + 10 = 53
 
 	# Column 1 time (will update live - start with placeholder)
 	col1_time_label = bitmap_label.Label(
 		state.font_small,
 		text="00:00",  # Placeholder, will update immediately
-		color=config.Colors.DIMMEST_WHITE,
-		x=config.Layout.FORECAST_COL1_X,
-		y=config.Layout.FORECAST_TIME_Y
+		color=config.Colors.DIMMEST_WHITE
 	)
+	col1_time_label.anchor_point = (0.5, 0.0)  # Center horizontally, top vertically
+	col1_time_label.anchored_position = (col1_center_x, config.Layout.FORECAST_TIME_Y)
 	state.main_group.append(col1_time_label)
 
 	# Column 2 time (static)
 	col2_time_label = bitmap_label.Label(
 		state.font_small,
 		text=col2_time,
-		color=col2_color,
-		x=config.Layout.FORECAST_COL2_X,
-		y=config.Layout.FORECAST_TIME_Y
+		color=col2_color
 	)
+	col2_time_label.anchor_point = (0.5, 0.0)
+	col2_time_label.anchored_position = (col2_center_x, config.Layout.FORECAST_TIME_Y)
 	state.main_group.append(col2_time_label)
 
 	# Column 3 time (static)
 	col3_time_label = bitmap_label.Label(
 		state.font_small,
 		text=col3_time,
-		color=col3_color,
-		x=config.Layout.FORECAST_COL3_X,
-		y=config.Layout.FORECAST_TIME_Y
+		color=col3_color
 	)
+	col3_time_label.anchor_point = (0.5, 0.0)
+	col3_time_label.anchored_position = (col3_center_x, config.Layout.FORECAST_TIME_Y)
 	state.main_group.append(col3_time_label)
 
 	# ========================================================================
-	# CREATE TEMPERATURE LABELS (INLINE)
+	# CREATE TEMPERATURE LABELS - CENTERED WITHIN COLUMNS (INLINE)
 	# ========================================================================
 
-	for col in columns_data:
+	temp_centers = [col1_center_x, col2_center_x, col3_center_x]
+
+	for i, col in enumerate(columns_data):
 		temp_label = bitmap_label.Label(
 			state.font_small,
 			text=col["temp"],
-			color=config.Colors.DIMMEST_WHITE,
-			x=col["x"],
-			y=config.Layout.FORECAST_TEMP_Y
+			color=config.Colors.DIMMEST_WHITE
 		)
+		temp_label.anchor_point = (0.5, 0.0)  # Center horizontally, top vertically
+		temp_label.anchored_position = (temp_centers[i], config.Layout.FORECAST_TEMP_Y)
 		state.main_group.append(temp_label)
 
 	# ========================================================================
