@@ -1,0 +1,19 @@
+# Pantallita 3.0 - Settings Example
+# Copy to CIRCUITPY drive as settings.toml
+
+# WiFi Configuration
+CIRCUITPY_WIFI_SSID = "your-wifi-ssid"
+CIRCUITPY_WIFI_PASSWORD = "your-wifi-password"
+
+# Timezone (optional, will be auto-detected from AccuWeather)
+TIMEZONE = "America/Chicago"
+
+# AccuWeather API
+ACCUWEATHER_API_KEY_TYPE1 = "your-accuweather-api-key"
+ACCUWEATHER_LOCATION_KEY = "your-location-key"
+
+# GitHub Remote Configuration (optional)
+# Upload config.csv to your GitHub repo and provide the raw URL here
+# Example: "https://raw.githubusercontent.com/username/repo/main/config.csv"
+# If not set, only local config.csv will be used
+CONFIG_GITHUB_URL = ""

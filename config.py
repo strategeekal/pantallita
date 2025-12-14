@@ -89,9 +89,12 @@ class Env:
 	# AccuWeather API (Phase 1)
 	ACCUWEATHER_KEY = None
 	ACCUWEATHER_LOCATION = None
-	
-	# Temperature unit
+
+	# Temperature unit (will be overridden by config_manager)
 	TEMPERATURE_UNIT = "C"
+
+	# Display configuration (Phase 3)
+	CONFIG_GITHUB_URL = None
 
 	@classmethod
 	def load(cls):
@@ -99,10 +102,13 @@ class Env:
 		cls.WIFI_SSID = os.getenv("CIRCUITPY_WIFI_SSID")
 		cls.WIFI_PASSWORD = os.getenv("CIRCUITPY_WIFI_PASSWORD")
 		cls.TIMEZONE = os.getenv("TIMEZONE", "America/Chicago")
-		
-		# AccuWeather (Phase 1) - ADD THIS
+
+		# AccuWeather (Phase 1)
 		cls.ACCUWEATHER_KEY = os.getenv("ACCUWEATHER_API_KEY_TYPE1")
 		cls.ACCUWEATHER_LOCATION = os.getenv("ACCUWEATHER_LOCATION_KEY")
+
+		# Display configuration (Phase 3)
+		cls.CONFIG_GITHUB_URL = os.getenv("CONFIG_GITHUB_URL")
 
 # ============================================================================
 # API ENDPOINTS

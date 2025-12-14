@@ -41,7 +41,7 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ✅ Color-coded time labels (white: consecutive, mint: jumped hours)
 - ✅ Live clock in forecast column 1
 
-## Status: Phase 2 - Forecast Display
+## Status: Phase 3 - Display Configuration
 
 **Completed:**
 - ✅ **Phase 0: Bootstrap** - Foundation validated (2+ hour test)
@@ -68,8 +68,7 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
   - Accurate uptime tracking with monotonic time
   - 9.5-hour stress test successful (115 cycles, 0 errors)
 
-**In Progress:**
-   - ⏳ **Phase 2: Forecast Display** - Precipitation logic validated, stability testing ongoing
+- ✅ **Phase 2: Forecast Display** - Complete and stable (11+ hour test successful)
    - Created display_forecast.py with smart precipitation logic (inline, flattened)
    - Added fetch_forecast() to weather_api.py (12-hour forecast)
    - 3-column layout with 13×13 icons (v2.5 proven layout)
@@ -80,7 +79,16 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
    - Fixed color bug (col3 now compares to col2, not current hour)
    - Fixed positioning (v2.5 layout: x=3, 25, 48)
    - Precipitation testing complete: 3 scenarios tested, bug found & fixed
-   - Next: Extended stability test (8-12 hours) - currently running
+   - 11+ hour stability test: No errors, memory stable
+
+- ✅ **Phase 3: Display Configuration** - Complete
+   - Created config_manager.py (inline CSV parsing, GitHub remote config)
+   - Display toggles: weather, forecast, clock (on/off control)
+   - Temperature unit control: F/C switching via config
+   - Remote control via GitHub-hosted config file
+   - Config priority: GitHub > Local CSV > Defaults
+   - Auto-refresh every ~50 minutes
+   - Example files: config.csv.example, settings.toml.example
 
 ---
 
@@ -106,10 +114,11 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 ### 📋 Remaining Phases
 
 - ~~**Phase 1.5:** Add Logging, Monitoring and Configuration functionality~~ ✅ **COMPLETE**
-- **Phase 2:** Forecast display (12-hour forecast, 3-column layout)
-- **Phase 3:** Stock display (with intraday charts)
-- **Phase 4:** Events, schedules, transit displays
-- **Phase 5:** Production deployment and 24+ hour stability testing
+- ~~**Phase 2:** Forecast display (12-hour forecast, 3-column layout)~~ ✅ **COMPLETE**
+- ~~**Phase 3:** Display configuration (toggles, temperature units, remote control)~~ ✅ **COMPLETE**
+- **Phase 4:** Stock display (with intraday charts)
+- **Phase 5:** Events, schedules, transit displays
+- **Phase 6:** Production deployment and 24+ hour stability testing
 
 ---
 
@@ -216,8 +225,13 @@ pantallita/
 │                        # - 3-column layout with color cascade
 │                        # - Live clock in column 1
 │
-├── stocks_api.py        # Stock fetching (Phase 3)
-├── display_stocks.py    # Stock rendering (Phase 3)
+├── config_manager.py    # Display configuration (Phase 3) ✅ DONE
+│                        # - load_config() - CSV parsing inline
+│                        # - Local CSV and GitHub remote config
+│                        # - Display toggles and temperature unit control
+│
+├── stocks_api.py        # Stock fetching (Phase 4)
+├── display_stocks.py    # Stock rendering (Phase 4)
 └── display_other.py     # Events, schedules, transit, clock
 
 ```
@@ -265,7 +279,6 @@ pantallita/
 **settings.toml** (not in git - has secrets):
 
 ```toml
-
 CIRCUITPY_WIFI_SSID = "your-network"
 CIRCUITPY_WIFI_PASSWORD = "your-password"
 TIMEZONE = "America/Chicago"
@@ -274,11 +287,31 @@ TIMEZONE = "America/Chicago"
 ACCUWEATHER_API_KEY_TYPE1 = "your-key"
 ACCUWEATHER_LOCATION_KEY = "your-location-key"
 
+# Display Configuration (Phase 3) - Optional
+# Upload config.csv to GitHub and provide the raw URL here
+# Example: "https://raw.githubusercontent.com/username/repo/main/config.csv"
+CONFIG_GITHUB_URL = ""
+
 # Future phases
 TWELVE_DATA_API_KEY = "your-key"
 CTA_API_KEY = "your-key"
-
 ```
+
+**config.csv** (Phase 3 - Display Configuration):
+
+```csv
+setting,value
+display_weather,true
+display_forecast,true
+display_clock,false
+temperature_unit,F
+```
+
+This file controls:
+- Which displays are enabled (weather, forecast, clock)
+- Temperature units (F or C)
+- Can be overridden by GitHub remote config (if CONFIG_GITHUB_URL is set)
+- Auto-reloads every ~50 minutes
 
 **Logging Configuration** (in config.py):
 
@@ -513,9 +546,66 @@ class Hardware:
 
 **Success Criteria:** Weather + Forecast rotation runs 24+ hours, no stack exhaustion
 
-## Phase 3: Stock Market Display (Week 3)
+## Phase 3: Display Configuration & Remote Control ✅ COMPLETE
 
-### Step 3.1: Add Stock Fetching
+### Step 3.1: Configuration System ✅ COMPLETE
+- [x] Create `config_manager.py` (inline CSV parsing)
+- [x] Create `config.csv` (local configuration file)
+- [x] Add GitHub config URL to `config.py` Env class
+- [x] Implement local CSV loading (inline, no helpers)
+- [x] Implement GitHub remote config fetching
+- [x] Configuration priority: GitHub > Local CSV > Defaults
+- [x] Periodic config reload (every 10 cycles = ~50 minutes)
+
+### Step 3.2: Display Toggles ✅ COMPLETE
+- [x] `display_weather` toggle (enable/disable weather display)
+- [x] `display_forecast` toggle (enable/disable forecast display)
+- [x] `display_clock` toggle (enable/disable clock display - fallback)
+- [x] Update `code.py` to respect display toggles
+- [x] Automatic fallback to clock when all displays disabled
+
+### Step 3.3: Temperature Unit Control ✅ COMPLETE
+- [x] `temperature_unit` setting (F or C)
+- [x] Local CSV control for temperature unit
+- [x] GitHub remote control for temperature unit
+- [x] Apply unit to `config.Env.TEMPERATURE_UNIT` dynamically
+- [x] AccuWeather API already fetches correct unit (no conversion needed)
+
+### Step 3.4: Documentation & Examples ✅ COMPLETE
+- [x] Create `config.csv.example` (GitHub config template)
+- [x] Create `settings.toml.example` (with CONFIG_GITHUB_URL)
+- [x] Document configuration priority system
+- [x] Document remote control setup instructions
+
+**Features:**
+- 🎛️ Toggle displays on/off via local or remote config
+- 🌡️ Switch between Fahrenheit and Celsius
+- 🌐 Remote control via GitHub-hosted config file
+- 🔄 Auto-refresh config every ~50 minutes
+- 📝 Simple CSV format for easy editing
+- 🔌 Graceful fallback (GitHub → Local → Defaults)
+
+**Config File Format:**
+```csv
+setting,value
+display_weather,true
+display_forecast,true
+display_clock,false
+temperature_unit,F
+```
+
+**Remote Control Setup:**
+1. Upload `config.csv` to your GitHub repo
+2. Get raw URL (e.g., `https://raw.githubusercontent.com/username/repo/main/config.csv`)
+3. Add to `settings.toml`: `CONFIG_GITHUB_URL = "your-raw-url"`
+4. Device will fetch and apply config from GitHub
+5. Edit on GitHub to remotely control your display!
+
+**Success Criteria:** Configuration system works reliably, remote control functional
+
+## Phase 4: Stock Market Display (Week 4)
+
+### Step 4.1: Add Stock Fetching
 - [ ] Create `stocks_api.py`
 - [ ] Load stocks.csv (local and GitHub)
 - [ ] Implement `fetch_batch_quotes()` for multi-stock
@@ -523,7 +613,7 @@ class Hardware:
 - [ ] Market hours detection (inline, no timezone helpers)
 - [ ] Cache management (per-stock, 15-min expiry)
 
-### Step 3.2: Implement Stock Rendering
+### Step 4.2: Implement Stock Rendering
 - [ ] Create `display_stocks.py`
 - [ ] Multi-stock rotation mode (inline layout)
 - [ ] Single stock chart mode (inline chart rendering)
@@ -531,7 +621,7 @@ class Hardware:
 - [ ] Price formatting (inline, no helpers)
 - [ ] Smart rotation logic
 
-### Step 3.3: Test & Validate
+### Step 4.3: Test & Validate
 - [ ] Test during market hours (fresh data)
 - [ ] Test outside market hours (cached data)
 - [ ] Test weekend behavior
@@ -541,9 +631,9 @@ class Hardware:
 
 **Success Criteria:** Stocks display works in all market conditions, no stack exhaustion
 
-## Phase 4: Remaining Displays (Week 4)
+## Phase 5: Remaining Displays (Week 5)
 
-### Step 4.1: Events & Schedules
+### Step 5.1: Events & Schedules
 - [ ] Create `data_loader.py` for CSV parsing
 - [ ] Load events.csv (local and GitHub)
 - [ ] Load schedules.csv (local and GitHub)
@@ -552,20 +642,20 @@ class Hardware:
 - [ ] Implement schedules display (inline)
 - [ ] Implement clock display (fallback)
 
-### Step 4.2: CTA Transit
+### Step 5.2: CTA Transit
 - [ ] Create `transit_api.py`
 - [ ] Fetch train arrivals
 - [ ] Fetch bus arrivals
 - [ ] Combine and sort arrivals
 - [ ] Add transit rendering to `display_other.py`
 
-### Step 4.3: Main Loop Logic
+### Step 5.3: Main Loop Logic
 - [ ] Schedule detection
 - [ ] Display rotation logic
 - [ ] Frequency controls
 - [ ] Time-based filtering (commute hours, event hours)
 
-### Step 4.4: Test & Validate
+### Step 5.4: Test & Validate
 - [ ] Test full rotation cycle
 - [ ] Test schedule priority
 - [ ] Test transit display during commute hours
