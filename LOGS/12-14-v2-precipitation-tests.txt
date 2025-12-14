@@ -1,0 +1,493 @@
+TEST 1: CURRENTLY RAINING, STOPPING LATER [WORKING]:
+
+==== API CALL RAW DATA: =====
+
+[
+  {
+	"DateTime": "2025-12-14T03:00:00-05:00",
+	"EpochDateTime": 1765699200,
+	"WeatherIcon": 15,
+	"IconPhrase": "Thunderstorms",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Rain",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 21.2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 77,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=3&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=3&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T04:00:00-05:00",
+	"EpochDateTime": 1765702800,
+	"WeatherIcon": 15,
+	"IconPhrase": "Thunderstorms",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Rain",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 20.9,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 63,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=4&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=4&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T05:00:00-05:00",
+	"EpochDateTime": 1765706400,
+	"WeatherIcon": 15,
+	"IconPhrase": "Thunderstorms",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Rain",
+	"PrecipitationIntensity": "Heavy",
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 20.6,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 72,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=5&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=5&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T06:00:00-05:00",
+	"EpochDateTime": 1765710000,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 20.4,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 49,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=6&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=6&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T07:00:00-05:00",
+	"EpochDateTime": 1765713600,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 20.2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 49,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=7&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=7&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T08:00:00-05:00",
+	"EpochDateTime": 1765717200,
+	"WeatherIcon": 15,
+	"IconPhrase": "Thunderstorms",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Rain",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 20.9,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 54,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=8&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=8&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T09:00:00-05:00",
+	"EpochDateTime": 1765720800,
+	"WeatherIcon": 15,
+	"IconPhrase": "Thunderstorms",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Rain",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 22.1,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 47,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=9&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=9&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T10:00:00-05:00",
+	"EpochDateTime": 1765724400,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 23.2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 39,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=10&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=10&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T11:00:00-05:00",
+	"EpochDateTime": 1765728000,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 24.4,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 33,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=11&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=11&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T12:00:00-05:00",
+	"EpochDateTime": 1765731600,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 25.5,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 38,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=12&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=12&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T13:00:00-05:00",
+	"EpochDateTime": 1765735200,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 26.8,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 49,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=13&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=13&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T14:00:00-05:00",
+	"EpochDateTime": 1765738800,
+	"WeatherIcon": 15,
+	"IconPhrase": "Thunderstorms",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Rain",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 26.1,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 70,
+	"MobileLink": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=14&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/homestead-fl/33030/hourly-weather-forecast/337544?day=1&hbhhour=14&unit=c&lang=en-us"
+  }
+]
+
+=== TEST 1 LOGS ===
+
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-14 01:29:27] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-14 01:29:27] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-14 01:29:29] [WEATHER:INFO] Location: Homestead, FL | Timezone: America/New_York (UTC-5)
+[12-14 02:29:32] [HW:INFO] Time synced: 12/14 2:29 AM
+[12-14 02:29:34] [MAIN:INFO] Hardware ready
+[12-14 02:29:34] [MAIN:INFO] === Initialization complete ===
+[12-14 02:29:34] [MAIN:INFO] Press UP button to stop test
+[12-14 02:29:34] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-14 02:29:34] [MAIN:INFO] Baseline memory: 3.3% used (64KB) 
+
+[12-14 02:29:34] [MAIN:INFO] ### CYCLE 1 ###
+[12-14 02:29:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:29:34] [WEATHER:INFO] Weather: 21°C, Cloudy, UV:0
+[12-14 02:29:34] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-14 02:29:34] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 02:29:35] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 21°C Thunderstorms
+[12-14 02:29:35] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-14 02:29:35] [FORECAST:INFO] Displaying forecast: Current 22°C → 3A 21°C, 6A 21°C
+[12-14 02:30:35] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:30:35] [DISPLAY:INFO] Displaying weather: 21°C Cloudy
+[12-14 02:33:17] [DISPLAY:INFO] UP button pressed during weather display
+[12-14 02:33:17] [MAIN:INFO] === Weather test stopped by button press ===
+[12-14 02:33:20] [MAIN:INFO] Final memory: 7.0% used (136KB)
+[12-14 02:33:20] [MAIN:INFO] Total cycles: 1
+[12-14 02:33:20] [MAIN:INFO] Weather fetches: 1
+[12-14 02:33:20] [MAIN:INFO] Weather errors: 0
+[12-14 02:33:20] [MAIN:INFO] Uptime: 0.1 hours (3.8 minutes)
+
+
+====================================================================================================================
+
+TEST 2: N RAIN NOW, RAINING LATER [WORKING]:
+
+=== RAW API DATA ====
+
+[
+  {
+	"DateTime": "2025-12-14T03:00:00-05:00",
+	"EpochDateTime": 1765699200,
+	"WeatherIcon": 36,
+	"IconPhrase": "Intermittent clouds",
+	"HasPrecipitation": false,
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 1.8,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 19,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=3&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=3&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T04:00:00-05:00",
+	"EpochDateTime": 1765702800,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 34,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=4&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=4&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T05:00:00-05:00",
+	"EpochDateTime": 1765706400,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2.2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 37,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=5&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=5&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T06:00:00-05:00",
+	"EpochDateTime": 1765710000,
+	"WeatherIcon": 29,
+	"IconPhrase": "Rain and snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Mixed",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2.5,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 40,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=6&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=6&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T07:00:00-05:00",
+	"EpochDateTime": 1765713600,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": false,
+	"Temperature": {
+	  "Value": 2.7,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 70,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=7&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=7&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T08:00:00-05:00",
+	"EpochDateTime": 1765717200,
+	"WeatherIcon": 19,
+	"IconPhrase": "Flurries",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Light",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 1.9,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 63,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=8&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=8&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T09:00:00-05:00",
+	"EpochDateTime": 1765720800,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": 0.8,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 68,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=9&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=9&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T10:00:00-05:00",
+	"EpochDateTime": 1765724400,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -0.2,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 81,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=10&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=10&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T11:00:00-05:00",
+	"EpochDateTime": 1765728000,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -0.4,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 80,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=11&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=11&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T12:00:00-05:00",
+	"EpochDateTime": 1765731600,
+	"WeatherIcon": 22,
+	"IconPhrase": "Snow",
+	"HasPrecipitation": true,
+	"PrecipitationType": "Snow",
+	"PrecipitationIntensity": "Moderate",
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -0.8,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 79,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=12&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=12&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T13:00:00-05:00",
+	"EpochDateTime": 1765735200,
+	"WeatherIcon": 7,
+	"IconPhrase": "Cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -1.3,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 25,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=13&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=13&unit=c&lang=en-us"
+  },
+  {
+	"DateTime": "2025-12-14T14:00:00-05:00",
+	"EpochDateTime": 1765738800,
+	"WeatherIcon": 6,
+	"IconPhrase": "Mostly cloudy",
+	"HasPrecipitation": false,
+	"IsDaylight": true,
+	"Temperature": {
+	  "Value": -1.5,
+	  "Unit": "C",
+	  "UnitType": 17
+	},
+	"PrecipitationProbability": 20,
+	"MobileLink": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=14&unit=c&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/parksley-va/23421/hourly-weather-forecast/2160461?day=1&hbhhour=14&unit=c&lang=en-us"
+  }
+]
+
+===== TEST 2 LOGS =====
+
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-14 02:39:24] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-14 02:39:24] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-14 02:39:26] [WEATHER:INFO] Location: Parksley, VA | Timezone: America/New_York (UTC-5)
+[12-14 02:39:29] [HW:INFO] Time synced: 12/14 2:39 AM
+[12-14 02:39:31] [MAIN:INFO] Hardware ready
+[12-14 02:39:31] [MAIN:INFO] === Initialization complete ===
+[12-14 02:39:31] [MAIN:INFO] Press UP button to stop test
+[12-14 02:39:31] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-14 02:39:31] [MAIN:INFO] Baseline memory: 3.3% used (64KB) 
+
+[12-14 02:39:31] [MAIN:INFO] ### CYCLE 1 ###
+[12-14 02:39:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:39:31] [WEATHER:INFO] Weather: 3°C, Clear, UV:0
+[12-14 02:39:31] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-14 02:39:31] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 02:39:32] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Intermittent clouds
+[12-14 02:39:32] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-14 02:39:32] [FORECAST:INFO] Displaying forecast: Current 3°C → 6A -2°C, 2P -10°C
+[12-14 02:39:52] [FORECAST:INFO] UP button pressed during forecast display
+[12-14 02:39:52] [MAIN:INFO] === Weather test stopped by button press ===
+[12-14 02:39:54] [MAIN:INFO] Final memory: 7.0% used (136KB)
+[12-14 02:39:54] [MAIN:INFO] Total cycles: 1
+[12-14 02:39:54] [MAIN:INFO] Weather fetches: 1
+[12-14 02:39:54] [MAIN:INFO] Weather errors: 0
+[12-14 02:39:54] [MAIN:INFO] Uptime: 0.0 hours (0.4 minutes)
