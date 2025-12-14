@@ -161,9 +161,9 @@ class Timing:
 	MEMORY_CHECK_INTERVAL = 5  # Check memory every 10 cycles
 
 	# Weather display (Phase 1)
-	WEATHER_DISPLAY_DURATION = 300  # 4 minutes
+	WEATHER_DISPLAY_DURATION = 240  # 4 minutes
 	WEATHER_UPDATE_INTERVAL = 300   # 5 minutes
-	WEATHER_CACHE_MAX_AGE = 300     # 15 minutes
+	WEATHER_CACHE_MAX_AGE = 300     # 5 minutes
 
 	# Forecast display (Phase 2)
 	FORECAST_DISPLAY_DURATION = 60   # 1 minute

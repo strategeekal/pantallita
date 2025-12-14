@@ -116,14 +116,14 @@ def run_test_cycle():
 		forecast_data = weather_api.fetch_forecast()
 
 		if weather_data:
-			# Display current weather
-			display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
-
-			# Display forecast (uses current weather for column 1)
+			# Display forecast first (uses current weather for column 1)
 			if forecast_data:
 				display_forecast.show(weather_data, forecast_data, config.Timing.FORECAST_DISPLAY_DURATION)
 			else:
 				logger.log("No forecast data - skipping forecast display", config.LogLevel.WARNING, area="MAIN")
+
+			# Then display current weather
+			display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
 		else:
 			logger.log("No weather data - showing clock", config.LogLevel.WARNING)
 			show_clock()
