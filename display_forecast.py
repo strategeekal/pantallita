@@ -173,23 +173,43 @@ def show(current_data, forecast_data, duration):
 	logger.log(f"Displaying forecast: Current {col1_temp[:-1]}{unit_symbol} \u2192 {col2_time} {col2_temp[:-1]}{unit_symbol}, {col3_time} {col3_temp[:-1]}{unit_symbol}", area="FORECAST")
 
 	# ========================================================================
-	# LOAD COLUMN ICONS (INLINE)
+	# LOAD COLUMN ICONS WITH LRU CACHE (INLINE)
 	# ========================================================================
 
+	# Calculate icon X positions (center 13×13 icons in 20px columns)
+	# Offset = (column_width - icon_width) // 2 = (20 - 13) // 2 = 3
+	icon_offset = (config.Layout.FORECAST_COLUMN_WIDTH - 13) // 2
+
 	columns_data = [
-		{"icon": col1_icon, "x": config.Layout.FORECAST_COL1_X, "temp": col1_temp},
-		{"icon": col2_icon, "x": config.Layout.FORECAST_COL2_X, "temp": col2_temp},
-		{"icon": col3_icon, "x": config.Layout.FORECAST_COL3_X, "temp": col3_temp}
+		{"icon": col1_icon, "x": config.Layout.FORECAST_COL1_X + icon_offset, "temp": col1_temp},
+		{"icon": col2_icon, "x": config.Layout.FORECAST_COL2_X + icon_offset, "temp": col2_temp},
+		{"icon": col3_icon, "x": config.Layout.FORECAST_COL3_X + icon_offset, "temp": col3_temp}
 	]
 
 	for i, col in enumerate(columns_data):
 		icon_path = f"{config.Paths.FORECAST_IMAGES}/{col['icon']}.bmp"
 
 		try:
-			# Use OnDiskBitmap for column images
-			bitmap = displayio.OnDiskBitmap(icon_path)
+			# LRU Cache check (inline - no helper functions)
+			if icon_path in state.image_cache:
+				# Cache hit - move to end (mark as recently used)
+				state.image_cache_order.remove(icon_path)
+				state.image_cache_order.append(icon_path)
+				bitmap = state.image_cache[icon_path]
+			else:
+				# Cache miss - load from SD card
+				bitmap = displayio.OnDiskBitmap(icon_path)
 
-			# Create TileGrid
+				# Add to cache
+				state.image_cache[icon_path] = bitmap
+				state.image_cache_order.append(icon_path)
+
+				# LRU eviction: remove oldest if cache is full
+				if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
+					oldest_path = state.image_cache_order.pop(0)  # Remove oldest
+					del state.image_cache[oldest_path]  # Free memory
+
+			# Create TileGrid (icons centered in columns)
 			tile_grid = displayio.TileGrid(
 				bitmap,
 				pixel_shader=bitmap.pixel_shader,
@@ -207,8 +227,13 @@ def show(current_data, forecast_data, duration):
 			# Continue without icon
 
 	# ========================================================================
-	# CREATE TIME LABELS (INLINE)
+	# CREATE TIME LABELS - CENTERED IN COLUMNS (INLINE)
 	# ========================================================================
+
+	# Center text horizontally (similar to icon centering)
+	# Time labels: "10:00" ~20px, "3P" ~10px, estimate offset
+	time_offset_clock = 2  # Small offset for clock (5 chars)
+	time_offset_short = 4  # Offset for short times (2-3 chars)
 
 	# Column 1 time (will update live - start with placeholder)
 	col1_time_label = bitmap_label.Label(
@@ -225,7 +250,7 @@ def show(current_data, forecast_data, duration):
 		state.font_small,
 		text=col2_time,
 		color=col2_color,
-		x=config.Layout.FORECAST_COL2_X,
+		x=config.Layout.FORECAST_COL2_X + time_offset_short,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col2_time_label)
@@ -235,21 +260,32 @@ def show(current_data, forecast_data, duration):
 		state.font_small,
 		text=col3_time,
 		color=col3_color,
-		x=config.Layout.FORECAST_COL3_X,
+		x=config.Layout.FORECAST_COL3_X + time_offset_short,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col3_time_label)
 
 	# ========================================================================
-	# CREATE TEMPERATURE LABELS (INLINE)
+	# CREATE TEMPERATURE LABELS - CENTERED IN COLUMNS (INLINE)
 	# ========================================================================
 
-	for col in columns_data:
+	# Center temperature labels horizontally
+	# Temp labels: "25°" ~12px, "-10°" ~16px, use offset
+	temp_offset = 0  # Offset for centering temps (3-4 chars)
+
+	# Use column X positions with centering offset
+	temp_columns_x = [
+		config.Layout.FORECAST_COL1_X + temp_offset,
+		config.Layout.FORECAST_COL2_X + temp_offset,
+		config.Layout.FORECAST_COL3_X + temp_offset
+	]
+
+	for i, col in enumerate(columns_data):
 		temp_label = bitmap_label.Label(
 			state.font_small,
 			text=col["temp"],
 			color=config.Colors.DIMMEST_WHITE,
-			x=col["x"],
+			x=temp_columns_x[i],
 			y=config.Layout.FORECAST_TEMP_Y
 		)
 		state.main_group.append(temp_label)
