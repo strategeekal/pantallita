@@ -71,15 +71,15 @@ This file tracks all stability test logs throughout the refactoring process. Eac
 
 ## Phase 2: 12-Hour Forecast Display
 
-- **12-14-v2-precipitation-tests.txt** [LATEST] ⚠️ **BUG FOUND & FIXED**
+- **12-14-v2-precipitation-tests.txt** [LATEST] ✅ **BUG FOUND, FIXED & VERIFIED**
   - **Phase:** 2.0 (Weather + 12-Hour Forecast - Smart Precipitation Testing)
-  - **Duration:** 2 short tests (3.8 min + 0.4 min)
+  - **Duration:** 3 short tests (3.8 min + 0.4 min + 1.1 min)
   - **Cycles:** 1 per test
-  - **Tests:** 2 precipitation scenarios
-  - **Memory:** Baseline 3.3% → Final 7.0% (delta: +3.7%, +72KB)
+  - **Tests:** 3 precipitation scenarios (2 initial, 1 retest)
+  - **Memory:** Baseline 3.3% → Final 7.2% (delta: +3.9%, +77KB)
   - **Errors:** 0 critical, 0 warnings
-  - **Notable:** Targeted tests to validate smart precipitation logic - **Test 2 revealed critical bug**
-  - **Result:** ⚠️ **BUG FOUND** - Logic only checked first 6 hours, missed rain stop at hour 10
+  - **Notable:** Test 2 revealed critical bug (6-hour limit), Test 3 verified fix works correctly
+  - **Result:** ✅ **FIX VERIFIED** - Smart logic now checks all 12 hours and works correctly
 
   **Test Scenarios:**
   - ✅ **Test 1 - Currently Raining (stops later):**
@@ -88,30 +88,40 @@ This file tracks all stability test logs throughout the refactoring process. Eac
     - Expected: Show when rain stops (6AM) + next hour (7AM)
     - Actual Display: "Current 22°C → 3A 21°C, 6A 21°C"
     - Analysis: ✅ WORKING - Shows hour 0 (3AM, still raining) and hour 3 (6AM, when it stops)
-    - Note: Worked because rain stops within first 6 hours
+    - Note: Worked because rain stops within first 6 hours (bug didn't affect this scenario)
 
-  - ⚠️ **Test 2 - Not Raining (will rain later) - BUG FOUND:**
+  - ❌ **Test 2 - Not Raining (will rain later) - NOT WORKING:**
     - Current: 3°C Clear, no precipitation
     - Forecast: No rain hours 0-2, starts hour 3 (6AM), continues hours 4-9, **stops hour 10 (1PM)**
     - Expected: Show when rain starts (6AM) + **when it stops (1PM)**
     - Actual Display: "Current 3°C → 6A -2°C, **2P** -10°C"
-    - Analysis: ⚠️ **BUG** - Shows 6AM correctly but shows **2PM instead of 1PM**
-    - **Root Cause:** Logic only checked first 6 hours; rain continued past hour 6, stop time not found
-    - **Fix Applied:** Changed precip_flags to check all 12 hours instead of first 6
+    - Analysis: ❌ **NOT WORKING** - Shows 6AM correctly but shows **2PM instead of 1PM**
+    - **Root Cause:** Logic only checked first 6 hours; rain stopped at hour 10, beyond search range
+    - **Fix Applied:** Changed `precip_flags` to check all 12 hours instead of first 6 (commit eaea31f)
+
+  - ✅ **Test 3 - Retest of Test 2 Scenario (with fix) - WORKING:**
+    - Current: 1°C Clear, no precipitation
+    - Forecast: No rain hours 0-1, starts hour 2 (6AM), continues hours 3-8, **stops hour 9 (1PM)**
+    - Expected: Show when rain starts (6AM) + **when it stops (1PM)**
+    - Actual Display: "Current 3°C → 6A -2°C, **1P** -10°C"
+    - Analysis: ✅ **FIX VERIFIED** - Now correctly shows **1PM** when rain actually stops!
+    - Same scenario as Test 2 but with corrected logic checking all 12 hours
 
   **Bug Details:**
   - **Issue:** `precip_flags = [...forecast_data[:min(6, len(forecast_data))]]` limited search to 6 hours
   - **Impact:** When rain extends beyond hour 6, stop time defaults to last hour (11) instead of actual stop
   - **Fix:** `precip_flags = [...forecast_data]` - now checks all 12 hours
   - **Commit:** eaea31f "Fix smart logic bug: check all 12 hours for precipitation"
+  - **Verification:** Test 3 confirms fix works - now shows 1PM correctly instead of 2PM
 
   **Key Findings:**
-  - ⚠️ **Critical bug:** Smart logic only checked 6 hours, not full 12-hour forecast
-  - ✅ **Fix validated:** Now properly searches all 12 hours for precipitation patterns
+  - ⚠️ **Critical bug found:** Smart logic only checked 6 hours, not full 12-hour forecast
+  - ✅ **Fix implemented & verified:** Now properly searches all 12 hours for precipitation patterns
+  - ✅ **Test 3 confirms:** Same scenario now shows correct stop time (1PM vs 2PM)
   - ✅ **Negative temps:** Labels display correctly (-2°C, -10°C) with left alignment
   - ✅ **v2.5 layout:** 3-column layout (x=3, 25, 48) working as expected
-  - ✅ **Memory consistency:** +3.7% delta consistent with initial test (+3.0%)
-  - 📋 **Retest needed:** Should rerun Test 2 scenario to verify fix shows 1PM correctly
+  - ✅ **Memory consistency:** +3.9% delta consistent with previous tests
+  - ✅ **Smart logic validated:** Both "currently raining" and "not raining" scenarios now work correctly
 
 - **12-13-v2-initial-test.txt** ⚠️ **SHORT TEST - BUTTON STOPPED**
   - **Phase:** 2.0 (Weather + 12-Hour Forecast with Smart Precipitation)

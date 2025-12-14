@@ -69,16 +69,18 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
   - 9.5-hour stress test successful (115 cycles, 0 errors)
 
 **In Progress:**
-   - ⏳ **Phase 2: Forecast Display** - Initial test complete (24 min, 4 cycles)
+   - ⏳ **Phase 2: Forecast Display** - Precipitation logic validated, stability testing ongoing
    - Created display_forecast.py with smart precipitation logic (inline, flattened)
    - Added fetch_forecast() to weather_api.py (12-hour forecast)
-   - 3-column layout with 13×13 icons
-   - Smart column selection (shows when rain starts/stops)
+   - 3-column layout with 13×13 icons (v2.5 proven layout)
+   - Smart column selection (shows when rain starts/stops) ✅ Validated
    - Color cascade logic (white for consecutive, mint for jumped hours)
    - Separate cache timers (weather: 5 min, forecast: 15 min)
+   - Fixed smart logic bug: now checks all 12 hours for precipitation (was only 6)
    - Fixed color bug (col3 now compares to col2, not current hour)
-   - Fixed positioning (equal column spacing, text not cut off)
-   - Next: Extended stability test (8-12 hours)
+   - Fixed positioning (v2.5 layout: x=3, 25, 48)
+   - Precipitation testing complete: 3 scenarios tested, bug found & fixed
+   - Next: Extended stability test (8-12 hours) - currently running
 
 ---
 
@@ -501,9 +503,11 @@ class Hardware:
 - [x] Test column selection logic (clear sky - consecutive hours)
 - [x] Verify image loading (13×13 BMPs working)
 - [x] Fix color bug (col3 comparing to col2 correctly)
-- [x] Fix positioning (equal column spacing)
-- [ ] Test precipitation scenarios (rain starts/stops)
-- [ ] Run extended stability test (8-12 hours)
+- [x] Fix positioning (v2.5 layout restored)
+- [x] Test precipitation scenarios (3 tests: currently raining, will rain, retest with fix)
+- [x] Fix smart logic bug (now checks all 12 hours, not just 6)
+- [x] Verify fix with Test 3 (shows 1PM correctly, not 2PM)
+- [ ] Run extended stability test (8-12 hours) - CURRENTLY RUNNING
 - [ ] Verify memory stability over time
 - [ ] Compare stack depth to Phase 1
 
