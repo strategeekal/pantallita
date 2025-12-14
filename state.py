@@ -56,3 +56,15 @@ last_weather_time = 0  # monotonic time of last fetch
 # Weather fetch tracking
 weather_fetch_count = 0
 weather_fetch_errors = 0
+
+# ============================================================================
+# FORECAST CACHE (Phase 2)
+# ============================================================================
+
+# Cached forecast data (list of 12 hourly forecasts)
+last_forecast_data = None
+last_forecast_time = 0  # monotonic time of last fetch
+
+# Forecast fetch tracking
+forecast_fetch_count = 0
+forecast_fetch_errors = 0

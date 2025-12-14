@@ -242,7 +242,138 @@ def fetch_current():
 			return state.last_weather_data
 
 		return None
-		
+
+	finally:
+		# Always close response to prevent socket leak
+		if response:
+			try:
+				response.close()
+			except:
+				pass
+
+# ============================================================================
+# FORECAST FETCHING (INLINE - NO HELPERS)
+# ============================================================================
+
+def fetch_forecast():
+	"""
+	Fetch 12-hour forecast from AccuWeather API.
+
+	Returns list of 12 dicts, each with:
+		- temp: int (temperature in user's unit)
+		- feels_like: int (feels like temp in user's unit)
+		- feels_shade: int (feels like in shade in user's unit)
+		- icon: int (AccuWeather icon number 1-44)
+		- condition: str (weather text)
+		- datetime: str (ISO format timestamp)
+		- has_precipitation: bool (True if rain/snow expected)
+
+	Returns None if fetch fails.
+
+	CRITICAL: All parsing is INLINE to minimize stack depth.
+	"""
+
+	# Check if cache is still fresh
+	cache_age = time.monotonic() - state.last_forecast_time
+	if state.last_forecast_data and cache_age < config.Timing.FORECAST_CACHE_MAX_AGE:
+		# Use human-readable cache age
+		cache_age_str = logger.format_cache_age(cache_age)
+		logger.log(f"Using cached forecast ({cache_age_str} old)", area="WEATHER")
+		return state.last_forecast_data
+
+	# Validate configuration
+	if not config.Env.ACCUWEATHER_KEY:
+		logger.log("No AccuWeather API key configured", config.LogLevel.ERROR, area="WEATHER")
+		return state.last_forecast_data  # Return cache if available
+
+	if not config.Env.ACCUWEATHER_LOCATION:
+		logger.log("No AccuWeather location configured", config.LogLevel.ERROR, area="WEATHER")
+		return state.last_forecast_data
+
+	# Determine metric parameter based on temperature unit
+	metric_param = "true" if config.Env.TEMPERATURE_UNIT == "C" else "false"
+
+	# Build URL (inline - no function)
+	url = (config.API.ACCUWEATHER_BASE +
+		   config.API.ACCUWEATHER_FORECAST.format(location=config.Env.ACCUWEATHER_LOCATION) +
+		   f"&metric={metric_param}&apikey={config.Env.ACCUWEATHER_KEY}")
+
+	response = None
+
+	try:
+		logger.log(f"Fetching 12-hour forecast from AccuWeather...", area="WEATHER")
+
+		# Fetch from API
+		response = state.session.get(url, timeout=10)
+
+		# Check status
+		if response.status_code != 200:
+			logger.log(f"Forecast API error: HTTP {response.status_code}", config.LogLevel.ERROR, area="WEATHER")
+			state.forecast_fetch_errors += 1
+			return state.last_forecast_data
+
+		# Parse JSON (inline - no helper function)
+		data = response.json()
+
+		# AccuWeather returns a list of hourly forecasts
+		if not data or len(data) < 12:
+			logger.log(f"Insufficient forecast data (got {len(data) if data else 0}/12 hours)", config.LogLevel.ERROR, area="WEATHER")
+			state.forecast_fetch_errors += 1
+			return state.last_forecast_data
+
+		# Build forecast list (inline - process all 12 hours)
+		forecast_list = []
+
+		for hour_data in data[:12]:  # Take first 12 hours
+			# Extract temperature data (inline)
+			temp = hour_data.get("Temperature", {}).get("Value", 0)
+			feels_like = hour_data.get("RealFeelTemperature", {}).get("Value")
+			feels_shade = hour_data.get("RealFeelTemperatureShade", {}).get("Value")
+
+			# Fallbacks (inline)
+			if feels_like is None:
+				feels_like = temp
+			if feels_shade is None:
+				feels_shade = feels_like
+
+			# Build hour dict (inline)
+			hour_dict = {
+				"temp": int(temp),
+				"feels_like": int(feels_like),
+				"feels_shade": int(feels_shade),
+				"icon": hour_data.get("WeatherIcon", 1),
+				"condition": hour_data.get("IconPhrase", "Unknown"),
+				"datetime": hour_data.get("DateTime", ""),
+				"has_precipitation": hour_data.get("HasPrecipitation", False)
+			}
+
+			forecast_list.append(hour_dict)
+
+		# Update cache
+		state.last_forecast_data = forecast_list
+		state.last_forecast_time = time.monotonic()
+		state.forecast_fetch_count += 1
+
+		# Use correct temperature unit symbol
+		unit_symbol = "°C" if config.Env.TEMPERATURE_UNIT == "C" else "°F"
+		logger.log(f"Forecast: 12 hours fetched, next hour: {forecast_list[0]['feels_like']}{unit_symbol} {forecast_list[0]['condition']}", area="WEATHER")
+		logger.log(f"Forecast fetch #{state.forecast_fetch_count}, Errors: {state.forecast_fetch_errors}", area="WEATHER")
+
+		return forecast_list
+
+	except Exception as e:
+		logger.log(f"Forecast fetch failed: {e}", config.LogLevel.ERROR, area="WEATHER")
+		state.forecast_fetch_errors += 1
+
+		# Return cached data if available
+		if state.last_forecast_data:
+			cache_age = time.monotonic() - state.last_forecast_time
+			cache_age_str = logger.format_cache_age(cache_age)
+			logger.log(f"Using stale forecast cache ({cache_age_str} old)", config.LogLevel.WARNING, area="WEATHER")
+			return state.last_forecast_data
+
+		return None
+
 	finally:
 		# Always close response to prevent socket leak
 		if response:
