@@ -176,11 +176,14 @@ def show(current_data, forecast_data, duration):
 	# LOAD COLUMN ICONS WITH LRU CACHE (INLINE)
 	# ========================================================================
 
-	# Icons placed directly at column X positions (v2.5 layout)
+	# Calculate icon X positions (center 13×13 icons in 20px columns)
+	# Offset = (column_width - icon_width) // 2 = (20 - 13) // 2 = 3
+	icon_offset = (config.Layout.FORECAST_COLUMN_WIDTH - 13) // 2
+
 	columns_data = [
-		{"icon": col1_icon, "x": config.Layout.FORECAST_COL1_X, "temp": col1_temp},
-		{"icon": col2_icon, "x": config.Layout.FORECAST_COL2_X, "temp": col2_temp},
-		{"icon": col3_icon, "x": config.Layout.FORECAST_COL3_X, "temp": col3_temp}
+		{"icon": col1_icon, "x": config.Layout.FORECAST_COL1_X + icon_offset, "temp": col1_temp},
+		{"icon": col2_icon, "x": config.Layout.FORECAST_COL2_X + icon_offset, "temp": col2_temp},
+		{"icon": col3_icon, "x": config.Layout.FORECAST_COL3_X + icon_offset, "temp": col3_temp}
 	]
 
 	for i, col in enumerate(columns_data):
@@ -224,52 +227,53 @@ def show(current_data, forecast_data, duration):
 			# Continue without icon
 
 	# ========================================================================
-	# CREATE TIME LABELS - V2.5 STYLE (INLINE)
+	# CREATE TIME LABELS - CENTERED IN COLUMNS (INLINE)
 	# ========================================================================
 
-	# v2.5 approach: clock left-aligned, short times centered within 13px icon width
-	# Clock (~20px) overflows 13px, so left-align at column X
-	# Short times (~8px) centered: offset = (13 - 8) / 2 ≈ 3px
+	# Center text horizontally (similar to icon centering)
+	# Time labels: "10:00" ~20px, "3P" ~10px, estimate offset
+	time_offset_clock = 2  # Small offset for clock (5 chars)
+	time_offset_short = 4  # Offset for short times (2-3 chars)
 
 	# Column 1 time (will update live - start with placeholder)
 	col1_time_label = bitmap_label.Label(
 		state.font_small,
 		text="00:00",  # Placeholder, will update immediately
 		color=config.Colors.DIMMEST_WHITE,
-		x=config.Layout.FORECAST_COL1_X,  # Left-aligned (clock is wide)
+		x=config.Layout.FORECAST_COL1_X,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col1_time_label)
 
-	# Column 2 time (static, centered within 13px)
+	# Column 2 time (static)
 	col2_time_label = bitmap_label.Label(
 		state.font_small,
 		text=col2_time,
 		color=col2_color,
-		x=config.Layout.FORECAST_COL2_X + 3,  # Center short time (~8px in 13px)
+		x=config.Layout.FORECAST_COL2_X + time_offset_short,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col2_time_label)
 
-	# Column 3 time (static, centered within 13px)
+	# Column 3 time (static)
 	col3_time_label = bitmap_label.Label(
 		state.font_small,
 		text=col3_time,
 		color=col3_color,
-		x=config.Layout.FORECAST_COL3_X + 3,  # Center short time (~8px in 13px)
+		x=config.Layout.FORECAST_COL3_X + time_offset_short,
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col3_time_label)
 
 	# ========================================================================
-	# CREATE TEMPERATURE LABELS - V2.5 STYLE (INLINE)
+	# CREATE TEMPERATURE LABELS - CENTERED IN COLUMNS (INLINE)
 	# ========================================================================
 
-	# Left-align temps at column X (negative temps ~18px, don't fit in 13px)
-	# Positive temps "25°" ~12px also left-align for consistency
-	temp_offset = 0
+	# Center temperature labels horizontally
+	# Temp labels: "25°" ~12px, "-10°" ~16px, use offset
+	temp_offset = 0  # Offset for centering temps (3-4 chars)
 
-	# Use column X positions (left-aligned)
+	# Use column X positions with centering offset
 	temp_columns_x = [
 		config.Layout.FORECAST_COL1_X + temp_offset,
 		config.Layout.FORECAST_COL2_X + temp_offset,

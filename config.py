@@ -40,10 +40,10 @@ class Layout:
 	HUMIDITY_BAR_Y = 29
 
 	# Forecast display (Phase 2) - v2.5 proven layout
-	# Layout: 3px margin | 13px icon1 | 9px gap | 13px icon2 | 10px gap | 13px icon3 | 3px margin = 64px
-	FORECAST_COL1_X = 3      # Column 1 starts at x=3
-	FORECAST_COL2_X = 25     # Column 2 starts at x=25
-	FORECAST_COL3_X = 48     # Column 3 starts at x=48
+	# Layout: 1px margin | 13px icon1 | 10px gap | 13px icon2 | 10px gap | 13px icon3 | 3px margin = 64px
+	FORECAST_COL1_X = 1      # Column 1 starts at x=1
+	FORECAST_COL2_X = 22     # Column 2 starts at x=22
+	FORECAST_COL3_X = 44     # Column 3 starts at x=44
 	FORECAST_COLUMN_WIDTH = 13  # Icon width (text centered within this)
 	FORECAST_COLUMN_Y = 9    # Icon Y position
 	FORECAST_TIME_Y = 1      # Time label Y position
