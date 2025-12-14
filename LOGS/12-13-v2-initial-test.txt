@@ -1,0 +1,67 @@
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-13 20:56:25] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-13 20:56:25] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-13 20:56:27] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-13 20:56:29] [HW:INFO] Time synced: 12/13 8:56 PM
+[12-13 20:56:31] [MAIN:INFO] Hardware ready
+[12-13 20:56:31] [MAIN:INFO] === Initialization complete ===
+[12-13 20:56:31] [MAIN:INFO] Press UP button to stop test
+[12-13 20:56:31] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-13 20:56:31] [MAIN:INFO] Baseline memory: 3.3% used (64KB) 
+
+[12-13 20:56:31] [MAIN:INFO] ### CYCLE 1 ###
+[12-13 20:56:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 20:56:31] [WEATHER:INFO] Weather: -13°C, Clear, UV:0
+[12-13 20:56:31] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-13 20:56:31] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-13 20:56:32] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -25°C Mostly clear
+[12-13 20:56:32] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-13 20:56:32] [DISPLAY:INFO] Displaying weather: -13°C Clear
+[12-13 21:01:33] [DISPLAY:INFO] Weather display complete 
+
+[12-13 21:01:33] [FORECAST:INFO] Displaying forecast: Current -18°C → 10p -28°C, 11p -29°C
+[12-13 21:02:33] [FORECAST:INFO] Forecast display complete 
+
+[12-13 21:02:33] [MAIN:INFO] ### CYCLE 2 ###
+[12-13 21:02:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 21:02:33] [WEATHER:INFO] Weather: -13°C, Clear, UV:0
+[12-13 21:02:33] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-13 21:02:33] [WEATHER:INFO] Using cached forecast (6m old)
+[12-13 21:02:33] [DISPLAY:INFO] Displaying weather: -13°C Clear
+[12-13 21:07:34] [DISPLAY:INFO] Weather display complete 
+
+[12-13 21:07:34] [FORECAST:INFO] Displaying forecast: Current -18°C → 10p -28°C, 11p -29°C
+[12-13 21:08:34] [FORECAST:INFO] Forecast display complete 
+
+[12-13 21:08:34] [MAIN:INFO] ### CYCLE 3 ###
+[12-13 21:08:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 21:08:34] [WEATHER:INFO] Weather: -13°C, Clear, UV:0
+[12-13 21:08:34] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-13 21:08:34] [WEATHER:INFO] Using cached forecast (12m old)
+[12-13 21:08:34] [DISPLAY:INFO] Displaying weather: -13°C Clear
+[12-13 21:13:34] [DISPLAY:INFO] Weather display complete 
+
+[12-13 21:13:34] [FORECAST:INFO] Displaying forecast: Current -16°C → 10p -28°C, 11p -29°C
+[12-13 21:14:34] [FORECAST:INFO] Forecast display complete 
+
+[12-13 21:14:34] [MAIN:INFO] ### CYCLE 4 ###
+[12-13 21:14:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-13 21:14:35] [WEATHER:INFO] Weather: -13°C, Clear, UV:0
+[12-13 21:14:35] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-13 21:14:35] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-13 21:14:35] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -25°C Mostly clear
+[12-13 21:14:35] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-13 21:14:35] [DISPLAY:INFO] Displaying weather: -13°C Clear
+[12-13 21:19:36] [DISPLAY:INFO] Weather display complete 
+
+[12-13 21:19:36] [FORECAST:INFO] Displaying forecast: Current -16°C → 10p -28°C, 11p -29°C
+[12-13 21:20:14] [FORECAST:INFO] UP button pressed during forecast display
+[12-13 21:20:14] [MAIN:INFO] === Weather test stopped by button press ===
+[12-13 21:20:17] [MAIN:INFO] Final memory: 6.3% used (123KB)
+[12-13 21:20:17] [MAIN:INFO] Total cycles: 4
+[12-13 21:20:17] [MAIN:INFO] Weather fetches: 4
+[12-13 21:20:17] [MAIN:INFO] Weather errors: 0
+[12-13 21:20:17] [MAIN:INFO] Uptime: 0.4 hours (23.8 minutes)
