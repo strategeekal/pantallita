@@ -37,6 +37,10 @@ def show_multi_stock(stocks_to_show, duration):
 	while len(state.main_group) > 0:
 		state.main_group.pop()
 
+	# Log start (inline)
+	symbols_str = ", ".join([s.get("display_name", s["symbol"]) for s in stocks_to_show])
+	logger.log(f"Displaying multi-stock: {symbols_str}", config.LogLevel.INFO, area="STOCKS")
+
 	# Row positions (divide 32px height into 3 sections) - inline
 	row_positions = [2, 13, 24]
 
@@ -129,6 +133,7 @@ def show_multi_stock(stocks_to_show, duration):
 
 	# Display for duration (inline)
 	time.sleep(duration)
+	logger.log("Multi-stock display complete", config.LogLevel.INFO, area="STOCKS")
 
 
 # ============================================================================
@@ -155,6 +160,9 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	# Clear display (inline)
 	while len(state.main_group) > 0:
 		state.main_group.pop()
+
+	# Log start (inline)
+	logger.log(f"Displaying stock chart: {stock_symbol}", config.LogLevel.INFO, area="STOCKS")
 
 	# Get display name (inline)
 	display_name = stock_quote.get("display_name", stock_symbol)
@@ -266,3 +274,4 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 
 	# Display for duration (inline)
 	time.sleep(duration)
+	logger.log("Stock chart display complete", config.LogLevel.INFO, area="STOCKS")

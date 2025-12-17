@@ -198,7 +198,7 @@ def run_test_cycle():
 						highlighted_stock = None
 						for i in range(len(stocks_list)):
 							idx = (offset + i) % len(stocks_list)
-							if stocks_list[idx].get('highlight') == '1':
+							if stocks_list[idx].get('highlight') == True:
 								highlighted_stock = stocks_list[idx]
 								state.stock_rotation_offset = (idx + 1) % len(stocks_list)
 								break
@@ -248,14 +248,14 @@ def run_test_cycle():
 								logger.log(f"No intraday data for {symbol}", config.LogLevel.WARNING, area="STOCKS")
 
 						else:
-							# Multi-stock mode - get next 3 non-highlighted stocks
+							# Multi-stock mode - get next 4 non-highlighted stocks (display 3, 1 buffer)
 							stocks_to_show = []
 							for i in range(len(stocks_list)):
 								idx = (offset + i) % len(stocks_list)
 								stock = stocks_list[idx]
-								if stock.get('highlight') != '1':
+								if stock.get('highlight') != True:
 									stocks_to_show.append(stock)
-								if len(stocks_to_show) >= 3:
+								if len(stocks_to_show) >= 4:
 									break
 
 							if stocks_to_show:
