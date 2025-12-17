@@ -1,0 +1,699 @@
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 3: DISPLAY CONFIGURATION ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-16 20:55:17] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-16 20:55:17] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-16 20:55:20] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-16 20:55:22] [HW:INFO] Time synced: 12/16 8:55 PM
+[12-16 20:55:22] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 20:55:22] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 20:55:22] [CONFIG:INFO] Config loaded (source: github)
+[12-16 20:55:22] [CONFIG:INFO]   Weather: True, Forecast: True, Clock: False
+[12-16 20:55:22] [CONFIG:INFO]   Temperature unit: C
+[12-16 20:55:25] [MAIN:INFO] Hardware ready
+[12-16 20:55:25] [MAIN:INFO] === Initialization complete ===
+[12-16 20:55:25] [MAIN:INFO] Press UP button to stop test
+[12-16 20:55:25] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-16 20:55:25] [MAIN:INFO] Baseline memory: 3.5% used (68KB) 
+
+[12-16 20:55:25] [MAIN:INFO] ### CYCLE 1 ###
+[12-16 20:55:25] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 20:55:25] [WEATHER:INFO] Weather: 3°C, Partly cloudy, UV:0
+[12-16 20:55:25] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-16 20:55:25] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 20:55:26] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -6°C Mostly cloudy w/ showers
+[12-16 20:55:26] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-16 20:55:26] [FORECAST:INFO] Displaying forecast: Current 0°C → 9P -6°C, 10P -5°C
+[12-16 20:56:27] [FORECAST:INFO] Forecast display complete 
+
+[12-16 20:56:27] [DISPLAY:INFO] Displaying weather: 3°C Partly cloudy
+[12-16 21:00:27] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:00:27] [MAIN:INFO] ### CYCLE 2 ###
+[12-16 21:00:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:00:27] [WEATHER:INFO] Weather: 3°C, Partly cloudy, UV:0
+[12-16 21:00:27] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-16 21:00:27] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 21:00:27] [FORECAST:INFO] Displaying forecast: Current 0°C → 10P -5°C, 11P -4°C
+[12-16 21:01:28] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:01:28] [DISPLAY:INFO] Displaying weather: 3°C Partly cloudy
+[12-16 21:05:28] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:05:28] [MAIN:INFO] ### CYCLE 3 ###
+[12-16 21:05:28] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:05:28] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-16 21:05:28] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-16 21:05:28] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 21:05:28] [FORECAST:INFO] Displaying forecast: Current -3°C → 10P -5°C, 11P -4°C
+[12-16 21:06:29] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:06:29] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-16 21:10:29] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:10:29] [MAIN:INFO] ### CYCLE 4 ###
+[12-16 21:10:29] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:10:29] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-16 21:10:29] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-16 21:10:29] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 21:10:30] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -6°C Showers
+[12-16 21:10:30] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-16 21:10:30] [FORECAST:INFO] Displaying forecast: Current -3°C → 10P -5°C, 11P -4°C
+[12-16 21:11:30] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:11:30] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-16 21:15:30] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:15:30] [MAIN:INFO] ### CYCLE 5 ###
+[12-16 21:15:30] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:15:30] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-16 21:15:30] [WEATHER:INFO] Fetch #5, Errors: 0
+[12-16 21:15:30] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 21:15:30] [FORECAST:INFO] Displaying forecast: Current -3°C → 10P -5°C, 11P -4°C
+[12-16 21:16:31] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:16:31] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-16 21:20:31] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:20:31] [MAIN:INFO] Memory: 6.1% used (118KB) [-51344]
+[12-16 21:20:31] [MAIN:INFO] ### CYCLE 6 ###
+[12-16 21:20:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:20:31] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-16 21:20:31] [WEATHER:INFO] Fetch #6, Errors: 0
+[12-16 21:20:31] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 21:20:31] [FORECAST:INFO] Displaying forecast: Current -3°C → 10P -5°C, 11P -4°C
+[12-16 21:21:31] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:21:31] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-16 21:25:32] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:25:32] [MAIN:INFO] ### CYCLE 7 ###
+[12-16 21:25:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:25:32] [WEATHER:INFO] Weather: 4°C, Mostly cloudy, UV:0
+[12-16 21:25:32] [WEATHER:INFO] Fetch #7, Errors: 0
+[12-16 21:25:32] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 21:25:32] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Cloudy
+[12-16 21:25:32] [WEATHER:INFO] Forecast fetch #3, Errors: 0
+[12-16 21:25:32] [FORECAST:INFO] Displaying forecast: Current 1°C → 10P -5°C, 11P -4°C
+[12-16 21:26:33] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:26:33] [DISPLAY:INFO] Displaying weather: 4°C Mostly cloudy
+[12-16 21:30:33] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:30:33] [MAIN:INFO] ### CYCLE 8 ###
+[12-16 21:30:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:30:33] [WEATHER:INFO] Weather: 4°C, Mostly cloudy, UV:0
+[12-16 21:30:33] [WEATHER:INFO] Fetch #8, Errors: 0
+[12-16 21:30:33] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 21:30:33] [FORECAST:INFO] Displaying forecast: Current 1°C → 10P -5°C, 11P -4°C
+[12-16 21:31:33] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:31:33] [DISPLAY:INFO] Displaying weather: 4°C Mostly cloudy
+[12-16 21:35:33] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:35:33] [MAIN:INFO] ### CYCLE 9 ###
+[12-16 21:35:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:35:34] [WEATHER:INFO] Weather: 3°C, Mostly cloudy, UV:0
+[12-16 21:35:34] [WEATHER:INFO] Fetch #9, Errors: 0
+[12-16 21:35:34] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 21:35:34] [FORECAST:INFO] Displaying forecast: Current 0°C → 10P -5°C, 11P -4°C
+[12-16 21:36:34] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:36:34] [DISPLAY:INFO] Displaying weather: 3°C Mostly cloudy
+[12-16 21:40:34] [DISPLAY:INFO] Weather display complete 
+
+[12-16 21:40:34] [MAIN:INFO] ### CYCLE 10 ###
+[12-16 21:40:34] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 21:40:35] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 21:40:35] [CONFIG:INFO] Config loaded (source: github)
+[12-16 21:40:35] [CONFIG:INFO]   Weather: False, Forecast: True, Clock: False
+[12-16 21:40:35] [CONFIG:INFO]   Temperature unit: F
+[12-16 21:40:35] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:40:35] [WEATHER:INFO] Weather: 38°F, Mostly cloudy, UV:0
+[12-16 21:40:35] [WEATHER:INFO] Fetch #10, Errors: 0
+[12-16 21:40:35] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 21:40:36] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 22°F Mostly cloudy
+[12-16 21:40:36] [WEATHER:INFO] Forecast fetch #4, Errors: 0
+[12-16 21:40:36] [FORECAST:INFO] Displaying forecast: Current 33°F → 10P 22°F, 11P 24°F
+[12-16 21:41:36] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:41:36] [MAIN:INFO] Memory: 8.2% used (160KB) [-43248]
+[12-16 21:41:36] [MAIN:INFO] ### CYCLE 11 ###
+[12-16 21:41:36] [WEATHER:INFO] Using cached weather (1m old)
+[12-16 21:41:36] [WEATHER:INFO] Using cached forecast (1m old)
+[12-16 21:41:36] [FORECAST:INFO] Displaying forecast: Current 33°F → 10P 22°F, 11P 24°F
+[12-16 21:42:36] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:42:36] [MAIN:INFO] ### CYCLE 12 ###
+[12-16 21:42:36] [WEATHER:INFO] Using cached weather (2m old)
+[12-16 21:42:36] [WEATHER:INFO] Using cached forecast (2m old)
+[12-16 21:42:36] [FORECAST:INFO] Displaying forecast: Current 33°F → 10P 22°F, 11P 24°F
+[12-16 21:43:36] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:43:37] [MAIN:INFO] ### CYCLE 13 ###
+[12-16 21:43:37] [WEATHER:INFO] Using cached weather (3m old)
+[12-16 21:43:37] [WEATHER:INFO] Using cached forecast (3m old)
+[12-16 21:43:37] [FORECAST:INFO] Displaying forecast: Current 33°F → 10P 22°F, 11P 24°F
+[12-16 21:44:37] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:44:37] [MAIN:INFO] ### CYCLE 14 ###
+[12-16 21:44:37] [WEATHER:INFO] Using cached weather (4m old)
+[12-16 21:44:37] [WEATHER:INFO] Using cached forecast (4m old)
+[12-16 21:44:37] [FORECAST:INFO] Displaying forecast: Current 33°F → 10P 22°F, 11P 24°F
+[12-16 21:45:37] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:45:37] [MAIN:INFO] ### CYCLE 15 ###
+[12-16 21:45:37] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:45:37] [WEATHER:INFO] Weather: 36°F, Mostly cloudy, UV:0
+[12-16 21:45:37] [WEATHER:INFO] Fetch #11, Errors: 0
+[12-16 21:45:37] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 21:45:37] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:46:38] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:46:38] [MAIN:INFO] Memory: 6.1% used (119KB) [+41808]
+[12-16 21:46:38] [MAIN:INFO] ### CYCLE 16 ###
+[12-16 21:46:38] [WEATHER:INFO] Using cached weather (1m old)
+[12-16 21:46:38] [WEATHER:INFO] Using cached forecast (6m old)
+[12-16 21:46:38] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:47:38] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:47:38] [MAIN:INFO] ### CYCLE 17 ###
+[12-16 21:47:38] [WEATHER:INFO] Using cached weather (2m old)
+[12-16 21:47:38] [WEATHER:INFO] Using cached forecast (7m old)
+[12-16 21:47:38] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:48:38] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:48:38] [MAIN:INFO] ### CYCLE 18 ###
+[12-16 21:48:38] [WEATHER:INFO] Using cached weather (3m old)
+[12-16 21:48:38] [WEATHER:INFO] Using cached forecast (8m old)
+[12-16 21:48:38] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:49:38] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:49:38] [MAIN:INFO] ### CYCLE 19 ###
+[12-16 21:49:38] [WEATHER:INFO] Using cached weather (4m old)
+[12-16 21:49:38] [WEATHER:INFO] Using cached forecast (9m old)
+[12-16 21:49:38] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:50:38] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:50:38] [MAIN:INFO] ### CYCLE 20 ###
+[12-16 21:50:38] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 21:50:39] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 21:50:39] [CONFIG:INFO] Config loaded (source: github)
+[12-16 21:50:39] [CONFIG:INFO]   Weather: False, Forecast: True, Clock: False
+[12-16 21:50:39] [CONFIG:INFO]   Temperature unit: F
+[12-16 21:50:39] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:50:39] [WEATHER:INFO] Weather: 36°F, Mostly cloudy, UV:0
+[12-16 21:50:39] [WEATHER:INFO] Fetch #12, Errors: 0
+[12-16 21:50:39] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 21:50:39] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:51:40] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:51:40] [MAIN:INFO] Memory: 6.1% used (119KB) [+0]
+[12-16 21:51:40] [MAIN:INFO] ### CYCLE 21 ###
+[12-16 21:51:40] [WEATHER:INFO] Using cached weather (1m old)
+[12-16 21:51:40] [WEATHER:INFO] Using cached forecast (11m old)
+[12-16 21:51:40] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:52:40] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:52:40] [MAIN:INFO] ### CYCLE 22 ###
+[12-16 21:52:40] [WEATHER:INFO] Using cached weather (2m old)
+[12-16 21:52:40] [WEATHER:INFO] Using cached forecast (12m old)
+[12-16 21:52:40] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:53:40] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:53:40] [MAIN:INFO] ### CYCLE 23 ###
+[12-16 21:53:40] [WEATHER:INFO] Using cached weather (3m old)
+[12-16 21:53:40] [WEATHER:INFO] Using cached forecast (13m old)
+[12-16 21:53:40] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:54:40] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:54:40] [MAIN:INFO] ### CYCLE 24 ###
+[12-16 21:54:40] [WEATHER:INFO] Using cached weather (4m old)
+[12-16 21:54:40] [WEATHER:INFO] Using cached forecast (14m old)
+[12-16 21:54:40] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:55:40] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:55:40] [MAIN:INFO] ### CYCLE 25 ###
+[12-16 21:55:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 21:55:41] [WEATHER:INFO] Weather: 36°F, Mostly cloudy, UV:0
+[12-16 21:55:41] [WEATHER:INFO] Fetch #13, Errors: 0
+[12-16 21:55:41] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 21:55:42] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 22°F Mostly cloudy
+[12-16 21:55:42] [WEATHER:INFO] Forecast fetch #5, Errors: 0
+[12-16 21:55:42] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:56:42] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:56:42] [MAIN:INFO] Memory: 8.2% used (160KB) [-41808]
+[12-16 21:56:42] [MAIN:INFO] ### CYCLE 26 ###
+[12-16 21:56:42] [WEATHER:INFO] Using cached weather (1m old)
+[12-16 21:56:42] [WEATHER:INFO] Using cached forecast (1m old)
+[12-16 21:56:42] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:57:42] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:57:42] [MAIN:INFO] ### CYCLE 27 ###
+[12-16 21:57:42] [WEATHER:INFO] Using cached weather (2m old)
+[12-16 21:57:42] [WEATHER:INFO] Using cached forecast (2m old)
+[12-16 21:57:42] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:58:42] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:58:42] [MAIN:INFO] ### CYCLE 28 ###
+[12-16 21:58:42] [WEATHER:INFO] Using cached weather (3m old)
+[12-16 21:58:42] [WEATHER:INFO] Using cached forecast (3m old)
+[12-16 21:58:42] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 21:59:42] [FORECAST:INFO] Forecast display complete 
+
+[12-16 21:59:42] [MAIN:INFO] ### CYCLE 29 ###
+[12-16 21:59:42] [WEATHER:INFO] Using cached weather (4m old)
+[12-16 21:59:42] [WEATHER:INFO] Using cached forecast (4m old)
+[12-16 21:59:42] [FORECAST:INFO] Displaying forecast: Current 25°F → 10P 22°F, 11P 24°F
+[12-16 22:00:42] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:00:42] [MAIN:INFO] ### CYCLE 30 ###
+[12-16 22:00:42] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 22:00:43] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 22:00:43] [CONFIG:INFO] Config loaded (source: github)
+[12-16 22:00:43] [CONFIG:INFO]   Weather: False, Forecast: True, Clock: False
+[12-16 22:00:43] [CONFIG:INFO]   Temperature unit: F
+[12-16 22:00:43] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:00:43] [WEATHER:INFO] Weather: 36°F, Mostly cloudy, UV:0
+[12-16 22:00:43] [WEATHER:INFO] Fetch #14, Errors: 0
+[12-16 22:00:43] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 22:00:43] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:01:44] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:01:44] [MAIN:INFO] Memory: 6.1% used (120KB) [+41680]
+[12-16 22:01:44] [MAIN:INFO] ### CYCLE 31 ###
+[12-16 22:01:44] [WEATHER:INFO] Using cached weather (1m old)
+[12-16 22:01:44] [WEATHER:INFO] Using cached forecast (6m old)
+[12-16 22:01:44] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:02:44] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:02:44] [MAIN:INFO] ### CYCLE 32 ###
+[12-16 22:02:44] [WEATHER:INFO] Using cached weather (2m old)
+[12-16 22:02:44] [WEATHER:INFO] Using cached forecast (7m old)
+[12-16 22:02:44] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:03:44] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:03:44] [MAIN:INFO] ### CYCLE 33 ###
+[12-16 22:03:44] [WEATHER:INFO] Using cached weather (3m old)
+[12-16 22:03:44] [WEATHER:INFO] Using cached forecast (8m old)
+[12-16 22:03:44] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:04:44] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:04:44] [MAIN:INFO] ### CYCLE 34 ###
+[12-16 22:04:44] [WEATHER:INFO] Using cached weather (4m old)
+[12-16 22:04:44] [WEATHER:INFO] Using cached forecast (9m old)
+[12-16 22:04:44] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:05:44] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:05:44] [MAIN:INFO] ### CYCLE 35 ###
+[12-16 22:05:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:05:45] [WEATHER:INFO] Weather: 36°F, Mostly cloudy, UV:0
+[12-16 22:05:45] [WEATHER:INFO] Fetch #15, Errors: 0
+[12-16 22:05:45] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 22:05:45] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:06:45] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:06:45] [MAIN:INFO] Memory: 6.1% used (120KB) [+0]
+[12-16 22:06:45] [MAIN:INFO] ### CYCLE 36 ###
+[12-16 22:06:45] [WEATHER:INFO] Using cached weather (1m old)
+[12-16 22:06:45] [WEATHER:INFO] Using cached forecast (11m old)
+[12-16 22:06:45] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:07:45] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:07:45] [MAIN:INFO] ### CYCLE 37 ###
+[12-16 22:07:45] [WEATHER:INFO] Using cached weather (2m old)
+[12-16 22:07:45] [WEATHER:INFO] Using cached forecast (12m old)
+[12-16 22:07:45] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:08:45] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:08:45] [MAIN:INFO] ### CYCLE 38 ###
+[12-16 22:08:45] [WEATHER:INFO] Using cached weather (3m old)
+[12-16 22:08:45] [WEATHER:INFO] Using cached forecast (13m old)
+[12-16 22:08:45] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:09:46] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:09:46] [MAIN:INFO] ### CYCLE 39 ###
+[12-16 22:09:46] [WEATHER:INFO] Using cached weather (4m old)
+[12-16 22:09:46] [WEATHER:INFO] Using cached forecast (14m old)
+[12-16 22:09:46] [FORECAST:INFO] Displaying forecast: Current 25°F → 11P 24°F, 12A 24°F
+[12-16 22:10:46] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:10:46] [MAIN:INFO] ### CYCLE 40 ###
+[12-16 22:10:46] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 22:10:47] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 22:10:47] [CONFIG:INFO] Config loaded (source: github)
+[12-16 22:10:47] [CONFIG:INFO]   Weather: True, Forecast: True, Clock: False
+[12-16 22:10:47] [CONFIG:INFO]   Temperature unit: C
+[12-16 22:10:47] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:10:47] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-16 22:10:47] [WEATHER:INFO] Fetch #16, Errors: 0
+[12-16 22:10:47] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 22:10:48] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Mostly cloudy
+[12-16 22:10:48] [WEATHER:INFO] Forecast fetch #6, Errors: 0
+[12-16 22:10:48] [FORECAST:INFO] Displaying forecast: Current -3°C → 11P -4°C, 12A -4°C
+[12-16 22:11:48] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:11:48] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-16 22:15:48] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:15:48] [MAIN:INFO] Memory: 8.2% used (160KB) [-40896]
+[12-16 22:15:48] [MAIN:INFO] ### CYCLE 41 ###
+[12-16 22:15:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:15:48] [WEATHER:INFO] Weather: 3°C, Partly cloudy, UV:0
+[12-16 22:15:48] [WEATHER:INFO] Fetch #17, Errors: 0
+[12-16 22:15:48] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 22:15:48] [FORECAST:INFO] Displaying forecast: Current 0°C → 11P -4°C, 12A -4°C
+[12-16 22:16:49] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:16:49] [DISPLAY:INFO] Displaying weather: 3°C Partly cloudy
+[12-16 22:20:49] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:20:49] [MAIN:INFO] ### CYCLE 42 ###
+[12-16 22:20:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:20:49] [WEATHER:INFO] Weather: 3°C, Partly cloudy, UV:0
+[12-16 22:20:49] [WEATHER:INFO] Fetch #18, Errors: 0
+[12-16 22:20:49] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 22:20:49] [FORECAST:INFO] Displaying forecast: Current 0°C → 11P -4°C, 12A -4°C
+[12-16 22:21:49] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:21:49] [DISPLAY:INFO] Displaying weather: 3°C Partly cloudy
+[12-16 22:25:49] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:25:49] [MAIN:INFO] ### CYCLE 43 ###
+[12-16 22:25:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:25:50] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-16 22:25:50] [WEATHER:INFO] Fetch #19, Errors: 0
+[12-16 22:25:50] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 22:25:50] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Mostly cloudy w/ showers
+[12-16 22:25:50] [WEATHER:INFO] Forecast fetch #7, Errors: 0
+[12-16 22:25:50] [FORECAST:INFO] Displaying forecast: Current -3°C → 11P -5°C, 12A -4°C
+[12-16 22:26:50] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:26:50] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-16 22:30:51] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:30:51] [MAIN:INFO] ### CYCLE 44 ###
+[12-16 22:30:51] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:30:51] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-16 22:30:51] [WEATHER:INFO] Fetch #20, Errors: 0
+[12-16 22:30:51] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 22:30:51] [FORECAST:INFO] Displaying forecast: Current -3°C → 11P -5°C, 12A -4°C
+[12-16 22:31:51] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:31:51] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-16 22:35:51] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:35:51] [MAIN:INFO] ### CYCLE 45 ###
+[12-16 22:35:51] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:35:52] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-16 22:35:52] [WEATHER:INFO] Fetch #21, Errors: 0
+[12-16 22:35:52] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 22:35:52] [FORECAST:INFO] Displaying forecast: Current 1°C → 11P -5°C, 12A -4°C
+[12-16 22:36:52] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:36:52] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-16 22:40:52] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:40:52] [MAIN:INFO] Memory: 6.3% used (122KB) [+38048]
+[12-16 22:40:52] [MAIN:INFO] ### CYCLE 46 ###
+[12-16 22:40:52] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:40:52] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-16 22:40:52] [WEATHER:INFO] Fetch #22, Errors: 0
+[12-16 22:40:52] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 22:40:53] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Showers
+[12-16 22:40:53] [WEATHER:INFO] Forecast fetch #8, Errors: 0
+[12-16 22:40:53] [FORECAST:INFO] Displaying forecast: Current 1°C → 11P -5°C, 12A -4°C
+[12-16 22:41:53] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:41:53] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-16 22:45:53] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:45:53] [MAIN:INFO] ### CYCLE 47 ###
+[12-16 22:45:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:45:54] [WEATHER:INFO] Weather: 3°C, Mostly cloudy, UV:0
+[12-16 22:45:54] [WEATHER:INFO] Fetch #23, Errors: 0
+[12-16 22:45:54] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 22:45:54] [FORECAST:INFO] Displaying forecast: Current 1°C → 11P -5°C, 12A -4°C
+[12-16 22:46:54] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:46:54] [DISPLAY:INFO] Displaying weather: 3°C Mostly cloudy
+[12-16 22:50:54] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:50:54] [MAIN:INFO] ### CYCLE 48 ###
+[12-16 22:50:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:50:54] [WEATHER:INFO] Weather: 3°C, Mostly cloudy, UV:0
+[12-16 22:50:54] [WEATHER:INFO] Fetch #24, Errors: 0
+[12-16 22:50:54] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 22:50:54] [FORECAST:INFO] Displaying forecast: Current 1°C → 11P -5°C, 12A -4°C
+[12-16 22:51:55] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:51:55] [DISPLAY:INFO] Displaying weather: 3°C Mostly cloudy
+[12-16 22:55:55] [DISPLAY:INFO] Weather display complete 
+
+[12-16 22:55:55] [MAIN:INFO] ### CYCLE 49 ###
+[12-16 22:55:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 22:55:55] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-16 22:55:55] [WEATHER:INFO] Fetch #25, Errors: 0
+[12-16 22:55:55] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 22:55:56] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Showers
+[12-16 22:55:56] [WEATHER:INFO] Forecast fetch #9, Errors: 0
+[12-16 22:55:56] [FORECAST:INFO] Displaying forecast: Current 2°C → 11P -5°C, 12A -4°C
+[12-16 22:56:56] [FORECAST:INFO] Forecast display complete 
+
+[12-16 22:56:56] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-16 23:00:56] [DISPLAY:INFO] Weather display complete 
+
+[12-16 23:00:56] [MAIN:INFO] ### CYCLE 50 ###
+[12-16 23:00:56] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 23:00:57] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 23:00:57] [CONFIG:INFO] Config loaded (source: github)
+[12-16 23:00:57] [CONFIG:INFO]   Weather: False, Forecast: False, Clock: False
+[12-16 23:00:57] [CONFIG:INFO]   Temperature unit: C
+[12-16 23:00:57] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:01:07] [MAIN:INFO] Memory: 5.9% used (114KB) [+8368]
+[12-16 23:01:07] [MAIN:INFO] ### CYCLE 51 ###
+[12-16 23:01:07] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:01:17] [MAIN:INFO] ### CYCLE 52 ###
+[12-16 23:01:17] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:01:27] [MAIN:INFO] ### CYCLE 53 ###
+[12-16 23:01:27] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:01:38] [MAIN:INFO] ### CYCLE 54 ###
+[12-16 23:01:38] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:01:48] [MAIN:INFO] ### CYCLE 55 ###
+[12-16 23:01:48] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:01:58] [MAIN:INFO] Memory: 5.9% used (114KB) [+0]
+[12-16 23:01:58] [MAIN:INFO] ### CYCLE 56 ###
+[12-16 23:01:58] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:02:08] [MAIN:INFO] ### CYCLE 57 ###
+[12-16 23:02:08] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:02:18] [MAIN:INFO] ### CYCLE 58 ###
+[12-16 23:02:18] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:02:28] [MAIN:INFO] ### CYCLE 59 ###
+[12-16 23:02:28] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:02:38] [MAIN:INFO] ### CYCLE 60 ###
+[12-16 23:02:38] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 23:02:38] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 23:02:38] [CONFIG:INFO] Config loaded (source: github)
+[12-16 23:02:38] [CONFIG:INFO]   Weather: False, Forecast: False, Clock: False
+[12-16 23:02:38] [CONFIG:INFO]   Temperature unit: C
+[12-16 23:02:38] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:02:48] [MAIN:INFO] Memory: 5.9% used (114KB) [-32]
+[12-16 23:02:48] [MAIN:INFO] ### CYCLE 61 ###
+[12-16 23:02:48] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:02:58] [MAIN:INFO] ### CYCLE 62 ###
+[12-16 23:02:58] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:03:08] [MAIN:INFO] ### CYCLE 63 ###
+[12-16 23:03:08] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:03:18] [MAIN:INFO] ### CYCLE 64 ###
+[12-16 23:03:18] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:03:28] [MAIN:INFO] ### CYCLE 65 ###
+[12-16 23:03:28] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:03:38] [MAIN:INFO] Memory: 5.9% used (114KB) [+0]
+[12-16 23:03:38] [MAIN:INFO] ### CYCLE 66 ###
+[12-16 23:03:38] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:03:48] [MAIN:INFO] ### CYCLE 67 ###
+[12-16 23:03:48] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:03:58] [MAIN:INFO] ### CYCLE 68 ###
+[12-16 23:03:58] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:04:08] [MAIN:INFO] ### CYCLE 69 ###
+[12-16 23:04:08] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:04:18] [MAIN:INFO] ### CYCLE 70 ###
+[12-16 23:04:18] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 23:04:18] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 23:04:18] [CONFIG:INFO] Config loaded (source: github)
+[12-16 23:04:18] [CONFIG:INFO]   Weather: False, Forecast: False, Clock: False
+[12-16 23:04:18] [CONFIG:INFO]   Temperature unit: C
+[12-16 23:04:18] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:04:28] [MAIN:INFO] Memory: 5.9% used (114KB) [+0]
+[12-16 23:04:28] [MAIN:INFO] ### CYCLE 71 ###
+[12-16 23:04:29] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:04:39] [MAIN:INFO] ### CYCLE 72 ###
+[12-16 23:04:39] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:04:49] [MAIN:INFO] ### CYCLE 73 ###
+[12-16 23:04:49] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:04:59] [MAIN:INFO] ### CYCLE 74 ###
+[12-16 23:04:59] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:05:09] [MAIN:INFO] ### CYCLE 75 ###
+[12-16 23:05:09] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:05:19] [MAIN:INFO] Memory: 5.9% used (114KB) [-144]
+[12-16 23:05:19] [MAIN:INFO] ### CYCLE 76 ###
+[12-16 23:05:19] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:05:29] [MAIN:INFO] ### CYCLE 77 ###
+[12-16 23:05:29] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:05:39] [MAIN:INFO] ### CYCLE 78 ###
+[12-16 23:05:39] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:05:49] [MAIN:INFO] ### CYCLE 79 ###
+[12-16 23:05:49] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:05:59] [MAIN:INFO] ### CYCLE 80 ###
+[12-16 23:05:59] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 23:05:59] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 23:05:59] [CONFIG:INFO] Config loaded (source: github)
+[12-16 23:05:59] [CONFIG:INFO]   Weather: False, Forecast: False, Clock: False
+[12-16 23:05:59] [CONFIG:INFO]   Temperature unit: C
+[12-16 23:05:59] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:06:09] [MAIN:INFO] Memory: 5.9% used (114KB) [+32]
+[12-16 23:06:09] [MAIN:INFO] ### CYCLE 81 ###
+[12-16 23:06:09] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:06:19] [MAIN:INFO] ### CYCLE 82 ###
+[12-16 23:06:19] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:06:29] [MAIN:INFO] ### CYCLE 83 ###
+[12-16 23:06:29] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:06:39] [MAIN:INFO] ### CYCLE 84 ###
+[12-16 23:06:39] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:06:49] [MAIN:INFO] ### CYCLE 85 ###
+[12-16 23:06:49] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:06:59] [MAIN:INFO] Memory: 5.9% used (115KB) [-208]
+[12-16 23:06:59] [MAIN:INFO] ### CYCLE 86 ###
+[12-16 23:06:59] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:07:09] [MAIN:INFO] ### CYCLE 87 ###
+[12-16 23:07:09] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:07:20] [MAIN:INFO] ### CYCLE 88 ###
+[12-16 23:07:20] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:07:30] [MAIN:INFO] ### CYCLE 89 ###
+[12-16 23:07:30] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:07:40] [MAIN:INFO] ### CYCLE 90 ###
+[12-16 23:07:40] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 23:07:40] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 23:07:40] [CONFIG:INFO] Config loaded (source: github)
+[12-16 23:07:40] [CONFIG:INFO]   Weather: False, Forecast: False, Clock: False
+[12-16 23:07:40] [CONFIG:INFO]   Temperature unit: C
+[12-16 23:07:40] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:07:50] [MAIN:INFO] Memory: 5.9% used (115KB) [-176]
+[12-16 23:07:50] [MAIN:INFO] ### CYCLE 91 ###
+[12-16 23:07:50] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:08:00] [MAIN:INFO] ### CYCLE 92 ###
+[12-16 23:08:00] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:08:10] [MAIN:INFO] ### CYCLE 93 ###
+[12-16 23:08:10] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:08:20] [MAIN:INFO] ### CYCLE 94 ###
+[12-16 23:08:20] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:08:30] [MAIN:INFO] ### CYCLE 95 ###
+[12-16 23:08:30] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:08:40] [MAIN:INFO] Memory: 5.9% used (115KB) [-144]
+[12-16 23:08:40] [MAIN:INFO] ### CYCLE 96 ###
+[12-16 23:08:40] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:08:50] [MAIN:INFO] ### CYCLE 97 ###
+[12-16 23:08:50] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:09:00] [MAIN:INFO] ### CYCLE 98 ###
+[12-16 23:09:00] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:09:10] [MAIN:INFO] ### CYCLE 99 ###
+[12-16 23:09:10] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:09:20] [MAIN:INFO] ### CYCLE 100 ###
+[12-16 23:09:20] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 23:09:20] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 23:09:20] [CONFIG:INFO] Config loaded (source: github)
+[12-16 23:09:20] [CONFIG:INFO]   Weather: False, Forecast: False, Clock: False
+[12-16 23:09:20] [CONFIG:INFO]   Temperature unit: C
+[12-16 23:09:20] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:09:31] [MAIN:INFO] Memory: 5.9% used (115KB) [-144]
+[12-16 23:09:31] [MAIN:INFO] ### CYCLE 101 ###
+[12-16 23:09:31] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:09:41] [MAIN:INFO] ### CYCLE 102 ###
+[12-16 23:09:41] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:09:51] [MAIN:INFO] ### CYCLE 103 ###
+[12-16 23:09:51] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:10:01] [MAIN:INFO] ### CYCLE 104 ###
+[12-16 23:10:01] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:10:11] [MAIN:INFO] ### CYCLE 105 ###
+[12-16 23:10:11] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:10:21] [MAIN:INFO] Memory: 5.9% used (115KB) [+0]
+[12-16 23:10:21] [MAIN:INFO] ### CYCLE 106 ###
+[12-16 23:10:21] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:10:31] [MAIN:INFO] ### CYCLE 107 ###
+[12-16 23:10:31] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:10:41] [MAIN:INFO] ### CYCLE 108 ###
+[12-16 23:10:41] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:10:51] [MAIN:INFO] ### CYCLE 109 ###
+[12-16 23:10:51] [MAIN:INFO] All displays disabled - showing clock
+[12-16 23:11:01] [MAIN:INFO] ### CYCLE 110 ###
+[12-16 23:11:01] [CONFIG:INFO] Loaded 4 settings from local config.csv
+[12-16 23:11:01] [CONFIG:INFO] Loaded 4 settings from GitHub config
+[12-16 23:11:01] [CONFIG:INFO] Config loaded (source: github)
+[12-16 23:11:01] [CONFIG:INFO]   Weather: True, Forecast: True, Clock: False
+[12-16 23:11:01] [CONFIG:INFO]   Temperature unit: C
+[12-16 23:11:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 23:11:03] [WEATHER:INFO] Weather: 0°C, Cloudy, UV:0
+[12-16 23:11:03] [WEATHER:INFO] Fetch #26, Errors: 0
+[12-16 23:11:03] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 23:11:04] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Showers
+[12-16 23:11:04] [WEATHER:INFO] Forecast fetch #10, Errors: 0
+[12-16 23:11:04] [FORECAST:INFO] Displaying forecast: Current -5°C → 12A -5°C, 1A -5°C
+[12-16 23:12:04] [FORECAST:INFO] Forecast display complete 
+
+[12-16 23:12:04] [DISPLAY:INFO] Displaying weather: 0°C Cloudy
+[12-16 23:16:05] [DISPLAY:INFO] Weather display complete 
+
+[12-16 23:16:05] [MAIN:INFO] Memory: 8.9% used (174KB) [-60592]
+[12-16 23:16:05] [MAIN:INFO] ### CYCLE 111 ###
+[12-16 23:16:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 23:16:05] [WEATHER:INFO] Weather: 0°C, Cloudy, UV:0
+[12-16 23:16:05] [WEATHER:INFO] Fetch #27, Errors: 0
+[12-16 23:16:05] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 23:16:05] [FORECAST:INFO] Displaying forecast: Current -5°C → 12A -5°C, 1A -5°C
+[12-16 23:17:05] [FORECAST:INFO] Forecast display complete 
+
+[12-16 23:17:05] [DISPLAY:INFO] Displaying weather: 0°C Cloudy
+[12-16 23:21:05] [DISPLAY:INFO] Weather display complete 
+
+[12-16 23:21:05] [MAIN:INFO] ### CYCLE 112 ###
+[12-16 23:21:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 23:21:06] [WEATHER:INFO] Weather: 4°C, Mostly cloudy, UV:0
+[12-16 23:21:06] [WEATHER:INFO] Fetch #28, Errors: 0
+[12-16 23:21:06] [WEATHER:INFO] Using cached forecast (10m old)
+[12-16 23:21:06] [FORECAST:INFO] Displaying forecast: Current 2°C → 12A -5°C, 1A -5°C
+[12-16 23:22:06] [FORECAST:INFO] Forecast display complete 
+
+[12-16 23:22:06] [DISPLAY:INFO] Displaying weather: 4°C Mostly cloudy
+[12-16 23:26:06] [DISPLAY:INFO] Weather display complete 
+
+[12-16 23:26:06] [MAIN:INFO] ### CYCLE 113 ###
+[12-16 23:26:06] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 23:26:06] [WEATHER:INFO] Weather: 4°C, Mostly cloudy, UV:0
+[12-16 23:26:06] [WEATHER:INFO] Fetch #29, Errors: 0
+[12-16 23:26:06] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 23:26:07] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Showers
+[12-16 23:26:07] [WEATHER:INFO] Forecast fetch #11, Errors: 0
+[12-16 23:26:07] [FORECAST:INFO] Displaying forecast: Current 2°C → 12A -5°C, 1A -5°C
+[12-16 23:27:07] [FORECAST:INFO] Forecast display complete 
+
+[12-16 23:27:07] [DISPLAY:INFO] Displaying weather: 4°C Mostly cloudy
+[12-16 23:31:07] [DISPLAY:INFO] Weather display complete 
+
+[12-16 23:31:07] [MAIN:INFO] ### CYCLE 114 ###
+[12-16 23:31:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 23:31:08] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-16 23:31:08] [WEATHER:INFO] Fetch #30, Errors: 0
+[12-16 23:31:08] [WEATHER:INFO] Using cached forecast (5m old)
+[12-16 23:31:08] [FORECAST:INFO] Displaying forecast: Current 2°C → 12A -5°C, 1A -5°C
+[12-16 23:32:08] [FORECAST:INFO] Forecast display complete 
+
+[12-16 23:32:08] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-16 23:35:56] [DISPLAY:INFO] UP button pressed during weather display
+[12-16 23:35:56] [MAIN:INFO] === Weather test stopped by button press ===
+[12-16 23:35:58] [MAIN:INFO] Final memory: 6.6% used (129KB)
+[12-16 23:35:58] [MAIN:INFO] Total cycles: 114
+[12-16 23:35:58] [MAIN:INFO] Weather fetches: 30
+[12-16 23:35:58] [MAIN:INFO] Weather errors: 0
+[12-16 23:35:58] [MAIN:INFO] Uptime: 2.7 hours (160.6 minutes)

@@ -15,4 +15,4 @@ display_forecast,true
 display_clock,false
 
 # Temperature unit (F or C)
-temperature_unit,F
+temperature_unit,C

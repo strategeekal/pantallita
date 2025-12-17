@@ -1,0 +1,26 @@
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 3: DISPLAY CONFIGURATION ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-16 23:38:25] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-16 23:38:25] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-16 23:38:27] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-16 23:38:31] [HW:INFO] Time synced: 12/16 11:38 PM
+[12-16 23:38:31] [CONFIG:INFO] Local config.csv not found - using defaults
+[12-16 23:38:31] [CONFIG:INFO] Config loaded (source: default)
+[12-16 23:38:31] [CONFIG:INFO]   Weather: True, Forecast: True, Clock: False
+[12-16 23:38:31] [CONFIG:INFO]   Temperature unit: F
+[12-16 23:38:33] [MAIN:INFO] Hardware ready
+[12-16 23:38:33] [MAIN:INFO] === Initialization complete ===
+[12-16 23:38:33] [MAIN:INFO] Press UP button to stop test
+[12-16 23:38:33] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-16 23:38:33] [MAIN:INFO] Baseline memory: 3.5% used (68KB) 
+
+[12-16 23:38:33] [MAIN:INFO] ### CYCLE 1 ###
+[12-16 23:38:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-16 23:38:33] [WEATHER:INFO] Weather: 39°F, Cloudy, UV:0
+[12-16 23:38:33] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-16 23:38:33] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-16 23:38:34] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 21°F Showers
+[12-16 23:38:34] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-16 23:38:34] [FORECAST:INFO] Displaying forecast: Current 35°F → 12A 21°F, 1A 21°F
