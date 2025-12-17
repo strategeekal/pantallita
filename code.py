@@ -163,23 +163,30 @@ def run_test_cycle():
 			should_show_stocks_this_cycle = (state.cycle_count % freq == 0)
 
 			if should_show_stocks_this_cycle:
-				# Check market hours status
+				# Check market hours status (including grace period)
 				now = state.rtc.datetime
 				current_minutes = now.tm_hour * 60 + now.tm_min
 				current_weekday = now.tm_wday  # 0=Monday, 6=Sunday
 
 				is_weekday = current_weekday < 5  # Monday-Friday
+
+				# Market hours: open to close
 				is_market_hours = (current_minutes >= state.market_open_local_minutes and
 				                  current_minutes <= state.market_close_local_minutes)
 
-				state.should_fetch_stocks = is_weekday and is_market_hours
+				# Grace period: close to grace end (for fetching final close price)
+				is_grace_period = (current_minutes > state.market_close_local_minutes and
+				                  current_minutes <= state.market_grace_end_local_minutes)
+
+				# Allow fetching during market hours OR grace period
+				state.should_fetch_stocks = is_weekday and (is_market_hours or is_grace_period)
 
 				# Respect market hours if configured
 				respect_hours = config_manager.get_stocks_respect_market_hours()
 				should_display_stocks = True
 				if respect_hours and not state.should_fetch_stocks:
 					should_display_stocks = False
-					logger.log("Outside market hours - skipping stocks", config.LogLevel.DEBUG, area="STOCKS")
+					logger.log("Outside market hours + grace - skipping stocks", config.LogLevel.DEBUG, area="STOCKS")
 
 				if should_display_stocks:
 					try:
@@ -281,8 +288,11 @@ def run_test_cycle():
 									quotes = stocks_api.fetch_stock_quotes(symbols_to_fetch)
 									if quotes:
 										for sym, data in quotes.items():
+											# Store quote data in cache
 											state.cached_stock_prices[sym] = {
-												**data,
+												'price': data['price'],
+												'change_percent': data['change_percent'],
+												'direction': data['direction'],
 												'timestamp': now_time
 											}
 										state.last_stock_fetch_time = now_time
@@ -390,6 +400,8 @@ def initialize():
 
 			# Calculate market hours in local timezone
 			# Market hours: 9:30 AM - 4:00 PM ET
+			grace_period = config_manager.get_stocks_grace_period_minutes()
+
 			if location_info:
 				# Market is always ET (UTC-5 standard time)
 				tz_offset_hours = location_info['offset']
@@ -405,12 +417,14 @@ def initialize():
 				# Convert to local time
 				state.market_open_local_minutes = market_open_et + (hours_diff * 60)
 				state.market_close_local_minutes = market_close_et + (hours_diff * 60)
+				state.market_grace_end_local_minutes = state.market_close_local_minutes + grace_period
 
-				logger.log(f"Market hours (local): {state.market_open_local_minutes//60}:{state.market_open_local_minutes%60:02d} - {state.market_close_local_minutes//60}:{state.market_close_local_minutes%60:02d}", area="STOCKS")
+				logger.log(f"Market hours (local): {state.market_open_local_minutes//60}:{state.market_open_local_minutes%60:02d} - {state.market_close_local_minutes//60}:{state.market_close_local_minutes%60:02d} (grace: +{grace_period}min)", area="STOCKS")
 			else:
 				# Default to ET times (assume we're in ET)
 				state.market_open_local_minutes = 570   # 9:30 AM
 				state.market_close_local_minutes = 960  # 4:00 PM
+				state.market_grace_end_local_minutes = 960 + grace_period
 				logger.log("No timezone info - using ET market hours", config.LogLevel.WARNING, area="STOCKS")
 
 		# Ready!
