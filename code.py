@@ -1,8 +1,9 @@
 """
-Pantallita 3.0 - Phase 2: Forecast Display
+Pantallita 3.0 - Phase 3: Display Configuration
 Tests CircuitPython 10 foundation before implementing features (v3.0.0)
 Phase 1: Current weather display (v3.0.1)
 Phase 2: 12-hour forecast with smart precipitation detection (v3.0.2)
+Phase 3: Display toggles and temperature unit control (v3.0.3)
 
 """
 
@@ -25,6 +26,9 @@ import display_forecast
 
 # Import centralized logger (Phase 1.5)
 import logger
+
+# Import configuration manager (Phase 3)
+import config_manager
 
 # ============================================================================
 # DISPLAY FUNCTIONS
@@ -89,6 +93,10 @@ def run_test_cycle():
 	# Log cycle separator (v2.5 style)
 	if config.Logging.SHOW_CYCLE_SEPARATOR:
 		logger.log_cycle_start(state.cycle_count, config.LogLevel.INFO)
+
+	# Reload config periodically (every 10 cycles = ~50 minutes)
+	if state.cycle_count % 10 == 0:
+		config_manager.load_config()
 	
 	# Check WiFi status
 	if not hardware.is_wifi_connected():
@@ -112,20 +120,42 @@ def run_test_cycle():
 	
 	# Fetch weather and forecast data
 	try:
-		weather_data = weather_api.fetch_current()
-		forecast_data = weather_api.fetch_forecast()
+		# Check if we need to fetch weather or forecast based on config
+		need_weather = config_manager.should_show_weather()
+		need_forecast = config_manager.should_show_forecast()
+
+		# Fetch data only if needed
+		weather_data = None
+		forecast_data = None
+
+		if need_weather or need_forecast:
+			weather_data = weather_api.fetch_current()
+
+		if need_forecast:
+			forecast_data = weather_api.fetch_forecast()
+
+		# Track if we showed anything
+		showed_display = False
 
 		if weather_data:
 			# Display forecast first (uses current weather for column 1)
-			if forecast_data:
+			if need_forecast and forecast_data:
 				display_forecast.show(weather_data, forecast_data, config.Timing.FORECAST_DISPLAY_DURATION)
-			else:
+				showed_display = True
+			elif need_forecast:
 				logger.log("No forecast data - skipping forecast display", config.LogLevel.WARNING, area="MAIN")
 
 			# Then display current weather
-			display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
-		else:
-			logger.log("No weather data - showing clock", config.LogLevel.WARNING)
+			if need_weather:
+				display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
+				showed_display = True
+
+		# If no displays enabled or no data, show clock as fallback
+		if not showed_display:
+			if not need_weather and not need_forecast:
+				logger.log("All displays disabled - showing clock", config.LogLevel.INFO, area="MAIN")
+			else:
+				logger.log("No weather data - showing clock", config.LogLevel.WARNING)
 			show_clock()
 
 	except KeyboardInterrupt:
@@ -149,7 +179,7 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	logger.log("==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====")
+	logger.log("==== PANTALLITA 3.0 | PHASE 3: DISPLAY CONFIGURATION ====")
 
 	try:
 		# Initialize display FIRST (before show_message)
@@ -183,6 +213,10 @@ def initialize():
 			# Fallback to worldtimeapi.org
 			logger.log("Using settings.toml timezone as fallback", config.LogLevel.WARNING, area="MAIN")
 			hardware.sync_time(state.rtc)
+
+		# Load display configuration
+		show_message("CONFIG...", config.Colors.GREEN, 16)
+		config_manager.load_config()
 
 		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)
