@@ -237,13 +237,39 @@ def run_test_cycle():
 							# Get cached data and display
 							if symbol in state.cached_intraday_data:
 								cached = state.cached_intraday_data[symbol]
-								display_stocks.show_single_stock_chart(
-									symbol,
-									cached['data'][0] if cached['data'] else {},
-									cached['data'],
-									config.Timing.STOCKS_DISPLAY_DURATION
-								)
-								showed_display = True
+								time_series = cached['data']
+
+								# Construct quote from time series data (inline)
+								if time_series and len(time_series) > 0:
+									# Most recent data point (first in list - chronological order)
+									latest = time_series[0]
+									current_price = latest['close_price']
+
+									# Calculate change from open to close (inline)
+									open_price = latest['open_price']
+									if open_price > 0:
+										change_percent = ((current_price - open_price) / open_price) * 100
+									else:
+										change_percent = 0
+
+									direction = "up" if change_percent >= 0 else "down"
+
+									stock_quote = {
+										'price': current_price,
+										'change_percent': change_percent,
+										'direction': direction,
+										'symbol': symbol
+									}
+
+									display_stocks.show_single_stock_chart(
+										symbol,
+										stock_quote,
+										time_series,
+										config.Timing.STOCKS_DISPLAY_DURATION
+									)
+									showed_display = True
+								else:
+									logger.log(f"No time series data for {symbol}", config.LogLevel.WARNING, area="STOCKS")
 							else:
 								logger.log(f"No intraday data for {symbol}", config.LogLevel.WARNING, area="STOCKS")
 
