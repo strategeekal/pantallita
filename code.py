@@ -113,6 +113,7 @@ def run_test_cycle():
 			# Show clock as fallback
 			try:
 				show_clock()
+				time.sleep(config.Timing.CLOCK_UPDATE_INTERVAL)  # Sleep to avoid tight loop
 			except Exception as e:
 				logger.log(f"Clock display error: {e}", config.LogLevel.ERROR)
 				time.sleep(10)
@@ -157,6 +158,7 @@ def run_test_cycle():
 			else:
 				logger.log("No weather data - showing clock", config.LogLevel.WARNING)
 			show_clock()
+			time.sleep(config.Timing.CLOCK_UPDATE_INTERVAL)  # Sleep to avoid tight loop
 
 	except KeyboardInterrupt:
 		raise  # Button pressed, exit
@@ -165,6 +167,7 @@ def run_test_cycle():
 		# Fall back to clock
 		try:
 			show_clock()
+			time.sleep(config.Timing.CLOCK_UPDATE_INTERVAL)  # Sleep to avoid tight loop
 		except:
 			time.sleep(10)
 
