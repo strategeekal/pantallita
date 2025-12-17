@@ -80,3 +80,27 @@ forecast_fetch_errors = 0
 image_cache = {}  # {path: OnDiskBitmap}
 image_cache_order = []  # LRU tracking list (oldest first, newest last)
 IMAGE_CACHE_MAX = 12  # Max images to cache (like v2.5)
+
+# ============================================================================
+# STOCKS CACHE (Phase 4)
+# ============================================================================
+
+# Stocks list from stocks.csv (loaded at startup, refreshed with config)
+cached_stocks = []  # List of stock dicts from CSV
+
+# Stock price cache (for multi-stock display)
+cached_stock_prices = {}  # {symbol: {"price": float, "change_percent": float, "direction": str, "timestamp": float}}
+
+# Intraday chart cache (for single stock charts)
+cached_intraday_data = {}  # {symbol: {"data": [...], "quote": {...}, "timestamp": float}}
+
+# Stock rotation tracking
+stock_rotation_offset = 0  # Current position in stocks list
+
+# Stock fetch tracking
+last_stock_fetch_time = 0  # monotonic time of last fetch (for rate limiting)
+
+# Market hours tracking
+should_fetch_stocks = False  # True if within market hours, False if outside
+market_open_local_minutes = 0  # Market open time in minutes since midnight (local time)
+market_close_local_minutes = 0  # Market close time in minutes since midnight (local time)

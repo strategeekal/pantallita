@@ -1,0 +1,36 @@
+# Stock Tickers
+# Format: symbol,name,type,display_name,highlighted
+# Regular stocks displayed in cycles of 3, highlighted stocks shown individually
+# Display sequence follows CSV order: 3-stock group → highlighted → 3-stock group → ...
+
+# Display 1: Individual (highlighted)
+CRM,Salesforce Inc.,stock,,1
+
+# Display 2: Cycle 1 (3 stocks)
+SPY,SPDR S&P 500 ETF Trust,stock,,0
+SOXQ,Invesco PHLX Semiconductor ETF,stock,,0
+IBIT,iShares Bitcoin Trust,stock,,0
+
+# Display 3: Individual (highlighted)
+FDIG,Fidelity Crypto Industry & Digital Payments ETF,stock,,1
+
+# Display 4: Cycle 2 (3 stocks)
+USD/MXN,US Dollar / Mexican Peso,forex,MXN,0
+EUR/MXN,Euro / Mexican Peso,forex,EUR,0
+CAD/MXN,Canadian Dollar / Mexican Peso,forex,CAD,0
+
+# Display 5: Individual (highlighted)
+LUMN,Lumen Technologies Inc.,stock,,1
+
+# Display 6: Cycle 3 (3 stocks)
+ETH/USD,Ethereum US Dollar,crypto,ETH,0
+XAU/USD,Gold Spot / US Dollar,commodity,XAU,0
+GBP/MXN,British Pound / Mexican Peso,forex,GBP,0
+
+# Display 7: Individual (highlighted)
+BTC/USD,Bitcoin US Dollar,crypto,BTC,1
+
+# Display 8: Cycle 4 (3 stocks)
+AAPL,Apple Inc.,stock,,0
+GOOGL,Alphabet Inc.,stock,,0
+NVDA,NVIDIA Corporation,stock,,0
