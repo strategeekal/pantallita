@@ -1,9 +1,10 @@
 """
-Pantallita 3.0 - Phase 3: Display Configuration
+Pantallita 3.0 - Phase 4: Stock Display
 Tests CircuitPython 10 foundation before implementing features (v3.0.0)
 Phase 1: Current weather display (v3.0.1)
 Phase 2: 12-hour forecast with smart precipitation detection (v3.0.2)
 Phase 3: Display toggles and temperature unit control (v3.0.3)
+Phase 4: Stock/forex/crypto/commodity display with market hours (v3.0.4)
 
 """
 
@@ -29,6 +30,10 @@ import logger
 
 # Import configuration manager (Phase 3)
 import config_manager
+
+# Import stocks modules (Phase 4)
+import stocks_api
+import display_stocks
 
 # ============================================================================
 # DISPLAY FUNCTIONS
@@ -151,6 +156,159 @@ def run_test_cycle():
 				display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
 				showed_display = True
 
+		# Stock display (Phase 4)
+		if config_manager.should_show_stocks() and state.cached_stocks:
+			# Check if we should show stocks this cycle
+			freq = config_manager.get_stocks_display_frequency()
+			should_show_stocks_this_cycle = (state.cycle_count % freq == 0)
+
+			if should_show_stocks_this_cycle:
+				# Check market hours status
+				now = state.rtc.datetime
+				current_minutes = now.tm_hour * 60 + now.tm_min
+				current_weekday = now.tm_wday  # 0=Monday, 6=Sunday
+
+				is_weekday = current_weekday < 5  # Monday-Friday
+				is_market_hours = (current_minutes >= state.market_open_local_minutes and
+				                  current_minutes <= state.market_close_local_minutes)
+
+				state.should_fetch_stocks = is_weekday and is_market_hours
+
+				# Respect market hours if configured
+				respect_hours = config_manager.get_stocks_respect_market_hours()
+				should_display_stocks = True
+				if respect_hours and not state.should_fetch_stocks:
+					should_display_stocks = False
+					logger.log("Outside market hours - skipping stocks", config.LogLevel.DEBUG, area="STOCKS")
+
+				if should_display_stocks:
+					try:
+						# Get stocks list and rotation offset
+						stocks_list = state.cached_stocks
+						offset = state.stock_rotation_offset
+
+						# Find next highlighted stock for chart mode
+						highlighted_stock = None
+						for i in range(len(stocks_list)):
+							idx = (offset + i) % len(stocks_list)
+							if stocks_list[idx].get('highlight') == '1':
+								highlighted_stock = stocks_list[idx]
+								state.stock_rotation_offset = (idx + 1) % len(stocks_list)
+								break
+
+						if highlighted_stock:
+							# Single stock chart mode
+							symbol = highlighted_stock['symbol']
+
+							# Check if we need to fetch (rate limiting)
+							now_time = time.monotonic()
+							time_since_last_fetch = now_time - state.last_stock_fetch_time
+
+							# Fetch if needed (cache expired or market hours)
+							should_fetch = False
+							if symbol not in state.cached_intraday_data:
+								should_fetch = True
+							else:
+								cache_age = now_time - state.cached_intraday_data[symbol].get('timestamp', 0)
+								if cache_age > config.Timing.INTRADAY_CACHE_MAX_AGE:
+									should_fetch = True
+								elif state.should_fetch_stocks:
+									should_fetch = True
+
+							# Respect rate limiting
+							if should_fetch and time_since_last_fetch >= config.Timing.STOCKS_FETCH_INTERVAL:
+								logger.log(f"Fetching intraday data for {symbol}", config.LogLevel.DEBUG, area="STOCKS")
+								intraday_data = stocks_api.fetch_intraday_time_series(symbol)
+								if intraday_data:
+									state.cached_intraday_data[symbol] = {
+										'data': intraday_data,
+										'timestamp': now_time
+									}
+									state.last_stock_fetch_time = now_time
+
+							# Get cached data and display
+							if symbol in state.cached_intraday_data:
+								cached = state.cached_intraday_data[symbol]
+								display_stocks.show_single_stock_chart(
+									symbol,
+									cached['data'][0] if cached['data'] else {},
+									cached['data'],
+									config.Timing.STOCKS_DISPLAY_DURATION
+								)
+								showed_display = True
+							else:
+								logger.log(f"No intraday data for {symbol}", config.LogLevel.WARNING, area="STOCKS")
+
+						else:
+							# Multi-stock mode - get next 3 non-highlighted stocks
+							stocks_to_show = []
+							for i in range(len(stocks_list)):
+								idx = (offset + i) % len(stocks_list)
+								stock = stocks_list[idx]
+								if stock.get('highlight') != '1':
+									stocks_to_show.append(stock)
+								if len(stocks_to_show) >= 3:
+									break
+
+							if stocks_to_show:
+								# Check if we need to fetch (rate limiting)
+								now_time = time.monotonic()
+								time_since_last_fetch = now_time - state.last_stock_fetch_time
+
+								# Get symbols to fetch (fetch 4, display 3 - buffer for failures)
+								symbols_to_fetch = [s['symbol'] for s in stocks_to_show[:4] if len(stocks_to_show) > 3 else stocks_to_show]
+
+								# Check if we need to fetch
+								should_fetch = False
+								for sym in symbols_to_fetch:
+									if sym not in state.cached_stock_prices:
+										should_fetch = True
+										break
+									cache_age = now_time - state.cached_stock_prices[sym].get('timestamp', 0)
+									if cache_age > config.Timing.STOCKS_CACHE_MAX_AGE:
+										should_fetch = True
+										break
+									if state.should_fetch_stocks:
+										should_fetch = True
+										break
+
+								# Respect rate limiting
+								if should_fetch and time_since_last_fetch >= config.Timing.STOCKS_FETCH_INTERVAL:
+									logger.log(f"Fetching quotes for {len(symbols_to_fetch)} stocks", config.LogLevel.DEBUG, area="STOCKS")
+									quotes = stocks_api.fetch_stock_quotes(symbols_to_fetch)
+									if quotes:
+										for sym, data in quotes.items():
+											state.cached_stock_prices[sym] = {
+												**data,
+												'timestamp': now_time
+											}
+										state.last_stock_fetch_time = now_time
+
+								# Attach cached prices to stocks for display
+								stocks_with_prices = []
+								for stock in stocks_to_show[:3]:  # Display 3
+									symbol = stock['symbol']
+									if symbol in state.cached_stock_prices:
+										stock['price'] = state.cached_stock_prices[symbol]['price']
+										stock['change_percent'] = state.cached_stock_prices[symbol]['change_percent']
+										stock['direction'] = state.cached_stock_prices[symbol]['direction']
+										stocks_with_prices.append(stock)
+
+								if len(stocks_with_prices) >= 2:  # Need at least 2 to show
+									display_stocks.show_multi_stock(
+										stocks_with_prices,
+										config.Timing.STOCKS_DISPLAY_DURATION
+									)
+									showed_display = True
+
+									# Advance rotation offset by 3
+									state.stock_rotation_offset = (offset + 3) % len(stocks_list)
+								else:
+									logger.log("Not enough stock data - skipping display", config.LogLevel.WARNING, area="STOCKS")
+
+					except Exception as e:
+						logger.log(f"Stock display error: {e}", config.LogLevel.ERROR, area="STOCKS")
+
 		# If no displays enabled or no data, show clock as fallback
 		if not showed_display:
 			if not need_weather and not need_forecast:
@@ -182,7 +340,7 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	logger.log("==== PANTALLITA 3.0 | PHASE 3: DISPLAY CONFIGURATION ====")
+	logger.log("==== PANTALLITA 3.0 | PHASE 4: STOCK DISPLAY ====")
 
 	try:
 		# Initialize display FIRST (before show_message)
@@ -220,6 +378,37 @@ def initialize():
 		# Load display configuration
 		show_message("CONFIG...", config.Colors.GREEN, 16)
 		config_manager.load_config()
+
+		# Load stocks configuration (Phase 4)
+		if config_manager.should_show_stocks():
+			show_message("STOCKS...", config.Colors.GREEN, 16)
+			state.cached_stocks = stocks_api.load_stocks_csv()
+			logger.log(f"Loaded {len(state.cached_stocks)} stocks from CSV", area="MAIN")
+
+			# Calculate market hours in local timezone
+			# Market hours: 9:30 AM - 4:00 PM ET
+			if location_info:
+				# Market is always ET (UTC-5 standard time)
+				tz_offset_hours = location_info['offset']
+				et_offset_hours = -5  # ET standard time
+
+				# Time difference between local and ET
+				hours_diff = tz_offset_hours - et_offset_hours
+
+				# Market times in ET
+				market_open_et = 570   # 9:30 AM = 9*60 + 30
+				market_close_et = 960  # 4:00 PM = 16*60
+
+				# Convert to local time
+				state.market_open_local_minutes = market_open_et + (hours_diff * 60)
+				state.market_close_local_minutes = market_close_et + (hours_diff * 60)
+
+				logger.log(f"Market hours (local): {state.market_open_local_minutes//60}:{state.market_open_local_minutes%60:02d} - {state.market_close_local_minutes//60}:{state.market_close_local_minutes%60:02d}", area="STOCKS")
+			else:
+				# Default to ET times (assume we're in ET)
+				state.market_open_local_minutes = 570   # 9:30 AM
+				state.market_close_local_minutes = 960  # 4:00 PM
+				logger.log("No timezone info - using ET market hours", config.LogLevel.WARNING, area="STOCKS")
 
 		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)
