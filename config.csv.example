@@ -1,0 +1,23 @@
+# Pantallita 3.0 - GitHub Remote Configuration Example
+#
+# HOW TO USE:
+# 1. Copy this file to your GitHub repository as "config.csv"
+# 2. Get the raw URL (e.g., https://raw.githubusercontent.com/username/repo/main/config.csv)
+# 3. Add to settings.toml: CONFIG_GITHUB_URL = "your-raw-url-here"
+# 4. Device will fetch config from GitHub and override local settings
+# 5. Edit on GitHub to remotely control your display!
+#
+# PRIORITY: GitHub > Local CSV > Defaults
+# If GitHub fetch fails, local config.csv is used as fallback
+
+setting,value
+
+# Display toggles (true/false)
+# Set to false to disable a display type
+display_weather,true
+display_forecast,true
+display_clock,false
+
+# Temperature unit (F or C)
+# F = Fahrenheit, C = Celsius
+temperature_unit,F
