@@ -233,7 +233,7 @@ def fetch_stock_quotes(symbols_to_fetch):
 				logger.log(f"Error parsing {symbol}: {e}", config.LogLevel.WARNING, area="STOCKS")
 				continue
 
-		logger.log(f"Fetched {len(stock_data)}/{len(symbols_list)} quotes", area="STOCKS")
+		logger.log(f"Fetched {len(stock_data)}/{len(symbols_to_fetch)} quotes", area="STOCKS")
 		return stock_data
 
 	except Exception as e:
