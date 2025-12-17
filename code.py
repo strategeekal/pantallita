@@ -220,10 +220,15 @@ def run_test_cycle():
 							# Respect rate limiting
 							if should_fetch and time_since_last_fetch >= config.Timing.STOCKS_FETCH_INTERVAL:
 								logger.log(f"Fetching intraday data for {symbol}", config.LogLevel.DEBUG, area="STOCKS")
-								intraday_data = stocks_api.fetch_intraday_time_series(symbol)
-								if intraday_data:
+								# Fetch intraday time series (78 points = full trading day at 5min intervals)
+								intraday_data = stocks_api.fetch_intraday_time_series(symbol, interval="5min", outputsize=78)
+								# Fetch actual quote for accurate price and percentage
+								quote_data = stocks_api.fetch_stock_quotes([symbol])
+
+								if intraday_data and quote_data and symbol in quote_data:
 									state.cached_intraday_data[symbol] = {
 										'data': intraday_data,
+										'quote': quote_data[symbol],
 										'timestamp': now_time
 									}
 									state.last_stock_fetch_time = now_time
@@ -232,27 +237,16 @@ def run_test_cycle():
 							if symbol in state.cached_intraday_data:
 								cached = state.cached_intraday_data[symbol]
 								time_series = cached['data']
+								quote = cached.get('quote')
 
-								# Construct quote from time series data (inline)
-								if time_series and len(time_series) > 0:
-									# Most recent data point (first in list - chronological order)
-									latest = time_series[0]
-									current_price = latest['close_price']
-
-									# Calculate change from open to close (inline)
-									open_price = latest['open_price']
-									if open_price > 0:
-										change_percent = ((current_price - open_price) / open_price) * 100
-									else:
-										change_percent = 0
-
-									direction = "up" if change_percent >= 0 else "down"
-
+								# Build stock quote with display name (inline)
+								if time_series and quote:
 									stock_quote = {
-										'price': current_price,
-										'change_percent': change_percent,
-										'direction': direction,
-										'symbol': symbol
+										'price': quote['price'],
+										'change_percent': quote['change_percent'],
+										'direction': quote['direction'],
+										'symbol': symbol,
+										'display_name': current_stock.get('display_name', symbol)
 									}
 
 									display_stocks.show_single_stock_chart(

@@ -37,9 +37,15 @@ def show_multi_stock(stocks_to_show, duration):
 	while len(state.main_group) > 0:
 		state.main_group.pop()
 
-	# Log start (inline)
-	symbols_str = ", ".join([s.get("display_name", s["symbol"]) for s in stocks_to_show])
-	logger.log(f"Displaying multi-stock: {symbols_str}", config.LogLevel.INFO, area="STOCKS")
+	# Log start with prices (inline)
+	log_parts = []
+	for s in stocks_to_show:
+		name = s.get("display_name", s["symbol"])
+		if s.get("type") == "stock":
+			log_parts.append(f"{name} {s['change_percent']:+.1f}%")
+		else:
+			log_parts.append(f"{name} ${s['price']:,.2f}")
+	logger.log(f"Displaying multi-stock: {', '.join(log_parts)}", config.LogLevel.INFO, area="STOCKS")
 
 	# Row positions (divide 32px height into 3 sections) - inline
 	row_positions = [2, 13, 24]
@@ -64,14 +70,13 @@ def show_multi_stock(stocks_to_show, duration):
 			pct = stock["change_percent"]
 			value_text = f"{pct:+.1f}%"
 		else:
-			# Forex/Crypto/Commodity: Show price with K/M suffix (inline)
+			# Forex/Crypto/Commodity: Show full price with comma separator
 			price = stock['price']
-			if price >= 1_000_000:
-				value_text = f"{price / 1_000_000:.2f}M"
-			elif price >= 1_000:
-				value_text = f"{price / 1_000:.1f}K"
+			# Format with comma separator for thousands
+			if price >= 1000:
+				value_text = f"{price:,.0f}"  # e.g., "2,843"
 			else:
-				value_text = f"{price:.2f}"
+				value_text = f"{price:.2f}"  # e.g., "18.49"
 
 		# Create indicator (inline)
 		if item_type in ["forex", "crypto", "commodity"]:
@@ -155,11 +160,11 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	while len(state.main_group) > 0:
 		state.main_group.pop()
 
-	# Log start (inline)
-	logger.log(f"Displaying stock chart: {stock_symbol}", config.LogLevel.INFO, area="STOCKS")
-
 	# Get display name (inline)
 	display_name = stock_quote.get("display_name", stock_symbol)
+
+	# Log start with price and percentage (inline)
+	logger.log(f"Displaying stock chart: {display_name} ${stock_quote['price']:.2f} {stock_quote['change_percent']:+.2f}%", config.LogLevel.INFO, area="STOCKS")
 
 	# Extract quote data (inline)
 	current_price = stock_quote["price"]
@@ -185,22 +190,15 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	state.main_group.append(ticker_label)
 
 	# Format percentage with + sign (inline)
-	if change_percent >= 0:
-		pct_text = f"+{change_percent:.2f}%"
-	else:
-		pct_text = f"{change_percent:.2f}%"
+	pct_text = f"{change_percent:+.2f}%"
 
-	# Calculate right-aligned position (inline)
-	char_width = 6
-	pct_width = len(pct_text) * char_width
-	pct_x = config.Layout.RIGHT_EDGE - pct_width
-
+	# Right-align using anchor point (inline)
 	pct_label = bitmap_label.Label(
 		state.font_small,
 		text=pct_text,
 		color=pct_color,
-		x=pct_x,
-		y=1
+		anchor_point=(1.0, 0.0),  # Right-aligned
+		anchored_position=(config.Layout.WIDTH - 1, 1)  # Right edge minus 1px margin
 	)
 	state.main_group.append(pct_label)
 
@@ -216,16 +214,13 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		# Small prices, show more precision
 		price_text = f"${current_price:.4f}"
 
-	# Calculate right-aligned position (inline)
-	price_width = len(price_text) * char_width
-	price_x = config.Layout.RIGHT_EDGE - price_width
-
+	# Right-align using anchor point (inline)
 	price_label = bitmap_label.Label(
 		state.font_small,
 		text=price_text,
 		color=config.Colors.WHITE,
-		x=price_x,
-		y=9
+		anchor_point=(1.0, 0.0),  # Right-aligned
+		anchored_position=(config.Layout.WIDTH - 1, 9)  # Right edge minus 1px margin
 	)
 	state.main_group.append(price_label)
 
