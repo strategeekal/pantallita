@@ -44,7 +44,22 @@ def show_multi_stock(stocks_to_show, duration):
 		if s.get("type") == "stock":
 			log_parts.append(f"{name} {s['change_percent']:+.1f}%")
 		else:
-			log_parts.append(f"{name} ${s['price']:,.2f}")
+			# Format price with manual commas for logging
+			price = s['price']
+			if price >= 1000:
+				price_int = int(price)
+				price_str = str(price_int)
+				if len(price_str) > 3:
+					parts = []
+					for i in range(len(price_str), 0, -3):
+						start = max(0, i - 3)
+						parts.insert(0, price_str[start:i])
+					price_formatted = ",".join(parts)
+				else:
+					price_formatted = price_str
+				log_parts.append(f"{name} ${price_formatted}")
+			else:
+				log_parts.append(f"{name} ${price:.2f}")
 	logger.log(f"Displaying multi-stock: {', '.join(log_parts)}", config.LogLevel.INFO, area="STOCKS")
 
 	# Row positions (divide 32px height into 3 sections) - inline
@@ -72,9 +87,21 @@ def show_multi_stock(stocks_to_show, duration):
 		else:
 			# Forex/Crypto/Commodity: Show full price with comma separator
 			price = stock['price']
-			# Format with comma separator for thousands
+			# Format with comma separator for thousands (manual approach for CircuitPython)
 			if price >= 1000:
-				value_text = f"{price:,.0f}"  # e.g., "2,843"
+				# Convert to int and add commas manually
+				price_int = int(price)
+				price_str = str(price_int)
+				# Insert commas (inline)
+				if len(price_str) > 3:
+					# e.g., "1234" -> "1,234", "12345" -> "12,345"
+					parts = []
+					for i in range(len(price_str), 0, -3):
+						start = max(0, i - 3)
+						parts.insert(0, price_str[start:i])
+					value_text = ",".join(parts)
+				else:
+					value_text = price_str
 			else:
 				value_text = f"{price:.2f}"  # e.g., "18.49"
 
@@ -121,13 +148,16 @@ def show_multi_stock(stocks_to_show, duration):
 		state.main_group.append(ticker_label)
 
 		# Value (percentage or price, right-aligned with 1px margin)
+		# Use manual x calculation to avoid anchor point baseline issues
 		value_label = bitmap_label.Label(
 			state.font_small,
 			color=color,
 			text=value_text,
-			anchor_point=(1.0, 0.0),  # Right-aligned
-			anchored_position=(config.Layout.WIDTH - 1, y_pos)  # Right edge minus 1px margin
+			x=0,  # Temporary, will adjust
+			y=y_pos
 		)
+		# Calculate right-aligned position (inline)
+		value_label.x = config.Layout.WIDTH - value_label.bounding_box[2] - 1
 		state.main_group.append(value_label)
 
 	# Display for duration (inline)
@@ -192,14 +222,15 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	# Format percentage with + sign (inline)
 	pct_text = f"{change_percent:+.2f}%"
 
-	# Right-align using anchor point (inline)
+	# Right-align using manual calculation (avoid anchor point baseline issues)
 	pct_label = bitmap_label.Label(
 		state.font_small,
 		text=pct_text,
 		color=pct_color,
-		anchor_point=(1.0, 0.0),  # Right-aligned
-		anchored_position=(config.Layout.WIDTH - 1, 1)  # Right edge minus 1px margin
+		x=0,  # Temporary, will adjust
+		y=1
 	)
+	pct_label.x = config.Layout.WIDTH - pct_label.bounding_box[2] - 1
 	state.main_group.append(pct_label)
 
 	# Row 2 (y=9): Current price (inline)
@@ -214,14 +245,15 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		# Small prices, show more precision
 		price_text = f"${current_price:.4f}"
 
-	# Right-align using anchor point (inline)
+	# Right-align using manual calculation (avoid anchor point baseline issues)
 	price_label = bitmap_label.Label(
 		state.font_small,
 		text=price_text,
 		color=config.Colors.WHITE,
-		anchor_point=(1.0, 0.0),  # Right-aligned
-		anchored_position=(config.Layout.WIDTH - 1, 9)  # Right edge minus 1px margin
+		x=0,  # Temporary, will adjust
+		y=9
 	)
+	price_label.x = config.Layout.WIDTH - price_label.bounding_box[2] - 1
 	state.main_group.append(price_label)
 
 	# Chart area: y=17 to y=31 (15 pixels tall) (inline)
@@ -230,14 +262,14 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	CHART_WIDTH = 64
 
 	if time_series and len(time_series) > 0:
-		# Progressive loading: only show elapsed portion of trading day
-		# 78 points = 6.5 hours trading day at 5min intervals
-		# Show only points that have occurred so far
-		num_total_points = 78  # Full trading day
-		num_available_points = len(time_series)  # What we have
+		# Progressive loading: calculate expected points based on elapsed time
+		# Trading day: 6.5 hours = 390 minutes = 78 points at 5min intervals
+		# Calculate elapsed time to determine how many points to show
+		trading_minutes = 390  # 9:30 AM - 4:00 PM
+		num_total_points = 78  # Full trading day at 5min intervals
 
-		# Use only available points (inline)
-		points_to_show = time_series[:num_available_points]
+		# Use available points (inline)
+		points_to_show = time_series  # All available points (chronological)
 
 		# Find min and max prices for scaling (inline)
 		prices = [point["close_price"] for point in points_to_show]
@@ -249,42 +281,55 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		if price_range == 0:
 			price_range = 1
 
-		# Compress points to fit 64 pixels, preserving first and last (inline)
+		# Progressive display: show points proportionally on left, blank space on right
 		data_points = []
 		num_points = len(points_to_show)
 
-		if num_points <= CHART_WIDTH:
-			# No compression needed - direct mapping
+		# Calculate display width based on progress through trading day
+		# If we have 18/78 points, use 18/78 * 64 pixels
+		progress_ratio = min(num_points / num_total_points, 1.0)
+		display_width = max(int(progress_ratio * CHART_WIDTH), 2)  # Minimum 2 pixels
+
+		# Compress points to fit display_width, preserving first and last
+		if num_points == 1:
+			# Single point - show at x=0
+			point = points_to_show[0]
+			price_scaled = (point["close_price"] - min_price) / price_range
+			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
+			data_points.append((0, y))
+		elif num_points <= display_width:
+			# No compression needed - direct mapping within display_width
 			for i, point in enumerate(points_to_show):
-				x = int((i / (num_points - 1)) * (CHART_WIDTH - 1)) if num_points > 1 else 0
+				x = int((i / (num_points - 1)) * (display_width - 1)) if num_points > 1 else 0
 				price_scaled = (point["close_price"] - min_price) / price_range
 				y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
 				data_points.append((x, y))
 		else:
-			# Compression needed: preserve first and last, compress middle
+			# Compression needed: preserve first and last within display_width
 			# Always show first point (open)
 			first_point = points_to_show[0]
 			price_scaled = (first_point["close_price"] - min_price) / price_range
 			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
 			data_points.append((0, y))
 
-			# Compress middle points (inline)
-			middle_pixels = CHART_WIDTH - 2  # Exclude first and last
+			# Compress middle points within display_width
+			middle_pixels = display_width - 2  # Exclude first and last
 			middle_points = num_points - 2  # Exclude first and last
 
-			for pixel_x in range(1, CHART_WIDTH - 1):
-				# Map pixel to data point index (inline)
-				point_idx = 1 + int((pixel_x - 1) * middle_points / middle_pixels)
-				point = points_to_show[point_idx]
-				price_scaled = (point["close_price"] - min_price) / price_range
-				y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
-				data_points.append((pixel_x, y))
+			if middle_pixels > 0 and middle_points > 0:
+				for pixel_x in range(1, display_width - 1):
+					# Map pixel to data point index (inline)
+					point_idx = 1 + int((pixel_x - 1) * middle_points / middle_pixels)
+					point = points_to_show[point_idx]
+					price_scaled = (point["close_price"] - min_price) / price_range
+					y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
+					data_points.append((pixel_x, y))
 
 			# Always show last point (current price)
 			last_point = points_to_show[-1]
 			price_scaled = (last_point["close_price"] - min_price) / price_range
 			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
-			data_points.append((CHART_WIDTH - 1, y))
+			data_points.append((display_width - 1, y))
 
 		# Draw lines connecting data points (inline)
 		for i in range(len(data_points) - 1):

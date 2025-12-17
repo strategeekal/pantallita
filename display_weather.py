@@ -276,4 +276,4 @@ def show(weather_data, duration):
 		time.sleep(0.1)
 
 
-	logger.log("Weather display complete \n", area="DISPLAY")
+	logger.log("Weather display complete", config.LogLevel.DEBUG, area="DISPLAY")
