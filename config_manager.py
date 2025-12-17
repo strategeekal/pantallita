@@ -19,9 +19,14 @@ class ConfigState:
 	display_weather = True
 	display_forecast = True
 	display_clock = False
+	display_stocks = False
 
 	# Temperature unit (F or C)
 	temperature_unit = "F"
+
+	# Stock settings
+	stocks_display_frequency = 3  # Show stocks every N cycles
+	stocks_respect_market_hours = True  # Only show during market hours
 
 	# Last config load time
 	last_load_time = 0
@@ -70,7 +75,7 @@ def apply_setting(setting, value):
 	INLINE - no helper functions.
 	"""
 	# Boolean settings
-	if setting in ['display_weather', 'display_forecast', 'display_clock']:
+	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'stocks_respect_market_hours']:
 		# Parse boolean value
 		if value.lower() in ['true', '1', 'yes', 'on']:
 			bool_value = True
@@ -87,6 +92,10 @@ def apply_setting(setting, value):
 			ConfigState.display_forecast = bool_value
 		elif setting == 'display_clock':
 			ConfigState.display_clock = bool_value
+		elif setting == 'display_stocks':
+			ConfigState.display_stocks = bool_value
+		elif setting == 'stocks_respect_market_hours':
+			ConfigState.stocks_respect_market_hours = bool_value
 
 		return True
 
@@ -99,6 +108,19 @@ def apply_setting(setting, value):
 
 		ConfigState.temperature_unit = value.upper()
 		return True
+
+	# Stocks display frequency
+	elif setting == 'stocks_display_frequency':
+		try:
+			freq = int(value)
+			if freq < 1:
+				logger.log(f"Invalid stocks_display_frequency: {value} (must be >= 1)", config.LogLevel.WARNING, area="CONFIG")
+				return False
+			ConfigState.stocks_display_frequency = freq
+			return True
+		except ValueError:
+			logger.log(f"Invalid integer for stocks_display_frequency: {value}", config.LogLevel.WARNING, area="CONFIG")
+			return False
 
 	else:
 		logger.log(f"Unknown setting: {setting}", config.LogLevel.WARNING, area="CONFIG")
@@ -239,8 +261,9 @@ def load_config():
 
 	# Log final configuration
 	logger.log(f"Config loaded (source: {ConfigState.last_source})", area="CONFIG")
-	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Clock: {ConfigState.display_clock}", area="CONFIG")
+	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Stocks: {ConfigState.display_stocks}, Clock: {ConfigState.display_clock}", area="CONFIG")
 	logger.log(f"  Temperature unit: {ConfigState.temperature_unit}", area="CONFIG")
+	logger.log(f"  Stocks frequency: {ConfigState.stocks_display_frequency}, Respect market hours: {ConfigState.stocks_respect_market_hours}", area="CONFIG")
 
 	return True
 
@@ -261,6 +284,18 @@ def should_show_clock():
 	"""Check if clock display is enabled"""
 	return ConfigState.display_clock
 
+def should_show_stocks():
+	"""Check if stock display is enabled"""
+	return ConfigState.display_stocks
+
 def get_temperature_unit():
 	"""Get current temperature unit (F or C)"""
 	return ConfigState.temperature_unit
+
+def get_stocks_display_frequency():
+	"""Get stocks display frequency (every N cycles)"""
+	return ConfigState.stocks_display_frequency
+
+def get_stocks_respect_market_hours():
+	"""Check if stocks should only show during market hours"""
+	return ConfigState.stocks_respect_market_hours

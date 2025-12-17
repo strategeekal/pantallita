@@ -96,6 +96,10 @@ class Env:
 	# Display configuration (Phase 3)
 	CONFIG_GITHUB_URL = None
 
+	# Stocks API (Phase 4)
+	TWELVE_DATA_API_KEY = None
+	STOCKS_GITHUB_URL = None
+
 	@classmethod
 	def load(cls):
 		"""Load all environment variables"""
@@ -109,6 +113,10 @@ class Env:
 
 		# Display configuration (Phase 3)
 		cls.CONFIG_GITHUB_URL = os.getenv("CONFIG_GITHUB_URL")
+
+		# Stocks API (Phase 4)
+		cls.TWELVE_DATA_API_KEY = os.getenv("TWELVE_DATA_API_KEY")
+		cls.STOCKS_GITHUB_URL = os.getenv("STOCKS_GITHUB_URL")
 
 # ============================================================================
 # API ENDPOINTS
@@ -175,6 +183,12 @@ class Timing:
 	FORECAST_DISPLAY_DURATION = 60   # 1 minute
 	FORECAST_UPDATE_INTERVAL = 900   # 15 minutes
 	FORECAST_CACHE_MAX_AGE = 900     # 15 minutes
+
+	# Stock display (Phase 4)
+	STOCKS_DISPLAY_DURATION = 30    # 30 seconds
+	STOCKS_FETCH_INTERVAL = 65      # 65 seconds (rate limit: 8 calls/minute)
+	STOCKS_CACHE_MAX_AGE = 900      # 15 minutes
+	INTRADAY_CACHE_MAX_AGE = 900    # 15 minutes
 
 # Load environment variables at import
 Env.load()
