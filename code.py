@@ -194,18 +194,12 @@ def run_test_cycle():
 						stocks_list = state.cached_stocks
 						offset = state.stock_rotation_offset
 
-						# Find next highlighted stock for chart mode
-						highlighted_stock = None
-						for i in range(len(stocks_list)):
-							idx = (offset + i) % len(stocks_list)
-							if stocks_list[idx].get('highlight') == True:
-								highlighted_stock = stocks_list[idx]
-								state.stock_rotation_offset = (idx + 1) % len(stocks_list)
-								break
+						# Check if CURRENT stock at offset is highlighted (not search for next)
+						current_stock = stocks_list[offset]
 
-						if highlighted_stock:
-							# Single stock chart mode
-							symbol = highlighted_stock['symbol']
+						if current_stock.get('highlight') == True:
+							# Single stock chart mode (highlighted)
+							symbol = current_stock['symbol']
 
 							# Check if we need to fetch (rate limiting)
 							now_time = time.monotonic()
@@ -268,6 +262,9 @@ def run_test_cycle():
 										config.Timing.STOCKS_DISPLAY_DURATION
 									)
 									showed_display = True
+
+									# Advance offset by 1 for next cycle
+									state.stock_rotation_offset = (offset + 1) % len(stocks_list)
 								else:
 									logger.log(f"No time series data for {symbol}", config.LogLevel.WARNING, area="STOCKS")
 							else:
