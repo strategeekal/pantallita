@@ -73,12 +73,6 @@ def show_multi_stock(stocks_to_show, duration):
 			else:
 				value_text = f"{price:.2f}"
 
-		# Calculate right-aligned position for value (inline)
-		# Measure text width manually (inline, approximate)
-		char_width = 6  # Approximate character width for small font
-		value_width = len(value_text) * char_width
-		value_x = config.Layout.WIDTH - value_width - 1  # Right-align with 1px margin
-
 		# Create indicator (inline)
 		if item_type in ["forex", "crypto", "commodity"]:
 			# Forex/Crypto/Commodity: Dollar sign indicator
@@ -121,13 +115,13 @@ def show_multi_stock(stocks_to_show, duration):
 		)
 		state.main_group.append(ticker_label)
 
-		# Value (percentage or price, right-aligned)
+		# Value (percentage or price, right-aligned with 1px margin)
 		value_label = bitmap_label.Label(
 			state.font_small,
 			color=color,
 			text=value_text,
-			x=value_x,
-			y=y_pos
+			anchor_point=(1.0, 0.0),  # Right-aligned
+			anchored_position=(config.Layout.WIDTH - 1, y_pos)  # Right edge minus 1px margin
 		)
 		state.main_group.append(value_label)
 
