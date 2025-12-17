@@ -1,0 +1,2301 @@
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-14 17:04:48] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-14 17:04:48] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-14 17:04:50] [WEATHER:INFO] Location: Parksley, VA | Timezone: America/New_York (UTC-5)
+[12-14 03:04:53] [HW:INFO] Time synced: 12/14 3:04 AM
+[12-14 03:04:55] [MAIN:INFO] Hardware ready
+[12-14 03:04:55] [MAIN:INFO] === Initialization complete ===
+[12-14 03:04:55] [MAIN:INFO] Press UP button to stop test
+[12-14 03:04:55] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-14 03:04:55] [MAIN:INFO] Baseline memory: 3.3% used (64KB) 
+
+[12-14 03:04:55] [MAIN:INFO] ### CYCLE 1 ###
+[12-14 03:04:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:04:55] [WEATHER:INFO] Weather: 1°C, Clear, UV:0
+[12-14 03:04:55] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-14 03:04:55] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 03:04:56] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Cloudy
+[12-14 03:04:56] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-14 03:04:56] [FORECAST:INFO] Displaying forecast: Current 3°C → 6A -2°C, 1P -10°C
+[12-14 03:05:57] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:05:57] [DISPLAY:INFO] Displaying weather: 1°C Clear
+[12-14 03:05:58] [DISPLAY:INFO] UP button pressed during weather display
+[12-14 03:05:58] [MAIN:INFO] === Weather test stopped by button press ===
+[12-14 03:06:01] [MAIN:INFO] Final memory: 7.2% used (141KB)
+[12-14 03:06:01] [MAIN:INFO] Total cycles: 1
+[12-14 03:06:01] [MAIN:INFO] Weather fetches: 1
+[12-14 03:06:01] [MAIN:INFO] Weather errors: 0
+[12-14 03:06:01] [MAIN:INFO] Uptime: 0.0 hours (1.1 minutes)
+
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 1.5: WEATHER DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-14 03:07:01] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-14 03:07:01] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-14 03:07:03] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-14 02:07:06] [HW:INFO] Time synced: 12/14 2:07 AM
+[12-14 02:07:08] [MAIN:INFO] Hardware ready
+[12-14 02:07:08] [MAIN:INFO] === Initialization complete ===
+[12-14 02:07:08] [MAIN:INFO] Press UP button to stop test
+[12-14 02:07:08] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-14 02:07:08] [MAIN:INFO] Baseline memory: 3.3% used (64KB) 
+
+[12-14 02:07:08] [MAIN:INFO] ### CYCLE 1 ###
+[12-14 02:07:08] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:07:08] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:07:08] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-14 02:07:08] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 02:07:09] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 02:07:09] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-14 02:07:09] [FORECAST:INFO] Displaying forecast: Current -19°C → 3A -31°C, 4A -31°C
+[12-14 02:08:09] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:08:09] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:12:10] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:12:10] [MAIN:INFO] ### CYCLE 2 ###
+[12-14 02:12:10] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:12:10] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:12:10] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-14 02:12:10] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 02:12:10] [FORECAST:INFO] Displaying forecast: Current -19°C → 3A -31°C, 4A -31°C
+[12-14 02:13:10] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:13:10] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:17:10] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:17:10] [MAIN:INFO] ### CYCLE 3 ###
+[12-14 02:17:10] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:17:11] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:17:11] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-14 02:17:11] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 02:17:11] [FORECAST:INFO] Displaying forecast: Current -20°C → 3A -31°C, 4A -31°C
+[12-14 02:18:11] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:18:11] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:22:11] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:22:11] [MAIN:INFO] ### CYCLE 4 ###
+[12-14 02:22:11] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:22:11] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:22:11] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-14 02:22:11] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 02:22:12] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 02:22:12] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-14 02:22:12] [FORECAST:INFO] Displaying forecast: Current -20°C → 3A -31°C, 4A -31°C
+[12-14 02:23:12] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:23:12] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:27:13] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:27:13] [MAIN:INFO] ### CYCLE 5 ###
+[12-14 02:27:13] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:27:13] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:27:13] [WEATHER:INFO] Fetch #5, Errors: 0
+[12-14 02:27:13] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 02:27:13] [FORECAST:INFO] Displaying forecast: Current -22°C → 3A -31°C, 4A -31°C
+[12-14 02:28:13] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:28:13] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:32:13] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:32:13] [MAIN:INFO] Memory: 5.1% used (98KB) [-34880]
+[12-14 02:32:13] [MAIN:INFO] ### CYCLE 6 ###
+[12-14 02:32:13] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:32:14] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:32:14] [WEATHER:INFO] Fetch #6, Errors: 0
+[12-14 02:32:14] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 02:32:14] [FORECAST:INFO] Displaying forecast: Current -22°C → 3A -31°C, 4A -31°C
+[12-14 02:33:14] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:33:14] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:37:14] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:37:14] [MAIN:INFO] ### CYCLE 7 ###
+[12-14 02:37:14] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:37:14] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:37:14] [WEATHER:INFO] Fetch #7, Errors: 0
+[12-14 02:37:14] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 02:37:15] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 02:37:15] [WEATHER:INFO] Forecast fetch #3, Errors: 0
+[12-14 02:37:15] [FORECAST:INFO] Displaying forecast: Current -23°C → 3A -31°C, 4A -31°C
+[12-14 02:38:15] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:38:15] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:42:15] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:42:15] [MAIN:INFO] ### CYCLE 8 ###
+[12-14 02:42:15] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:42:15] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:42:15] [WEATHER:INFO] Fetch #8, Errors: 0
+[12-14 02:42:15] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 02:42:15] [FORECAST:INFO] Displaying forecast: Current -23°C → 3A -31°C, 4A -31°C
+[12-14 02:43:16] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:43:16] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 02:47:16] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:47:16] [MAIN:INFO] ### CYCLE 9 ###
+[12-14 02:47:16] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:47:16] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 02:47:16] [WEATHER:INFO] Fetch #9, Errors: 0
+[12-14 02:47:16] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 02:47:16] [FORECAST:INFO] Displaying forecast: Current -29°C → 3A -31°C, 4A -31°C
+[12-14 02:48:16] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:48:16] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 02:52:17] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:52:17] [MAIN:INFO] ### CYCLE 10 ###
+[12-14 02:52:17] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:52:17] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 02:52:17] [WEATHER:INFO] Fetch #10, Errors: 0
+[12-14 02:52:17] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 02:52:17] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 02:52:17] [WEATHER:INFO] Forecast fetch #4, Errors: 0
+[12-14 02:52:17] [FORECAST:INFO] Displaying forecast: Current -29°C → 3A -31°C, 4A -31°C
+[12-14 02:53:18] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:53:18] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 02:57:18] [DISPLAY:INFO] Weather display complete 
+
+[12-14 02:57:18] [MAIN:INFO] Memory: 7.2% used (140KB) [-42560]
+[12-14 02:57:18] [MAIN:INFO] ### CYCLE 11 ###
+[12-14 02:57:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 02:57:18] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 02:57:18] [WEATHER:INFO] Fetch #11, Errors: 0
+[12-14 02:57:18] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 02:57:18] [FORECAST:INFO] Displaying forecast: Current -21°C → 3A -31°C, 4A -31°C
+[12-14 02:58:18] [FORECAST:INFO] Forecast display complete 
+
+[12-14 02:58:18] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 03:02:18] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:02:18] [MAIN:INFO] ### CYCLE 12 ###
+[12-14 03:02:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:02:19] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 03:02:19] [WEATHER:INFO] Fetch #12, Errors: 0
+[12-14 03:02:19] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 03:02:19] [FORECAST:INFO] Displaying forecast: Current -21°C → 4A -31°C, 5A -32°C
+[12-14 03:03:19] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:03:19] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 03:07:19] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:07:19] [MAIN:INFO] ### CYCLE 13 ###
+[12-14 03:07:19] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:07:19] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 03:07:19] [WEATHER:INFO] Fetch #13, Errors: 0
+[12-14 03:07:19] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 03:07:20] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 03:07:20] [WEATHER:INFO] Forecast fetch #5, Errors: 0
+[12-14 03:07:20] [FORECAST:INFO] Displaying forecast: Current -21°C → 4A -31°C, 5A -32°C
+[12-14 03:08:20] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:08:20] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 03:12:20] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:12:20] [MAIN:INFO] ### CYCLE 14 ###
+[12-14 03:12:20] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:12:21] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 03:12:21] [WEATHER:INFO] Fetch #14, Errors: 0
+[12-14 03:12:21] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 03:12:21] [FORECAST:INFO] Displaying forecast: Current -21°C → 4A -31°C, 5A -32°C
+[12-14 03:13:21] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:13:21] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 03:17:21] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:17:21] [MAIN:INFO] ### CYCLE 15 ###
+[12-14 03:17:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:17:21] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 03:17:21] [WEATHER:INFO] Fetch #15, Errors: 0
+[12-14 03:17:21] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 03:17:21] [FORECAST:INFO] Displaying forecast: Current -30°C → 4A -31°C, 5A -32°C
+[12-14 03:18:21] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:18:21] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 03:22:21] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:22:21] [MAIN:INFO] Memory: 5.1% used (99KB) [+42224]
+[12-14 03:22:21] [MAIN:INFO] ### CYCLE 16 ###
+[12-14 03:22:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:22:22] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 03:22:22] [WEATHER:INFO] Fetch #16, Errors: 0
+[12-14 03:22:22] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 03:22:22] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 03:22:22] [WEATHER:INFO] Forecast fetch #6, Errors: 0
+[12-14 03:22:22] [FORECAST:INFO] Displaying forecast: Current -30°C → 4A -31°C, 5A -32°C
+[12-14 03:23:22] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:23:22] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 03:27:23] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:27:23] [MAIN:INFO] ### CYCLE 17 ###
+[12-14 03:27:23] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:27:23] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 03:27:23] [WEATHER:INFO] Fetch #17, Errors: 0
+[12-14 03:27:23] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 03:27:23] [FORECAST:INFO] Displaying forecast: Current -22°C → 4A -31°C, 5A -32°C
+[12-14 03:28:23] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:28:23] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 03:32:23] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:32:23] [MAIN:INFO] ### CYCLE 18 ###
+[12-14 03:32:23] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:32:24] [WEATHER:INFO] Weather: -16°C, Clear, UV:0
+[12-14 03:32:24] [WEATHER:INFO] Fetch #18, Errors: 0
+[12-14 03:32:24] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 03:32:24] [FORECAST:INFO] Displaying forecast: Current -22°C → 4A -31°C, 5A -32°C
+[12-14 03:33:24] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:33:24] [DISPLAY:INFO] Displaying weather: -16°C Clear
+[12-14 03:37:24] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:37:24] [MAIN:INFO] ### CYCLE 19 ###
+[12-14 03:37:24] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:37:25] [WEATHER:INFO] Weather: -18°C, Mostly clear, UV:0
+[12-14 03:37:25] [WEATHER:INFO] Fetch #19, Errors: 0
+[12-14 03:37:25] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 03:37:25] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 03:37:25] [WEATHER:INFO] Forecast fetch #7, Errors: 0
+[12-14 03:37:25] [FORECAST:INFO] Displaying forecast: Current -30°C → 4A -31°C, 5A -32°C
+[12-14 03:38:25] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:38:25] [DISPLAY:INFO] Displaying weather: -18°C Mostly clear
+[12-14 03:42:26] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:42:26] [MAIN:INFO] ### CYCLE 20 ###
+[12-14 03:42:26] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:42:26] [WEATHER:INFO] Weather: -18°C, Mostly clear, UV:0
+[12-14 03:42:26] [WEATHER:INFO] Fetch #20, Errors: 0
+[12-14 03:42:26] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 03:42:26] [FORECAST:INFO] Displaying forecast: Current -30°C → 4A -31°C, 5A -32°C
+[12-14 03:43:26] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:43:26] [DISPLAY:INFO] Displaying weather: -18°C Mostly clear
+[12-14 03:47:26] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:47:26] [MAIN:INFO] Memory: 5.3% used (103KB) [-4464]
+[12-14 03:47:26] [MAIN:INFO] ### CYCLE 21 ###
+[12-14 03:47:26] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:47:26] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 03:47:26] [WEATHER:INFO] Fetch #21, Errors: 0
+[12-14 03:47:26] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 03:47:27] [FORECAST:INFO] Displaying forecast: Current -24°C → 4A -31°C, 5A -32°C
+[12-14 03:48:27] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:48:27] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 03:52:27] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:52:27] [MAIN:INFO] ### CYCLE 22 ###
+[12-14 03:52:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:52:27] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 03:52:27] [WEATHER:INFO] Fetch #22, Errors: 0
+[12-14 03:52:27] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 03:52:28] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 03:52:28] [WEATHER:INFO] Forecast fetch #8, Errors: 0
+[12-14 03:52:28] [FORECAST:INFO] Displaying forecast: Current -24°C → 4A -31°C, 5A -32°C
+[12-14 03:53:28] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:53:28] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 03:57:28] [DISPLAY:INFO] Weather display complete 
+
+[12-14 03:57:28] [MAIN:INFO] ### CYCLE 23 ###
+[12-14 03:57:28] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 03:57:28] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 03:57:28] [WEATHER:INFO] Fetch #23, Errors: 0
+[12-14 03:57:28] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 03:57:28] [FORECAST:INFO] Displaying forecast: Current -31°C → 4A -31°C, 5A -32°C
+[12-14 03:58:28] [FORECAST:INFO] Forecast display complete 
+
+[12-14 03:58:28] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 04:02:28] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:02:29] [MAIN:INFO] ### CYCLE 24 ###
+[12-14 04:02:29] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:02:29] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 04:02:29] [WEATHER:INFO] Fetch #24, Errors: 0
+[12-14 04:02:29] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 04:02:29] [FORECAST:INFO] Displaying forecast: Current -31°C → 5A -32°C, 6A -32°C
+[12-14 04:03:29] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:03:29] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 04:07:29] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:07:29] [MAIN:INFO] ### CYCLE 25 ###
+[12-14 04:07:29] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:07:30] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 04:07:30] [WEATHER:INFO] Fetch #25, Errors: 0
+[12-14 04:07:30] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 04:07:30] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -32°C Mostly clear
+[12-14 04:07:30] [WEATHER:INFO] Forecast fetch #9, Errors: 0
+[12-14 04:07:30] [FORECAST:INFO] Displaying forecast: Current -30°C → 5A -32°C, 6A -32°C
+[12-14 04:08:30] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:08:30] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 04:12:31] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:12:31] [MAIN:INFO] Memory: 7.4% used (145KB) [-42544]
+[12-14 04:12:31] [MAIN:INFO] ### CYCLE 26 ###
+[12-14 04:12:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:12:31] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 04:12:31] [WEATHER:INFO] Fetch #26, Errors: 0
+[12-14 04:12:31] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 04:12:31] [FORECAST:INFO] Displaying forecast: Current -30°C → 5A -32°C, 6A -32°C
+[12-14 04:13:31] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:13:31] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 04:17:31] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:17:31] [MAIN:INFO] ### CYCLE 27 ###
+[12-14 04:17:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:17:32] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 04:17:32] [WEATHER:INFO] Fetch #27, Errors: 0
+[12-14 04:17:32] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 04:17:32] [FORECAST:INFO] Displaying forecast: Current -21°C → 5A -32°C, 6A -32°C
+[12-14 04:18:32] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:18:32] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 04:22:32] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:22:32] [MAIN:INFO] ### CYCLE 28 ###
+[12-14 04:22:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:22:32] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 04:22:32] [WEATHER:INFO] Fetch #28, Errors: 0
+[12-14 04:22:32] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 04:22:33] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -32°C Mostly clear
+[12-14 04:22:33] [WEATHER:INFO] Forecast fetch #10, Errors: 0
+[12-14 04:22:33] [FORECAST:INFO] Displaying forecast: Current -21°C → 5A -32°C, 6A -32°C
+[12-14 04:23:33] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:23:33] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 04:27:33] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:27:33] [MAIN:INFO] ### CYCLE 29 ###
+[12-14 04:27:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:27:35] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 04:27:35] [WEATHER:INFO] Fetch #29, Errors: 0
+[12-14 04:27:35] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 04:27:35] [FORECAST:INFO] Displaying forecast: Current -21°C → 5A -32°C, 6A -32°C
+[12-14 04:28:35] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:28:35] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 04:32:35] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:32:35] [MAIN:INFO] ### CYCLE 30 ###
+[12-14 04:32:35] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:32:35] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 04:32:35] [WEATHER:INFO] Fetch #30, Errors: 0
+[12-14 04:32:35] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 04:32:35] [FORECAST:INFO] Displaying forecast: Current -21°C → 5A -32°C, 6A -32°C
+[12-14 04:33:35] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:33:35] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 04:37:36] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:37:36] [MAIN:INFO] Memory: 5.3% used (103KB) [+42608]
+[12-14 04:37:36] [MAIN:INFO] ### CYCLE 31 ###
+[12-14 04:37:36] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:37:36] [WEATHER:INFO] Weather: -17°C, Mostly clear, UV:0
+[12-14 04:37:36] [WEATHER:INFO] Fetch #31, Errors: 0
+[12-14 04:37:36] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 04:37:37] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -32°C Mostly clear
+[12-14 04:37:37] [WEATHER:INFO] Forecast fetch #11, Errors: 0
+[12-14 04:37:37] [FORECAST:INFO] Displaying forecast: Current -21°C → 5A -32°C, 6A -32°C
+[12-14 04:38:37] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:38:37] [DISPLAY:INFO] Displaying weather: -17°C Mostly clear
+[12-14 04:42:37] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:42:37] [MAIN:INFO] ### CYCLE 32 ###
+[12-14 04:42:37] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:42:37] [WEATHER:INFO] Weather: -17°C, Mostly clear, UV:0
+[12-14 04:42:37] [WEATHER:INFO] Fetch #32, Errors: 0
+[12-14 04:42:37] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 04:42:37] [FORECAST:INFO] Displaying forecast: Current -21°C → 5A -32°C, 6A -32°C
+[12-14 04:43:37] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:43:37] [DISPLAY:INFO] Displaying weather: -17°C Mostly clear
+[12-14 04:47:38] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:47:38] [MAIN:INFO] ### CYCLE 33 ###
+[12-14 04:47:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:47:38] [WEATHER:INFO] Weather: -17°C, Mostly clear, UV:0
+[12-14 04:47:38] [WEATHER:INFO] Fetch #33, Errors: 0
+[12-14 04:47:38] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 04:47:38] [FORECAST:INFO] Displaying forecast: Current -20°C → 5A -32°C, 6A -32°C
+[12-14 04:48:38] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:48:38] [DISPLAY:INFO] Displaying weather: -17°C Mostly clear
+[12-14 04:52:38] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:52:38] [MAIN:INFO] ### CYCLE 34 ###
+[12-14 04:52:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:52:39] [WEATHER:INFO] Weather: -17°C, Mostly clear, UV:0
+[12-14 04:52:39] [WEATHER:INFO] Fetch #34, Errors: 0
+[12-14 04:52:39] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 04:52:39] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -32°C Mostly clear
+[12-14 04:52:39] [WEATHER:INFO] Forecast fetch #12, Errors: 0
+[12-14 04:52:39] [FORECAST:INFO] Displaying forecast: Current -20°C → 5A -32°C, 6A -32°C
+[12-14 04:53:39] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:53:39] [DISPLAY:INFO] Displaying weather: -17°C Mostly clear
+[12-14 04:57:40] [DISPLAY:INFO] Weather display complete 
+
+[12-14 04:57:40] [MAIN:INFO] ### CYCLE 35 ###
+[12-14 04:57:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 04:57:40] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 04:57:40] [WEATHER:INFO] Fetch #35, Errors: 0
+[12-14 04:57:40] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 04:57:40] [FORECAST:INFO] Displaying forecast: Current -21°C → 5A -32°C, 6A -32°C
+[12-14 04:58:40] [FORECAST:INFO] Forecast display complete 
+
+[12-14 04:58:40] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 05:02:40] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:02:40] [MAIN:INFO] Memory: 5.3% used (103KB) [+0]
+[12-14 05:02:40] [MAIN:INFO] ### CYCLE 36 ###
+[12-14 05:02:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:02:41] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 05:02:41] [WEATHER:INFO] Fetch #36, Errors: 0
+[12-14 05:02:41] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 05:02:41] [FORECAST:INFO] Displaying forecast: Current -21°C → 6A -32°C, 7A -31°C
+[12-14 05:03:41] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:03:41] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 05:07:41] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:07:41] [MAIN:INFO] ### CYCLE 37 ###
+[12-14 05:07:41] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:07:41] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 05:07:41] [WEATHER:INFO] Fetch #37, Errors: 0
+[12-14 05:07:41] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 05:07:42] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -32°C Mostly clear
+[12-14 05:07:42] [WEATHER:INFO] Forecast fetch #13, Errors: 0
+[12-14 05:07:42] [FORECAST:INFO] Displaying forecast: Current -30°C → 6A -32°C, 7A -31°C
+[12-14 05:08:42] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:08:42] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 05:12:42] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:12:42] [MAIN:INFO] ### CYCLE 38 ###
+[12-14 05:12:42] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:12:43] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 05:12:43] [WEATHER:INFO] Fetch #38, Errors: 0
+[12-14 05:12:43] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 05:12:43] [FORECAST:INFO] Displaying forecast: Current -30°C → 6A -32°C, 7A -31°C
+[12-14 05:13:43] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:13:43] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 05:17:43] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:17:43] [MAIN:INFO] ### CYCLE 39 ###
+[12-14 05:17:43] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:17:44] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 05:17:44] [WEATHER:INFO] Fetch #39, Errors: 0
+[12-14 05:17:44] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 05:17:44] [FORECAST:INFO] Displaying forecast: Current -22°C → 6A -32°C, 7A -31°C
+[12-14 05:18:44] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:18:44] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 05:22:44] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:22:44] [MAIN:INFO] ### CYCLE 40 ###
+[12-14 05:22:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:22:44] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 05:22:44] [WEATHER:INFO] Fetch #40, Errors: 0
+[12-14 05:22:44] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 05:22:45] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -32°C Mostly clear
+[12-14 05:22:45] [WEATHER:INFO] Forecast fetch #14, Errors: 0
+[12-14 05:22:45] [FORECAST:INFO] Displaying forecast: Current -22°C → 6A -32°C, 7A -31°C
+[12-14 05:23:45] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:23:45] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 05:27:45] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:27:45] [MAIN:INFO] Memory: 7.6% used (149KB) [-46720]
+[12-14 05:27:45] [MAIN:INFO] ### CYCLE 41 ###
+[12-14 05:27:45] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:27:45] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 05:27:45] [WEATHER:INFO] Fetch #41, Errors: 0
+[12-14 05:27:45] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 05:27:45] [FORECAST:INFO] Displaying forecast: Current -29°C → 6A -32°C, 7A -31°C
+[12-14 05:28:45] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:28:45] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 05:32:46] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:32:46] [MAIN:INFO] ### CYCLE 42 ###
+[12-14 05:32:46] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:32:46] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 05:32:46] [WEATHER:INFO] Fetch #42, Errors: 0
+[12-14 05:32:46] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 05:32:46] [FORECAST:INFO] Displaying forecast: Current -29°C → 6A -32°C, 7A -31°C
+[12-14 05:33:46] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:33:46] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 05:37:46] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:37:46] [MAIN:INFO] ### CYCLE 43 ###
+[12-14 05:37:46] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:37:47] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 05:37:47] [WEATHER:INFO] Fetch #43, Errors: 0
+[12-14 05:37:47] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 05:37:47] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -33°C Mostly clear
+[12-14 05:37:47] [WEATHER:INFO] Forecast fetch #15, Errors: 0
+[12-14 05:37:47] [FORECAST:INFO] Displaying forecast: Current -22°C → 6A -33°C, 7A -32°C
+[12-14 05:38:47] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:38:47] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 05:42:47] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:42:47] [MAIN:INFO] ### CYCLE 44 ###
+[12-14 05:42:47] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:42:48] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 05:42:48] [WEATHER:INFO] Fetch #44, Errors: 0
+[12-14 05:42:48] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 05:42:48] [FORECAST:INFO] Displaying forecast: Current -22°C → 6A -33°C, 7A -32°C
+[12-14 05:43:48] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:43:48] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 05:47:48] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:47:48] [MAIN:INFO] ### CYCLE 45 ###
+[12-14 05:47:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:47:48] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 05:47:48] [WEATHER:INFO] Fetch #45, Errors: 0
+[12-14 05:47:48] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 05:47:48] [FORECAST:INFO] Displaying forecast: Current -29°C → 6A -33°C, 7A -32°C
+[12-14 05:48:48] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:48:48] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 05:52:49] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:52:49] [MAIN:INFO] Memory: 5.5% used (107KB) [+42288]
+[12-14 05:52:49] [MAIN:INFO] ### CYCLE 46 ###
+[12-14 05:52:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:52:49] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 05:52:49] [WEATHER:INFO] Fetch #46, Errors: 0
+[12-14 05:52:49] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 05:52:50] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 05:52:50] [WEATHER:INFO] Forecast fetch #16, Errors: 0
+[12-14 05:52:50] [FORECAST:INFO] Displaying forecast: Current -29°C → 6A -31°C, 7A -31°C
+[12-14 05:53:50] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:53:50] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 05:57:50] [DISPLAY:INFO] Weather display complete 
+
+[12-14 05:57:50] [MAIN:INFO] ### CYCLE 47 ###
+[12-14 05:57:50] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 05:57:50] [WEATHER:INFO] Weather: -19°C, Clear, UV:0
+[12-14 05:57:50] [WEATHER:INFO] Fetch #47, Errors: 0
+[12-14 05:57:50] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 05:57:50] [FORECAST:INFO] Displaying forecast: Current -30°C → 6A -31°C, 7A -31°C
+[12-14 05:58:51] [FORECAST:INFO] Forecast display complete 
+
+[12-14 05:58:51] [DISPLAY:INFO] Displaying weather: -19°C Clear
+[12-14 06:02:51] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:02:51] [MAIN:INFO] ### CYCLE 48 ###
+[12-14 06:02:51] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:02:51] [WEATHER:INFO] Weather: -19°C, Clear, UV:0
+[12-14 06:02:51] [WEATHER:INFO] Fetch #48, Errors: 0
+[12-14 06:02:51] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 06:02:51] [FORECAST:INFO] Displaying forecast: Current -30°C → 7A -31°C, 8A -30°C
+[12-14 06:03:51] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:03:51] [DISPLAY:INFO] Displaying weather: -19°C Clear
+[12-14 06:07:51] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:07:51] [MAIN:INFO] ### CYCLE 49 ###
+[12-14 06:07:51] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:07:52] [WEATHER:INFO] Weather: -19°C, Clear, UV:0
+[12-14 06:07:52] [WEATHER:INFO] Fetch #49, Errors: 0
+[12-14 06:07:52] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 06:07:52] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Mostly clear
+[12-14 06:07:52] [WEATHER:INFO] Forecast fetch #17, Errors: 0
+[12-14 06:07:52] [FORECAST:INFO] Displaying forecast: Current -30°C → 7A -31°C, 8A -30°C
+[12-14 06:08:53] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:08:53] [DISPLAY:INFO] Displaying weather: -19°C Clear
+[12-14 06:12:53] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:12:53] [MAIN:INFO] ### CYCLE 50 ###
+[12-14 06:12:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:12:53] [WEATHER:INFO] Weather: -19°C, Clear, UV:0
+[12-14 06:12:53] [WEATHER:INFO] Fetch #50, Errors: 0
+[12-14 06:12:53] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 06:12:53] [FORECAST:INFO] Displaying forecast: Current -30°C → 7A -31°C, 8A -30°C
+[12-14 06:13:53] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:13:53] [DISPLAY:INFO] Displaying weather: -19°C Clear
+[12-14 06:17:53] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:17:53] [MAIN:INFO] Memory: 5.8% used (112KB) [-4544]
+[12-14 06:17:53] [MAIN:INFO] ### CYCLE 51 ###
+[12-14 06:17:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:17:54] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 06:17:54] [WEATHER:INFO] Fetch #51, Errors: 0
+[12-14 06:17:54] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 06:17:54] [FORECAST:INFO] Displaying forecast: Current -29°C → 7A -31°C, 8A -30°C
+[12-14 06:18:54] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:18:54] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 06:22:54] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:22:54] [MAIN:INFO] ### CYCLE 52 ###
+[12-14 06:22:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:22:55] [WEATHER:INFO] Weather: -18°C, Clear, UV:0
+[12-14 06:22:55] [WEATHER:INFO] Fetch #52, Errors: 0
+[12-14 06:22:55] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 06:22:55] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Partly cloudy
+[12-14 06:22:55] [WEATHER:INFO] Forecast fetch #18, Errors: 0
+[12-14 06:22:55] [FORECAST:INFO] Displaying forecast: Current -29°C → 7A -31°C, 8A -30°C
+[12-14 06:23:55] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:23:55] [DISPLAY:INFO] Displaying weather: -18°C Clear
+[12-14 06:27:55] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:27:55] [MAIN:INFO] ### CYCLE 53 ###
+[12-14 06:27:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:27:56] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 06:27:56] [WEATHER:INFO] Fetch #53, Errors: 0
+[12-14 06:27:56] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 06:27:56] [FORECAST:INFO] Displaying forecast: Current -21°C → 7A -31°C, 8A -30°C
+[12-14 06:28:56] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:28:56] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 06:32:56] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:32:56] [MAIN:INFO] ### CYCLE 54 ###
+[12-14 06:32:56] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:32:56] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 06:32:56] [WEATHER:INFO] Fetch #54, Errors: 0
+[12-14 06:32:56] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 06:32:56] [FORECAST:INFO] Displaying forecast: Current -21°C → 7A -31°C, 8A -30°C
+[12-14 06:33:57] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:33:57] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 06:37:57] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:37:57] [MAIN:INFO] ### CYCLE 55 ###
+[12-14 06:37:57] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:37:57] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 06:37:57] [WEATHER:INFO] Fetch #55, Errors: 0
+[12-14 06:37:57] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 06:37:58] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Partly cloudy
+[12-14 06:37:58] [WEATHER:INFO] Forecast fetch #19, Errors: 0
+[12-14 06:37:58] [FORECAST:INFO] Displaying forecast: Current -24°C → 7A -31°C, 8A -30°C
+[12-14 06:38:58] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:38:58] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 06:42:58] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:42:58] [MAIN:INFO] Memory: 7.9% used (153KB) [-42480]
+[12-14 06:42:58] [MAIN:INFO] ### CYCLE 56 ###
+[12-14 06:42:58] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:42:59] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 06:42:59] [WEATHER:INFO] Fetch #56, Errors: 0
+[12-14 06:42:59] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 06:42:59] [FORECAST:INFO] Displaying forecast: Current -24°C → 7A -31°C, 8A -30°C
+[12-14 06:43:59] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:43:59] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 06:47:59] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:47:59] [MAIN:INFO] ### CYCLE 57 ###
+[12-14 06:47:59] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:47:59] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 06:47:59] [WEATHER:INFO] Fetch #57, Errors: 0
+[12-14 06:47:59] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 06:47:59] [FORECAST:INFO] Displaying forecast: Current -24°C → 7A -31°C, 8A -30°C
+[12-14 06:48:59] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:48:59] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 06:53:00] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:53:00] [MAIN:INFO] ### CYCLE 58 ###
+[12-14 06:53:00] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:53:00] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 06:53:00] [WEATHER:INFO] Fetch #58, Errors: 0
+[12-14 06:53:00] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 06:53:01] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -31°C Partly cloudy
+[12-14 06:53:01] [WEATHER:INFO] Forecast fetch #20, Errors: 0
+[12-14 06:53:01] [FORECAST:INFO] Displaying forecast: Current -24°C → 7A -31°C, 8A -30°C
+[12-14 06:54:01] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:54:01] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 06:58:01] [DISPLAY:INFO] Weather display complete 
+
+[12-14 06:58:01] [MAIN:INFO] ### CYCLE 59 ###
+[12-14 06:58:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 06:58:01] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 06:58:01] [WEATHER:INFO] Fetch #59, Errors: 0
+[12-14 06:58:01] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 06:58:01] [FORECAST:INFO] Displaying forecast: Current -21°C → 7A -31°C, 8A -30°C
+[12-14 06:59:01] [FORECAST:INFO] Forecast display complete 
+
+[12-14 06:59:01] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 07:03:02] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:03:02] [MAIN:INFO] ### CYCLE 60 ###
+[12-14 07:03:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:03:02] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 07:03:02] [WEATHER:INFO] Fetch #60, Errors: 0
+[12-14 07:03:02] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 07:03:02] [FORECAST:INFO] Displaying forecast: Current -21°C → 8A -30°C, 9A -27°C
+[12-14 07:04:02] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:04:02] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 07:08:02] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:08:02] [MAIN:INFO] Memory: 6.0% used (116KB) [+37856]
+[12-14 07:08:02] [MAIN:INFO] ### CYCLE 61 ###
+[12-14 07:08:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:08:03] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 07:08:03] [WEATHER:INFO] Fetch #61, Errors: 0
+[12-14 07:08:03] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 07:08:03] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -30°C Partly sunny
+[12-14 07:08:03] [WEATHER:INFO] Forecast fetch #21, Errors: 0
+[12-14 07:08:03] [FORECAST:INFO] Displaying forecast: Current -22°C → 8A -30°C, 9A -27°C
+[12-14 07:09:03] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:09:03] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 07:13:04] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:13:04] [MAIN:INFO] ### CYCLE 62 ###
+[12-14 07:13:04] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:13:04] [WEATHER:INFO] Weather: -17°C, Clear, UV:0
+[12-14 07:13:04] [WEATHER:INFO] Fetch #62, Errors: 0
+[12-14 07:13:04] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 07:13:04] [FORECAST:INFO] Displaying forecast: Current -22°C → 8A -30°C, 9A -27°C
+[12-14 07:14:04] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:14:04] [DISPLAY:INFO] Displaying weather: -17°C Clear
+[12-14 07:18:04] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:18:04] [MAIN:INFO] ### CYCLE 63 ###
+[12-14 07:18:04] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:18:05] [WEATHER:INFO] Weather: -17°C, Sunny, UV:0
+[12-14 07:18:05] [WEATHER:INFO] Fetch #63, Errors: 0
+[12-14 07:18:05] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 07:18:05] [FORECAST:INFO] Displaying forecast: Current -21°C → 8A -30°C, 9A -27°C
+[12-14 07:19:05] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:19:05] [DISPLAY:INFO] Displaying weather: -17°C Sunny
+[12-14 07:23:05] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:23:05] [MAIN:INFO] ### CYCLE 64 ###
+[12-14 07:23:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:23:05] [WEATHER:INFO] Weather: -17°C, Sunny, UV:0
+[12-14 07:23:05] [WEATHER:INFO] Fetch #64, Errors: 0
+[12-14 07:23:05] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 07:23:06] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -30°C Partly sunny
+[12-14 07:23:06] [WEATHER:INFO] Forecast fetch #22, Errors: 0
+[12-14 07:23:06] [FORECAST:INFO] Displaying forecast: Current -21°C → 8A -30°C, 9A -27°C
+[12-14 07:24:06] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:24:06] [DISPLAY:INFO] Displaying weather: -17°C Sunny
+[12-14 07:28:06] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:28:06] [MAIN:INFO] ### CYCLE 65 ###
+[12-14 07:28:06] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:28:06] [WEATHER:INFO] Weather: -18°C, Sunny, UV:0
+[12-14 07:28:06] [WEATHER:INFO] Fetch #65, Errors: 0
+[12-14 07:28:06] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 07:28:06] [FORECAST:INFO] Displaying forecast: Current -28°C → 8A -30°C, 9A -27°C
+[12-14 07:29:07] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:29:07] [DISPLAY:INFO] Displaying weather: -18°C Sunny
+[12-14 07:33:07] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:33:07] [MAIN:INFO] Memory: 6.4% used (125KB) [-8704]
+[12-14 07:33:07] [MAIN:INFO] ### CYCLE 66 ###
+[12-14 07:33:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:33:07] [WEATHER:INFO] Weather: -18°C, Sunny, UV:0
+[12-14 07:33:07] [WEATHER:INFO] Fetch #66, Errors: 0
+[12-14 07:33:07] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 07:33:07] [FORECAST:INFO] Displaying forecast: Current -28°C → 8A -30°C, 9A -27°C
+[12-14 07:34:07] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:34:07] [DISPLAY:INFO] Displaying weather: -18°C Sunny
+[12-14 07:38:07] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:38:07] [MAIN:INFO] ### CYCLE 67 ###
+[12-14 07:38:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:38:08] [WEATHER:INFO] Weather: -18°C, Sunny, UV:0
+[12-14 07:38:08] [WEATHER:INFO] Fetch #67, Errors: 0
+[12-14 07:38:08] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 07:38:08] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -30°C Mostly sunny
+[12-14 07:38:08] [WEATHER:INFO] Forecast fetch #23, Errors: 0
+[12-14 07:38:08] [FORECAST:INFO] Displaying forecast: Current -27°C → 8A -30°C, 9A -28°C
+[12-14 07:39:08] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:39:08] [DISPLAY:INFO] Displaying weather: -18°C Sunny
+[12-14 07:43:09] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:43:09] [MAIN:INFO] ### CYCLE 68 ###
+[12-14 07:43:09] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:43:09] [WEATHER:INFO] Weather: -18°C, Sunny, UV:0
+[12-14 07:43:09] [WEATHER:INFO] Fetch #68, Errors: 0
+[12-14 07:43:09] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 07:43:09] [FORECAST:INFO] Displaying forecast: Current -27°C → 8A -30°C, 9A -28°C
+[12-14 07:44:09] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:44:09] [DISPLAY:INFO] Displaying weather: -18°C Sunny
+[12-14 07:48:09] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:48:09] [MAIN:INFO] ### CYCLE 69 ###
+[12-14 07:48:09] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:48:10] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 07:48:10] [WEATHER:INFO] Fetch #69, Errors: 0
+[12-14 07:48:10] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 07:48:10] [FORECAST:INFO] Displaying forecast: Current -21°C → 8A -30°C, 9A -28°C
+[12-14 07:49:10] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:49:10] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 07:53:10] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:53:10] [MAIN:INFO] ### CYCLE 70 ###
+[12-14 07:53:10] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:53:10] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 07:53:10] [WEATHER:INFO] Fetch #70, Errors: 0
+[12-14 07:53:10] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 07:53:11] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -30°C Mostly sunny
+[12-14 07:53:11] [WEATHER:INFO] Forecast fetch #24, Errors: 0
+[12-14 07:53:11] [FORECAST:INFO] Displaying forecast: Current -21°C → 8A -30°C, 9A -28°C
+[12-14 07:54:11] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:54:11] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 07:58:11] [DISPLAY:INFO] Weather display complete 
+
+[12-14 07:58:11] [MAIN:INFO] Memory: 8.5% used (166KB) [-42448]
+[12-14 07:58:11] [MAIN:INFO] ### CYCLE 71 ###
+[12-14 07:58:11] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 07:58:11] [WEATHER:INFO] Weather: -18°C, Sunny, UV:0
+[12-14 07:58:11] [WEATHER:INFO] Fetch #71, Errors: 0
+[12-14 07:58:11] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 07:58:11] [FORECAST:INFO] Displaying forecast: Current -27°C → 8A -30°C, 9A -28°C
+[12-14 07:59:11] [FORECAST:INFO] Forecast display complete 
+
+[12-14 07:59:11] [DISPLAY:INFO] Displaying weather: -18°C Sunny
+[12-14 08:03:11] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:03:12] [MAIN:INFO] ### CYCLE 72 ###
+[12-14 08:03:12] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:03:12] [WEATHER:INFO] Weather: -18°C, Sunny, UV:0
+[12-14 08:03:12] [WEATHER:INFO] Fetch #72, Errors: 0
+[12-14 08:03:12] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 08:03:12] [FORECAST:INFO] Displaying forecast: Current -27°C → 9A -28°C, 10A -25°C
+[12-14 08:04:12] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:04:12] [DISPLAY:INFO] Displaying weather: -18°C Sunny
+[12-14 08:08:12] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:08:12] [MAIN:INFO] ### CYCLE 73 ###
+[12-14 08:08:12] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:08:12] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 08:08:12] [WEATHER:INFO] Fetch #73, Errors: 0
+[12-14 08:08:12] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 08:08:13] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -28°C Mostly sunny
+[12-14 08:08:13] [WEATHER:INFO] Forecast fetch #25, Errors: 0
+[12-14 08:08:13] [FORECAST:INFO] Displaying forecast: Current -20°C → 9A -28°C, 10A -25°C
+[12-14 08:09:13] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:09:13] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 08:13:13] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:13:13] [MAIN:INFO] ### CYCLE 74 ###
+[12-14 08:13:13] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:13:14] [WEATHER:INFO] Weather: -17°C, Sunny, UV:0
+[12-14 08:13:14] [WEATHER:INFO] Fetch #74, Errors: 0
+[12-14 08:13:14] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 08:13:14] [FORECAST:INFO] Displaying forecast: Current -21°C → 9A -28°C, 10A -25°C
+[12-14 08:14:14] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:14:14] [DISPLAY:INFO] Displaying weather: -17°C Sunny
+[12-14 08:18:14] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:18:14] [MAIN:INFO] ### CYCLE 75 ###
+[12-14 08:18:14] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:18:14] [WEATHER:INFO] Weather: -17°C, Sunny, UV:0
+[12-14 08:18:14] [WEATHER:INFO] Fetch #75, Errors: 0
+[12-14 08:18:14] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 08:18:14] [FORECAST:INFO] Displaying forecast: Current -21°C → 9A -28°C, 10A -25°C
+[12-14 08:19:14] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:19:14] [DISPLAY:INFO] Displaying weather: -17°C Sunny
+[12-14 08:23:14] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:23:14] [MAIN:INFO] Memory: 6.5% used (126KB) [+41024]
+[12-14 08:23:14] [MAIN:INFO] ### CYCLE 76 ###
+[12-14 08:23:14] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:23:15] [WEATHER:INFO] Weather: -17°C, Sunny, UV:0
+[12-14 08:23:15] [WEATHER:INFO] Fetch #76, Errors: 0
+[12-14 08:23:15] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 08:23:15] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -28°C Mostly sunny
+[12-14 08:23:15] [WEATHER:INFO] Forecast fetch #26, Errors: 0
+[12-14 08:23:15] [FORECAST:INFO] Displaying forecast: Current -19°C → 9A -28°C, 10A -25°C
+[12-14 08:24:16] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:24:16] [DISPLAY:INFO] Displaying weather: -17°C Sunny
+[12-14 08:28:16] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:28:16] [MAIN:INFO] ### CYCLE 77 ###
+[12-14 08:28:16] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:28:16] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 08:28:16] [WEATHER:INFO] Fetch #77, Errors: 0
+[12-14 08:28:16] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 08:28:16] [FORECAST:INFO] Displaying forecast: Current -20°C → 9A -28°C, 10A -25°C
+[12-14 08:29:16] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:29:16] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 08:33:16] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:33:16] [MAIN:INFO] ### CYCLE 78 ###
+[12-14 08:33:16] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:33:17] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 08:33:17] [WEATHER:INFO] Fetch #78, Errors: 0
+[12-14 08:33:17] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 08:33:17] [FORECAST:INFO] Displaying forecast: Current -20°C → 9A -28°C, 10A -25°C
+[12-14 08:34:17] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:34:17] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 08:38:17] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:38:17] [MAIN:INFO] ### CYCLE 79 ###
+[12-14 08:38:17] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:38:18] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 08:38:18] [WEATHER:INFO] Fetch #79, Errors: 0
+[12-14 08:38:18] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 08:38:18] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -27°C Mostly sunny
+[12-14 08:38:18] [WEATHER:INFO] Forecast fetch #27, Errors: 0
+[12-14 08:38:18] [FORECAST:INFO] Displaying forecast: Current -21°C → 9A -27°C, 10A -25°C
+[12-14 08:39:18] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:39:18] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 08:43:18] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:43:18] [MAIN:INFO] ### CYCLE 80 ###
+[12-14 08:43:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:43:19] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 08:43:19] [WEATHER:INFO] Fetch #80, Errors: 0
+[12-14 08:43:19] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 08:43:19] [FORECAST:INFO] Displaying forecast: Current -21°C → 9A -27°C, 10A -25°C
+[12-14 08:44:19] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:44:19] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 08:48:19] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:48:19] [MAIN:INFO] Memory: 6.5% used (126KB) [+0]
+[12-14 08:48:19] [MAIN:INFO] ### CYCLE 81 ###
+[12-14 08:48:19] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:48:20] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 08:48:20] [WEATHER:INFO] Fetch #81, Errors: 0
+[12-14 08:48:20] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 08:48:20] [FORECAST:INFO] Displaying forecast: Current -22°C → 9A -27°C, 10A -25°C
+[12-14 08:49:20] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:49:20] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 08:53:20] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:53:20] [MAIN:INFO] ### CYCLE 82 ###
+[12-14 08:53:20] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:53:20] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 08:53:20] [WEATHER:INFO] Fetch #82, Errors: 0
+[12-14 08:53:20] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 08:53:21] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -27°C Mostly sunny
+[12-14 08:53:21] [WEATHER:INFO] Forecast fetch #28, Errors: 0
+[12-14 08:53:21] [FORECAST:INFO] Displaying forecast: Current -22°C → 9A -27°C, 10A -25°C
+[12-14 08:54:21] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:54:21] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 08:58:21] [DISPLAY:INFO] Weather display complete 
+
+[12-14 08:58:21] [MAIN:INFO] ### CYCLE 83 ###
+[12-14 08:58:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 08:58:21] [WEATHER:INFO] Weather: -17°C, Sunny, UV:0
+[12-14 08:58:21] [WEATHER:INFO] Fetch #83, Errors: 0
+[12-14 08:58:21] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 08:58:21] [FORECAST:INFO] Displaying forecast: Current -27°C → 9A -27°C, 10A -25°C
+[12-14 08:59:21] [FORECAST:INFO] Forecast display complete 
+
+[12-14 08:59:21] [DISPLAY:INFO] Displaying weather: -17°C Sunny
+[12-14 09:03:22] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:03:22] [MAIN:INFO] ### CYCLE 84 ###
+[12-14 09:03:22] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:03:22] [WEATHER:INFO] Weather: -17°C, Sunny, UV:0
+[12-14 09:03:22] [WEATHER:INFO] Fetch #84, Errors: 0
+[12-14 09:03:22] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 09:03:22] [FORECAST:INFO] Displaying forecast: Current -27°C → 10A -25°C, 11A -23°C
+[12-14 09:04:22] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:04:22] [DISPLAY:INFO] Displaying weather: -17°C Sunny
+[12-14 09:08:22] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:08:22] [MAIN:INFO] ### CYCLE 85 ###
+[12-14 09:08:22] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:08:23] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 09:08:23] [WEATHER:INFO] Fetch #85, Errors: 0
+[12-14 09:08:23] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 09:08:24] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -25°C Mostly sunny
+[12-14 09:08:24] [WEATHER:INFO] Forecast fetch #29, Errors: 0
+[12-14 09:08:24] [FORECAST:INFO] Displaying forecast: Current -25°C → 10A -25°C, 11A -23°C
+[12-14 09:09:24] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:09:24] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 09:13:24] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:13:24] [MAIN:INFO] Memory: 8.6% used (167KB) [-41952]
+[12-14 09:13:24] [MAIN:INFO] ### CYCLE 86 ###
+[12-14 09:13:24] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:13:24] [WEATHER:INFO] Weather: -16°C, Sunny, UV:0
+[12-14 09:13:24] [WEATHER:INFO] Fetch #86, Errors: 0
+[12-14 09:13:24] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 09:13:24] [FORECAST:INFO] Displaying forecast: Current -25°C → 10A -25°C, 11A -23°C
+[12-14 09:14:24] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:14:24] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 09:18:25] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:18:25] [MAIN:INFO] ### CYCLE 87 ###
+[12-14 09:18:25] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:18:25] [WEATHER:INFO] Weather: -16°C, Sunny, UV:1
+[12-14 09:18:25] [WEATHER:INFO] Fetch #87, Errors: 0
+[12-14 09:18:25] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 09:18:25] [FORECAST:INFO] Displaying forecast: Current -24°C → 10A -25°C, 11A -23°C
+[12-14 09:19:25] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:19:25] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 09:23:25] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:23:25] [MAIN:INFO] ### CYCLE 88 ###
+[12-14 09:23:25] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:23:26] [WEATHER:INFO] Weather: -16°C, Sunny, UV:1
+[12-14 09:23:26] [WEATHER:INFO] Fetch #88, Errors: 0
+[12-14 09:23:26] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 09:23:26] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -25°C Mostly sunny
+[12-14 09:23:26] [WEATHER:INFO] Forecast fetch #30, Errors: 0
+[12-14 09:23:26] [FORECAST:INFO] Displaying forecast: Current -24°C → 10A -25°C, 11A -23°C
+[12-14 09:24:26] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:24:26] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 09:28:27] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:28:27] [MAIN:INFO] ### CYCLE 89 ###
+[12-14 09:28:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:28:27] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 09:28:27] [WEATHER:INFO] Fetch #89, Errors: 0
+[12-14 09:28:27] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 09:28:27] [FORECAST:INFO] Displaying forecast: Current -24°C → 10A -25°C, 11A -23°C
+[12-14 09:29:27] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:29:27] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 09:33:27] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:33:27] [MAIN:INFO] ### CYCLE 90 ###
+[12-14 09:33:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:33:28] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 09:33:28] [WEATHER:INFO] Fetch #90, Errors: 0
+[12-14 09:33:28] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 09:33:28] [FORECAST:INFO] Displaying forecast: Current -24°C → 10A -25°C, 11A -23°C
+[12-14 09:34:28] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:34:28] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 09:38:28] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:38:28] [MAIN:INFO] Memory: 6.5% used (126KB) [+41792]
+[12-14 09:38:28] [MAIN:INFO] ### CYCLE 91 ###
+[12-14 09:38:28] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:38:28] [WEATHER:INFO] Weather: -16°C, Sunny, UV:1
+[12-14 09:38:28] [WEATHER:INFO] Fetch #91, Errors: 0
+[12-14 09:38:28] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 09:38:29] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -25°C Mostly sunny
+[12-14 09:38:29] [WEATHER:INFO] Forecast fetch #31, Errors: 0
+[12-14 09:38:29] [FORECAST:INFO] Displaying forecast: Current -24°C → 10A -25°C, 11A -23°C
+[12-14 09:39:29] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:39:29] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 09:43:30] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:43:30] [MAIN:INFO] ### CYCLE 92 ###
+[12-14 09:43:30] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:43:30] [WEATHER:INFO] Weather: -16°C, Sunny, UV:1
+[12-14 09:43:30] [WEATHER:INFO] Fetch #92, Errors: 0
+[12-14 09:43:30] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 09:43:30] [FORECAST:INFO] Displaying forecast: Current -24°C → 10A -25°C, 11A -23°C
+[12-14 09:44:30] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:44:30] [DISPLAY:INFO] Displaying weather: -16°C Sunny
+[12-14 09:48:30] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:48:30] [MAIN:INFO] ### CYCLE 93 ###
+[12-14 09:48:30] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:48:30] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 09:48:30] [WEATHER:INFO] Fetch #93, Errors: 0
+[12-14 09:48:30] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 09:48:30] [FORECAST:INFO] Displaying forecast: Current -23°C → 10A -25°C, 11A -23°C
+[12-14 09:49:31] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:49:31] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 09:53:31] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:53:31] [MAIN:INFO] ### CYCLE 94 ###
+[12-14 09:53:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:53:31] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 09:53:31] [WEATHER:INFO] Fetch #94, Errors: 0
+[12-14 09:53:31] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 09:53:32] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -25°C Mostly sunny
+[12-14 09:53:32] [WEATHER:INFO] Forecast fetch #32, Errors: 0
+[12-14 09:53:32] [FORECAST:INFO] Displaying forecast: Current -23°C → 10A -25°C, 11A -23°C
+[12-14 09:54:32] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:54:32] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 09:58:32] [DISPLAY:INFO] Weather display complete 
+
+[12-14 09:58:32] [MAIN:INFO] ### CYCLE 95 ###
+[12-14 09:58:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 09:58:32] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 09:58:32] [WEATHER:INFO] Fetch #95, Errors: 0
+[12-14 09:58:32] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 09:58:32] [FORECAST:INFO] Displaying forecast: Current -22°C → 10A -25°C, 11A -23°C
+[12-14 09:59:32] [FORECAST:INFO] Forecast display complete 
+
+[12-14 09:59:32] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 10:03:33] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:03:33] [MAIN:INFO] Memory: 6.5% used (126KB) [+32]
+[12-14 10:03:33] [MAIN:INFO] ### CYCLE 96 ###
+[12-14 10:03:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:03:33] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 10:03:33] [WEATHER:INFO] Fetch #96, Errors: 0
+[12-14 10:03:33] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 10:03:33] [FORECAST:INFO] Displaying forecast: Current -22°C → 11A -23°C, 12P -20°C
+[12-14 10:04:33] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:04:33] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 10:08:33] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:08:33] [MAIN:INFO] ### CYCLE 97 ###
+[12-14 10:08:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:08:34] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 10:08:34] [WEATHER:INFO] Fetch #97, Errors: 0
+[12-14 10:08:34] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 10:08:34] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -23°C Mostly sunny
+[12-14 10:08:34] [WEATHER:INFO] Forecast fetch #33, Errors: 0
+[12-14 10:08:34] [FORECAST:INFO] Displaying forecast: Current -22°C → 11A -23°C, 12P -20°C
+[12-14 10:09:34] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:09:34] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 10:13:35] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:13:35] [MAIN:INFO] ### CYCLE 98 ###
+[12-14 10:13:35] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:13:35] [WEATHER:INFO] Weather: -15°C, Sunny, UV:1
+[12-14 10:13:35] [WEATHER:INFO] Fetch #98, Errors: 0
+[12-14 10:13:35] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 10:13:35] [FORECAST:INFO] Displaying forecast: Current -22°C → 11A -23°C, 12P -20°C
+[12-14 10:14:35] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:14:35] [DISPLAY:INFO] Displaying weather: -15°C Sunny
+[12-14 10:18:35] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:18:35] [MAIN:INFO] ### CYCLE 99 ###
+[12-14 10:18:35] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:18:36] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 10:18:36] [WEATHER:INFO] Fetch #99, Errors: 0
+[12-14 10:18:36] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 10:18:36] [FORECAST:INFO] Displaying forecast: Current -14°C → 11A -23°C, 12P -20°C
+[12-14 10:19:36] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:19:36] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 10:23:36] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:23:36] [MAIN:INFO] ### CYCLE 100 ###
+[12-14 10:23:36] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:23:37] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 10:23:37] [WEATHER:INFO] Fetch #100, Errors: 0
+[12-14 10:23:37] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 10:23:37] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -23°C Mostly sunny
+[12-14 10:23:37] [WEATHER:INFO] Forecast fetch #34, Errors: 0
+[12-14 10:23:37] [FORECAST:INFO] Displaying forecast: Current -14°C → 11A -23°C, 12P -20°C
+[12-14 10:24:37] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:24:37] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 10:28:38] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:28:38] [MAIN:INFO] Memory: 8.6% used (168KB) [-42720]
+[12-14 10:28:38] [MAIN:INFO] ### CYCLE 101 ###
+[12-14 10:28:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:28:38] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 10:28:38] [WEATHER:INFO] Fetch #101, Errors: 0
+[12-14 10:28:38] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 10:28:38] [FORECAST:INFO] Displaying forecast: Current -13°C → 11A -23°C, 12P -20°C
+[12-14 10:29:39] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:29:39] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 10:33:39] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:33:39] [MAIN:INFO] ### CYCLE 102 ###
+[12-14 10:33:39] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:33:39] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 10:33:39] [WEATHER:INFO] Fetch #102, Errors: 0
+[12-14 10:33:39] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 10:33:39] [FORECAST:INFO] Displaying forecast: Current -13°C → 11A -23°C, 12P -20°C
+[12-14 10:34:39] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:34:39] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 10:38:39] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:38:39] [MAIN:INFO] ### CYCLE 103 ###
+[12-14 10:38:39] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:38:40] [WEATHER:INFO] Weather: -14°C, Sunny, UV:2
+[12-14 10:38:40] [WEATHER:INFO] Fetch #103, Errors: 0
+[12-14 10:38:40] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 10:38:40] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -23°C Mostly sunny
+[12-14 10:38:40] [WEATHER:INFO] Forecast fetch #35, Errors: 0
+[12-14 10:38:40] [FORECAST:INFO] Displaying forecast: Current -14°C → 11A -23°C, 12P -20°C
+[12-14 10:39:41] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:39:41] [DISPLAY:INFO] Displaying weather: -14°C Sunny
+[12-14 10:43:41] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:43:41] [MAIN:INFO] ### CYCLE 104 ###
+[12-14 10:43:41] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:43:41] [WEATHER:INFO] Weather: -14°C, Sunny, UV:2
+[12-14 10:43:41] [WEATHER:INFO] Fetch #104, Errors: 0
+[12-14 10:43:41] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 10:43:41] [FORECAST:INFO] Displaying forecast: Current -14°C → 11A -23°C, 12P -20°C
+[12-14 10:44:41] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:44:41] [DISPLAY:INFO] Displaying weather: -14°C Sunny
+[12-14 10:48:41] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:48:41] [MAIN:INFO] ### CYCLE 105 ###
+[12-14 10:48:41] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:48:43] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 10:48:43] [WEATHER:INFO] Fetch #105, Errors: 0
+[12-14 10:48:43] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 10:48:43] [FORECAST:INFO] Displaying forecast: Current -14°C → 11A -23°C, 12P -20°C
+[12-14 10:49:43] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:49:43] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 10:53:43] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:53:43] [MAIN:INFO] Memory: 6.5% used (127KB) [+42048]
+[12-14 10:53:43] [MAIN:INFO] ### CYCLE 106 ###
+[12-14 10:53:43] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:53:44] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 10:53:44] [WEATHER:INFO] Fetch #106, Errors: 0
+[12-14 10:53:44] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 10:53:44] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -23°C Mostly sunny
+[12-14 10:53:44] [WEATHER:INFO] Forecast fetch #36, Errors: 0
+[12-14 10:53:44] [FORECAST:INFO] Displaying forecast: Current -14°C → 11A -23°C, 12P -20°C
+[12-14 10:54:44] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:54:44] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 10:58:45] [DISPLAY:INFO] Weather display complete 
+
+[12-14 10:58:45] [MAIN:INFO] ### CYCLE 107 ###
+[12-14 10:58:45] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 10:58:45] [WEATHER:INFO] Weather: -14°C, Sunny, UV:2
+[12-14 10:58:45] [WEATHER:INFO] Fetch #107, Errors: 0
+[12-14 10:58:45] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 10:58:45] [FORECAST:INFO] Displaying forecast: Current -19°C → 11A -23°C, 12P -20°C
+[12-14 10:59:45] [FORECAST:INFO] Forecast display complete 
+
+[12-14 10:59:45] [DISPLAY:INFO] Displaying weather: -14°C Sunny
+[12-14 11:03:45] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:03:45] [MAIN:INFO] ### CYCLE 108 ###
+[12-14 11:03:45] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:03:46] [WEATHER:INFO] Weather: -14°C, Sunny, UV:2
+[12-14 11:03:46] [WEATHER:INFO] Fetch #108, Errors: 0
+[12-14 11:03:46] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 11:03:46] [FORECAST:INFO] Displaying forecast: Current -19°C → 12P -20°C, 1P -19°C
+[12-14 11:04:46] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:04:46] [DISPLAY:INFO] Displaying weather: -14°C Sunny
+[12-14 11:08:46] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:08:46] [MAIN:INFO] ### CYCLE 109 ###
+[12-14 11:08:46] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:08:46] [WEATHER:INFO] Weather: -14°C, Sunny, UV:2
+[12-14 11:08:46] [WEATHER:INFO] Fetch #109, Errors: 0
+[12-14 11:08:46] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 11:08:47] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -20°C Mostly sunny
+[12-14 11:08:47] [WEATHER:INFO] Forecast fetch #37, Errors: 0
+[12-14 11:08:47] [FORECAST:INFO] Displaying forecast: Current -19°C → 12P -20°C, 1P -19°C
+[12-14 11:09:47] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:09:47] [DISPLAY:INFO] Displaying weather: -14°C Sunny
+[12-14 11:13:47] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:13:47] [MAIN:INFO] ### CYCLE 110 ###
+[12-14 11:13:47] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:13:48] [WEATHER:INFO] Weather: -14°C, Sunny, UV:2
+[12-14 11:13:48] [WEATHER:INFO] Fetch #110, Errors: 0
+[12-14 11:13:48] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 11:13:48] [FORECAST:INFO] Displaying forecast: Current -19°C → 12P -20°C, 1P -19°C
+[12-14 11:14:48] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:14:48] [DISPLAY:INFO] Displaying weather: -14°C Sunny
+[12-14 11:18:48] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:18:48] [MAIN:INFO] Memory: 6.5% used (127KB) [-256]
+[12-14 11:18:48] [MAIN:INFO] ### CYCLE 111 ###
+[12-14 11:18:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:18:49] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 11:18:49] [WEATHER:INFO] Fetch #111, Errors: 0
+[12-14 11:18:49] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 11:18:49] [FORECAST:INFO] Displaying forecast: Current -11°C → 12P -20°C, 1P -19°C
+[12-14 11:19:49] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:19:49] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 11:23:49] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:23:49] [MAIN:INFO] ### CYCLE 112 ###
+[12-14 11:23:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:23:49] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 11:23:49] [WEATHER:INFO] Fetch #112, Errors: 0
+[12-14 11:23:49] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 11:23:50] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -20°C Mostly sunny
+[12-14 11:23:50] [WEATHER:INFO] Forecast fetch #38, Errors: 0
+[12-14 11:23:50] [FORECAST:INFO] Displaying forecast: Current -11°C → 12P -20°C, 1P -19°C
+[12-14 11:24:50] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:24:50] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 11:28:50] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:28:50] [MAIN:INFO] ### CYCLE 113 ###
+[12-14 11:28:50] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:28:51] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 11:28:51] [WEATHER:INFO] Fetch #113, Errors: 0
+[12-14 11:28:51] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 11:28:51] [FORECAST:INFO] Displaying forecast: Current -11°C → 12P -20°C, 1P -19°C
+[12-14 11:29:51] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:29:51] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 11:33:51] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:33:51] [MAIN:INFO] ### CYCLE 114 ###
+[12-14 11:33:51] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:33:52] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 11:33:52] [WEATHER:INFO] Fetch #114, Errors: 0
+[12-14 11:33:52] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 11:33:52] [FORECAST:INFO] Displaying forecast: Current -11°C → 12P -20°C, 1P -19°C
+[12-14 11:34:52] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:34:52] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 11:38:52] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:38:52] [MAIN:INFO] ### CYCLE 115 ###
+[12-14 11:38:52] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:38:52] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 11:38:52] [WEATHER:INFO] Fetch #115, Errors: 0
+[12-14 11:38:52] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 11:38:53] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -20°C Mostly sunny
+[12-14 11:38:53] [WEATHER:INFO] Forecast fetch #39, Errors: 0
+[12-14 11:38:53] [FORECAST:INFO] Displaying forecast: Current -12°C → 12P -20°C, 1P -19°C
+[12-14 11:39:53] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:39:53] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 11:43:53] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:43:53] [MAIN:INFO] Memory: 8.6% used (168KB) [-42080]
+[12-14 11:43:53] [MAIN:INFO] ### CYCLE 116 ###
+[12-14 11:43:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:43:54] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 11:43:54] [WEATHER:INFO] Fetch #116, Errors: 0
+[12-14 11:43:54] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 11:43:54] [FORECAST:INFO] Displaying forecast: Current -12°C → 12P -20°C, 1P -19°C
+[12-14 11:44:54] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:44:54] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 11:48:54] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:48:54] [MAIN:INFO] ### CYCLE 117 ###
+[12-14 11:48:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:48:54] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 11:48:54] [WEATHER:INFO] Fetch #117, Errors: 0
+[12-14 11:48:54] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 11:48:54] [FORECAST:INFO] Displaying forecast: Current -12°C → 12P -20°C, 1P -19°C
+[12-14 11:49:54] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:49:54] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 11:53:55] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:53:55] [MAIN:INFO] ### CYCLE 118 ###
+[12-14 11:53:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:53:55] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 11:53:55] [WEATHER:INFO] Fetch #118, Errors: 0
+[12-14 11:53:55] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 11:53:56] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -20°C Mostly sunny
+[12-14 11:53:56] [WEATHER:INFO] Forecast fetch #40, Errors: 0
+[12-14 11:53:56] [FORECAST:INFO] Displaying forecast: Current -12°C → 12P -20°C, 1P -19°C
+[12-14 11:54:56] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:54:56] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 11:58:56] [DISPLAY:INFO] Weather display complete 
+
+[12-14 11:58:56] [MAIN:INFO] ### CYCLE 119 ###
+[12-14 11:58:56] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 11:58:56] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 11:58:56] [WEATHER:INFO] Fetch #119, Errors: 0
+[12-14 11:58:56] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 11:58:56] [FORECAST:INFO] Displaying forecast: Current -13°C → 12P -20°C, 1P -19°C
+[12-14 11:59:56] [FORECAST:INFO] Forecast display complete 
+
+[12-14 11:59:56] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 12:03:57] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:03:57] [MAIN:INFO] ### CYCLE 120 ###
+[12-14 12:03:57] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:03:57] [WEATHER:INFO] Weather: -13°C, Sunny, UV:2
+[12-14 12:03:57] [WEATHER:INFO] Fetch #120, Errors: 0
+[12-14 12:03:57] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 12:03:57] [FORECAST:INFO] Displaying forecast: Current -13°C → 1P -19°C, 2P -18°C
+[12-14 12:04:57] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:04:57] [DISPLAY:INFO] Displaying weather: -13°C Sunny
+[12-14 12:08:58] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:08:58] [MAIN:INFO] Memory: 6.5% used (126KB) [+43344]
+[12-14 12:08:58] [MAIN:INFO] ### CYCLE 121 ###
+[12-14 12:08:58] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:08:58] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:08:58] [WEATHER:INFO] Fetch #121, Errors: 0
+[12-14 12:08:58] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 12:08:58] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Sunny
+[12-14 12:08:58] [WEATHER:INFO] Forecast fetch #41, Errors: 0
+[12-14 12:08:59] [FORECAST:INFO] Displaying forecast: Current -11°C → 1P -19°C, 2P -18°C
+[12-14 12:09:59] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:09:59] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:13:59] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:13:59] [MAIN:INFO] ### CYCLE 122 ###
+[12-14 12:13:59] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:13:59] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:13:59] [WEATHER:INFO] Fetch #122, Errors: 0
+[12-14 12:13:59] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 12:13:59] [FORECAST:INFO] Displaying forecast: Current -11°C → 1P -19°C, 2P -18°C
+[12-14 12:14:59] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:14:59] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:18:59] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:18:59] [MAIN:INFO] ### CYCLE 123 ###
+[12-14 12:18:59] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:19:00] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:19:00] [WEATHER:INFO] Fetch #123, Errors: 0
+[12-14 12:19:00] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 12:19:00] [FORECAST:INFO] Displaying forecast: Current -12°C → 1P -19°C, 2P -18°C
+[12-14 12:20:00] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:20:00] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:24:00] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:24:00] [MAIN:INFO] ### CYCLE 124 ###
+[12-14 12:24:00] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:24:01] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:24:01] [WEATHER:INFO] Fetch #124, Errors: 0
+[12-14 12:24:01] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 12:24:01] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Sunny
+[12-14 12:24:01] [WEATHER:INFO] Forecast fetch #42, Errors: 0
+[12-14 12:24:01] [FORECAST:INFO] Displaying forecast: Current -12°C → 1P -19°C, 2P -18°C
+[12-14 12:25:01] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:25:01] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:29:02] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:29:02] [MAIN:INFO] ### CYCLE 125 ###
+[12-14 12:29:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:29:02] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:29:02] [WEATHER:INFO] Fetch #125, Errors: 0
+[12-14 12:29:02] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 12:29:02] [FORECAST:INFO] Displaying forecast: Current -11°C → 1P -19°C, 2P -18°C
+[12-14 12:30:02] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:30:02] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:34:02] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:34:02] [MAIN:INFO] Memory: 6.5% used (127KB) [-1152]
+[12-14 12:34:02] [MAIN:INFO] ### CYCLE 126 ###
+[12-14 12:34:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:34:03] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:34:03] [WEATHER:INFO] Fetch #126, Errors: 0
+[12-14 12:34:03] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 12:34:03] [FORECAST:INFO] Displaying forecast: Current -11°C → 1P -19°C, 2P -18°C
+[12-14 12:35:03] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:35:03] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:39:03] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:39:03] [MAIN:INFO] ### CYCLE 127 ###
+[12-14 12:39:03] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:39:03] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:39:03] [WEATHER:INFO] Fetch #127, Errors: 0
+[12-14 12:39:03] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 12:39:04] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Sunny
+[12-14 12:39:04] [WEATHER:INFO] Forecast fetch #43, Errors: 0
+[12-14 12:39:04] [FORECAST:INFO] Displaying forecast: Current -10°C → 1P -19°C, 2P -18°C
+[12-14 12:40:04] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:40:04] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:44:04] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:44:04] [MAIN:INFO] ### CYCLE 128 ###
+[12-14 12:44:04] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:44:05] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:44:05] [WEATHER:INFO] Fetch #128, Errors: 0
+[12-14 12:44:05] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 12:44:05] [FORECAST:INFO] Displaying forecast: Current -10°C → 1P -19°C, 2P -18°C
+[12-14 12:45:05] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:45:05] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:49:05] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:49:05] [MAIN:INFO] ### CYCLE 129 ###
+[12-14 12:49:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:49:05] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:49:05] [WEATHER:INFO] Fetch #129, Errors: 0
+[12-14 12:49:05] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 12:49:05] [FORECAST:INFO] Displaying forecast: Current -11°C → 1P -19°C, 2P -18°C
+[12-14 12:50:06] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:50:06] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:54:06] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:54:06] [MAIN:INFO] ### CYCLE 130 ###
+[12-14 12:54:06] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:54:06] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:54:06] [WEATHER:INFO] Fetch #130, Errors: 0
+[12-14 12:54:06] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 12:54:07] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Sunny
+[12-14 12:54:07] [WEATHER:INFO] Forecast fetch #44, Errors: 0
+[12-14 12:54:07] [FORECAST:INFO] Displaying forecast: Current -11°C → 1P -19°C, 2P -18°C
+[12-14 12:55:07] [FORECAST:INFO] Forecast display complete 
+
+[12-14 12:55:07] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 12:59:07] [DISPLAY:INFO] Weather display complete 
+
+[12-14 12:59:07] [MAIN:INFO] Memory: 8.6% used (168KB) [-42192]
+[12-14 12:59:07] [MAIN:INFO] ### CYCLE 131 ###
+[12-14 12:59:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 12:59:07] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 12:59:08] [WEATHER:INFO] Fetch #131, Errors: 0
+[12-14 12:59:08] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 12:59:08] [FORECAST:INFO] Displaying forecast: Current -10°C → 1P -19°C, 2P -18°C
+[12-14 13:00:08] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:00:08] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:04:08] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:04:08] [MAIN:INFO] ### CYCLE 132 ###
+[12-14 13:04:08] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:04:08] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:04:08] [WEATHER:INFO] Fetch #132, Errors: 0
+[12-14 13:04:08] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 13:04:08] [FORECAST:INFO] Displaying forecast: Current -10°C → 2P -18°C, 3P -17°C
+[12-14 13:05:08] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:05:08] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:09:09] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:09:09] [MAIN:INFO] ### CYCLE 133 ###
+[12-14 13:09:09] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:09:09] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:09:09] [WEATHER:INFO] Fetch #133, Errors: 0
+[12-14 13:09:09] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 13:09:09] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -18°C Sunny
+[12-14 13:09:09] [WEATHER:INFO] Forecast fetch #45, Errors: 0
+[12-14 13:09:09] [FORECAST:INFO] Displaying forecast: Current -11°C → 2P -18°C, 3P -17°C
+[12-14 13:10:10] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:10:10] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:14:10] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:14:10] [MAIN:INFO] ### CYCLE 134 ###
+[12-14 13:14:10] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:14:10] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:14:10] [WEATHER:INFO] Fetch #134, Errors: 0
+[12-14 13:14:10] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 13:14:10] [FORECAST:INFO] Displaying forecast: Current -11°C → 2P -18°C, 3P -17°C
+[12-14 13:15:10] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:15:10] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:19:10] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:19:10] [MAIN:INFO] ### CYCLE 135 ###
+[12-14 13:19:10] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:19:11] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:19:11] [WEATHER:INFO] Fetch #135, Errors: 0
+[12-14 13:19:11] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 13:19:11] [FORECAST:INFO] Displaying forecast: Current -12°C → 2P -18°C, 3P -17°C
+[12-14 13:20:11] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:20:11] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:24:11] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:24:11] [MAIN:INFO] Memory: 6.5% used (126KB) [+43344]
+[12-14 13:24:11] [MAIN:INFO] ### CYCLE 136 ###
+[12-14 13:24:11] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:24:11] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:24:11] [WEATHER:INFO] Fetch #136, Errors: 0
+[12-14 13:24:11] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 13:24:12] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -18°C Sunny
+[12-14 13:24:12] [WEATHER:INFO] Forecast fetch #46, Errors: 0
+[12-14 13:24:12] [FORECAST:INFO] Displaying forecast: Current -12°C → 2P -18°C, 3P -17°C
+[12-14 13:25:12] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:25:12] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:29:12] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:29:12] [MAIN:INFO] ### CYCLE 137 ###
+[12-14 13:29:12] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:29:13] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:29:13] [WEATHER:INFO] Fetch #137, Errors: 0
+[12-14 13:29:13] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 13:29:13] [FORECAST:INFO] Displaying forecast: Current -14°C → 2P -18°C, 3P -17°C
+[12-14 13:30:13] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:30:13] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:34:13] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:34:13] [MAIN:INFO] ### CYCLE 138 ###
+[12-14 13:34:13] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:34:13] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:34:13] [WEATHER:INFO] Fetch #138, Errors: 0
+[12-14 13:34:13] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 13:34:14] [FORECAST:INFO] Displaying forecast: Current -14°C → 2P -18°C, 3P -17°C
+[12-14 13:35:14] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:35:14] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:39:14] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:39:14] [MAIN:INFO] ### CYCLE 139 ###
+[12-14 13:39:14] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:39:14] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:39:14] [WEATHER:INFO] Fetch #139, Errors: 0
+[12-14 13:39:14] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 13:39:15] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -18°C Sunny
+[12-14 13:39:15] [WEATHER:INFO] Forecast fetch #47, Errors: 0
+[12-14 13:39:15] [FORECAST:INFO] Displaying forecast: Current -14°C → 2P -18°C, 3P -17°C
+[12-14 13:40:15] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:40:15] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:44:15] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:44:15] [MAIN:INFO] ### CYCLE 140 ###
+[12-14 13:44:15] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:44:16] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 13:44:16] [WEATHER:INFO] Fetch #140, Errors: 0
+[12-14 13:44:16] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 13:44:16] [FORECAST:INFO] Displaying forecast: Current -14°C → 2P -18°C, 3P -17°C
+[12-14 13:45:16] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:45:16] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 13:49:16] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:49:16] [MAIN:INFO] Memory: 6.5% used (127KB) [-1232]
+[12-14 13:49:16] [MAIN:INFO] ### CYCLE 141 ###
+[12-14 13:49:16] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:49:16] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 13:49:16] [WEATHER:INFO] Fetch #141, Errors: 0
+[12-14 13:49:16] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 13:49:16] [FORECAST:INFO] Displaying forecast: Current -10°C → 2P -18°C, 3P -17°C
+[12-14 13:50:16] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:50:16] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 13:54:17] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:54:17] [MAIN:INFO] ### CYCLE 142 ###
+[12-14 13:54:17] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:54:17] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 13:54:17] [WEATHER:INFO] Fetch #142, Errors: 0
+[12-14 13:54:17] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 13:54:17] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -17°C Sunny
+[12-14 13:54:17] [WEATHER:INFO] Forecast fetch #48, Errors: 0
+[12-14 13:54:17] [FORECAST:INFO] Displaying forecast: Current -10°C → 2P -17°C, 3P -17°C
+[12-14 13:55:18] [FORECAST:INFO] Forecast display complete 
+
+[12-14 13:55:18] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 13:59:18] [DISPLAY:INFO] Weather display complete 
+
+[12-14 13:59:18] [MAIN:INFO] ### CYCLE 143 ###
+[12-14 13:59:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 13:59:18] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 13:59:18] [WEATHER:INFO] Fetch #143, Errors: 0
+[12-14 13:59:18] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 13:59:18] [FORECAST:INFO] Displaying forecast: Current -10°C → 2P -17°C, 3P -17°C
+[12-14 14:00:18] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:00:18] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:04:18] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:04:18] [MAIN:INFO] ### CYCLE 144 ###
+[12-14 14:04:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:04:19] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:04:19] [WEATHER:INFO] Fetch #144, Errors: 0
+[12-14 14:04:19] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 14:04:19] [FORECAST:INFO] Displaying forecast: Current -10°C → 3P -17°C, 4P -18°C
+[12-14 14:05:19] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:05:19] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:09:19] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:09:19] [MAIN:INFO] ### CYCLE 145 ###
+[12-14 14:09:19] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:09:19] [WEATHER:INFO] Weather: -10°C, Sunny, UV:2
+[12-14 14:09:19] [WEATHER:INFO] Fetch #145, Errors: 0
+[12-14 14:09:19] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 14:09:20] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -17°C Sunny
+[12-14 14:09:20] [WEATHER:INFO] Forecast fetch #49, Errors: 0
+[12-14 14:09:20] [FORECAST:INFO] Displaying forecast: Current -8°C → 3P -17°C, 4P -18°C
+[12-14 14:10:20] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:10:20] [DISPLAY:INFO] Displaying weather: -10°C Sunny
+[12-14 14:14:20] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:14:20] [MAIN:INFO] Memory: 8.7% used (168KB) [-42240]
+[12-14 14:14:20] [MAIN:INFO] ### CYCLE 146 ###
+[12-14 14:14:20] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:14:21] [WEATHER:INFO] Weather: -10°C, Sunny, UV:2
+[12-14 14:14:21] [WEATHER:INFO] Fetch #146, Errors: 0
+[12-14 14:14:21] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 14:14:21] [FORECAST:INFO] Displaying forecast: Current -8°C → 3P -17°C, 4P -18°C
+[12-14 14:15:21] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:15:21] [DISPLAY:INFO] Displaying weather: -10°C Sunny
+[12-14 14:19:21] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:19:21] [MAIN:INFO] ### CYCLE 147 ###
+[12-14 14:19:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:19:22] [WEATHER:INFO] Weather: -10°C, Sunny, UV:2
+[12-14 14:19:22] [WEATHER:INFO] Fetch #147, Errors: 0
+[12-14 14:19:22] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 14:19:22] [FORECAST:INFO] Displaying forecast: Current -9°C → 3P -17°C, 4P -18°C
+[12-14 14:20:22] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:20:22] [DISPLAY:INFO] Displaying weather: -10°C Sunny
+[12-14 14:24:22] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:24:22] [MAIN:INFO] ### CYCLE 148 ###
+[12-14 14:24:22] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:24:22] [WEATHER:INFO] Weather: -10°C, Sunny, UV:2
+[12-14 14:24:22] [WEATHER:INFO] Fetch #148, Errors: 0
+[12-14 14:24:22] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 14:24:23] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -17°C Sunny
+[12-14 14:24:23] [WEATHER:INFO] Forecast fetch #50, Errors: 0
+[12-14 14:24:23] [FORECAST:INFO] Displaying forecast: Current -9°C → 3P -17°C, 4P -18°C
+[12-14 14:25:23] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:25:23] [DISPLAY:INFO] Displaying weather: -10°C Sunny
+[12-14 14:29:23] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:29:23] [MAIN:INFO] ### CYCLE 149 ###
+[12-14 14:29:23] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:29:24] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:29:24] [WEATHER:INFO] Fetch #149, Errors: 0
+[12-14 14:29:24] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 14:29:24] [FORECAST:INFO] Displaying forecast: Current -9°C → 3P -17°C, 4P -18°C
+[12-14 14:30:24] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:30:24] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:34:24] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:34:24] [MAIN:INFO] ### CYCLE 150 ###
+[12-14 14:34:24] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:34:24] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:34:24] [WEATHER:INFO] Fetch #150, Errors: 0
+[12-14 14:34:24] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 14:34:24] [FORECAST:INFO] Displaying forecast: Current -9°C → 3P -17°C, 4P -18°C
+[12-14 14:35:24] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:35:24] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:39:24] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:39:24] [MAIN:INFO] Memory: 6.5% used (127KB) [+42192]
+[12-14 14:39:24] [MAIN:INFO] ### CYCLE 151 ###
+[12-14 14:39:24] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:39:25] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:39:25] [WEATHER:INFO] Fetch #151, Errors: 0
+[12-14 14:39:25] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 14:39:26] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -17°C Sunny
+[12-14 14:39:26] [WEATHER:INFO] Forecast fetch #51, Errors: 0
+[12-14 14:39:26] [FORECAST:INFO] Displaying forecast: Current -10°C → 3P -17°C, 4P -18°C
+[12-14 14:40:26] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:40:26] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:44:26] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:44:26] [MAIN:INFO] ### CYCLE 152 ###
+[12-14 14:44:26] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:44:26] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:44:26] [WEATHER:INFO] Fetch #152, Errors: 0
+[12-14 14:44:26] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 14:44:26] [FORECAST:INFO] Displaying forecast: Current -10°C → 3P -17°C, 4P -18°C
+[12-14 14:45:26] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:45:26] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:49:27] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:49:27] [MAIN:INFO] ### CYCLE 153 ###
+[12-14 14:49:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:49:27] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:49:27] [WEATHER:INFO] Fetch #153, Errors: 0
+[12-14 14:49:27] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 14:49:27] [FORECAST:INFO] Displaying forecast: Current -11°C → 3P -17°C, 4P -18°C
+[12-14 14:50:27] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:50:27] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:54:27] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:54:27] [MAIN:INFO] ### CYCLE 154 ###
+[12-14 14:54:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:54:28] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:54:28] [WEATHER:INFO] Fetch #154, Errors: 0
+[12-14 14:54:28] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 14:54:28] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -17°C Sunny
+[12-14 14:54:28] [WEATHER:INFO] Forecast fetch #52, Errors: 0
+[12-14 14:54:28] [FORECAST:INFO] Displaying forecast: Current -11°C → 3P -17°C, 4P -18°C
+[12-14 14:55:29] [FORECAST:INFO] Forecast display complete 
+
+[12-14 14:55:29] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 14:59:29] [DISPLAY:INFO] Weather display complete 
+
+[12-14 14:59:29] [MAIN:INFO] ### CYCLE 155 ###
+[12-14 14:59:29] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 14:59:29] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 14:59:29] [WEATHER:INFO] Fetch #155, Errors: 0
+[12-14 14:59:29] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 14:59:29] [FORECAST:INFO] Displaying forecast: Current -9°C → 3P -17°C, 4P -18°C
+[12-14 15:00:29] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:00:29] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:04:29] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:04:29] [MAIN:INFO] Memory: 6.5% used (127KB) [+64]
+[12-14 15:04:29] [MAIN:INFO] ### CYCLE 156 ###
+[12-14 15:04:29] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:04:30] [WEATHER:INFO] Weather: -11°C, Sunny, UV:2
+[12-14 15:04:30] [WEATHER:INFO] Fetch #156, Errors: 0
+[12-14 15:04:30] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 15:04:30] [FORECAST:INFO] Displaying forecast: Current -9°C → 4P -18°C, 5P -19°C
+[12-14 15:05:30] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:05:30] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:09:30] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:09:30] [MAIN:INFO] ### CYCLE 157 ###
+[12-14 15:09:30] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:09:31] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 15:09:31] [WEATHER:INFO] Fetch #157, Errors: 0
+[12-14 15:09:31] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 15:09:31] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -18°C Mostly sunny
+[12-14 15:09:31] [WEATHER:INFO] Forecast fetch #53, Errors: 0
+[12-14 15:09:31] [FORECAST:INFO] Displaying forecast: Current -10°C → 4P -18°C, 5P -19°C
+[12-14 15:10:31] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:10:31] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 15:14:32] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:14:32] [MAIN:INFO] ### CYCLE 158 ###
+[12-14 15:14:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:14:32] [WEATHER:INFO] Weather: -12°C, Sunny, UV:2
+[12-14 15:14:32] [WEATHER:INFO] Fetch #158, Errors: 0
+[12-14 15:14:32] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 15:14:32] [FORECAST:INFO] Displaying forecast: Current -10°C → 4P -18°C, 5P -19°C
+[12-14 15:15:32] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:15:32] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 15:19:32] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:19:32] [MAIN:INFO] ### CYCLE 159 ###
+[12-14 15:19:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:19:33] [WEATHER:INFO] Weather: -12°C, Sunny, UV:1
+[12-14 15:19:33] [WEATHER:INFO] Fetch #159, Errors: 0
+[12-14 15:19:33] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 15:19:33] [FORECAST:INFO] Displaying forecast: Current -11°C → 4P -18°C, 5P -19°C
+[12-14 15:20:33] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:20:33] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 15:24:33] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:24:33] [MAIN:INFO] ### CYCLE 160 ###
+[12-14 15:24:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:24:34] [WEATHER:INFO] Weather: -12°C, Sunny, UV:1
+[12-14 15:24:34] [WEATHER:INFO] Fetch #160, Errors: 0
+[12-14 15:24:34] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 15:24:34] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -18°C Sunny
+[12-14 15:24:34] [WEATHER:INFO] Forecast fetch #54, Errors: 0
+[12-14 15:24:34] [FORECAST:INFO] Displaying forecast: Current -11°C → 4P -18°C, 5P -19°C
+[12-14 15:25:34] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:25:34] [DISPLAY:INFO] Displaying weather: -12°C Sunny
+[12-14 15:29:34] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:29:34] [MAIN:INFO] Memory: 8.6% used (168KB) [-42080]
+[12-14 15:29:34] [MAIN:INFO] ### CYCLE 161 ###
+[12-14 15:29:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:29:35] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 15:29:35] [WEATHER:INFO] Fetch #161, Errors: 0
+[12-14 15:29:35] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 15:29:35] [FORECAST:INFO] Displaying forecast: Current -10°C → 4P -18°C, 5P -19°C
+[12-14 15:30:35] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:30:35] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:34:35] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:34:35] [MAIN:INFO] ### CYCLE 162 ###
+[12-14 15:34:35] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:34:36] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 15:34:36] [WEATHER:INFO] Fetch #162, Errors: 0
+[12-14 15:34:36] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 15:34:36] [FORECAST:INFO] Displaying forecast: Current -10°C → 4P -18°C, 5P -19°C
+[12-14 15:35:36] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:35:36] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:39:36] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:39:36] [MAIN:INFO] ### CYCLE 163 ###
+[12-14 15:39:36] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:39:36] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 15:39:36] [WEATHER:INFO] Fetch #163, Errors: 0
+[12-14 15:39:37] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 15:39:37] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -18°C Sunny
+[12-14 15:39:37] [WEATHER:INFO] Forecast fetch #55, Errors: 0
+[12-14 15:39:37] [FORECAST:INFO] Displaying forecast: Current -9°C → 4P -18°C, 5P -19°C
+[12-14 15:40:37] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:40:37] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:44:37] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:44:37] [MAIN:INFO] ### CYCLE 164 ###
+[12-14 15:44:37] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:44:38] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 15:44:38] [WEATHER:INFO] Fetch #164, Errors: 0
+[12-14 15:44:38] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 15:44:38] [FORECAST:INFO] Displaying forecast: Current -9°C → 4P -18°C, 5P -19°C
+[12-14 15:45:38] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:45:38] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:49:38] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:49:38] [MAIN:INFO] ### CYCLE 165 ###
+[12-14 15:49:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:49:39] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 15:49:39] [WEATHER:INFO] Fetch #165, Errors: 0
+[12-14 15:49:39] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 15:49:39] [FORECAST:INFO] Displaying forecast: Current -10°C → 4P -18°C, 5P -19°C
+[12-14 15:50:39] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:50:39] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:54:39] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:54:39] [MAIN:INFO] Memory: 6.5% used (127KB) [+42256]
+[12-14 15:54:39] [MAIN:INFO] ### CYCLE 166 ###
+[12-14 15:54:39] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:54:39] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 15:54:39] [WEATHER:INFO] Fetch #166, Errors: 0
+[12-14 15:54:39] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 15:54:40] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -18°C Sunny
+[12-14 15:54:40] [WEATHER:INFO] Forecast fetch #56, Errors: 0
+[12-14 15:54:40] [FORECAST:INFO] Displaying forecast: Current -10°C → 4P -18°C, 5P -19°C
+[12-14 15:55:40] [FORECAST:INFO] Forecast display complete 
+
+[12-14 15:55:40] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 15:59:40] [DISPLAY:INFO] Weather display complete 
+
+[12-14 15:59:40] [MAIN:INFO] ### CYCLE 167 ###
+[12-14 15:59:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 15:59:41] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 15:59:41] [WEATHER:INFO] Fetch #167, Errors: 0
+[12-14 15:59:41] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 15:59:41] [FORECAST:INFO] Displaying forecast: Current -9°C → 4P -18°C, 5P -19°C
+[12-14 16:00:41] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:00:41] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 16:04:41] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:04:41] [MAIN:INFO] ### CYCLE 168 ###
+[12-14 16:04:41] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:04:41] [WEATHER:INFO] Weather: -11°C, Sunny, UV:1
+[12-14 16:04:41] [WEATHER:INFO] Fetch #168, Errors: 0
+[12-14 16:04:41] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 16:04:41] [FORECAST:INFO] Displaying forecast: Current -9°C → 5P -19°C, 6P -19°C
+[12-14 16:05:41] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:05:41] [DISPLAY:INFO] Displaying weather: -11°C Sunny
+[12-14 16:09:41] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:09:41] [MAIN:INFO] ### CYCLE 169 ###
+[12-14 16:09:41] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:09:42] [WEATHER:INFO] Weather: -10°C, Sunny, UV:0
+[12-14 16:09:42] [WEATHER:INFO] Fetch #169, Errors: 0
+[12-14 16:09:42] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 16:09:43] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Mostly clear
+[12-14 16:09:43] [WEATHER:INFO] Forecast fetch #57, Errors: 0
+[12-14 16:09:43] [FORECAST:INFO] Displaying forecast: Current -11°C → 5P -19°C, 6P -19°C
+[12-14 16:10:43] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:10:43] [DISPLAY:INFO] Displaying weather: -10°C Sunny
+[12-14 16:14:43] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:14:43] [MAIN:INFO] ### CYCLE 170 ###
+[12-14 16:14:43] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:14:43] [WEATHER:INFO] Weather: -10°C, Sunny, UV:0
+[12-14 16:14:43] [WEATHER:INFO] Fetch #170, Errors: 0
+[12-14 16:14:43] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 16:14:43] [FORECAST:INFO] Displaying forecast: Current -11°C → 5P -19°C, 6P -19°C
+[12-14 16:15:43] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:15:43] [DISPLAY:INFO] Displaying weather: -10°C Sunny
+[12-14 16:19:44] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:19:44] [MAIN:INFO] Memory: 6.5% used (126KB) [+1408]
+[12-14 16:19:44] [MAIN:INFO] ### CYCLE 171 ###
+[12-14 16:19:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:19:44] [WEATHER:INFO] Weather: -11°C, Mostly sunny, UV:0
+[12-14 16:19:44] [WEATHER:INFO] Fetch #171, Errors: 0
+[12-14 16:19:44] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 16:19:44] [FORECAST:INFO] Displaying forecast: Current -11°C → 5P -19°C, 6P -19°C
+[12-14 16:20:44] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:20:44] [DISPLAY:INFO] Displaying weather: -11°C Mostly sunny
+[12-14 16:24:44] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:24:44] [MAIN:INFO] ### CYCLE 172 ###
+[12-14 16:24:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:24:44] [WEATHER:INFO] Weather: -11°C, Mostly sunny, UV:0
+[12-14 16:24:44] [WEATHER:INFO] Fetch #172, Errors: 0
+[12-14 16:24:44] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 16:24:45] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Mostly clear
+[12-14 16:24:45] [WEATHER:INFO] Forecast fetch #58, Errors: 0
+[12-14 16:24:45] [FORECAST:INFO] Displaying forecast: Current -11°C → 5P -19°C, 6P -19°C
+[12-14 16:25:45] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:25:45] [DISPLAY:INFO] Displaying weather: -11°C Mostly sunny
+[12-14 16:29:45] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:29:45] [MAIN:INFO] ### CYCLE 173 ###
+[12-14 16:29:45] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:29:46] [WEATHER:INFO] Weather: -11°C, Mostly clear, UV:0
+[12-14 16:29:46] [WEATHER:INFO] Fetch #173, Errors: 0
+[12-14 16:29:46] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 16:29:46] [FORECAST:INFO] Displaying forecast: Current -12°C → 5P -19°C, 6P -19°C
+[12-14 16:30:46] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:30:46] [DISPLAY:INFO] Displaying weather: -11°C Mostly clear
+[12-14 16:34:46] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:34:46] [MAIN:INFO] ### CYCLE 174 ###
+[12-14 16:34:46] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:34:46] [WEATHER:INFO] Weather: -11°C, Mostly clear, UV:0
+[12-14 16:34:46] [WEATHER:INFO] Fetch #174, Errors: 0
+[12-14 16:34:46] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 16:34:46] [FORECAST:INFO] Displaying forecast: Current -12°C → 5P -19°C, 6P -19°C
+[12-14 16:35:46] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:35:46] [DISPLAY:INFO] Displaying weather: -11°C Mostly clear
+[12-14 16:39:47] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:39:47] [MAIN:INFO] ### CYCLE 175 ###
+[12-14 16:39:47] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:39:47] [WEATHER:INFO] Weather: -12°C, Mostly clear, UV:0
+[12-14 16:39:47] [WEATHER:INFO] Fetch #175, Errors: 0
+[12-14 16:39:47] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 16:39:48] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Clear
+[12-14 16:39:48] [WEATHER:INFO] Forecast fetch #59, Errors: 0
+[12-14 16:39:48] [FORECAST:INFO] Displaying forecast: Current -13°C → 5P -19°C, 6P -19°C
+[12-14 16:40:48] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:40:48] [DISPLAY:INFO] Displaying weather: -12°C Mostly clear
+[12-14 16:44:48] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:44:48] [MAIN:INFO] Memory: 8.9% used (172KB) [-47840]
+[12-14 16:44:48] [MAIN:INFO] ### CYCLE 176 ###
+[12-14 16:44:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:44:48] [WEATHER:INFO] Weather: -12°C, Mostly clear, UV:0
+[12-14 16:44:48] [WEATHER:INFO] Fetch #176, Errors: 0
+[12-14 16:44:48] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 16:44:48] [FORECAST:INFO] Displaying forecast: Current -13°C → 5P -19°C, 6P -19°C
+[12-14 16:45:48] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:45:48] [DISPLAY:INFO] Displaying weather: -12°C Mostly clear
+[12-14 16:49:48] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:49:48] [MAIN:INFO] ### CYCLE 177 ###
+[12-14 16:49:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:49:49] [WEATHER:INFO] Weather: -12°C, Mostly clear, UV:0
+[12-14 16:49:49] [WEATHER:INFO] Fetch #177, Errors: 0
+[12-14 16:49:49] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 16:49:49] [FORECAST:INFO] Displaying forecast: Current -14°C → 5P -19°C, 6P -19°C
+[12-14 16:50:49] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:50:49] [DISPLAY:INFO] Displaying weather: -12°C Mostly clear
+[12-14 16:54:49] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:54:49] [MAIN:INFO] ### CYCLE 178 ###
+[12-14 16:54:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:54:50] [WEATHER:INFO] Weather: -12°C, Mostly clear, UV:0
+[12-14 16:54:50] [WEATHER:INFO] Fetch #178, Errors: 0
+[12-14 16:54:50] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 16:54:50] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Mostly clear
+[12-14 16:54:50] [WEATHER:INFO] Forecast fetch #60, Errors: 0
+[12-14 16:54:50] [FORECAST:INFO] Displaying forecast: Current -14°C → 5P -19°C, 6P -19°C
+[12-14 16:55:50] [FORECAST:INFO] Forecast display complete 
+
+[12-14 16:55:50] [DISPLAY:INFO] Displaying weather: -12°C Mostly clear
+[12-14 16:59:50] [DISPLAY:INFO] Weather display complete 
+
+[12-14 16:59:50] [MAIN:INFO] ### CYCLE 179 ###
+[12-14 16:59:50] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 16:59:51] [WEATHER:INFO] Weather: -12°C, Clear, UV:0
+[12-14 16:59:51] [WEATHER:INFO] Fetch #179, Errors: 0
+[12-14 16:59:51] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 16:59:51] [FORECAST:INFO] Displaying forecast: Current -12°C → 5P -19°C, 6P -19°C
+[12-14 17:00:51] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:00:51] [DISPLAY:INFO] Displaying weather: -12°C Clear
+[12-14 17:04:51] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:04:51] [MAIN:INFO] ### CYCLE 180 ###
+[12-14 17:04:51] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:04:51] [WEATHER:INFO] Weather: -12°C, Clear, UV:0
+[12-14 17:04:51] [WEATHER:INFO] Fetch #180, Errors: 0
+[12-14 17:04:51] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 17:04:51] [FORECAST:INFO] Displaying forecast: Current -12°C → 6P -19°C, 7P -22°C
+[12-14 17:05:52] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:05:52] [DISPLAY:INFO] Displaying weather: -12°C Clear
+[12-14 17:09:52] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:09:52] [MAIN:INFO] Memory: 6.7% used (130KB) [+43504]
+[12-14 17:09:52] [MAIN:INFO] ### CYCLE 181 ###
+[12-14 17:09:52] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:09:52] [WEATHER:INFO] Weather: -15°C, Mostly clear, UV:0
+[12-14 17:09:52] [WEATHER:INFO] Fetch #181, Errors: 0
+[12-14 17:09:52] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 17:09:53] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Mostly clear
+[12-14 17:09:53] [WEATHER:INFO] Forecast fetch #61, Errors: 0
+[12-14 17:09:53] [FORECAST:INFO] Displaying forecast: Current -21°C → 6P -19°C, 7P -22°C
+[12-14 17:10:53] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:10:53] [DISPLAY:INFO] Displaying weather: -15°C Mostly clear
+[12-14 17:14:53] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:14:53] [MAIN:INFO] ### CYCLE 182 ###
+[12-14 17:14:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:14:53] [WEATHER:INFO] Weather: -15°C, Mostly clear, UV:0
+[12-14 17:14:53] [WEATHER:INFO] Fetch #182, Errors: 0
+[12-14 17:14:53] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 17:14:53] [FORECAST:INFO] Displaying forecast: Current -21°C → 6P -19°C, 7P -22°C
+[12-14 17:15:53] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:15:53] [DISPLAY:INFO] Displaying weather: -15°C Mostly clear
+[12-14 17:19:53] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:19:54] [MAIN:INFO] ### CYCLE 183 ###
+[12-14 17:19:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:19:54] [WEATHER:INFO] Weather: -12°C, Mostly cloudy, UV:0
+[12-14 17:19:54] [WEATHER:INFO] Fetch #183, Errors: 0
+[12-14 17:19:54] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 17:19:54] [FORECAST:INFO] Displaying forecast: Current -13°C → 6P -19°C, 7P -22°C
+[12-14 17:20:54] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:20:54] [DISPLAY:INFO] Displaying weather: -12°C Mostly cloudy
+[12-14 17:24:54] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:24:54] [MAIN:INFO] ### CYCLE 184 ###
+[12-14 17:24:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:24:54] [WEATHER:INFO] Weather: -12°C, Mostly cloudy, UV:0
+[12-14 17:24:54] [WEATHER:INFO] Fetch #184, Errors: 0
+[12-14 17:24:54] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 17:24:55] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Mostly clear
+[12-14 17:24:55] [WEATHER:INFO] Forecast fetch #62, Errors: 0
+[12-14 17:24:55] [FORECAST:INFO] Displaying forecast: Current -13°C → 6P -19°C, 7P -22°C
+[12-14 17:25:55] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:25:55] [DISPLAY:INFO] Displaying weather: -12°C Mostly cloudy
+[12-14 17:29:55] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:29:55] [MAIN:INFO] ### CYCLE 185 ###
+[12-14 17:29:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:29:56] [WEATHER:INFO] Weather: -12°C, Mostly cloudy, UV:0
+[12-14 17:29:56] [WEATHER:INFO] Fetch #185, Errors: 0
+[12-14 17:29:56] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 17:29:56] [FORECAST:INFO] Displaying forecast: Current -13°C → 6P -19°C, 7P -22°C
+[12-14 17:30:56] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:30:56] [DISPLAY:INFO] Displaying weather: -12°C Mostly cloudy
+[12-14 17:34:56] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:34:56] [MAIN:INFO] Memory: 7.1% used (139KB) [-8880]
+[12-14 17:34:56] [MAIN:INFO] ### CYCLE 186 ###
+[12-14 17:34:56] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:34:56] [WEATHER:INFO] Weather: -12°C, Mostly cloudy, UV:0
+[12-14 17:34:56] [WEATHER:INFO] Fetch #186, Errors: 0
+[12-14 17:34:56] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 17:34:56] [FORECAST:INFO] Displaying forecast: Current -12°C → 6P -19°C, 7P -22°C
+[12-14 17:35:57] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:35:57] [DISPLAY:INFO] Displaying weather: -12°C Mostly cloudy
+[12-14 17:39:57] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:39:57] [MAIN:INFO] ### CYCLE 187 ###
+[12-14 17:39:57] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:39:57] [WEATHER:INFO] Weather: -12°C, Mostly cloudy, UV:0
+[12-14 17:39:57] [WEATHER:INFO] Fetch #187, Errors: 0
+[12-14 17:39:57] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-14 17:39:58] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -19°C Partly cloudy
+[12-14 17:39:58] [WEATHER:INFO] Forecast fetch #63, Errors: 0
+[12-14 17:39:58] [FORECAST:INFO] Displaying forecast: Current -13°C → 6P -19°C, 7P -22°C
+[12-14 17:40:58] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:40:58] [DISPLAY:INFO] Displaying weather: -12°C Mostly cloudy
+[12-14 17:44:58] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:44:58] [MAIN:INFO] ### CYCLE 188 ###
+[12-14 17:44:58] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:44:58] [WEATHER:INFO] Weather: -12°C, Mostly cloudy, UV:0
+[12-14 17:44:58] [WEATHER:INFO] Fetch #188, Errors: 0
+[12-14 17:44:58] [WEATHER:INFO] Using cached forecast (5m old)
+[12-14 17:44:58] [FORECAST:INFO] Displaying forecast: Current -13°C → 6P -19°C, 7P -22°C
+[12-14 17:45:58] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:45:58] [DISPLAY:INFO] Displaying weather: -12°C Mostly cloudy
+[12-14 17:49:59] [DISPLAY:INFO] Weather display complete 
+
+[12-14 17:49:59] [MAIN:INFO] ### CYCLE 189 ###
+[12-14 17:49:59] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-14 17:49:59] [WEATHER:INFO] Weather: -13°C, Mostly cloudy, UV:0
+[12-14 17:49:59] [WEATHER:INFO] Fetch #189, Errors: 0
+[12-14 17:49:59] [WEATHER:INFO] Using cached forecast (10m old)
+[12-14 17:49:59] [FORECAST:INFO] Displaying forecast: Current -14°C → 6P -19°C, 7P -22°C
+[12-14 17:50:59] [FORECAST:INFO] Forecast display complete 
+
+[12-14 17:50:59] [DISPLAY:INFO] Displaying weather: -13°C Mostly cloudy
+[12-14 17:54:32] [DISPLAY:INFO] UP button pressed during weather display
+[12-14 17:54:32] [MAIN:INFO] === Weather test stopped by button press ===
+[12-14 17:54:34] [MAIN:INFO] Final memory: 6.9% used (135KB)
+[12-14 17:54:34] [MAIN:INFO] Total cycles: 189
+[12-14 17:54:34] [MAIN:INFO] Weather fetches: 189
+[12-14 17:54:34] [MAIN:INFO] Weather errors: 0
+[12-14 17:54:34] [MAIN:INFO] Uptime: 15.8 hours (947.4 minutes)
