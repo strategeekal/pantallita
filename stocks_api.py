@@ -155,7 +155,7 @@ def fetch_stock_quotes(symbols_to_fetch):
 	Fetch current stock quotes from Twelve Data API (batch request)
 
 	Args:
-		symbols_to_fetch: List of stock symbol dicts [{"symbol": "AAPL", ...}, ...]
+		symbols_to_fetch: List of stock symbols ["AAPL", "MSFT", ...]
 
 	Returns:
 		dict: {symbol: {"price": float, "change_percent": float, "direction": str, "open_price": float}}
@@ -175,8 +175,7 @@ def fetch_stock_quotes(symbols_to_fetch):
 
 	try:
 		# Build comma-separated symbol list (inline)
-		symbols_list = [s["symbol"] for s in symbols_to_fetch]
-		symbols_str = ",".join(symbols_list)
+		symbols_str = ",".join(symbols_to_fetch)
 
 		# Twelve Data Quote API endpoint (batch)
 		url = f"https://api.twelvedata.com/quote?symbol={symbols_str}&apikey={config.Env.TWELVE_DATA_API_KEY}"
