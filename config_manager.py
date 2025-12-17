@@ -27,6 +27,7 @@ class ConfigState:
 	# Stock settings
 	stocks_display_frequency = 3  # Show stocks every N cycles
 	stocks_respect_market_hours = True  # Only show during market hours
+	stocks_grace_period_minutes = 30  # Minutes after market close to fetch/show stocks
 
 	# Last config load time
 	last_load_time = 0
@@ -120,6 +121,19 @@ def apply_setting(setting, value):
 			return True
 		except ValueError:
 			logger.log(f"Invalid integer for stocks_display_frequency: {value}", config.LogLevel.WARNING, area="CONFIG")
+			return False
+
+	# Stocks grace period
+	elif setting == 'stocks_grace_period_minutes':
+		try:
+			grace = int(value)
+			if grace < 0:
+				logger.log(f"Invalid stocks_grace_period_minutes: {value} (must be >= 0)", config.LogLevel.WARNING, area="CONFIG")
+				return False
+			ConfigState.stocks_grace_period_minutes = grace
+			return True
+		except ValueError:
+			logger.log(f"Invalid integer for stocks_grace_period_minutes: {value}", config.LogLevel.WARNING, area="CONFIG")
 			return False
 
 	else:
@@ -263,7 +277,7 @@ def load_config():
 	logger.log(f"Config loaded (source: {ConfigState.last_source})", area="CONFIG")
 	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Stocks: {ConfigState.display_stocks}, Clock: {ConfigState.display_clock}", area="CONFIG")
 	logger.log(f"  Temperature unit: {ConfigState.temperature_unit}", area="CONFIG")
-	logger.log(f"  Stocks frequency: {ConfigState.stocks_display_frequency}, Respect market hours: {ConfigState.stocks_respect_market_hours}", area="CONFIG")
+	logger.log(f"  Stocks frequency: {ConfigState.stocks_display_frequency}, Respect market hours: {ConfigState.stocks_respect_market_hours}, Grace period: {ConfigState.stocks_grace_period_minutes}min", area="CONFIG")
 
 	return True
 
@@ -299,3 +313,7 @@ def get_stocks_display_frequency():
 def get_stocks_respect_market_hours():
 	"""Check if stocks should only show during market hours"""
 	return ConfigState.stocks_respect_market_hours
+
+def get_stocks_grace_period_minutes():
+	"""Get grace period after market close (in minutes)"""
+	return ConfigState.stocks_grace_period_minutes
