@@ -204,16 +204,17 @@ def run_test_cycle():
 							now_time = time.monotonic()
 							time_since_last_fetch = now_time - state.last_stock_fetch_time
 
-							# Fetch if needed (cache expired or market hours)
+							# Fetch logic:
+							# - Market hours: always fetch (respecting rate limit)
+							# - Outside hours: fetch ONCE to cache, then reuse forever
 							should_fetch = False
 							if symbol not in state.cached_intraday_data:
+								# No cache - need to fetch regardless of market hours
 								should_fetch = True
-							else:
-								cache_age = now_time - state.cached_intraday_data[symbol].get('timestamp', 0)
-								if cache_age > config.Timing.INTRADAY_CACHE_MAX_AGE:
-									should_fetch = True
-								elif state.should_fetch_stocks:
-									should_fetch = True
+							elif state.should_fetch_stocks:
+								# Market hours - always fetch fresh data
+								should_fetch = True
+							# else: Outside market hours with cache - DO NOT fetch
 
 							# Respect rate limiting
 							if should_fetch and time_since_last_fetch >= config.Timing.STOCKS_FETCH_INTERVAL:
@@ -256,21 +257,23 @@ def run_test_cycle():
 								time_since_last_fetch = now_time - state.last_stock_fetch_time
 
 								# Get symbols to fetch (fetch 4, display 3 - buffer for failures)
-								symbols_to_fetch = [s['symbol'] for s in stocks_to_show[:4] if len(stocks_to_show) > 3 else stocks_to_show]
+								# slicing [:4] is safe even if list is shorter
+								symbols_to_fetch = [s['symbol'] for s in stocks_to_show[:4]]
 
-								# Check if we need to fetch
+								# Fetch logic:
+								# - Market hours: always fetch (respecting rate limit)
+								# - Outside hours: fetch ONCE to cache, then reuse forever
 								should_fetch = False
 								for sym in symbols_to_fetch:
 									if sym not in state.cached_stock_prices:
+										# No cache - need to fetch regardless of market hours
 										should_fetch = True
 										break
-									cache_age = now_time - state.cached_stock_prices[sym].get('timestamp', 0)
-									if cache_age > config.Timing.STOCKS_CACHE_MAX_AGE:
+									elif state.should_fetch_stocks:
+										# Market hours - always fetch fresh data
 										should_fetch = True
 										break
-									if state.should_fetch_stocks:
-										should_fetch = True
-										break
+								# else: Outside market hours with cache - DO NOT fetch
 
 								# Respect rate limiting
 								if should_fetch and time_since_last_fetch >= config.Timing.STOCKS_FETCH_INTERVAL:
