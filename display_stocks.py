@@ -230,8 +230,17 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	CHART_WIDTH = 64
 
 	if time_series and len(time_series) > 0:
+		# Progressive loading: only show elapsed portion of trading day
+		# 78 points = 6.5 hours trading day at 5min intervals
+		# Show only points that have occurred so far
+		num_total_points = 78  # Full trading day
+		num_available_points = len(time_series)  # What we have
+
+		# Use only available points (inline)
+		points_to_show = time_series[:num_available_points]
+
 		# Find min and max prices for scaling (inline)
-		prices = [point["close_price"] for point in time_series]
+		prices = [point["close_price"] for point in points_to_show]
 		min_price = min(prices)
 		max_price = max(prices)
 		price_range = max_price - min_price
@@ -240,19 +249,42 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		if price_range == 0:
 			price_range = 1
 
-		# Scale prices to chart height (inline)
+		# Compress points to fit 64 pixels, preserving first and last (inline)
 		data_points = []
-		num_points = len(time_series)
+		num_points = len(points_to_show)
 
-		for i, point in enumerate(time_series):
-			# X position: spread evenly across 64 pixels (inline)
-			x = int((i / (num_points - 1)) * (CHART_WIDTH - 1)) if num_points > 1 else 0
-
-			# Y position: scale price to chart height (inverted) (inline)
-			price_scaled = (point["close_price"] - min_price) / price_range
+		if num_points <= CHART_WIDTH:
+			# No compression needed - direct mapping
+			for i, point in enumerate(points_to_show):
+				x = int((i / (num_points - 1)) * (CHART_WIDTH - 1)) if num_points > 1 else 0
+				price_scaled = (point["close_price"] - min_price) / price_range
+				y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
+				data_points.append((x, y))
+		else:
+			# Compression needed: preserve first and last, compress middle
+			# Always show first point (open)
+			first_point = points_to_show[0]
+			price_scaled = (first_point["close_price"] - min_price) / price_range
 			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
+			data_points.append((0, y))
 
-			data_points.append((x, y))
+			# Compress middle points (inline)
+			middle_pixels = CHART_WIDTH - 2  # Exclude first and last
+			middle_points = num_points - 2  # Exclude first and last
+
+			for pixel_x in range(1, CHART_WIDTH - 1):
+				# Map pixel to data point index (inline)
+				point_idx = 1 + int((pixel_x - 1) * middle_points / middle_pixels)
+				point = points_to_show[point_idx]
+				price_scaled = (point["close_price"] - min_price) / price_range
+				y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
+				data_points.append((pixel_x, y))
+
+			# Always show last point (current price)
+			last_point = points_to_show[-1]
+			price_scaled = (last_point["close_price"] - min_price) / price_range
+			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
+			data_points.append((CHART_WIDTH - 1, y))
 
 		# Draw lines connecting data points (inline)
 		for i in range(len(data_points) - 1):
