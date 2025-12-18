@@ -5,6 +5,7 @@ INLINE ARCHITECTURE - no helper functions, everything inline
 """
 
 import time
+import rtc
 from adafruit_display_text import bitmap_label
 from adafruit_display_shapes.triangle import Triangle
 from adafruit_display_shapes.line import Line
@@ -285,9 +286,25 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		data_points = []
 		num_points = len(points_to_show)
 
-		# Calculate display width based on progress through trading day
-		# If we have 18/78 points, use 18/78 * 64 pixels
-		progress_ratio = min(num_points / num_total_points, 1.0)
+		# Calculate display width based on ACTUAL elapsed time, not number of points
+		# Get current time in minutes since midnight (local)
+		r = rtc.RTC()
+		now = r.datetime
+		current_minutes = now.tm_hour * 60 + now.tm_min
+
+		# Calculate elapsed minutes since market open
+		if state.market_open_local_minutes > 0:
+			elapsed_minutes = current_minutes - state.market_open_local_minutes
+			if 0 < elapsed_minutes < trading_minutes:
+				# We're during market hours - show only elapsed portion
+				progress_ratio = elapsed_minutes / trading_minutes
+			else:
+				# Outside market hours or after close - show full chart
+				progress_ratio = 1.0
+		else:
+			# No market hours configured - show full chart
+			progress_ratio = 1.0
+
 		display_width = max(int(progress_ratio * CHART_WIDTH), 2)  # Minimum 2 pixels
 
 		# Compress points to fit display_width, preserving first and last
