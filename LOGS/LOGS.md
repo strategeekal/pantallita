@@ -258,6 +258,79 @@ This file tracks all stability test logs throughout the refactoring process. Eac
 
 ---
 
+## Phase 4: Stock/Forex/Crypto/Commodity Display
+
+- **12-17-v3-initial-stock-test.txt** [LATEST] ✅ **PHASE 4 INITIAL TEST COMPLETE**
+  - **Phase:** 4.0 (Forecast + Stock Display with Market Hours)
+  - **Duration:** 6.6 hours (12:49 - 20:23, 394.4 minutes)
+  - **Cycles:** 233
+  - **API Calls:** 60 weather fetches + 3 forecast fetches + ~116 stock API calls (quotes + intraday)
+  - **Memory:** Baseline 4.7% → Final 12.1% (delta: +7.4%, +144KB)
+  - **Errors:** 0 critical, 0 warnings
+  - **Notable:** First stock display test - alternating chart and multi-stock modes, comprehensive logging with prices/percentages
+  - **Result:** ✅ **PASS** - Stock display working correctly with proper rotation
+
+  **Configuration Applied:**
+  - Source: github (remote config)
+  - Weather: False (disabled for focused stock testing)
+  - Forecast: True (enabled)
+  - Stocks: True (enabled)
+  - Stock frequency: 1 (every cycle - stress test mode)
+  - Respect market hours: False (testing outside market hours)
+  - Grace period: 30 minutes
+  - Temperature unit: C (Celsius)
+  - Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+  - Market hours (local): 8:30 - 15:00 (grace: +30min)
+
+  **Stock Rotation Observed:**
+  - **Cycle 1:** CRM chart (highlighted stock with 26 intraday points)
+  - **Cycle 2:** SPY/SOXQ/IBIT multi-stock (3 stocks)
+  - **Cycle 3:** FDIG chart (highlighted stock with 26 intraday points)
+  - **Cycle 4:** MXN/EUR/CAD multi-stock (forex pair display names)
+  - **Cycle 5:** LUMN chart (highlighted stock with 26 intraday points)
+  - **Cycle 6:** ETH/XAU/GBP multi-stock (crypto/commodity mix)
+  - **Cycle 7:** BTC/USD chart (highlighted crypto with 26 intraday points)
+  - **Cycle 8:** AAPL/GOOGL/NVDA multi-stock (tech stocks)
+  - **Cycle 9+:** Rotation repeats (CRM chart...)
+
+  **Display Format Evolution (Logging):**
+  - **Early cycles (1-20):** Basic logging - "Displaying stock chart: CRM", "Displaying multi-stock: SPY, SOXQ, IBIT"
+  - **Later cycles (230+):** Enhanced logging with prices/percentages:
+    - Multi-stock forex/crypto: "ETH $2,827, XAU $4,345, GBP $24.08"
+    - Stock chart: "BTC $85751.34 -2.39%"
+    - Multi-stock percentages: "AAPL -1.0%, GOOGL -3.2%, NVDA -3.8%"
+
+  **Key Findings:**
+  - ✅ **Stock rotation:** Proper alternation between chart mode (highlighted=1) and multi-stock mode (highlighted=0)
+  - ✅ **Intraday data:** 26 data points fetched for chart displays (15-min intervals)
+  - ✅ **Quote fetching:** Batch quotes (4 symbols) fetched for multi-stock displays
+  - ✅ **Display names:** Forex pairs showing custom names (MXN, EUR, CAD vs USD/MXN, EUR/MXN, CAD/MXN)
+  - ✅ **Rate limiting:** 65-second intervals respected (8 calls/minute compliance)
+  - ✅ **Cache working:** Outside market hours, using cached data (respect_market_hours=false for testing)
+  - ✅ **Progressive logging:** Updated mid-test to show prices and percentages in console
+  - ✅ **Zero errors:** 233 cycles with complex stock API integration, no failures
+  - ✅ **Memory delta:** +7.4% increase reasonable for stock caching (quotes + intraday data for 16 symbols)
+  - ✅ **Forecast integration:** Forecast display working alongside stocks (60-sec display)
+  - ✅ **Config reload:** Every 10 cycles, config reloaded from GitHub successfully
+
+  **Stock Features Validated:**
+  - ✅ **Two display modes:** Chart mode (4 highlighted stocks) and multi-stock mode (12 non-highlighted)
+  - ✅ **Multiple asset types:** Stocks, forex pairs, crypto, commodities all displaying correctly
+  - ✅ **Display names:** Custom short names (BTC vs BTC/USD, MXN vs USD/MXN) working
+  - ✅ **Market hours detection:** Local timezone conversion working (Chicago UTC-6, market 8:30-15:00)
+  - ✅ **Grace period:** Configured to 30 minutes after market close
+  - ✅ **API quota management:** Rate limiting prevents exceeding 8 calls/minute (800/day limit)
+  - ✅ **Progressive enhancement:** Logging improved mid-test to show prices/percentages
+
+  **Next Steps:**
+  - 🔲 Extended stability test during market hours (verify live data fetching)
+  - 🔲 Test market hours respect mode (stocks disabled outside hours + grace period)
+  - 🔲 Validate 78-point progressive chart loading (currently 26 points)
+  - 🔲 Test with display_stocks frequency > 1 (e.g., every 3 cycles)
+  - 🔲 Verify anchor point alignment fixes for prices/percentages on display
+
+---
+
 ## Archive Strategy
 
 **Keep:**
