@@ -124,7 +124,7 @@ def run_test_cycle():
 				time.sleep(10)
 		return
 	
-	# Fetch weather and forecast data
+	# Fetch weather, forecast and stock data
 	try:
 		# Check if we need to fetch weather or forecast based on config
 		need_weather = config_manager.should_show_weather()
@@ -347,6 +347,8 @@ def run_test_cycle():
 				logger.log("No weather data - showing clock", config.LogLevel.WARNING)
 			show_clock()
 			time.sleep(config.Timing.CLOCK_UPDATE_INTERVAL)  # Sleep to avoid tight loop
+			
+		logger.log("### CYCLE COMPLETE ### \n", config.LogLevel.INFO, area="MAIN")
 
 	except KeyboardInterrupt:
 		raise  # Button pressed, exit
@@ -493,7 +495,7 @@ def main():
 			run_test_cycle()
 
 	except KeyboardInterrupt:
-		logger.log("=== Weather test stopped by button press ===")
+		logger.log("=== Test stopped by button press ===")
 		show_message("STOPPED", config.Colors.ORANGE, 16)
 		time.sleep(2)
 
