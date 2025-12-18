@@ -321,4 +321,4 @@ def show(current_data, forecast_data, duration):
 
 		time.sleep(0.1)
 
-	logger.log("Forecast display complete \n", area="FORECAST")
+	logger.log("Forecast display complete", config.LogLevel.DEBUG, area="FORECAST")

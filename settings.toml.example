@@ -17,3 +17,13 @@ ACCUWEATHER_LOCATION_KEY = "your-location-key"
 # Example: "https://raw.githubusercontent.com/username/repo/main/config.csv"
 # If not set, only local config.csv will be used
 CONFIG_GITHUB_URL = ""
+
+# Twelve Data API (Phase 4 - Stocks)
+# Get free API key at https://twelvedata.com (800 calls/day, 8 calls/minute)
+TWELVE_DATA_API_KEY = ""
+
+# GitHub Stocks Configuration (optional)
+# Upload stocks.csv to your GitHub repo and provide the raw URL here
+# Example: "https://raw.githubusercontent.com/username/repo/main/stocks.csv"
+# If not set, only local stocks.csv will be used
+STOCKS_GITHUB_URL = ""
