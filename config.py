@@ -41,12 +41,18 @@ class Layout:
 
 	# Forecast display (Phase 2) - v2.5 proven layout
 	# Layout: 1px margin | 13px icon1 | 10px gap | 13px icon2 | 10px gap | 13px icon3 | 3px margin = 64px
-	FORECAST_COL1_X = 1      # Column 1 starts at x=1
-	FORECAST_COL2_X = 22     # Column 2 starts at x=22
-	FORECAST_COL3_X = 44     # Column 3 starts at x=44
-	FORECAST_COLUMN_WIDTH = 13  # Icon width (text centered within this)
-	FORECAST_COLUMN_Y = 9    # Icon Y position
-	FORECAST_TIME_Y = 1      # Time label Y position
+	FORECAST_COL1_X = 1      # Column 1 starts at x=1 (0-based) = x=2 (1-based)
+	FORECAST_COL2_X = 22     # Column 2 starts at x=22 (0-based) = x=23 (1-based)
+	FORECAST_COL3_X = 43     # Column 3 starts at x=43 (0-based) = x=44 (1-based)
+	FORECAST_COLUMN_WIDTH = 20  # Column width in pixels (all columns are 20px wide)
+
+	# Icon positions (13x13 icons, fixed placement per reference layout)
+	FORECAST_ICON1_X = 4     # Column 1 icon: x=4,y=9 (0-based) = x=5,y=10 (1-based)
+	FORECAST_ICON2_X = 26    # Column 2 icon: x=26,y=9 (0-based) = x=27,y=10 (1-based)
+	FORECAST_ICON3_X = 47    # Column 3 icon: x=47,y=9 (0-based) = x=48,y=10 (1-based)
+	FORECAST_ICON_Y = 9      # Icon Y position (all columns)
+
+	FORECAST_TIME_Y = 1      # Time label Y position (0-based) = y=2 (1-based)
 	FORECAST_TEMP_Y = 25     # Temperature label Y position
 
 # ============================================================================
@@ -54,15 +60,28 @@ class Layout:
 # ============================================================================
 
 class Colors:
-	"""Color palette for 4-bit display"""
+	"""Color palette for 4-bit display (from old_code.py)"""
 	BLACK = 0x000000
-	WHITE = 0xF5F5DC
-	GREEN = 0x00FF00
-	RED = 0xFF0000
-	BLUE = 0x0000FF
-	ORANGE = 0xFFA500
-	DIMMEST_WHITE = 0x4A4A3C
-	MINT = 0x288C3C  # For forecast time labels (jumped hours)
+	DIMMEST_WHITE = 0x606060  # (96, 96, 96)
+	MINT = 0x288C3C  # (40, 140, 60) - For forecast time labels (jumped hours)
+	BUGAMBILIA = 0x400040  # (64, 0, 64)
+	LILAC = 0x402040  # (64, 32, 64)
+	RED = 0xCC0000  # (204, 0, 0)
+	GREEN = 0x004400  # (0, 68, 0)
+	LIME = 0x00CC00  # (0, 204, 0)
+	BLUE = 0x003366  # (0, 51, 102)
+	ORANGE = 0xCC5000  # (204, 80, 0)
+	YELLOW = 0xCC8C00  # (204, 140, 0)
+	CYAN = 0x00CCCC  # (0, 204, 204)
+	PURPLE = 0x6600CC  # (102, 0, 204)
+	PINK = 0xCC4078  # (204, 64, 120)
+	LIGHT_PINK = 0xCC66AA  # (204, 102, 170)
+	AQUA = 0x006666  # (0, 102, 102)
+	WHITE = 0xCCCCCC  # (204, 204, 204)
+	GRAY = 0x666666  # (102, 102, 102)
+	DARK_GRAY = 0x202020  # (32, 32, 32)
+	BEIGE = 0x885522  # (136, 85, 34)
+	BROWN = 0x331100  # (51, 17, 0)
 
 # ============================================================================
 # ENVIRONMENT VARIABLES

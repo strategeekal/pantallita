@@ -176,14 +176,11 @@ def show(current_data, forecast_data, duration):
 	# LOAD COLUMN ICONS WITH LRU CACHE (INLINE)
 	# ========================================================================
 
-	# Calculate icon X positions (center 13×13 icons in 20px columns)
-	# Offset = (column_width - icon_width) // 2 = (20 - 13) // 2 = 3
-	icon_offset = (config.Layout.FORECAST_COLUMN_WIDTH - 13) // 2
-
+	# Icon positions: Fixed coordinates per reference layout (config.py)
 	columns_data = [
-		{"icon": col1_icon, "x": config.Layout.FORECAST_COL1_X + icon_offset, "temp": col1_temp},
-		{"icon": col2_icon, "x": config.Layout.FORECAST_COL2_X + icon_offset, "temp": col2_temp},
-		{"icon": col3_icon, "x": config.Layout.FORECAST_COL3_X + icon_offset, "temp": col3_temp}
+		{"icon": col1_icon, "x": config.Layout.FORECAST_ICON1_X, "temp": col1_temp},
+		{"icon": col2_icon, "x": config.Layout.FORECAST_ICON2_X, "temp": col2_temp},
+		{"icon": col3_icon, "x": config.Layout.FORECAST_ICON3_X, "temp": col3_temp}
 	]
 
 	for i, col in enumerate(columns_data):
@@ -209,12 +206,12 @@ def show(current_data, forecast_data, duration):
 					oldest_path = state.image_cache_order.pop(0)  # Remove oldest
 					del state.image_cache[oldest_path]  # Free memory
 
-			# Create TileGrid (icons centered in columns)
+			# Create TileGrid (icons at fixed positions)
 			tile_grid = displayio.TileGrid(
 				bitmap,
 				pixel_shader=bitmap.pixel_shader,
 				x=col["x"],
-				y=config.Layout.FORECAST_COLUMN_Y
+				y=config.Layout.FORECAST_ICON_Y
 			)
 
 			state.main_group.append(tile_grid)
@@ -227,57 +224,58 @@ def show(current_data, forecast_data, duration):
 			# Continue without icon
 
 	# ========================================================================
-	# CREATE TIME LABELS - CENTERED IN COLUMNS (INLINE)
+	# CREATE TIME LABELS (INLINE)
 	# ========================================================================
 
-	# Center text horizontally (similar to icon centering)
-	# Time labels: "10:00" ~20px, "3P" ~10px, estimate offset
-	time_offset_clock = 2  # Small offset for clock (5 chars)
-	time_offset_short = 4  # Offset for short times (2-3 chars)
+	# Column 1 time: LEFT-ALIGNED at x=1 (0-based) = x=2 (1-based)
+	# Columns 2 & 3: CENTERED in 20-pixel columns (odd-width bias left)
 
 	# Column 1 time (will update live - start with placeholder)
 	col1_time_label = bitmap_label.Label(
 		state.font_small,
 		text="00:00",  # Placeholder, will update immediately
 		color=config.Colors.DIMMEST_WHITE,
-		x=config.Layout.FORECAST_COL1_X,
+		x=config.Layout.FORECAST_COL1_X,  # Left-aligned at column start
 		y=config.Layout.FORECAST_TIME_Y
 	)
 	state.main_group.append(col1_time_label)
 
-	# Column 2 time (static)
+	# Column 2 time (static, centered)
 	col2_time_label = bitmap_label.Label(
 		state.font_small,
 		text=col2_time,
 		color=col2_color,
-		x=config.Layout.FORECAST_COL2_X + time_offset_short,
+		x=0,  # Temporary, will center
 		y=config.Layout.FORECAST_TIME_Y
 	)
+	# Center in column: x = column_start + (column_width - text_width) // 2
+	text_width = col2_time_label.bounding_box[2]
+	col2_time_label.x = config.Layout.FORECAST_COL2_X + (config.Layout.FORECAST_COLUMN_WIDTH - text_width) // 2
 	state.main_group.append(col2_time_label)
 
-	# Column 3 time (static)
+	# Column 3 time (static, centered)
 	col3_time_label = bitmap_label.Label(
 		state.font_small,
 		text=col3_time,
 		color=col3_color,
-		x=config.Layout.FORECAST_COL3_X + time_offset_short,
+		x=0,  # Temporary, will center
 		y=config.Layout.FORECAST_TIME_Y
 	)
+	# Center in column: x = column_start + (column_width - text_width) // 2
+	text_width = col3_time_label.bounding_box[2]
+	col3_time_label.x = config.Layout.FORECAST_COL3_X + (config.Layout.FORECAST_COLUMN_WIDTH - text_width) // 2
 	state.main_group.append(col3_time_label)
 
 	# ========================================================================
 	# CREATE TEMPERATURE LABELS - CENTERED IN COLUMNS (INLINE)
 	# ========================================================================
 
-	# Center temperature labels horizontally
-	# Temp labels: "25°" ~12px, "-10°" ~16px, use offset
-	temp_offset = 0  # Offset for centering temps (3-4 chars)
-
-	# Use column X positions with centering offset
-	temp_columns_x = [
-		config.Layout.FORECAST_COL1_X + temp_offset,
-		config.Layout.FORECAST_COL2_X + temp_offset,
-		config.Layout.FORECAST_COL3_X + temp_offset
+	# Column starts for temperature labels
+	# Centering bias: Col1 = left-biased (extra pixel right), Col2/3 = right-biased (extra pixel left)
+	temp_column_starts = [
+		config.Layout.FORECAST_COL1_X,
+		config.Layout.FORECAST_COL2_X,
+		config.Layout.FORECAST_COL3_X
 	]
 
 	for i, col in enumerate(columns_data):
@@ -285,9 +283,21 @@ def show(current_data, forecast_data, duration):
 			state.font_small,
 			text=col["temp"],
 			color=config.Colors.DIMMEST_WHITE,
-			x=temp_columns_x[i],
+			x=0,  # Temporary, will center
 			y=config.Layout.FORECAST_TEMP_Y
 		)
+		# Center in column with different bias per column
+		text_width = temp_label.bounding_box[2]
+		remaining_space = config.Layout.FORECAST_COLUMN_WIDTH - text_width
+
+		if i == 0:
+			# Column 1: Left-biased (extra pixel to right) - use floor division
+			offset = remaining_space // 2
+		else:
+			# Columns 2 & 3: Right-biased (extra pixel to left) - use ceiling division
+			offset = (remaining_space + 1) // 2
+
+		temp_label.x = temp_column_starts[i] + offset
 		state.main_group.append(temp_label)
 
 	# ========================================================================

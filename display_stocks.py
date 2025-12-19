@@ -5,7 +5,6 @@ INLINE ARCHITECTURE - no helper functions, everything inline
 """
 
 import time
-import rtc
 from adafruit_display_text import bitmap_label
 from adafruit_display_shapes.triangle import Triangle
 from adafruit_display_shapes.line import Line
@@ -158,8 +157,25 @@ def show_multi_stock(stocks_to_show, duration):
 			y=y_pos
 		)
 		# Calculate right-aligned position (inline)
-		value_label.x = config.Layout.WIDTH - value_label.bounding_box[2] - 1
+		# bounding_box[2] gives width; subtract from WIDTH for 1px margin
+		value_label.x = config.Layout.WIDTH - value_label.bounding_box[2]
 		state.main_group.append(value_label)
+
+	# Add cache indicator when displaying stocks outside market hours (inline)
+	# Market hours: 9:30 AM - 4:00 PM ET on weekdays (8:30 AM - 3:00 PM local Chicago)
+	now = state.rtc.datetime
+	current_minutes = now.tm_hour * 60 + now.tm_min
+	current_weekday = now.tm_wday  # 0=Monday, 6=Sunday
+	is_weekday = current_weekday < 5
+	is_market_hours = (current_minutes >= state.market_open_local_minutes and
+	                  current_minutes < state.market_close_local_minutes)
+	show_cache_indicator = not (is_weekday and is_market_hours)
+
+	if show_cache_indicator:
+		# Draw 4-pixel LILAC indicator at top center (y=0, x=30-33)
+		for x in range(30, 34):
+			pixel = Line(x, 0, x, 0, color=config.Colors.LILAC)
+			state.main_group.append(pixel)
 
 	# Display for duration (inline)
 	time.sleep(duration)
@@ -231,7 +247,7 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		x=0,  # Temporary, will adjust
 		y=1
 	)
-	pct_label.x = config.Layout.WIDTH - pct_label.bounding_box[2] - 1
+	pct_label.x = config.Layout.WIDTH - pct_label.bounding_box[2]
 	state.main_group.append(pct_label)
 
 	# Row 2 (y=9): Current price (inline)
@@ -254,7 +270,7 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		x=0,  # Temporary, will adjust
 		y=9
 	)
-	price_label.x = config.Layout.WIDTH - price_label.bounding_box[2] - 1
+	price_label.x = config.Layout.WIDTH - price_label.bounding_box[2]
 	state.main_group.append(price_label)
 
 	# Chart area: y=17 to y=31 (15 pixels tall) (inline)
@@ -287,23 +303,29 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		num_points = len(points_to_show)
 
 		# Calculate display width based on ACTUAL elapsed time, not number of points
-		# Get current time in minutes since midnight (local)
-		r = rtc.RTC()
-		now = r.datetime
+		# Get current time in minutes since midnight (local) from DS3231 RTC
+		now = state.rtc.datetime
 		current_minutes = now.tm_hour * 60 + now.tm_min
+		current_weekday = now.tm_wday  # 0=Monday, 6=Sunday
+
+		# Check if we're actually in market hours (weekday + within market times)
+		is_weekday = current_weekday < 5  # Monday-Friday
+		is_within_market_hours = (current_minutes >= state.market_open_local_minutes and
+		                         current_minutes <= state.market_close_local_minutes)
+
+		# Debug logging to diagnose timezone issues
+		logger.log(f"Chart timing: now={now.tm_hour}:{now.tm_min:02d} ({current_minutes}min), weekday={current_weekday}, market={state.market_open_local_minutes}-{state.market_close_local_minutes}, is_weekday={is_weekday}, is_within_hours={is_within_market_hours}", config.LogLevel.DEBUG, area="STOCKS")
 
 		# Calculate elapsed minutes since market open
-		if state.market_open_local_minutes > 0:
+		if state.market_open_local_minutes > 0 and is_weekday and is_within_market_hours:
+			# We're during actual market hours - show progressive chart
 			elapsed_minutes = current_minutes - state.market_open_local_minutes
-			if 0 < elapsed_minutes < trading_minutes:
-				# We're during market hours - show only elapsed portion
-				progress_ratio = elapsed_minutes / trading_minutes
-			else:
-				# Outside market hours or after close - show full chart
-				progress_ratio = 1.0
+			progress_ratio = elapsed_minutes / trading_minutes
+			logger.log(f"Progressive chart: elapsed={elapsed_minutes}min, ratio={progress_ratio:.2f} ({int(progress_ratio*100)}% of day)", config.LogLevel.DEBUG, area="STOCKS")
 		else:
-			# No market hours configured - show full chart
+			# Outside market hours (weekend, before open, after close) - show full chart
 			progress_ratio = 1.0
+			logger.log(f"Full chart: outside market hours (market_open={state.market_open_local_minutes}, weekday={is_weekday}, within_hours={is_within_market_hours})", config.LogLevel.DEBUG, area="STOCKS")
 
 		display_width = max(int(progress_ratio * CHART_WIDTH), 2)  # Minimum 2 pixels
 
@@ -354,6 +376,22 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 			x2, y2 = data_points[i + 1]
 			line = Line(x1, y1, x2, y2, color=chart_color)
 			state.main_group.append(line)
+
+	# Add cache indicator when displaying stocks outside market hours (inline)
+	# Market hours: 9:30 AM - 4:00 PM ET on weekdays (8:30 AM - 3:00 PM local Chicago)
+	now = state.rtc.datetime
+	current_minutes = now.tm_hour * 60 + now.tm_min
+	current_weekday = now.tm_wday  # 0=Monday, 6=Sunday
+	is_weekday = current_weekday < 5
+	is_market_hours = (current_minutes >= state.market_open_local_minutes and
+	                  current_minutes < state.market_close_local_minutes)
+	show_cache_indicator = not (is_weekday and is_market_hours)
+
+	if show_cache_indicator:
+		# Draw 4-pixel LILAC indicator at top center (y=0, x=30-33)
+		for x in range(30, 34):
+			pixel = Line(x, 0, x, 0, color=config.Colors.LILAC)
+			state.main_group.append(pixel)
 
 	# Display for duration (inline)
 	time.sleep(duration)

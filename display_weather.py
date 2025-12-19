@@ -114,7 +114,9 @@ def show(weather_data, duration):
 		text=temp_text,
 		color=config.Colors.WHITE,
 		x=config.Layout.LEFT_EDGE,
-		y=config.Layout.WEATHER_TEMP_Y
+		y=config.Layout.WEATHER_TEMP_Y,
+		background_color=config.Colors.BLACK,
+		padding_top=-5
 	)
 	state.main_group.append(temp_label)
 	
@@ -134,7 +136,11 @@ def show(weather_data, duration):
 			text=feels_text,
 			color=config.Colors.WHITE,
 			anchor_point=(1.0, 0.0),  # Right-top anchor
-			anchored_position=(config.Layout.RIGHT_EDGE, config.Layout.FEELSLIKE_Y)
+			anchored_position=(config.Layout.WIDTH, config.Layout.FEELSLIKE_Y),
+			background_color=config.Colors.BLACK,
+			padding_top=-5,
+			padding_bottom=-2
+			
 		)
 		state.main_group.append(feels_label)
 	
@@ -150,7 +156,11 @@ def show(weather_data, duration):
 			text=shade_text,
 			color=config.Colors.WHITE,
 			anchor_point=(1.0, 0.0),  # Right-top anchor
-			anchored_position=(config.Layout.RIGHT_EDGE, config.Layout.FEELSLIKE_SHADE_Y)
+			anchored_position=(config.Layout.WIDTH, config.Layout.FEELSLIKE_SHADE_Y),
+			background_color=config.Colors.BLACK,
+			padding_top=-5,
+			padding_bottom=-2
+			
 		)
 		state.main_group.append(shade_label)
 
@@ -178,7 +188,11 @@ def show(weather_data, duration):
 			text=time_text,
 			color=config.Colors.WHITE,
 			anchor_point=(0.5, 0.0),  # Center-top anchor
-			anchored_position=(config.Display.WIDTH // 2, config.Layout.WEATHER_TIME_Y)
+			anchored_position=(config.Display.WIDTH // 2, config.Layout.WEATHER_TIME_Y),
+			background_color=config.Colors.BLACK,
+			padding_top=-4,
+			padding_left=2,
+			padding_right=2
 		)
 	else:
 		# Right-aligned at shade position
@@ -187,7 +201,11 @@ def show(weather_data, duration):
 			text=time_text,
 			color=config.Colors.WHITE,
 			anchor_point=(1.0, 0.0),  # Right-top anchor
-			anchored_position=(config.Layout.RIGHT_EDGE, config.Layout.WEATHER_TIME_Y)
+			anchored_position=(config.Layout.WIDTH, config.Layout.WEATHER_TIME_Y),
+			background_color=config.Colors.BLACK,
+			padding_top=-4,
+			padding_left=2,
+			padding_right=2
 		)
 	
 	state.main_group.append(time_label)
