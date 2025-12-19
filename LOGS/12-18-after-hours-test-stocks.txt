@@ -1,0 +1,709 @@
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 4: STOCK DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-18 13:42:56] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-18 13:42:56] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-18 13:42:59] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-18 13:43:02] [HW:INFO] Time synced: 12/18 1:43 PM
+[12-18 13:43:02] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-18 13:43:02] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-18 13:43:02] [CONFIG:INFO] Config loaded (source: local)
+[12-18 13:43:02] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False
+[12-18 13:43:02] [CONFIG:INFO]   Temperature unit: C
+[12-18 13:43:02] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 60min
+[12-18 13:43:03] [STOCKS:WARN] GitHub stocks fetch failed: HTTP 404
+[12-18 13:43:03] [STOCKS:INFO] Loaded 16 stocks from local stocks.csv
+[12-18 13:43:03] [MAIN:INFO] Loaded 16 stocks from CSV
+[12-18 13:43:03] [STOCKS:INFO] Market hours (local): 8:30 - 15:00 (grace: +60min)
+[12-18 13:43:05] [MAIN:INFO] Hardware ready
+[12-18 13:43:05] [MAIN:INFO] === Initialization complete ===
+[12-18 13:43:05] [MAIN:INFO] Press UP button to stop test
+[12-18 13:43:05] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-18 13:43:05] [MAIN:INFO] Baseline memory: 4.7% used (91KB) 
+
+[12-18 13:43:05] [MAIN:INFO] ### CYCLE 1 ###
+[12-18 13:43:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 13:43:06] [WEATHER:INFO] Weather: 10°C, Rain, UV:0
+[12-18 13:43:06] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-18 13:43:06] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 13:43:06] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 3°C Rain
+[12-18 13:43:06] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-18 13:43:06] [FORECAST:INFO] Displaying forecast: Current 6°C → 2P 3°C, 4P 2°C
+[12-18 13:44:07] [DISPLAY:INFO] Displaying weather: 10°C Rain
+[12-18 13:48:09] [STOCKS:INFO] Fetched 78 data points for CRM
+[12-18 13:48:10] [STOCKS:INFO] Fetched 1/1 quotes
+[12-18 13:48:10] [STOCKS:INFO] Displaying stock chart: CRM $257.28 -0.33%
+[12-18 13:48:41] [STOCKS:INFO] Stock chart display complete
+[12-18 13:48:41] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 13:48:41] [MAIN:INFO] ### CYCLE 2 ###
+[12-18 13:48:41] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 13:48:41] [WEATHER:INFO] Weather: 10°C, Rain, UV:0
+[12-18 13:48:41] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-18 13:48:41] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 13:48:41] [FORECAST:INFO] Displaying forecast: Current 2°C → 2P 3°C, 4P 2°C
+[12-18 13:49:41] [DISPLAY:INFO] Displaying weather: 10°C Rain
+[12-18 13:53:42] [STOCKS:INFO] Fetched 4/4 quotes
+[12-18 13:53:42] [STOCKS:INFO] Displaying multi-stock: SPY +0.7%, SOXQ +2.7%, IBIT -1.5%
+[12-18 13:54:13] [STOCKS:INFO] Multi-stock display complete
+[12-18 13:54:13] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 13:54:13] [MAIN:INFO] ### CYCLE 3 ###
+[12-18 13:54:13] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 13:54:13] [WEATHER:INFO] Weather: 10°C, Rain, UV:0
+[12-18 13:54:13] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-18 13:54:13] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 13:54:13] [FORECAST:INFO] Displaying forecast: Current 2°C → 2P 3°C, 4P 2°C
+[12-18 13:55:13] [DISPLAY:INFO] Displaying weather: 10°C Rain
+[12-18 13:59:14] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-18 13:59:14] [STOCKS:INFO] Fetched 1/1 quotes
+[12-18 13:59:14] [STOCKS:INFO] Displaying stock chart: FDIG $39.36 +2.04%
+[12-18 13:59:45] [STOCKS:INFO] Stock chart display complete
+[12-18 13:59:45] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 13:59:45] [MAIN:INFO] ### CYCLE 4 ###
+[12-18 13:59:45] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 13:59:45] [WEATHER:INFO] Weather: 12°C, Rain, UV:0
+[12-18 13:59:45] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-18 13:59:45] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 13:59:46] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 3°C Rain
+[12-18 13:59:46] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-18 13:59:46] [FORECAST:INFO] Displaying forecast: Current 7°C → 2P 3°C, 4P 2°C
+[12-18 14:00:46] [DISPLAY:INFO] Displaying weather: 12°C Rain
+[12-18 14:04:47] [STOCKS:INFO] Fetched 4/4 quotes
+[12-18 14:04:47] [STOCKS:INFO] Displaying multi-stock: MXN $18.00, EUR $21.11, CAD $13.07
+[12-18 14:05:17] [STOCKS:INFO] Multi-stock display complete
+[12-18 14:05:17] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:05:17] [MAIN:INFO] ### CYCLE 5 ###
+[12-18 14:05:17] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:05:18] [WEATHER:INFO] Weather: 12°C, Rain, UV:0
+[12-18 14:05:18] [WEATHER:INFO] Fetch #5, Errors: 0
+[12-18 14:05:18] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 14:05:18] [FORECAST:INFO] Displaying forecast: Current 7°C → 3P 2°C, 4P 2°C
+[12-18 14:06:18] [DISPLAY:INFO] Displaying weather: 12°C Rain
+[12-18 14:10:19] [STOCKS:INFO] Fetched 78 data points for LUMN
+[12-18 14:10:19] [STOCKS:INFO] Fetched 1/1 quotes
+[12-18 14:10:19] [STOCKS:INFO] Displaying stock chart: LUMN $7.72 +1.25%
+[12-18 14:10:49] [STOCKS:INFO] Stock chart display complete
+[12-18 14:10:49] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:10:49] [MAIN:INFO] Memory: 9.8% used (190KB) [-100880]
+[12-18 14:10:49] [MAIN:INFO] ### CYCLE 6 ###
+[12-18 14:10:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:10:50] [WEATHER:INFO] Weather: 11°C, Rain, UV:0
+[12-18 14:10:50] [WEATHER:INFO] Fetch #6, Errors: 0
+[12-18 14:10:50] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 14:10:50] [FORECAST:INFO] Displaying forecast: Current 7°C → 3P 2°C, 4P 2°C
+[12-18 14:11:50] [DISPLAY:INFO] Displaying weather: 11°C Rain
+[12-18 14:15:51] [STOCKS:INFO] Fetched 4/4 quotes
+[12-18 14:15:51] [STOCKS:INFO] Displaying multi-stock: ETH $2,806, XAU $4,332, GBP $24.10
+[12-18 14:16:21] [STOCKS:INFO] Multi-stock display complete
+[12-18 14:16:21] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:16:21] [MAIN:INFO] ### CYCLE 7 ###
+[12-18 14:16:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:16:22] [WEATHER:INFO] Weather: 11°C, Rain, UV:0
+[12-18 14:16:22] [WEATHER:INFO] Fetch #7, Errors: 0
+[12-18 14:16:22] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 14:16:22] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 2°C Rain
+[12-18 14:16:22] [WEATHER:INFO] Forecast fetch #3, Errors: 0
+[12-18 14:16:22] [FORECAST:INFO] Displaying forecast: Current 7°C → 3P 2°C, 4P 2°C
+[12-18 14:17:22] [DISPLAY:INFO] Displaying weather: 11°C Rain
+[12-18 14:21:23] [STOCKS:INFO] Fetched 78 data points for BTC/USD
+[12-18 14:21:23] [STOCKS:INFO] Fetched 1/1 quotes
+[12-18 14:21:23] [STOCKS:INFO] Displaying stock chart: BTC $84990.00 -1.41%
+[12-18 14:21:54] [STOCKS:INFO] Stock chart display complete
+[12-18 14:21:54] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:21:54] [MAIN:INFO] ### CYCLE 8 ###
+[12-18 14:21:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:21:54] [WEATHER:INFO] Weather: 11°C, Light rain, UV:0
+[12-18 14:21:54] [WEATHER:INFO] Fetch #8, Errors: 0
+[12-18 14:21:54] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 14:21:54] [FORECAST:INFO] Displaying forecast: Current 7°C → 3P 2°C, 4P 2°C
+[12-18 14:22:54] [DISPLAY:INFO] Displaying weather: 11°C Light rain
+[12-18 14:26:55] [STOCKS:INFO] Fetched 4/4 quotes
+[12-18 14:26:55] [STOCKS:INFO] Displaying multi-stock: AAPL +0.0%, GOOGL +2.0%, NVDA +2.2%
+[12-18 14:27:25] [STOCKS:INFO] Multi-stock display complete
+[12-18 14:27:25] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:27:25] [MAIN:INFO] ### CYCLE 9 ###
+[12-18 14:27:25] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:27:26] [WEATHER:INFO] Weather: 11°C, Light rain, UV:0
+[12-18 14:27:26] [WEATHER:INFO] Fetch #9, Errors: 0
+[12-18 14:27:26] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 14:27:26] [FORECAST:INFO] Displaying forecast: Current 7°C → 3P 2°C, 4P 2°C
+[12-18 14:28:26] [DISPLAY:INFO] Displaying weather: 11°C Light rain
+[12-18 14:32:26] [STOCKS:INFO] Fetched 78 data points for CRM
+[12-18 14:32:27] [STOCKS:INFO] Fetched 1/1 quotes
+[12-18 14:32:27] [STOCKS:INFO] Displaying stock chart: CRM $257.83 -0.12%
+[12-18 14:32:57] [STOCKS:INFO] Stock chart display complete
+[12-18 14:32:57] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:32:57] [MAIN:INFO] ### CYCLE 10 ###
+[12-18 14:32:57] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-18 14:32:58] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-18 14:32:58] [CONFIG:INFO] Config loaded (source: local)
+[12-18 14:32:58] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False
+[12-18 14:32:58] [CONFIG:INFO]   Temperature unit: C
+[12-18 14:32:58] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 60min
+[12-18 14:32:58] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:32:58] [WEATHER:INFO] Weather: 10°C, Light rain, UV:0
+[12-18 14:32:58] [WEATHER:INFO] Fetch #10, Errors: 0
+[12-18 14:32:58] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 14:32:59] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 4°C Rain
+[12-18 14:32:59] [WEATHER:INFO] Forecast fetch #4, Errors: 0
+[12-18 14:32:59] [FORECAST:INFO] Displaying forecast: Current 6°C → 3P 4°C, 5P 0°C
+[12-18 14:33:59] [DISPLAY:INFO] Displaying weather: 10°C Light rain
+[12-18 14:38:00] [STOCKS:INFO] Fetched 4/4 quotes
+[12-18 14:38:00] [STOCKS:INFO] Displaying multi-stock: SPY +1.0%, SOXQ +3.0%, IBIT -1.0%
+[12-18 14:38:30] [STOCKS:INFO] Multi-stock display complete
+[12-18 14:38:30] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:38:30] [MAIN:INFO] Memory: 10.8% used (211KB) [-21392]
+[12-18 14:38:30] [MAIN:INFO] ### CYCLE 11 ###
+[12-18 14:38:30] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:38:31] [WEATHER:INFO] Weather: 10°C, Light rain, UV:0
+[12-18 14:38:31] [WEATHER:INFO] Fetch #11, Errors: 0
+[12-18 14:38:31] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 14:38:31] [FORECAST:INFO] Displaying forecast: Current 6°C → 3P 4°C, 5P 0°C
+[12-18 14:39:31] [DISPLAY:INFO] Displaying weather: 10°C Light rain
+[12-18 14:43:31] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-18 14:43:32] [STOCKS:INFO] Fetched 1/1 quotes
+[12-18 14:43:32] [STOCKS:INFO] Displaying stock chart: FDIG $39.36 +2.04%
+[12-18 14:44:02] [STOCKS:INFO] Stock chart display complete
+[12-18 14:44:02] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:44:02] [MAIN:INFO] ### CYCLE 12 ###
+[12-18 14:44:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:44:03] [WEATHER:INFO] Weather: 10°C, Rain, UV:0
+[12-18 14:44:03] [WEATHER:INFO] Fetch #12, Errors: 0
+[12-18 14:44:03] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 14:44:03] [FORECAST:INFO] Displaying forecast: Current 6°C → 3P 4°C, 5P 0°C
+[12-18 14:45:03] [DISPLAY:INFO] Displaying weather: 10°C Rain
+[12-18 14:49:03] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 14:49:03] [STOCKS:INFO] Displaying multi-stock: MXN $18.00, EUR $21.11, CAD $13.07
+[12-18 14:49:33] [STOCKS:INFO] Multi-stock display complete
+[12-18 14:49:33] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:49:33] [MAIN:INFO] ### CYCLE 13 ###
+[12-18 14:49:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:49:33] [WEATHER:INFO] Weather: 10°C, Rain, UV:0
+[12-18 14:49:33] [WEATHER:INFO] Fetch #13, Errors: 0
+[12-18 14:49:33] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 14:49:34] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 4°C Rain
+[12-18 14:49:34] [WEATHER:INFO] Forecast fetch #5, Errors: 0
+[12-18 14:49:34] [FORECAST:INFO] Displaying forecast: Current 6°C → 3P 4°C, 5P 0°C
+[12-18 14:50:34] [DISPLAY:INFO] Displaying weather: 10°C Rain
+[12-18 14:54:35] [STOCKS:ERROR] Time series error for LUMN: You have run out of API credits for the day. 809 API credits were used, with the current limit being 800. Wait for the next day or consider switching to a paid plan that will remove daily limits at https://twelvedata.com/pricing
+[12-18 14:54:35] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 14:54:35] [STOCKS:INFO] Displaying stock chart: LUMN $7.72 +1.25%
+[12-18 14:55:05] [STOCKS:INFO] Stock chart display complete
+[12-18 14:55:05] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 14:55:05] [MAIN:INFO] ### CYCLE 14 ###
+[12-18 14:55:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 14:55:06] [WEATHER:INFO] Weather: 9°C, Light rain, UV:0
+[12-18 14:55:06] [WEATHER:INFO] Fetch #14, Errors: 0
+[12-18 14:55:06] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 14:55:06] [FORECAST:INFO] Displaying forecast: Current 6°C → 3P 4°C, 5P 0°C
+[12-18 14:56:06] [DISPLAY:INFO] Displaying weather: 9°C Light rain
+[12-18 15:00:06] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:00:06] [STOCKS:INFO] Displaying multi-stock: ETH $2,806, XAU $4,332, GBP $24.10
+[12-18 15:00:37] [STOCKS:INFO] Multi-stock display complete
+[12-18 15:00:37] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:00:37] [MAIN:INFO] ### CYCLE 15 ###
+[12-18 15:00:37] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:00:37] [WEATHER:INFO] Weather: 9°C, Light rain, UV:0
+[12-18 15:00:37] [WEATHER:INFO] Fetch #15, Errors: 0
+[12-18 15:00:37] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 15:00:37] [FORECAST:INFO] Displaying forecast: Current 6°C → 4P 2°C, 5P 0°C
+[12-18 15:01:37] [DISPLAY:INFO] Displaying weather: 9°C Light rain
+[12-18 15:05:37] [STOCKS:ERROR] Time series error for BTC/USD: You have run out of API credits for the day. 815 API credits were used, with the current limit being 800. Wait for the next day or consider switching to a paid plan that will remove daily limits at https://twelvedata.com/pricing
+[12-18 15:05:37] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:05:38] [STOCKS:INFO] Displaying stock chart: BTC $84990.00 -1.41%
+[12-18 15:06:08] [STOCKS:INFO] Stock chart display complete
+[12-18 15:06:08] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:06:08] [MAIN:INFO] Memory: 11.2% used (219KB) [-8448]
+[12-18 15:06:08] [MAIN:INFO] ### CYCLE 16 ###
+[12-18 15:06:08] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:06:08] [WEATHER:INFO] Weather: 9°C, Light rain, UV:0
+[12-18 15:06:08] [WEATHER:INFO] Fetch #16, Errors: 0
+[12-18 15:06:08] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 15:06:09] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 4°C Rain
+[12-18 15:06:09] [WEATHER:INFO] Forecast fetch #6, Errors: 0
+[12-18 15:06:09] [FORECAST:INFO] Displaying forecast: Current 5°C → 4P 2°C, 5P 0°C
+[12-18 15:07:09] [DISPLAY:INFO] Displaying weather: 9°C Light rain
+[12-18 15:11:10] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:11:10] [STOCKS:INFO] Displaying multi-stock: AAPL +0.0%, GOOGL +2.0%, NVDA +2.2%
+[12-18 15:11:40] [STOCKS:INFO] Multi-stock display complete
+[12-18 15:11:40] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:11:40] [MAIN:INFO] ### CYCLE 17 ###
+[12-18 15:11:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:11:40] [WEATHER:INFO] Weather: 9°C, Light rain, UV:0
+[12-18 15:11:40] [WEATHER:INFO] Fetch #17, Errors: 0
+[12-18 15:11:40] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 15:11:40] [FORECAST:INFO] Displaying forecast: Current 5°C → 4P 2°C, 5P 0°C
+[12-18 15:12:40] [DISPLAY:INFO] Displaying weather: 9°C Light rain
+[12-18 15:16:41] [STOCKS:ERROR] Time series error for CRM: You have run out of API credits for the day. 825 API credits were used, with the current limit being 800. Wait for the next day or consider switching to a paid plan that will remove daily limits at https://twelvedata.com/pricing
+[12-18 15:16:41] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:16:41] [STOCKS:INFO] Displaying stock chart: CRM $257.83 -0.12%
+[12-18 15:17:11] [STOCKS:INFO] Stock chart display complete
+[12-18 15:17:11] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:17:11] [MAIN:INFO] ### CYCLE 18 ###
+[12-18 15:17:11] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:17:12] [WEATHER:INFO] Weather: 8°C, Light rain, UV:0
+[12-18 15:17:12] [WEATHER:INFO] Fetch #18, Errors: 0
+[12-18 15:17:12] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 15:17:12] [FORECAST:INFO] Displaying forecast: Current 4°C → 4P 2°C, 5P 0°C
+[12-18 15:18:12] [DISPLAY:INFO] Displaying weather: 8°C Light rain
+[12-18 15:22:12] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:22:12] [STOCKS:INFO] Displaying multi-stock: SPY +1.0%, SOXQ +3.0%, IBIT -1.0%
+[12-18 15:22:42] [STOCKS:INFO] Multi-stock display complete
+[12-18 15:22:42] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:22:42] [MAIN:INFO] ### CYCLE 19 ###
+[12-18 15:22:42] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:22:43] [WEATHER:INFO] Weather: 8°C, Light rain, UV:0
+[12-18 15:22:43] [WEATHER:INFO] Fetch #19, Errors: 0
+[12-18 15:22:43] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 15:22:44] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 1°C Rain
+[12-18 15:22:44] [WEATHER:INFO] Forecast fetch #7, Errors: 0
+[12-18 15:22:44] [FORECAST:INFO] Displaying forecast: Current 4°C → 4P 1°C, 5P 0°C
+[12-18 15:23:44] [DISPLAY:INFO] Displaying weather: 8°C Light rain
+[12-18 15:27:44] [STOCKS:ERROR] Time series error for FDIG: You have run out of API credits for the day. 835 API credits were used, with the current limit being 800. Wait for the next day or consider switching to a paid plan that will remove daily limits at https://twelvedata.com/pricing
+[12-18 15:27:44] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:27:44] [STOCKS:INFO] Displaying stock chart: FDIG $39.36 +2.04%
+[12-18 15:28:15] [STOCKS:INFO] Stock chart display complete
+[12-18 15:28:15] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:28:15] [MAIN:INFO] ### CYCLE 20 ###
+[12-18 15:28:15] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-18 15:28:16] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-18 15:28:16] [CONFIG:INFO] Config loaded (source: local)
+[12-18 15:28:16] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False
+[12-18 15:28:16] [CONFIG:INFO]   Temperature unit: C
+[12-18 15:28:16] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 60min
+[12-18 15:28:16] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:28:16] [WEATHER:INFO] Weather: 8°C, Rain, UV:0
+[12-18 15:28:16] [WEATHER:INFO] Fetch #20, Errors: 0
+[12-18 15:28:16] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 15:28:16] [FORECAST:INFO] Displaying forecast: Current 4°C → 4P 1°C, 5P 0°C
+[12-18 15:29:16] [DISPLAY:INFO] Displaying weather: 8°C Rain
+[12-18 15:33:17] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:33:17] [STOCKS:INFO] Displaying multi-stock: MXN $18.00, EUR $21.11, CAD $13.07
+[12-18 15:33:47] [STOCKS:INFO] Multi-stock display complete
+[12-18 15:33:47] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:33:47] [MAIN:INFO] Memory: 10.6% used (207KB) [+12048]
+[12-18 15:33:47] [MAIN:INFO] ### CYCLE 21 ###
+[12-18 15:33:47] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:33:47] [WEATHER:INFO] Weather: 8°C, Rain, UV:0
+[12-18 15:33:47] [WEATHER:INFO] Fetch #21, Errors: 0
+[12-18 15:33:47] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 15:33:47] [FORECAST:INFO] Displaying forecast: Current 4°C → 4P 1°C, 5P 0°C
+[12-18 15:34:47] [DISPLAY:INFO] Displaying weather: 8°C Rain
+[12-18 15:38:48] [STOCKS:ERROR] Time series error for LUMN: You have run out of API credits for the day. 845 API credits were used, with the current limit being 800. Wait for the next day or consider switching to a paid plan that will remove daily limits at https://twelvedata.com/pricing
+[12-18 15:38:48] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:38:48] [STOCKS:INFO] Displaying stock chart: LUMN $7.72 +1.25%
+[12-18 15:39:18] [STOCKS:INFO] Stock chart display complete
+[12-18 15:39:18] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:39:18] [MAIN:INFO] ### CYCLE 22 ###
+[12-18 15:39:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:39:19] [WEATHER:INFO] Weather: 4°C, Light rain, UV:0
+[12-18 15:39:19] [WEATHER:INFO] Fetch #22, Errors: 0
+[12-18 15:39:19] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 15:39:19] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 1°C Rain
+[12-18 15:39:19] [WEATHER:INFO] Forecast fetch #8, Errors: 0
+[12-18 15:39:19] [FORECAST:INFO] Displaying forecast: Current -2°C → 4P 1°C, 5P 0°C
+[12-18 15:40:20] [DISPLAY:INFO] Displaying weather: 4°C Light rain
+[12-18 15:44:20] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:44:20] [STOCKS:INFO] Displaying multi-stock: ETH $2,806, XAU $4,332, GBP $24.10
+[12-18 15:44:50] [STOCKS:INFO] Multi-stock display complete
+[12-18 15:44:50] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:44:50] [MAIN:INFO] ### CYCLE 23 ###
+[12-18 15:44:50] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:44:51] [WEATHER:INFO] Weather: 4°C, Light rain, UV:0
+[12-18 15:44:51] [WEATHER:INFO] Fetch #23, Errors: 0
+[12-18 15:44:51] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 15:44:51] [FORECAST:INFO] Displaying forecast: Current -2°C → 4P 1°C, 5P 0°C
+[12-18 15:45:51] [DISPLAY:INFO] Displaying weather: 4°C Light rain
+[12-18 15:49:51] [STOCKS:ERROR] Time series error for BTC/USD: You have run out of API credits for the day. 851 API credits were used, with the current limit being 800. Wait for the next day or consider switching to a paid plan that will remove daily limits at https://twelvedata.com/pricing
+[12-18 15:49:51] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:49:51] [STOCKS:INFO] Displaying stock chart: BTC $84990.00 -1.41%
+[12-18 15:50:22] [STOCKS:INFO] Stock chart display complete
+[12-18 15:50:22] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:50:22] [MAIN:INFO] ### CYCLE 24 ###
+[12-18 15:50:22] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:50:22] [WEATHER:INFO] Weather: 4°C, Light rain, UV:0
+[12-18 15:50:22] [WEATHER:INFO] Fetch #24, Errors: 0
+[12-18 15:50:22] [WEATHER:INFO] Using cached forecast (11m old)
+[12-18 15:50:22] [FORECAST:INFO] Displaying forecast: Current -2°C → 4P 1°C, 5P 0°C
+[12-18 15:51:22] [DISPLAY:INFO] Displaying weather: 4°C Light rain
+[12-18 15:55:23] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 15:55:23] [STOCKS:INFO] Displaying multi-stock: AAPL +0.0%, GOOGL +2.0%, NVDA +2.2%
+[12-18 15:55:53] [STOCKS:INFO] Multi-stock display complete
+[12-18 15:55:53] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 15:55:53] [MAIN:INFO] ### CYCLE 25 ###
+[12-18 15:55:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 15:55:53] [WEATHER:INFO] Weather: 4°C, Light rain, UV:0
+[12-18 15:55:53] [WEATHER:INFO] Fetch #25, Errors: 0
+[12-18 15:55:53] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 15:55:54] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 1°C Showers
+[12-18 15:55:54] [WEATHER:INFO] Forecast fetch #9, Errors: 0
+[12-18 15:55:54] [FORECAST:INFO] Displaying forecast: Current -2°C → 4P 1°C, 5P 0°C
+[12-18 15:56:54] [DISPLAY:INFO] Displaying weather: 4°C Light rain
+[12-18 16:00:55] [STOCKS:ERROR] Time series error for CRM: You have run out of API credits for the day. 861 API credits were used, with the current limit being 800. Wait for the next day or consider switching to a paid plan that will remove daily limits at https://twelvedata.com/pricing
+[12-18 16:00:55] [STOCKS:ERROR] Stock quotes fetch failed: 'int' object isn't iterable
+[12-18 16:00:55] [STOCKS:INFO] Displaying stock chart: CRM $257.83 -0.12%
+[12-18 16:01:25] [STOCKS:INFO] Stock chart display complete
+[12-18 16:01:25] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:01:25] [MAIN:INFO] Memory: 11.3% used (220KB) [-12512]
+[12-18 16:01:25] [MAIN:INFO] ### CYCLE 26 ###
+[12-18 16:01:25] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:01:26] [WEATHER:INFO] Weather: 4°C, Light rain, UV:0
+[12-18 16:01:26] [WEATHER:INFO] Fetch #26, Errors: 0
+[12-18 16:01:26] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 16:01:26] [FORECAST:INFO] Displaying forecast: Current -2°C → 5P 0°C, 6P -1°C
+[12-18 16:02:26] [DISPLAY:INFO] Displaying weather: 4°C Light rain
+[12-18 16:06:26] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:06:26] [MAIN:INFO] ### CYCLE 27 ###
+[12-18 16:06:26] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:06:27] [WEATHER:INFO] Weather: 4°C, Light rain, UV:0
+[12-18 16:06:27] [WEATHER:INFO] Fetch #27, Errors: 0
+[12-18 16:06:27] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 16:06:27] [FORECAST:INFO] Displaying forecast: Current -2°C → 5P 0°C, 6P -1°C
+[12-18 16:07:27] [DISPLAY:INFO] Displaying weather: 4°C Light rain
+[12-18 16:11:27] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:11:27] [MAIN:INFO] ### CYCLE 28 ###
+[12-18 16:11:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:11:27] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:0
+[12-18 16:11:27] [WEATHER:INFO] Fetch #28, Errors: 0
+[12-18 16:11:27] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 16:11:28] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 1°C Showers
+[12-18 16:11:28] [WEATHER:INFO] Forecast fetch #10, Errors: 0
+[12-18 16:11:28] [FORECAST:INFO] Displaying forecast: Current 3°C → 5P 0°C, 6P -1°C
+[12-18 16:12:28] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-18 16:16:28] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:16:28] [MAIN:INFO] ### CYCLE 29 ###
+[12-18 16:16:28] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:16:29] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:0
+[12-18 16:16:29] [WEATHER:INFO] Fetch #29, Errors: 0
+[12-18 16:16:29] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 16:16:29] [FORECAST:INFO] Displaying forecast: Current 3°C → 5P 0°C, 6P -1°C
+[12-18 16:17:29] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-18 16:21:29] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:21:29] [MAIN:INFO] ### CYCLE 30 ###
+[12-18 16:21:29] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-18 16:21:30] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-18 16:21:30] [CONFIG:INFO] Config loaded (source: local)
+[12-18 16:21:30] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False
+[12-18 16:21:30] [CONFIG:INFO]   Temperature unit: C
+[12-18 16:21:30] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 60min
+[12-18 16:21:30] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:21:30] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 16:21:30] [WEATHER:INFO] Fetch #30, Errors: 0
+[12-18 16:21:30] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 16:21:30] [FORECAST:INFO] Displaying forecast: Current 2°C → 5P 0°C, 6P -1°C
+[12-18 16:22:30] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 16:26:31] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:26:31] [MAIN:INFO] Memory: 11.2% used (219KB) [+1120]
+[12-18 16:26:31] [MAIN:INFO] ### CYCLE 31 ###
+[12-18 16:26:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:26:31] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 16:26:31] [WEATHER:INFO] Fetch #31, Errors: 0
+[12-18 16:26:31] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 16:26:32] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -1°C Cloudy
+[12-18 16:26:32] [WEATHER:INFO] Forecast fetch #11, Errors: 0
+[12-18 16:26:32] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 9P -9°C
+[12-18 16:27:32] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 16:31:32] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:31:32] [MAIN:INFO] ### CYCLE 32 ###
+[12-18 16:31:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:31:32] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 16:31:32] [WEATHER:INFO] Fetch #32, Errors: 0
+[12-18 16:31:32] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 16:31:32] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 9P -9°C
+[12-18 16:32:33] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 16:36:33] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:36:33] [MAIN:INFO] ### CYCLE 33 ###
+[12-18 16:36:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:36:33] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 16:36:33] [WEATHER:INFO] Fetch #33, Errors: 0
+[12-18 16:36:33] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 16:36:33] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 9P -9°C
+[12-18 16:37:33] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 16:41:34] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:41:34] [MAIN:INFO] ### CYCLE 34 ###
+[12-18 16:41:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:41:34] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 16:41:34] [WEATHER:INFO] Fetch #34, Errors: 0
+[12-18 16:41:34] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 16:41:35] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -1°C Cloudy
+[12-18 16:41:35] [WEATHER:INFO] Forecast fetch #12, Errors: 0
+[12-18 16:41:35] [FORECAST:INFO] Displaying forecast: Current 3°C → 7P -5°C, 9P -9°C
+[12-18 16:42:35] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 16:46:35] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:46:35] [MAIN:INFO] ### CYCLE 35 ###
+[12-18 16:46:35] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:46:36] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 16:46:36] [WEATHER:INFO] Fetch #35, Errors: 0
+[12-18 16:46:36] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 16:46:36] [FORECAST:INFO] Displaying forecast: Current 3°C → 7P -5°C, 9P -9°C
+[12-18 16:47:36] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 16:51:36] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:51:36] [MAIN:INFO] Memory: 11.5% used (224KB) [-5760]
+[12-18 16:51:36] [MAIN:INFO] ### CYCLE 36 ###
+[12-18 16:51:36] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:51:36] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 16:51:36] [WEATHER:INFO] Fetch #36, Errors: 0
+[12-18 16:51:36] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 16:51:36] [FORECAST:INFO] Displaying forecast: Current -1°C → 7P -5°C, 9P -9°C
+[12-18 16:52:36] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 16:56:37] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 16:56:37] [MAIN:INFO] ### CYCLE 37 ###
+[12-18 16:56:37] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 16:56:37] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:0
+[12-18 16:56:37] [WEATHER:INFO] Fetch #37, Errors: 0
+[12-18 16:56:37] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 16:56:38] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -1°C Cloudy
+[12-18 16:56:38] [WEATHER:INFO] Forecast fetch #13, Errors: 0
+[12-18 16:56:38] [FORECAST:INFO] Displaying forecast: Current 4°C → 7P -5°C, 9P -9°C
+[12-18 16:57:38] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-18 17:01:38] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:01:38] [MAIN:INFO] ### CYCLE 38 ###
+[12-18 17:01:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:01:38] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:0
+[12-18 17:01:38] [WEATHER:INFO] Fetch #38, Errors: 0
+[12-18 17:01:38] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 17:01:39] [FORECAST:INFO] Displaying forecast: Current 4°C → 7P -5°C, 9P -9°C
+[12-18 17:02:39] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-18 17:06:39] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:06:39] [MAIN:INFO] ### CYCLE 39 ###
+[12-18 17:06:39] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:06:39] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:0
+[12-18 17:06:39] [WEATHER:INFO] Fetch #39, Errors: 0
+[12-18 17:06:39] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 17:06:39] [FORECAST:INFO] Displaying forecast: Current 3°C → 7P -5°C, 9P -9°C
+[12-18 17:07:39] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-18 17:11:39] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:11:39] [MAIN:INFO] ### CYCLE 40 ###
+[12-18 17:11:39] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-18 17:11:40] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-18 17:11:40] [CONFIG:INFO] Config loaded (source: local)
+[12-18 17:11:40] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False
+[12-18 17:11:40] [CONFIG:INFO]   Temperature unit: C
+[12-18 17:11:40] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 60min
+[12-18 17:11:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:11:40] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:0
+[12-18 17:11:41] [WEATHER:INFO] Fetch #40, Errors: 0
+[12-18 17:11:41] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 17:11:41] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -1°C Cloudy
+[12-18 17:11:41] [WEATHER:INFO] Forecast fetch #14, Errors: 0
+[12-18 17:11:41] [FORECAST:INFO] Displaying forecast: Current 3°C → 7P -5°C, 9P -9°C
+[12-18 17:12:41] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-18 17:16:42] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:16:42] [MAIN:INFO] Memory: 13.6% used (265KB) [-41616]
+[12-18 17:16:42] [MAIN:INFO] ### CYCLE 41 ###
+[12-18 17:16:42] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:16:42] [WEATHER:INFO] Weather: 4°C, Mostly cloudy, UV:0
+[12-18 17:16:42] [WEATHER:INFO] Fetch #41, Errors: 0
+[12-18 17:16:42] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 17:16:42] [FORECAST:INFO] Displaying forecast: Current 0°C → 7P -5°C, 9P -9°C
+[12-18 17:17:42] [DISPLAY:INFO] Displaying weather: 4°C Mostly cloudy
+[12-18 17:21:42] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:21:42] [MAIN:INFO] ### CYCLE 42 ###
+[12-18 17:21:42] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:21:43] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 17:21:43] [WEATHER:INFO] Fetch #42, Errors: 0
+[12-18 17:21:43] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 17:21:43] [FORECAST:INFO] Displaying forecast: Current 3°C → 7P -5°C, 9P -9°C
+[12-18 17:22:43] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 17:26:43] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:26:43] [MAIN:INFO] ### CYCLE 43 ###
+[12-18 17:26:43] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:26:45] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 17:26:45] [WEATHER:INFO] Fetch #43, Errors: 0
+[12-18 17:26:45] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 17:26:45] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Showers
+[12-18 17:26:45] [WEATHER:INFO] Forecast fetch #15, Errors: 0
+[12-18 17:26:45] [FORECAST:INFO] Displaying forecast: Current 3°C → 6P -3°C, 9P -9°C
+[12-18 17:27:45] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 17:31:45] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:31:46] [MAIN:INFO] ### CYCLE 44 ###
+[12-18 17:31:46] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:31:46] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 17:31:46] [WEATHER:INFO] Fetch #44, Errors: 0
+[12-18 17:31:46] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 17:31:46] [FORECAST:INFO] Displaying forecast: Current 3°C → 6P -3°C, 9P -9°C
+[12-18 17:32:46] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 17:36:46] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:36:46] [MAIN:INFO] ### CYCLE 45 ###
+[12-18 17:36:46] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:36:47] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 17:36:47] [WEATHER:INFO] Fetch #45, Errors: 0
+[12-18 17:36:47] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 17:36:47] [FORECAST:INFO] Displaying forecast: Current 3°C → 6P -3°C, 9P -9°C
+[12-18 17:37:47] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 17:41:47] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:41:47] [MAIN:INFO] Memory: 11.9% used (232KB) [+33760]
+[12-18 17:41:47] [MAIN:INFO] ### CYCLE 46 ###
+[12-18 17:41:47] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:41:47] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 17:41:47] [WEATHER:INFO] Fetch #46, Errors: 0
+[12-18 17:41:47] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 17:41:48] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Showers
+[12-18 17:41:48] [WEATHER:INFO] Forecast fetch #16, Errors: 0
+[12-18 17:41:48] [FORECAST:INFO] Displaying forecast: Current 2°C → 6P -3°C, 9P -9°C
+[12-18 17:42:48] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 17:46:48] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:46:48] [MAIN:INFO] ### CYCLE 47 ###
+[12-18 17:46:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:46:49] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 17:46:49] [WEATHER:INFO] Fetch #47, Errors: 0
+[12-18 17:46:49] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 17:46:49] [FORECAST:INFO] Displaying forecast: Current 2°C → 6P -3°C, 9P -9°C
+[12-18 17:47:49] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 17:51:49] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:51:49] [MAIN:INFO] ### CYCLE 48 ###
+[12-18 17:51:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:51:50] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 17:51:50] [WEATHER:INFO] Fetch #48, Errors: 0
+[12-18 17:51:50] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 17:51:50] [FORECAST:INFO] Displaying forecast: Current 2°C → 6P -3°C, 9P -9°C
+[12-18 17:52:50] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 17:56:50] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 17:56:50] [MAIN:INFO] ### CYCLE 49 ###
+[12-18 17:56:50] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 17:56:50] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 17:56:50] [WEATHER:INFO] Fetch #49, Errors: 0
+[12-18 17:56:50] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 17:56:51] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Showers
+[12-18 17:56:51] [WEATHER:INFO] Forecast fetch #17, Errors: 0
+[12-18 17:56:51] [FORECAST:INFO] Displaying forecast: Current 2°C → 6P -3°C, 9P -9°C
+[12-18 17:57:51] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 18:01:52] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:01:52] [MAIN:INFO] ### CYCLE 50 ###
+[12-18 18:01:52] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-18 18:01:52] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-18 18:01:52] [CONFIG:INFO] Config loaded (source: local)
+[12-18 18:01:52] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False
+[12-18 18:01:52] [CONFIG:INFO]   Temperature unit: C
+[12-18 18:01:52] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 60min
+[12-18 18:01:52] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:01:53] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 18:01:53] [WEATHER:INFO] Fetch #50, Errors: 0
+[12-18 18:01:53] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 18:01:53] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 8P -7°C
+[12-18 18:02:53] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 18:06:53] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:06:53] [MAIN:INFO] Memory: 11.9% used (232KB) [+0]
+[12-18 18:06:53] [MAIN:INFO] ### CYCLE 51 ###
+[12-18 18:06:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:06:53] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 18:06:53] [WEATHER:INFO] Fetch #51, Errors: 0
+[12-18 18:06:53] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 18:06:53] [FORECAST:INFO] Displaying forecast: Current 3°C → 7P -5°C, 8P -7°C
+[12-18 18:07:54] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 18:11:54] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:11:54] [MAIN:INFO] ### CYCLE 52 ###
+[12-18 18:11:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:11:54] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 18:11:54] [WEATHER:INFO] Fetch #52, Errors: 0
+[12-18 18:11:54] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 18:11:55] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Flurries
+[12-18 18:11:55] [WEATHER:INFO] Forecast fetch #18, Errors: 0
+[12-18 18:11:55] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 9P -9°C
+[12-18 18:12:55] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 18:16:55] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:16:55] [MAIN:INFO] ### CYCLE 53 ###
+[12-18 18:16:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:16:55] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 18:16:55] [WEATHER:INFO] Fetch #53, Errors: 0
+[12-18 18:16:55] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 18:16:55] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 9P -9°C
+[12-18 18:17:55] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 18:21:56] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:21:56] [MAIN:INFO] ### CYCLE 54 ###
+[12-18 18:21:56] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:21:56] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 18:21:56] [WEATHER:INFO] Fetch #54, Errors: 0
+[12-18 18:21:56] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 18:21:56] [FORECAST:INFO] Displaying forecast: Current -1°C → 7P -5°C, 9P -9°C
+[12-18 18:22:56] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 18:26:57] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:26:57] [MAIN:INFO] ### CYCLE 55 ###
+[12-18 18:26:57] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:26:57] [WEATHER:INFO] Weather: 3°C, Cloudy, UV:0
+[12-18 18:26:57] [WEATHER:INFO] Fetch #55, Errors: 0
+[12-18 18:26:57] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-18 18:26:58] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Flurries
+[12-18 18:26:58] [WEATHER:INFO] Forecast fetch #19, Errors: 0
+[12-18 18:26:58] [FORECAST:INFO] Displaying forecast: Current -1°C → 7P -5°C, 9P -9°C
+[12-18 18:27:58] [DISPLAY:INFO] Displaying weather: 3°C Cloudy
+[12-18 18:31:58] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:31:58] [MAIN:INFO] Memory: 14.0% used (274KB) [-42768]
+[12-18 18:31:58] [MAIN:INFO] ### CYCLE 56 ###
+[12-18 18:31:58] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:31:59] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 18:31:59] [WEATHER:INFO] Fetch #56, Errors: 0
+[12-18 18:31:59] [WEATHER:INFO] Using cached forecast (5m old)
+[12-18 18:31:59] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 9P -9°C
+[12-18 18:32:59] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 18:36:59] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-18 18:36:59] [MAIN:INFO] ### CYCLE 57 ###
+[12-18 18:36:59] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-18 18:36:59] [WEATHER:INFO] Weather: 4°C, Cloudy, UV:0
+[12-18 18:36:59] [WEATHER:INFO] Fetch #57, Errors: 0
+[12-18 18:36:59] [WEATHER:INFO] Using cached forecast (10m old)
+[12-18 18:36:59] [FORECAST:INFO] Displaying forecast: Current 2°C → 7P -5°C, 9P -9°C
+[12-18 18:37:59] [DISPLAY:INFO] Displaying weather: 4°C Cloudy
+[12-18 18:38:58] [DISPLAY:INFO] UP button pressed during weather display
+[12-18 18:38:58] [MAIN:INFO] === Test stopped by button press ===
+[12-18 18:39:00] [MAIN:INFO] Final memory: 11.7% used (228KB)
+[12-18 18:39:00] [MAIN:INFO] Total cycles: 57
+[12-18 18:39:00] [MAIN:INFO] Weather fetches: 57
+[12-18 18:39:00] [MAIN:INFO] Weather errors: 0
+[12-18 18:39:00] [MAIN:INFO] Uptime: 4.9 hours (295.9 minutes)

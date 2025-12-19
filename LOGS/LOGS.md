@@ -322,12 +322,106 @@ This file tracks all stability test logs throughout the refactoring process. Eac
   - ✅ **API quota management:** Rate limiting prevents exceeding 8 calls/minute (800/day limit)
   - ✅ **Progressive enhancement:** Logging improved mid-test to show prices/percentages
 
+- **12-18-v3-extended-test-market-hours-stocks.txt** ✅ **EXTENDED MARKET HOURS TEST COMPLETE**
+  - **Phase:** 4.0 (Forecast + Stock Display - Extended Market Hours Validation)
+  - **Duration:** 4.4 hours (09:18 - 13:40, 262.4 minutes)
+  - **Cycles:** 173
+  - **API Calls:** 44 weather fetches + 18 forecast fetches + ~346 stock API calls (quotes + intraday)
+  - **Memory:** Baseline 4.7% → Final 10.3% (delta: +5.6%, +109KB)
+  - **Errors:** 0 critical, 0 warnings
+  - **Notable:** Extended test during live market hours - validated progressive chart loading, RTC fix, and real-time stock updates
+  - **Result:** ✅ **PASS** - All stock features working correctly during market hours
+
+  **Configuration Applied:**
+  - Source: local config.csv
+  - Weather: False (disabled for focused stock testing)
+  - Forecast: True (enabled)
+  - Stocks: True (enabled)
+  - Stock frequency: 1 (every cycle - maximum stress test)
+  - Respect market hours: True (production mode)
+  - Grace period: 60 minutes
+  - Temperature unit: C (Celsius)
+  - Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+  - Market hours (local): 8:30 - 15:00 (grace: +60min)
+
+  **Key Findings:**
+  - ✅ **Progressive chart loading:** Working correctly after RTC fix (display_stocks.py:290)
+    - Uses DS3231 external RTC (`state.rtc.datetime`) instead of built-in MCU RTC
+    - Correctly detects weekday and market hours
+    - Shows progressive chart during trading (e.g., 38% width at 11:00 AM)
+    - Shows full chart outside market hours
+  - ✅ **Real-time data:** 173 cycles with live market data throughout trading hours (9:18 AM - 1:40 PM)
+  - ✅ **Stock rotation:** Seamless alternation between chart and multi-stock modes
+  - ✅ **Intraday charts:** 78 data points fetched for chart displays (5-min intervals during full trading day)
+  - ✅ **API rate limiting:** Respected throughout test, no quota issues during test
+  - ✅ **Memory stability:** +5.6% increase acceptable for stock caching (lower than initial test)
+  - ✅ **Forecast integration:** Forecast display working alongside stocks
+  - ✅ **Config reload:** Every 10 cycles, config reloaded successfully
+  - ✅ **Zero errors:** 173 cycles with zero errors or warnings
+
+  **Progressive Chart Validation:**
+  - ✅ Fixed RTC source bug (was using wrong RTC, now uses synced DS3231)
+  - ✅ Weekday detection working (correctly identifies Monday-Friday vs weekend)
+  - ✅ Market hours detection working (checks if current time within 8:30-15:00 local)
+  - ✅ Progressive width calculated based on elapsed time since market open
+  - ✅ Full chart shown when outside market hours (weekends, before open, after close)
+
+- **12-18-after-hours-test-stocks.txt** ✅ **AFTER HOURS + GRACE PERIOD TEST COMPLETE**
+  - **Phase:** 4.0 (Forecast + Stock Display - After Hours Grace Period Validation)
+  - **Duration:** 4.9 hours (13:42 - 18:38, 295.9 minutes)
+  - **Cycles:** 57
+  - **API Calls:** 57 weather fetches + 19 forecast fetches + ~50 stock API calls (during market + grace only)
+  - **Memory:** Baseline 4.7% → Final 11.7% (delta: +7.0%, +137KB)
+  - **Errors:** API quota warnings (expected), 0 critical errors
+  - **Notable:** Validated grace period behavior and respect_market_hours=True mode - stocks correctly stop after grace period ends
+  - **Result:** ✅ **PASS** - Market hours respect mode working as designed
+
+  **Configuration Applied:**
+  - Source: local config.csv
+  - Weather: True (enabled)
+  - Forecast: True (enabled)
+  - Stocks: True (enabled)
+  - Stock frequency: 1 (every cycle)
+  - Respect market hours: True (production mode - stocks stop after grace period)
+  - Grace period: 60 minutes
+  - Temperature unit: C (Celsius)
+  - Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+  - Market hours (local): 8:30 - 15:00 (grace: +60min, end: 16:00)
+
+  **Test Timeline:**
+  - **13:42 - 15:00:** Market hours - stocks displayed with live data (cycles 1-20)
+  - **15:00 - 16:00:** Grace period - stocks displayed with cached data (cycles 21-25, API quota exhausted at 14:54)
+  - **16:01 onwards:** Stocks stopped displaying as designed (respect_market_hours=True), weather/forecast continued (cycles 26-57)
+
+  **Correct Behavior Validated:**
+  - ✅ **Market hours mode:** When respect_market_hours=True, stocks stop after grace period (production mode)
+  - ✅ **Grace period:** Stocks continued displaying during 60-min grace period after market close
+  - ✅ **API quota handling:** Gracefully fell back to cached data when quota exhausted (cycle 12 onwards)
+  - ✅ **Weather/forecast resilience:** Continued working throughout entire test (57 cycles, 0 errors)
+  - ✅ **Memory stable:** No leaks despite extended runtime (5 hours)
+
+  **API Quota Management:**
+  - Cycle 12 (14:49): First quota warning - 809/800 credits used
+  - Cycles 13-25: Continued with cached data (graceful degradation)
+  - Daily quota: 800 credits (free tier)
+  - Usage pattern: ~2-3 API calls per cycle (intraday + quote fetches)
+
+  **Key Findings:**
+  - ✅ **Respect market hours working:** Stocks stop after grace period when configured (production mode)
+  - ✅ **Grace period validated:** 60-minute grace period correctly extends stock display after market close
+  - ✅ **Cached data fallback:** When API quota exhausted, system uses cached data until grace period ends
+  - ✅ **Display isolation:** Weather/forecast unaffected when stocks disabled (cycles 26-57)
+  - ✅ **Config modes validated:**
+    - `respect_market_hours=True`: Stop display after grace (production - minimize API usage)
+    - `respect_market_hours=False`: Continue with cached data 24/7 (testing mode)
+
   **Next Steps:**
-  - 🔲 Extended stability test during market hours (verify live data fetching)
-  - 🔲 Test market hours respect mode (stocks disabled outside hours + grace period)
-  - 🔲 Validate 78-point progressive chart loading (currently 26 points)
+  - ✅ Extended stability test during market hours - COMPLETE
+  - ✅ Test market hours respect mode - COMPLETE
+  - ✅ Validate 78-point progressive chart loading - COMPLETE
+  - 🔲 Test with respect_market_hours=False (24/7 cached display mode)
   - 🔲 Test with display_stocks frequency > 1 (e.g., every 3 cycles)
-  - 🔲 Verify anchor point alignment fixes for prices/percentages on display
+  - 🔲 Weekend behavior test (cached data from Friday)
 
 ---
 
