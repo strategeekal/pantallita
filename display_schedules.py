@@ -54,7 +54,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 	try:
 		weather_data = weather_api.fetch_current()
 		if weather_data:
-			uv_index = weather_data.get('uv_index', 0)
+			uv_index = weather_data.get('uv', 0)
 			logger.log(f"Weather: {weather_data['feels_like']}°, UV:{uv_index}", config.LogLevel.DEBUG, area="SCHEDULE")
 	except Exception as e:
 		logger.log(f"Schedule weather fetch error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
@@ -145,7 +145,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 
 	# UV bar (always visible, empty when UV=0) - inline
 	if weather_data:
-		uv_index = weather_data.get('uv_index', 0)
+		uv_index = weather_data.get('uv', 0)
 		if uv_index > 0:
 			# Calculate UV bar length (inline)
 			uv_length = min(int((uv_index / 11.0) * 40), 40)
@@ -178,10 +178,14 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 	progress_pixels = []  # Track progress pixels for updates
 
 	if show_progress_bar:
-		# Draw progress bar base (horizontal line) - inline
+		# Draw progress bar base (horizontal line, 2 pixels tall, MINT color) - inline
 		for x in range(config.Layout.PROGRESS_BAR_X, config.Layout.PROGRESS_BAR_X + config.Layout.PROGRESS_BAR_WIDTH):
-			pixel = Line(x, config.Layout.PROGRESS_BAR_Y, x, config.Layout.PROGRESS_BAR_Y, config.Colors.DIMMEST_WHITE)
-			state.main_group.append(pixel)
+			# First pixel of base (at y=30)
+			pixel_1 = Line(x, config.Layout.PROGRESS_BAR_Y, x, config.Layout.PROGRESS_BAR_Y, config.Colors.MINT)
+			state.main_group.append(pixel_1)
+			# Second pixel of base (at y=31)
+			pixel_2 = Line(x, config.Layout.PROGRESS_BAR_Y + 1, x, config.Layout.PROGRESS_BAR_Y + 1, config.Colors.MINT)
+			state.main_group.append(pixel_2)
 
 		# Draw markers (inline)
 		# Long markers: 0%, 50%, 100% (3 pixels tall)
@@ -245,25 +249,25 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 				# Fill from last position to current (inline)
 				for col in range(last_progress_column + 1, current_column + 1):
 					if col >= 0 and col < config.Layout.PROGRESS_BAR_WIDTH:
-						# Draw filled pixels (2 pixels tall below the base line)
+						# Draw filled pixels (2 pixels tall ABOVE base line, LILAC color)
 						progress_x = config.Layout.PROGRESS_BAR_X + col
-						# First pixel (immediately below base line)
+						# First pixel (2 pixels above base line, at y=28)
 						progress_pixel_1 = Line(
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y + 1,
+							config.Layout.PROGRESS_BAR_Y - 2,
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y + 1,
-							config.Colors.GREEN
+							config.Layout.PROGRESS_BAR_Y - 2,
+							config.Colors.LILAC
 						)
 						state.main_group.append(progress_pixel_1)
 						progress_pixels.append(progress_pixel_1)
-						# Second pixel (2 pixels below base line)
+						# Second pixel (1 pixel above base line, at y=29)
 						progress_pixel_2 = Line(
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y + 2,
+							config.Layout.PROGRESS_BAR_Y - 1,
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y + 2,
-							config.Colors.GREEN
+							config.Layout.PROGRESS_BAR_Y - 1,
+							config.Colors.LILAC
 						)
 						state.main_group.append(progress_pixel_2)
 						progress_pixels.append(progress_pixel_2)
