@@ -43,8 +43,11 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ✅ Stock/forex/crypto/commodity displays (Phase 4)
 - ✅ Multi-stock display (3 stocks vertically with prices/percentages)
 - ✅ Single stock chart display (intraday 78-point progressive charts)
+- ✅ Bicolor charts (green above open price, red below open price)
 - ✅ Market hours detection (9:30 AM - 4:00 PM ET with grace period)
 - ✅ Smart stock caching (once outside hours, fresh during market)
+- ✅ Grace period optimization (per-symbol tracking, zero redundant API calls)
+- ✅ Dynamic grace period extension (ensures all stocks updated for 24/7 display)
 - ✅ Configurable display frequency and market hours respect
 - ✅ stocks.csv with GitHub remote loading
 
@@ -97,7 +100,7 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
    - Auto-refresh every ~50 minutes
    - Example files: config.csv.example, settings.toml.example
 
-- ✅ **Phase 4: Stock Display** - Complete and stable (6.6+ hour test successful)
+- ✅ **Phase 4: Stock Display** - Complete and stable (15+ hours testing)
    - Created stocks_api.py with Twelve Data API integration (inline, flattened)
    - Created display_stocks.py for multi-stock and chart rendering (inline)
    - Two display modes: multi-stock (3 at a time) and single chart (highlighted)
@@ -105,10 +108,14 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
    - Market hours detection (9:30 AM - 4:00 PM ET) with grace period
    - Smart caching: fetch once outside hours, fresh data during market hours
    - Progressive chart loading: shows elapsed portion of trading day
-   - 78-point intraday charts with 5-minute intervals
+   - 78-point intraday charts with 5-minute intervals (compressed to 64 pixels)
+   - **Bicolor chart:** Green above opening price, red below (live intraday performance)
+   - **Grace period smart fetching:** Per-symbol tracking prevents redundant API calls
+   - **Dynamic grace period extension:** Ensures all stocks updated when respect_market_hours=false
    - Configurable display frequency and market hours respect
    - stocks.csv with GitHub remote loading support
-   - 6.6-hour test: 233 cycles, zero errors, memory stable (+7.4%)
+   - Initial test: 6.6 hours, 233 cycles, zero errors, memory stable (+7.4%)
+   - Extended tests: 15+ hours total across market hours, after hours, and grace period scenarios
 
 ---
 
@@ -676,44 +683,244 @@ temperature_unit,F
 - [x] Price formatting with comma separators (inline, no helpers)
 - [x] Smart rotation logic (highlight=1 for chart, highlight=0 for multi)
 - [x] Right-aligned prices/percentages with bounding_box calculation
+- [x] **Bicolor chart rendering:** Green segments above open, red below (inline color logic)
+- [x] Chart compression: 78 data points → 64 pixels (preserves first/last, samples middle)
 
-### Step 4.3: Test & Validate ✅ COMPLETE
+### Step 4.3: API Optimization ✅ COMPLETE
+- [x] **Grace period smart fetching:** Per-symbol tracking with `grace_period_fetched_symbols` set
+- [x] Prevent redundant API calls during grace period (fetch each symbol once)
+- [x] **Dynamic grace period extension:** When respect_market_hours=false
+- [x] Auto-extends until all stocks fetched, then switches to cached data
+- [x] Logging: Shows unfetched stock count and completion status
+
+### Step 4.4: Test & Validate ✅ COMPLETE
 - [x] Test during market hours (fresh data fetched correctly)
 - [x] Test outside market hours (cached data reused)
 - [x] Test weekend behavior (no unnecessary fetches)
 - [x] Test all asset types (stock, forex, crypto, commodity - all working)
 - [x] Verify chart rendering with various price ranges (validated)
 - [x] Progressive chart loading (elapsed time based, blank space for future)
-- [x] Run stability test (6.6 hours, 233 cycles, zero errors)
+- [x] Test grace period optimization (zero redundant API calls confirmed)
+- [x] Test bicolor chart (opening price comparison working)
+- [x] Test dynamic extension (all stocks fetched before 24/7 cached display)
+- [x] Initial stability test: 6.6 hours, 233 cycles, zero errors
+- [x] Extended market hours test: 4.4 hours, 173 cycles, zero errors
+- [x] After hours + grace period test: 4.9 hours, 57 cycles, quota handling validated
+- [x] Grace period smart fetching test: 18 minutes, 13 cycles, zero redundant calls
 
-**Success Criteria:** ✅ Stocks display works in all market conditions, no stack exhaustion, memory stable
+**Success Criteria:** ✅ Stocks display works in all market conditions, optimized API usage, no stack exhaustion, memory stable
 
-## Phase 5: Remaining Displays (Week 5)
+## Phase 5: Schedule Display ⏳ NEXT
 
-### Step 5.1: Events & Schedules
-- [ ] Create `data_loader.py` for CSV parsing
+### Overview
+Time-based activity reminders and routines (e.g., "Get Dressed" at 7:00 AM, "Bedtime" at 8:45 PM). Schedules take over the display during configured time windows, showing a custom image with progress tracking and weather context.
+
+### Features
+- **Time-based activation**: Displays during specific time windows (e.g., 7:00-7:15 AM)
+- **Day filtering**: Can limit to specific days of week (weekdays only, weekends, specific days)
+- **Progress tracking**: Visual progress bar shows elapsed time vs total duration
+- **Weather integration**: Shows current weather alongside schedule (15-min cache)
+- **Long schedule support**: Can run for hours with continuous updates
+- **Date-specific overrides**: GitHub date-specific schedules override defaults
+- **Priority display**: Schedules override normal rotation (highest priority)
+
+### Display Layout (64×32 pixels)
+
+**Left Section (x: 0-22) - Weather & Time:**
+- Clock: `hh:mm` 12-hour format (top)
+- Weather icon: 13×13 pixels (below clock)
+- Temperature: Below icon (e.g., "72°")
+- UV bar: Always visible (empty when UV=0)
+
+**Right Section (x: 23-63) - Schedule:**
+- Schedule image: 40×28 pixels (starts at x=23, y=1 in 1-based grid)
+- Custom BMP image for each activity
+
+**Bottom Section (x: 23-62, y: 28-32) - Progress Bar:**
+- Span: Same width as schedule image
+- Markers:
+  - Long markers (3px tall): 0% (start), 50% (middle), 100% (end)
+  - Short markers (2px tall): 25%, 75%
+- Overlaps schedule image by 3 pixels at marker positions
+
+### Schedule Sources (Priority Order)
+
+**1. GitHub Date-Specific CSV** (highest priority)
+- URL: `{GITHUB_BASE}/schedules/YYYY-MM-DD.csv`
+- Example: `schedules/2025-12-25.csv` (Christmas schedule)
+- Checked first based on current date
+
+**2. GitHub Default CSV** (fallback)
+- URL: `{GITHUB_BASE}/schedules/default.csv`
+- Used when no date-specific file exists
+
+**3. Local CSV** (final fallback)
+- Path: `schedules.csv` (root directory)
+- Used when GitHub fetch fails
+
+### CSV Format
+```csv
+# Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar
+Get Dressed,1,0123456,7,0,7,15,get_dressed.bmp,1
+Breakfast,1,0123456,7,30,8,0,breakfast.bmp,1
+Sleep,1,0123456,20,45,21,30,bedtime.bmp,0
+```
+
+**Fields:**
+- `name`: Schedule name (string)
+- `enabled`: 1=active, 0=disabled
+- `days`: String of digits (0=Monday, 6=Sunday), e.g., "0123456" for all days, "01234" for weekdays
+- `start_hour`: Hour (0-23) when schedule starts
+- `start_min`: Minute (0-59) when schedule starts
+- `end_hour`: Hour (0-23) when schedule ends
+- `end_min`: Minute (0-59) when schedule ends
+- `image`: BMP filename (40×28, 4-bit indexed color)
+- `progressbar`: 1=show progress bar, 0=hide
+
+### Schedule Images
+- **Location**: `img/schedules/`
+- **Format**: `.bmp` (4-bit indexed color)
+- **Size**: 40 pixels wide × 28 pixels tall
+- **Examples**: `breakfast.bmp`, `bedtime.bmp`, `get_dressed.bmp`, `homework.bmp`
+
+### Implementation Plan
+
+**Step 5.1: Schedule Loading & Parsing** ⏳ NEXT
+- [ ] Create `schedule_loader.py` (inline CSV parsing)
+- [ ] Implement date-based GitHub fetch logic
+  - [ ] Get current date (YYYY-MM-DD format)
+  - [ ] Try date-specific CSV first
+  - [ ] Fallback to default.csv if not found
+  - [ ] Fallback to local schedules.csv if GitHub fails
+- [ ] Parse schedule CSV content (inline, no helpers)
+- [ ] Schedule activation detection
+  - [ ] Check current time against schedule windows
+  - [ ] Day-of-week filtering
+  - [ ] Return active schedule (if any)
+
+**Step 5.2: Schedule Display Rendering** ⏳ NEXT
+- [ ] Create `display_schedules.py`
+- [ ] Implement `show_schedule()` function (inline rendering)
+  - [ ] Single long display loop (no segmentation)
+  - [ ] Clock updates (every minute)
+  - [ ] Progress bar updates (continuous)
+  - [ ] Weather refresh (every 15 minutes with cleanup)
+- [ ] Layout rendering (inline):
+  - [ ] Clock label (top-left, 12-hour format)
+  - [ ] Weather icon (13×13, below clock)
+  - [ ] Temperature (below icon)
+  - [ ] UV bar (always visible, empty when UV=0)
+  - [ ] Schedule image (40×28, right side)
+  - [ ] Progress bar with markers (bottom, aligned with image)
+
+**Step 5.3: Progress Bar Implementation**
+- [ ] Draw progress bar base (horizontal bar)
+- [ ] Add marker system:
+  - [ ] Long markers at 0%, 50%, 100% (3 pixels tall)
+  - [ ] Short markers at 25%, 75% (2 pixels tall)
+- [ ] Update progress in display loop (continuous)
+- [ ] Calculate elapsed vs total duration
+
+**Step 5.4: Main Loop Integration**
+- [ ] Add schedule check to main cycle
+- [ ] Priority logic: Check schedules BEFORE normal displays
+- [ ] If schedule active:
+  - [ ] Call `show_schedule()` with duration
+  - [ ] Skip normal rotation for this cycle
+- [ ] If no schedule active:
+  - [ ] Continue normal rotation (weather, forecast, stocks)
+
+**Step 5.5: Testing & Validation**
+- [ ] Test short schedule (15 minutes)
+- [ ] Test medium schedule (1 hour)
+- [ ] Test long schedule (4+ hours)
+- [ ] Verify weather refresh (every 15 min)
+- [ ] Verify clock updates (every minute)
+- [ ] Verify progress bar animation
+- [ ] Test date-specific GitHub override
+- [ ] Test GitHub fallback to default.csv
+- [ ] Test local fallback when GitHub unavailable
+- [ ] Monitor socket exhaustion (long schedules)
+- [ ] Memory stability check
+
+### Technical Details
+
+**Display Loop Approach:**
+```python
+def show_schedule(schedule, duration):
+    # Draw static elements once
+    draw_clock()
+    draw_weather_icon()
+    draw_temperature()
+    draw_uv_bar()
+    draw_schedule_image()
+    draw_progress_bar()
+
+    # Long display loop
+    start_time = time.monotonic()
+    last_weather_fetch = 0
+    last_minute = -1
+
+    while time.monotonic() - start_time < duration:
+        elapsed = time.monotonic() - start_time
+        current_minute = rtc.datetime.tm_min
+
+        # Update clock (every minute)
+        if current_minute != last_minute:
+            update_clock_label()
+            last_minute = current_minute
+
+        # Update progress bar (continuous)
+        update_progress_bar(elapsed, duration)
+
+        # Refresh weather + cleanup (every 15 min)
+        if elapsed - last_weather_fetch > 900:
+            update_weather_display()
+            gc.collect()  # Cleanup after fetch
+            last_weather_fetch = elapsed
+
+        time.sleep(1)  # Check every second
+```
+
+**Key Design Decisions:**
+- **Single loop** (not segmented): Simpler code, no screen flicker
+- **Cleanup checkpoints**: After each weather fetch (every 15 min)
+- **UV bar always visible**: Simpler layout, no conditional positioning
+- **Progress bar overlap**: 3-pixel overlap with schedule image at markers
+- **12-hour clock format**: More user-friendly (e.g., "7:15" vs "07:15")
+
+**Success Criteria:**
+- [ ] Schedules activate at correct times
+- [ ] Display shows all elements correctly
+- [ ] Progress bar animates smoothly
+- [ ] Clock updates every minute
+- [ ] Weather refreshes every 15 minutes
+- [ ] Long schedules (4+ hours) work without socket exhaustion
+- [ ] Date-specific GitHub overrides work
+- [ ] Fallback to local CSV works
+- [ ] Memory remains stable
+- [ ] No stack exhaustion
+
+---
+
+## Phase 6: Events & Transit (Future)
+
+### Step 6.1: Events Display
 - [ ] Load events.csv (local and GitHub)
-- [ ] Load schedules.csv (local and GitHub)
-- [ ] Create `display_other.py`
-- [ ] Implement events display (inline)
-- [ ] Implement schedules display (inline)
-- [ ] Implement clock display (fallback)
+- [ ] Event activation detection (date-based)
+- [ ] Create event display (inline)
 
-### Step 5.2: CTA Transit
+### Step 6.2: CTA Transit
 - [ ] Create `transit_api.py`
-- [ ] Fetch train arrivals
-- [ ] Fetch bus arrivals
-- [ ] Combine and sort arrivals
-- [ ] Add transit rendering to `display_other.py`
+- [ ] Fetch train/bus arrivals
+- [ ] Transit display rendering
 
-### Step 5.3: Main Loop Logic
-- [ ] Schedule detection
-- [ ] Display rotation logic
-- [ ] Frequency controls
-- [ ] Time-based filtering (commute hours, event hours)
+### Step 6.3: Clock Display
+- [ ] Fallback clock display (when all else disabled)
 
-### Step 5.4: Test & Validate
-- [ ] Test full rotation cycle
+---
+
+## Phase 7: Production (Future)
 - [ ] Test schedule priority
 - [ ] Test transit display during commute hours
 - [ ] Test event time filtering

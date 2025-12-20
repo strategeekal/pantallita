@@ -182,7 +182,7 @@ class Logging:
 	SHOW_CYCLE_SEPARATOR = True  # Show "## CYCLE N ##" markers
 
 # Current log level
-CURRENT_LOG_LEVEL = LogLevel.DEBUG
+CURRENT_LOG_LEVEL = LogLevel.INFO
 
 # ============================================================================
 # TIMING
