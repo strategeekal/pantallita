@@ -105,3 +105,7 @@ should_fetch_stocks = False  # True if within market hours, False if outside
 market_open_local_minutes = 0  # Market open time in minutes since midnight (local time)
 market_close_local_minutes = 0  # Market close time in minutes since midnight (local time)
 market_grace_end_local_minutes = 0  # Grace period end time in minutes since midnight (local time)
+
+# Grace period optimization - track which symbols already fetched during current grace period
+grace_period_fetched_symbols = set()  # Set of symbols fetched during current grace period
+previous_grace_period_state = False  # Track previous cycle to detect transition into grace period

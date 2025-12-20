@@ -181,6 +181,13 @@ def run_test_cycle():
 				# Allow fetching during market hours OR grace period
 				state.should_fetch_stocks = is_weekday and (is_market_hours or is_grace_period)
 
+				# Grace period optimization: detect transition into grace period and reset tracking
+				if is_grace_period and not state.previous_grace_period_state:
+					# Entering grace period - clear the set of fetched symbols
+					state.grace_period_fetched_symbols.clear()
+					logger.log("Entering grace period - resetting symbol tracking", config.LogLevel.DEBUG, area="STOCKS")
+				state.previous_grace_period_state = is_grace_period
+
 				# Respect market hours if configured
 				respect_hours = config_manager.get_stocks_respect_market_hours()
 				should_display_stocks = True
@@ -207,14 +214,21 @@ def run_test_cycle():
 
 							# Fetch logic:
 							# - Market hours: always fetch (respecting rate limit)
+							# - Grace period: fetch ONCE per symbol, then reuse
 							# - Outside hours: fetch ONCE to cache, then reuse forever
 							should_fetch = False
 							if symbol not in state.cached_intraday_data:
 								# No cache - need to fetch regardless of market hours
 								should_fetch = True
 							elif state.should_fetch_stocks:
-								# Market hours - always fetch fresh data
-								should_fetch = True
+								# During market hours or grace period
+								if is_grace_period:
+									# Grace period - only fetch if not already fetched this grace period
+									if symbol not in state.grace_period_fetched_symbols:
+										should_fetch = True
+								else:
+									# Market hours - always fetch fresh data
+									should_fetch = True
 							# else: Outside market hours with cache - DO NOT fetch
 
 							# Respect rate limiting
@@ -232,6 +246,11 @@ def run_test_cycle():
 										'timestamp': now_time
 									}
 									state.last_stock_fetch_time = now_time
+
+									# Track symbol as fetched during grace period (optimization)
+									if is_grace_period:
+										state.grace_period_fetched_symbols.add(symbol)
+										logger.log(f"Added {symbol} to grace period tracking", config.LogLevel.DEBUG, area="STOCKS")
 
 							# Get cached data and display
 							if symbol in state.cached_intraday_data:
@@ -284,8 +303,14 @@ def run_test_cycle():
 								# slicing [:4] is safe even if list is shorter
 								symbols_to_fetch = [s['symbol'] for s in stocks_to_show[:4]]
 
+								# Grace period optimization: filter out already-fetched symbols during grace period
+								if is_grace_period:
+									symbols_to_fetch = [sym for sym in symbols_to_fetch
+									                   if sym not in state.grace_period_fetched_symbols]
+
 								# Fetch logic:
 								# - Market hours: always fetch (respecting rate limit)
+								# - Grace period: fetch ONCE per symbol (already filtered above), then reuse
 								# - Outside hours: fetch ONCE to cache, then reuse forever
 								should_fetch = False
 								for sym in symbols_to_fetch:
@@ -294,7 +319,8 @@ def run_test_cycle():
 										should_fetch = True
 										break
 									elif state.should_fetch_stocks:
-										# Market hours - always fetch fresh data
+										# Market hours OR grace period - fetch
+										# (Grace period symbols already filtered to only unfetched ones)
 										should_fetch = True
 										break
 								# else: Outside market hours with cache - DO NOT fetch
@@ -313,6 +339,12 @@ def run_test_cycle():
 												'timestamp': now_time
 											}
 										state.last_stock_fetch_time = now_time
+
+										# Track symbols as fetched during grace period (optimization)
+										if is_grace_period:
+											for sym in quotes.keys():
+												state.grace_period_fetched_symbols.add(sym)
+											logger.log(f"Added {len(quotes)} symbols to grace period tracking", config.LogLevel.DEBUG, area="STOCKS")
 
 								# Attach cached prices to stocks for display
 								stocks_with_prices = []
