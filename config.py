@@ -55,6 +55,24 @@ class Layout:
 	FORECAST_TIME_Y = 1      # Time label Y position (0-based) = y=2 (1-based)
 	FORECAST_TEMP_Y = 25     # Temperature label Y position
 
+	# Schedule display (Phase 5)
+	# Layout: Left section (x:0-22) = clock, weather, temp, UV | Right section (x:23-63) = schedule image
+	SCHEDULE_CLOCK_X = 1
+	SCHEDULE_CLOCK_Y = 3
+	SCHEDULE_WEATHER_ICON_X = 4      # 13×13 weather icon
+	SCHEDULE_WEATHER_ICON_Y = 9
+	SCHEDULE_TEMP_X = 5              # Temperature label (below weather icon)
+	SCHEDULE_TEMP_Y = 23
+	SCHEDULE_UV_X = 23               # UV bar (horizontal, left to right)
+	SCHEDULE_UV_Y = 4
+	SCHEDULE_IMAGE_X = 23            # Schedule image (40×28, right side)
+	SCHEDULE_IMAGE_Y = 0
+
+	# Progress bar (bottom of schedule display)
+	PROGRESS_BAR_X = 23              # Starts at x=23
+	PROGRESS_BAR_Y = 28              # Base line at y=28
+	PROGRESS_BAR_WIDTH = 40          # 40 pixels wide (x23-62)
+
 # ============================================================================
 # COLORS
 # ============================================================================
@@ -119,6 +137,9 @@ class Env:
 	TWELVE_DATA_API_KEY = None
 	STOCKS_GITHUB_URL = None
 
+	# Schedules (Phase 5)
+	SCHEDULES_GITHUB_URL = None
+
 	@classmethod
 	def load(cls):
 		"""Load all environment variables"""
@@ -136,6 +157,9 @@ class Env:
 		# Stocks API (Phase 4)
 		cls.TWELVE_DATA_API_KEY = os.getenv("TWELVE_DATA_API_KEY")
 		cls.STOCKS_GITHUB_URL = os.getenv("STOCKS_GITHUB_URL")
+
+		# Schedules (Phase 5)
+		cls.SCHEDULES_GITHUB_URL = os.getenv("SCHEDULES_GITHUB_URL")
 
 # ============================================================================
 # API ENDPOINTS
@@ -162,6 +186,12 @@ class Paths:
 
 	# Forecast column images (Phase 2)
 	FORECAST_IMAGES = "/img/weather/columns"
+
+	# Column images (used in schedule displays for weather icons)
+	COLUMN_IMAGES = "/img/weather/columns"
+
+	# Schedule images (Phase 5)
+	SCHEDULE_IMAGES = "/img/schedules"
 
 # ============================================================================
 # LOGGING

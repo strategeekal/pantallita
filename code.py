@@ -1,10 +1,11 @@
 """
-Pantallita 3.0 - Phase 4: Stock Display
+Pantallita 3.0 - Phase 5: Schedule Display
 Tests CircuitPython 10 foundation before implementing features (v3.0.0)
 Phase 1: Current weather display (v3.0.1)
 Phase 2: 12-hour forecast with smart precipitation detection (v3.0.2)
 Phase 3: Display toggles and temperature unit control (v3.0.3)
 Phase 4: Stock/forex/crypto/commodity display with market hours (v3.0.4)
+Phase 5: Schedule display with date-based GitHub override (v3.0.5)
 
 """
 
@@ -34,6 +35,10 @@ import config_manager
 # Import stocks modules (Phase 4)
 import stocks_api
 import display_stocks
+
+# Import schedule modules (Phase 5)
+import schedule_loader
+import display_schedules
 
 # ============================================================================
 # DISPLAY FUNCTIONS
@@ -99,10 +104,40 @@ def run_test_cycle():
 	if config.Logging.SHOW_CYCLE_SEPARATOR:
 		logger.log_cycle_start(state.cycle_count, config.LogLevel.INFO)
 
-	# Reload config periodically (every 10 cycles = ~50 minutes)
+	# Reload config and schedules periodically (every 10 cycles = ~50 minutes)
 	if state.cycle_count % 10 == 0:
 		config_manager.load_config()
-	
+
+		# Reload schedules (GitHub > local)
+		github_schedules, source = schedule_loader.fetch_github_schedules(state.rtc)
+		if github_schedules:
+			state.cached_schedules = github_schedules
+			logger.log(f"Reloaded {len(github_schedules)} schedules from {source}", config.LogLevel.DEBUG, area="SCHEDULE")
+		else:
+			local_schedules = schedule_loader.load_local_schedules()
+			if local_schedules:
+				state.cached_schedules = local_schedules
+				logger.log(f"Reloaded {len(local_schedules)} schedules from local file", config.LogLevel.DEBUG, area="SCHEDULE")
+
+	# Check for active schedules (Phase 5) - takes priority over normal rotation
+	if state.cached_schedules:
+		active_schedule_name, active_schedule_config = schedule_loader.get_active_schedule(state.rtc, state.cached_schedules)
+
+		if active_schedule_name:
+			# Active schedule found - display it for remaining duration
+			remaining_time = schedule_loader.get_remaining_schedule_time(state.rtc, active_schedule_config)
+
+			if remaining_time > 0:
+				logger.log(f"Active schedule: {active_schedule_name} ({remaining_time/60:.1f} min remaining)", config.LogLevel.INFO, area="SCHEDULE")
+
+				try:
+					display_schedules.show_schedule(state.rtc, active_schedule_name, active_schedule_config, remaining_time)
+					logger.log("### CYCLE COMPLETE (SCHEDULE) ### \n", config.LogLevel.INFO, area="MAIN")
+					return  # Skip normal display rotation
+				except Exception as e:
+					logger.log(f"Schedule display error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
+					# Fall through to normal rotation on error
+
 	# Check WiFi status
 	if not hardware.is_wifi_connected():
 		logger.log("WiFi disconnected!", config.LogLevel.WARNING)
@@ -423,7 +458,7 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	logger.log("==== PANTALLITA 3.0 | PHASE 4: STOCK DISPLAY ====")
+	logger.log("==== PANTALLITA 3.0 | PHASE 5: SCHEDULE DISPLAY ====")
 
 	try:
 		# Initialize display FIRST (before show_message)
@@ -496,6 +531,22 @@ def initialize():
 				state.market_close_local_minutes = 960  # 4:00 PM
 				state.market_grace_end_local_minutes = 960 + grace_period
 				logger.log("No timezone info - using ET market hours", config.LogLevel.WARNING, area="STOCKS")
+
+		# Load schedules (Phase 5)
+		show_message("SCHEDULES", config.Colors.GREEN, 16)
+		# Try GitHub first (date-specific > default), then fallback to local
+		github_schedules, source = schedule_loader.fetch_github_schedules(state.rtc)
+		if github_schedules:
+			state.cached_schedules = github_schedules
+			logger.log(f"Loaded {len(github_schedules)} schedules from {source}", area="SCHEDULE")
+		else:
+			# Fallback to local schedules.csv
+			local_schedules = schedule_loader.load_local_schedules()
+			if local_schedules:
+				state.cached_schedules = local_schedules
+				logger.log(f"Loaded {len(local_schedules)} schedules from local file", area="SCHEDULE")
+			else:
+				logger.log("No schedules loaded (no GitHub or local schedules.csv)", config.LogLevel.WARNING, area="SCHEDULE")
 
 		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)

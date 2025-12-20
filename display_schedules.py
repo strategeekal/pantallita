@@ -1,0 +1,261 @@
+"""
+Pantallita 3.0 - Schedule Display Module
+Renders schedule displays with weather, clock, and progress bar
+INLINE ARCHITECTURE - everything inline, no helper functions
+"""
+
+import time
+import gc
+from adafruit_display_text import bitmap_label
+from adafruit_display_shapes.line import Line
+from adafruit_display_shapes.rect import Rect
+import displayio
+
+import config
+import state
+import logger
+import weather_api
+
+
+# ============================================================================
+# SCHEDULE DISPLAY (INLINE)
+# ============================================================================
+
+def show_schedule(rtc, schedule_name, schedule_config, duration):
+	"""
+	Display schedule for specified duration with continuous updates
+
+	Layout (64×32 pixels):
+	- Left (x:0-22): Clock, weather icon, temperature, UV bar
+	- Right (x:23-63): Schedule image (40×28)
+	- Bottom (x:23-62, y:28-32): Progress bar with markers
+
+	Single long display loop (no segmentation):
+	- Clock updates every minute
+	- Progress bar updates continuously
+	- Weather refreshes every 15 minutes (with cleanup)
+
+	Args:
+		rtc: Real-time clock object
+		schedule_name: Name of schedule (e.g., "Get Dressed")
+		schedule_config: Schedule configuration dict
+		duration: Total duration in seconds
+
+	INLINE - all rendering and update logic inline
+	"""
+	# Clear display (inline)
+	while len(state.main_group) > 0:
+		state.main_group.pop()
+
+	logger.log(f"Starting schedule: {schedule_name} ({duration/60:.1f} min)", config.LogLevel.INFO, area="SCHEDULE")
+
+	# Fetch initial weather data (inline)
+	weather_data = None
+	try:
+		weather_data = weather_api.fetch_current()
+		if weather_data:
+			logger.log(f"Weather: {weather_data['feels_like']}°, UV:{weather_data['uv_index']}", config.LogLevel.DEBUG, area="SCHEDULE")
+	except Exception as e:
+		logger.log(f"Schedule weather fetch error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
+
+	# === DRAW STATIC ELEMENTS (ONCE) ===
+
+	# Schedule image (40×28, right side) - inline
+	try:
+		schedule_image_path = f"{config.Paths.SCHEDULE_IMAGES}/{schedule_config['image']}"
+		bitmap, palette = state.image_cache.get_image(schedule_image_path)
+
+		if bitmap:
+			schedule_img = displayio.TileGrid(bitmap, pixel_shader=palette)
+			schedule_img.x = config.Layout.SCHEDULE_IMAGE_X
+			schedule_img.y = config.Layout.SCHEDULE_IMAGE_Y
+			state.main_group.append(schedule_img)
+		else:
+			logger.log(f"Failed to load schedule image: {schedule_config['image']}", config.LogLevel.ERROR, area="SCHEDULE")
+			return  # Skip schedule if image fails
+
+	except Exception as e:
+		logger.log(f"Schedule image error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
+		return  # Skip schedule if image fails
+
+	# Weather icon (13×13, left side below clock) - inline
+	if weather_data:
+		try:
+			weather_icon = f"{weather_data['weather_icon']}.bmp"
+			bitmap, palette = state.image_cache.get_image(f"{config.Paths.COLUMN_IMAGES}/{weather_icon}")
+
+			if bitmap:
+				weather_img = displayio.TileGrid(bitmap, pixel_shader=palette)
+				weather_img.x = config.Layout.SCHEDULE_WEATHER_ICON_X
+				weather_img.y = config.Layout.SCHEDULE_WEATHER_ICON_Y
+				state.main_group.append(weather_img)
+
+		except Exception as e:
+			logger.log(f"Weather icon error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
+
+	# Temperature label (below weather icon) - inline
+	if weather_data:
+		temp_text = f"{round(weather_data['feels_like'])}°"
+		temp_label = bitmap_label.Label(
+			state.font_small,
+			color=config.Colors.DIMMEST_WHITE,
+			text=temp_text,
+			x=config.Layout.SCHEDULE_TEMP_X,
+			y=config.Layout.SCHEDULE_TEMP_Y
+		)
+		state.main_group.append(temp_label)
+
+	# UV bar (always visible, empty when UV=0) - inline
+	if weather_data and weather_data['uv_index'] > 0:
+		uv_index = weather_data['uv_index']
+		# Calculate UV bar length (inline)
+		uv_length = min(int((uv_index / 11.0) * 40), 40)
+
+		# Draw UV bar with gaps (inline)
+		for i in range(uv_length):
+			# Skip gap pixels every 3 pixels (inline)
+			if i % 3 != 2:
+				uv_pixel = Line(
+					config.Layout.SCHEDULE_UV_X + i,
+					config.Layout.SCHEDULE_UV_Y,
+					config.Layout.SCHEDULE_UV_X + i,
+					config.Layout.SCHEDULE_UV_Y,
+					config.Colors.DIMMEST_WHITE
+				)
+				state.main_group.append(uv_pixel)
+
+	# Clock label (top-left, 12-hour format) - inline
+	clock_label = bitmap_label.Label(
+		state.font_small,
+		color=config.Colors.DIMMEST_WHITE,
+		text="",  # Will update in loop
+		x=config.Layout.SCHEDULE_CLOCK_X,
+		y=config.Layout.SCHEDULE_CLOCK_Y
+	)
+	state.main_group.append(clock_label)
+
+	# Progress bar (if enabled) - inline
+	show_progress_bar = schedule_config.get("progressbar", True)
+	progress_pixels = []  # Track progress pixels for updates
+
+	if show_progress_bar:
+		# Draw progress bar base (horizontal line) - inline
+		for x in range(config.Layout.PROGRESS_BAR_X, config.Layout.PROGRESS_BAR_X + config.Layout.PROGRESS_BAR_WIDTH):
+			pixel = Line(x, config.Layout.PROGRESS_BAR_Y, x, config.Layout.PROGRESS_BAR_Y, config.Colors.DIMMEST_WHITE)
+			state.main_group.append(pixel)
+
+		# Draw markers (inline)
+		# Long markers: 0%, 50%, 100% (3 pixels tall)
+		# Short markers: 25%, 75% (2 pixels tall)
+		marker_positions = [
+			(0.0, 3),    # 0% - long
+			(0.25, 2),   # 25% - short
+			(0.5, 3),    # 50% - long
+			(0.75, 2),   # 75% - short
+			(1.0, 3)     # 100% - long
+		]
+
+		for position, height in marker_positions:
+			marker_x = config.Layout.PROGRESS_BAR_X + int(position * config.Layout.PROGRESS_BAR_WIDTH)
+
+			# Draw marker extending upward (inline)
+			for y_offset in range(height):
+				marker_pixel = Line(
+					marker_x,
+					config.Layout.PROGRESS_BAR_Y - y_offset,
+					marker_x,
+					config.Layout.PROGRESS_BAR_Y - y_offset,
+					config.Colors.WHITE
+				)
+				state.main_group.append(marker_pixel)
+
+	# === DISPLAY LOOP (CONTINUOUS UPDATES) ===
+
+	start_time = time.monotonic()
+	last_weather_fetch = 0
+	last_minute = -1
+	last_progress_column = -1
+
+	logger.log(f"Displaying schedule: {schedule_name}", config.LogLevel.INFO, area="SCHEDULE")
+
+	while time.monotonic() - start_time < duration:
+		elapsed = time.monotonic() - start_time
+		current_minute = rtc.datetime.tm_min
+		current_hour = rtc.datetime.tm_hour
+
+		# Update clock (every minute) - inline
+		if current_minute != last_minute:
+			# Convert to 12-hour format (inline)
+			display_hour = current_hour % 12
+			if display_hour == 0:
+				display_hour = 12
+
+			clock_text = f"{display_hour}:{current_minute:02d}"
+			clock_label.text = clock_text
+			last_minute = current_minute
+
+			logger.log(f"Schedule: {schedule_name} - {clock_text} ({elapsed/60:.1f}/{duration/60:.1f} min)", config.LogLevel.DEBUG, area="SCHEDULE")
+
+		# Update progress bar (continuous) - inline
+		if show_progress_bar:
+			progress = elapsed / duration
+			current_column = int(progress * config.Layout.PROGRESS_BAR_WIDTH)
+
+			# Add new progress pixels (inline)
+			if current_column != last_progress_column and current_column < config.Layout.PROGRESS_BAR_WIDTH:
+				# Fill from last position to current (inline)
+				for col in range(last_progress_column + 1, current_column + 1):
+					if col >= 0 and col < config.Layout.PROGRESS_BAR_WIDTH:
+						# Draw filled pixel (brighter color)
+						progress_x = config.Layout.PROGRESS_BAR_X + col
+						progress_pixel = Line(
+							progress_x,
+							config.Layout.PROGRESS_BAR_Y + 1,  # Below the base line
+							progress_x,
+							config.Layout.PROGRESS_BAR_Y + 1,
+							config.Colors.GREEN
+						)
+						state.main_group.append(progress_pixel)
+						progress_pixels.append(progress_pixel)
+
+				last_progress_column = current_column
+
+		# Refresh weather + cleanup (every 15 minutes) - inline
+		if elapsed - last_weather_fetch > 900:  # 15 minutes
+			logger.log(f"Schedule weather refresh ({elapsed/60:.1f} min elapsed)", config.LogLevel.DEBUG, area="SCHEDULE")
+
+			try:
+				new_weather_data = weather_api.fetch_current()
+
+				if new_weather_data:
+					# Update temperature label (inline)
+					temp_text = f"{round(new_weather_data['feels_like'])}°"
+					temp_label.text = temp_text
+
+					# Update weather icon if changed (inline)
+					if new_weather_data['weather_icon'] != weather_data.get('weather_icon'):
+						# Remove old icon and add new one (inline)
+						weather_icon = f"{new_weather_data['weather_icon']}.bmp"
+						bitmap, palette = state.image_cache.get_image(f"{config.Paths.COLUMN_IMAGES}/{weather_icon}")
+
+						if bitmap:
+							# Find and update weather icon tile grid (inline)
+							for item in state.main_group:
+								if isinstance(item, displayio.TileGrid) and item.x == config.Layout.SCHEDULE_WEATHER_ICON_X:
+									item.bitmap = bitmap
+									item.pixel_shader = palette
+									break
+
+					weather_data = new_weather_data
+
+			except Exception as e:
+				logger.log(f"Schedule weather refresh error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
+
+			# Cleanup after fetch (inline)
+			gc.collect()
+			last_weather_fetch = elapsed
+
+		# Sleep 1 second between updates
+		time.sleep(1)
+
+	logger.log(f"Schedule complete: {schedule_name}", config.LogLevel.INFO, area="SCHEDULE")

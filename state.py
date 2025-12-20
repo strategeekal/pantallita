@@ -109,3 +109,10 @@ market_grace_end_local_minutes = 0  # Grace period end time in minutes since mid
 # Grace period optimization - track which symbols already fetched during current grace period
 grace_period_fetched_symbols = set()  # Set of symbols fetched during current grace period
 previous_grace_period_state = False  # Track previous cycle to detect transition into grace period
+
+# ============================================================================
+# SCHEDULES CACHE (Phase 5)
+# ============================================================================
+
+# Schedules from GitHub or local schedules.csv (loaded at startup, reloaded every 10 cycles)
+cached_schedules = {}  # {schedule_name: {enabled, days, start_hour, start_min, end_hour, end_min, image, progressbar}}
