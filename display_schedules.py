@@ -54,41 +54,79 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 	try:
 		weather_data = weather_api.fetch_current()
 		if weather_data:
-			logger.log(f"Weather: {weather_data['feels_like']}°, UV:{weather_data['uv_index']}", config.LogLevel.DEBUG, area="SCHEDULE")
+			uv_index = weather_data.get('uv_index', 0)
+			logger.log(f"Weather: {weather_data['feels_like']}°, UV:{uv_index}", config.LogLevel.DEBUG, area="SCHEDULE")
 	except Exception as e:
 		logger.log(f"Schedule weather fetch error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
 
 	# === DRAW STATIC ELEMENTS (ONCE) ===
 
-	# Schedule image (40×28, right side) - inline
+	# Schedule image (40×28, right side) - inline with LRU cache
 	try:
 		schedule_image_path = f"{config.Paths.SCHEDULE_IMAGES}/{schedule_config['image']}"
-		bitmap, palette = state.image_cache.get_image(schedule_image_path)
 
-		if bitmap:
-			schedule_img = displayio.TileGrid(bitmap, pixel_shader=palette)
-			schedule_img.x = config.Layout.SCHEDULE_IMAGE_X
-			schedule_img.y = config.Layout.SCHEDULE_IMAGE_Y
-			state.main_group.append(schedule_img)
+		# LRU Cache check (inline)
+		if schedule_image_path in state.image_cache:
+			# Cache hit - move to end (mark as recently used)
+			state.image_cache_order.remove(schedule_image_path)
+			state.image_cache_order.append(schedule_image_path)
+			bitmap = state.image_cache[schedule_image_path]
+			logger.log(f"Using cached schedule image: {schedule_image_path}", config.LogLevel.DEBUG, area="SCHEDULE")
 		else:
-			logger.log(f"Failed to load schedule image: {schedule_config['image']}", config.LogLevel.ERROR, area="SCHEDULE")
-			return  # Skip schedule if image fails
+			# Cache miss - load from SD card
+			logger.log(f"Loading schedule image from SD: {schedule_image_path}", config.LogLevel.DEBUG, area="SCHEDULE")
+			bitmap = displayio.OnDiskBitmap(schedule_image_path)
+
+			# Add to cache
+			state.image_cache[schedule_image_path] = bitmap
+			state.image_cache_order.append(schedule_image_path)
+
+			# LRU eviction: remove oldest if cache is full
+			if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
+				oldest_path = state.image_cache_order.pop(0)
+				del state.image_cache[oldest_path]
+				logger.log(f"Evicted oldest image from cache: {oldest_path}", config.LogLevel.DEBUG, area="SCHEDULE")
+
+		# Create TileGrid with bitmap's pixel shader
+		schedule_img = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
+		schedule_img.x = config.Layout.SCHEDULE_IMAGE_X
+		schedule_img.y = config.Layout.SCHEDULE_IMAGE_Y
+		state.main_group.append(schedule_img)
 
 	except Exception as e:
 		logger.log(f"Schedule image error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
 		return  # Skip schedule if image fails
 
-	# Weather icon (13×13, left side below clock) - inline
+	# Weather icon (13×13, left side below clock) - inline with LRU cache
 	if weather_data:
 		try:
 			weather_icon = f"{weather_data['weather_icon']}.bmp"
-			bitmap, palette = state.image_cache.get_image(f"{config.Paths.COLUMN_IMAGES}/{weather_icon}")
+			weather_icon_path = f"{config.Paths.COLUMN_IMAGES}/{weather_icon}"
 
-			if bitmap:
-				weather_img = displayio.TileGrid(bitmap, pixel_shader=palette)
-				weather_img.x = config.Layout.SCHEDULE_WEATHER_ICON_X
-				weather_img.y = config.Layout.SCHEDULE_WEATHER_ICON_Y
-				state.main_group.append(weather_img)
+			# LRU Cache check (inline)
+			if weather_icon_path in state.image_cache:
+				# Cache hit - move to end (mark as recently used)
+				state.image_cache_order.remove(weather_icon_path)
+				state.image_cache_order.append(weather_icon_path)
+				bitmap = state.image_cache[weather_icon_path]
+			else:
+				# Cache miss - load from SD card
+				bitmap = displayio.OnDiskBitmap(weather_icon_path)
+
+				# Add to cache
+				state.image_cache[weather_icon_path] = bitmap
+				state.image_cache_order.append(weather_icon_path)
+
+				# LRU eviction: remove oldest if cache is full
+				if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
+					oldest_path = state.image_cache_order.pop(0)
+					del state.image_cache[oldest_path]
+
+			# Create TileGrid with bitmap's pixel shader
+			weather_img = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
+			weather_img.x = config.Layout.SCHEDULE_WEATHER_ICON_X
+			weather_img.y = config.Layout.SCHEDULE_WEATHER_ICON_Y
+			state.main_group.append(weather_img)
 
 		except Exception as e:
 			logger.log(f"Weather icon error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
@@ -106,23 +144,24 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		state.main_group.append(temp_label)
 
 	# UV bar (always visible, empty when UV=0) - inline
-	if weather_data and weather_data['uv_index'] > 0:
-		uv_index = weather_data['uv_index']
-		# Calculate UV bar length (inline)
-		uv_length = min(int((uv_index / 11.0) * 40), 40)
+	if weather_data:
+		uv_index = weather_data.get('uv_index', 0)
+		if uv_index > 0:
+			# Calculate UV bar length (inline)
+			uv_length = min(int((uv_index / 11.0) * 40), 40)
 
-		# Draw UV bar with gaps (inline)
-		for i in range(uv_length):
-			# Skip gap pixels every 3 pixels (inline)
-			if i % 3 != 2:
-				uv_pixel = Line(
-					config.Layout.SCHEDULE_UV_X + i,
-					config.Layout.SCHEDULE_UV_Y,
-					config.Layout.SCHEDULE_UV_X + i,
-					config.Layout.SCHEDULE_UV_Y,
-					config.Colors.DIMMEST_WHITE
-				)
-				state.main_group.append(uv_pixel)
+			# Draw UV bar with gaps (inline)
+			for i in range(uv_length):
+				# Skip gap pixels every 3 pixels (inline)
+				if i % 3 != 2:
+					uv_pixel = Line(
+						config.Layout.SCHEDULE_UV_X + i,
+						config.Layout.SCHEDULE_UV_Y,
+						config.Layout.SCHEDULE_UV_X + i,
+						config.Layout.SCHEDULE_UV_Y,
+						config.Colors.DIMMEST_WHITE
+					)
+					state.main_group.append(uv_pixel)
 
 	# Clock label (top-left, 12-hour format) - inline
 	clock_label = bitmap_label.Label(
@@ -234,17 +273,35 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 
 					# Update weather icon if changed (inline)
 					if new_weather_data['weather_icon'] != weather_data.get('weather_icon'):
-						# Remove old icon and add new one (inline)
+						# Load new weather icon with LRU cache (inline)
 						weather_icon = f"{new_weather_data['weather_icon']}.bmp"
-						bitmap, palette = state.image_cache.get_image(f"{config.Paths.COLUMN_IMAGES}/{weather_icon}")
+						weather_icon_path = f"{config.Paths.COLUMN_IMAGES}/{weather_icon}"
 
-						if bitmap:
-							# Find and update weather icon tile grid (inline)
-							for item in state.main_group:
-								if isinstance(item, displayio.TileGrid) and item.x == config.Layout.SCHEDULE_WEATHER_ICON_X:
-									item.bitmap = bitmap
-									item.pixel_shader = palette
-									break
+						# LRU Cache check (inline)
+						if weather_icon_path in state.image_cache:
+							# Cache hit - move to end (mark as recently used)
+							state.image_cache_order.remove(weather_icon_path)
+							state.image_cache_order.append(weather_icon_path)
+							bitmap = state.image_cache[weather_icon_path]
+						else:
+							# Cache miss - load from SD card
+							bitmap = displayio.OnDiskBitmap(weather_icon_path)
+
+							# Add to cache
+							state.image_cache[weather_icon_path] = bitmap
+							state.image_cache_order.append(weather_icon_path)
+
+							# LRU eviction: remove oldest if cache is full
+							if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
+								oldest_path = state.image_cache_order.pop(0)
+								del state.image_cache[oldest_path]
+
+						# Find and update weather icon tile grid (inline)
+						for item in state.main_group:
+							if isinstance(item, displayio.TileGrid) and item.x == config.Layout.SCHEDULE_WEATHER_ICON_X:
+								item.bitmap = bitmap
+								item.pixel_shader = bitmap.pixel_shader
+								break
 
 					weather_data = new_weather_data
 
