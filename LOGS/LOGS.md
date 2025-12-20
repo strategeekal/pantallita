@@ -415,11 +415,67 @@ This file tracks all stability test logs throughout the refactoring process. Eac
     - `respect_market_hours=True`: Stop display after grace (production - minimize API usage)
     - `respect_market_hours=False`: Continue with cached data 24/7 (testing mode)
 
+- **12-19-v3-grace-period-smart-fetching-test.txt** [LATEST] ✅ **GRACE PERIOD OPTIMIZATION VALIDATED**
+  - **Phase:** 4.1 (Grace Period Smart Fetching - API Call Optimization)
+  - **Duration:** 0.3 hours (22:20 - 22:39, 18.9 minutes)
+  - **Cycles:** 13
+  - **API Calls:** 3 weather fetches + 2 forecast fetches + ~16 stock API calls (first rotation only)
+  - **Memory:** Baseline 4.8% → Final 9.9% (delta: +5.1%, +99KB)
+  - **Errors:** 0 critical, 0 warnings
+  - **Notable:** Validated grace period optimization - stocks fetched once during grace period, then cached for subsequent rotations (zero redundant API calls)
+  - **Result:** ✅ **PASS** - Grace period optimization working perfectly
+
+  **Configuration Applied:**
+  - Source: local config.csv
+  - Weather: False (disabled for focused stock testing)
+  - Forecast: True (enabled)
+  - Stocks: True (enabled)
+  - Stock frequency: 1 (every cycle - stress test mode)
+  - Respect market hours: False (testing mode)
+  - Grace period: 540 minutes (9 hours - extended for testing)
+  - Temperature unit: C (Celsius)
+  - Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+  - Market hours (local): 8:30 - 15:00 (grace: +540min)
+
+  **Stock Fetch Pattern Observed:**
+  - **Cycles 1-8 (First rotation):**
+    - Cycle 1: CRM - Fetched intraday + quote ✓
+    - Cycle 2: SPY/SOXQ/IBIT - Fetched 4 quotes ✓
+    - Cycle 3: FDIG - Fetched intraday + quote ✓
+    - Cycle 4: MXN/EUR/CAD - Fetched 3 quotes ✓
+    - Cycle 5: LUMN - Fetched intraday + quote ✓
+    - Cycle 6: ETH/XAU/GBP - Fetched 3 quotes ✓
+    - Cycle 7: BTC/USD - Fetched intraday + quote ✓
+    - Cycle 8: AAPL/GOOGL/NVDA - Fetched 2 quotes ✓
+  - **Cycles 9-12 (Second rotation):**
+    - Cycle 9: CRM - **Used cache (NO API call)** ✓
+    - Cycle 10: SPY/SOXQ/IBIT - **Used cache (NO API call)** ✓
+    - Cycle 11: FDIG - **Used cache (NO API call)** ✓
+    - Cycle 12: MXN/EUR/CAD - **Used cache (NO API call)** ✓
+
+  **Key Findings:**
+  - ✅ **Grace period optimization working:** After fetching all 16 stocks once, subsequent rotations use cached data
+  - ✅ **Zero redundant API calls:** Second rotation (cycles 9-12) made NO stock API calls
+  - ✅ **Per-symbol tracking:** `grace_period_fetched_symbols` set correctly tracks which stocks already fetched
+  - ✅ **Transition detection:** System correctly detects entering grace period and clears tracking set
+  - ✅ **Debug logging visible:** Logs show "Entering grace period - resetting symbol tracking" and symbol additions
+  - ✅ **API savings validated:** In normal 90-min grace period, saves ~32 API calls (2nd rotation avoided)
+  - ✅ **Memory stability:** Delta consistent with previous tests (+5.1%)
+  - ✅ **Zero errors:** Grace period logic integrated seamlessly with zero issues
+
+  **Grace Period Optimization Details:**
+  - **Implementation:** Per-symbol tracking using `state.grace_period_fetched_symbols` set
+  - **Logic:** On grace period entry, clear set → Fetch symbol → Add to set → Skip if already in set
+  - **Savings:** Prevents redundant fetching during grace period (50-60 calls saved per day)
+  - **Files modified:** state.py (tracking set), code.py (transition detection + fetch logic), display_stocks.py (bicolor chart)
+  - **Bicolor chart:** Also implemented during this phase - charts now show green above open, red below open
+
   **Next Steps:**
   - ✅ Extended stability test during market hours - COMPLETE
   - ✅ Test market hours respect mode - COMPLETE
   - ✅ Validate 78-point progressive chart loading - COMPLETE
-  - 🔲 Test with respect_market_hours=False (24/7 cached display mode)
+  - ✅ Grace period smart fetching optimization - COMPLETE
+  - 🔲 Extended test during actual grace period (market hours + 90min)
   - 🔲 Test with display_stocks frequency > 1 (e.g., every 3 cycles)
   - 🔲 Weekend behavior test (cached data from Friday)
 

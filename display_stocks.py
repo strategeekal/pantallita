@@ -218,13 +218,23 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	change_percent = stock_quote["change_percent"]
 	direction = stock_quote["direction"]
 
-	# Determine color based on direction (inline)
+	# Determine percentage color based on direction (inline)
 	if change_percent >= 0:
-		chart_color = config.Colors.GREEN
 		pct_color = config.Colors.GREEN
 	else:
-		chart_color = config.Colors.RED
 		pct_color = config.Colors.RED
+
+	# Get opening price for bicolor chart (from quote, fallback to time series)
+	opening_price = stock_quote.get("open_price")
+	if opening_price is None or opening_price == 0:
+		# Fallback to first point in time series if quote doesn't have it
+		if time_series and len(time_series) > 0:
+			opening_price = time_series[0].get("open_price")
+			if opening_price is None:
+				opening_price = time_series[0].get("close_price")
+
+	# Debug log for bicolor chart
+	logger.log(f"Bicolor chart: {display_name} open=${opening_price:.2f}, current=${current_price:.2f}, change={change_percent:+.2f}%", config.LogLevel.DEBUG, area="STOCKS")
 
 	# Row 1 (y=1): Ticker + percentage (inline)
 	ticker_label = bitmap_label.Label(
@@ -330,26 +340,27 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 		display_width = max(int(progress_ratio * CHART_WIDTH), 2)  # Minimum 2 pixels
 
 		# Compress points to fit display_width, preserving first and last
+		# Store (x, y, price) for bicolor chart support
 		if num_points == 1:
 			# Single point - show at x=0
 			point = points_to_show[0]
 			price_scaled = (point["close_price"] - min_price) / price_range
 			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
-			data_points.append((0, y))
+			data_points.append((0, y, point["close_price"]))
 		elif num_points <= display_width:
 			# No compression needed - direct mapping within display_width
 			for i, point in enumerate(points_to_show):
 				x = int((i / (num_points - 1)) * (display_width - 1)) if num_points > 1 else 0
 				price_scaled = (point["close_price"] - min_price) / price_range
 				y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
-				data_points.append((x, y))
+				data_points.append((x, y, point["close_price"]))
 		else:
 			# Compression needed: preserve first and last within display_width
 			# Always show first point (open)
 			first_point = points_to_show[0]
 			price_scaled = (first_point["close_price"] - min_price) / price_range
 			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
-			data_points.append((0, y))
+			data_points.append((0, y, first_point["close_price"]))
 
 			# Compress middle points within display_width
 			middle_pixels = display_width - 2  # Exclude first and last
@@ -362,19 +373,31 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 					point = points_to_show[point_idx]
 					price_scaled = (point["close_price"] - min_price) / price_range
 					y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
-					data_points.append((pixel_x, y))
+					data_points.append((pixel_x, y, point["close_price"]))
 
 			# Always show last point (current price)
 			last_point = points_to_show[-1]
 			price_scaled = (last_point["close_price"] - min_price) / price_range
 			y = CHART_Y_START + CHART_HEIGHT - 1 - int(price_scaled * (CHART_HEIGHT - 1))
-			data_points.append((display_width - 1, y))
+			data_points.append((display_width - 1, y, last_point["close_price"]))
 
-		# Draw lines connecting data points (inline)
+		# Draw lines connecting data points with bicolor (inline)
+		# Color each segment based on whether ending point is above/below opening price
 		for i in range(len(data_points) - 1):
-			x1, y1 = data_points[i]
-			x2, y2 = data_points[i + 1]
-			line = Line(x1, y1, x2, y2, color=chart_color)
+			x1, y1, price1 = data_points[i]
+			x2, y2, price2 = data_points[i + 1]
+
+			# Determine color based on ending point vs opening price (bicolor chart)
+			if opening_price is not None:
+				if price2 >= opening_price:
+					line_color = config.Colors.GREEN
+				else:
+					line_color = config.Colors.RED
+			else:
+				# Fallback: use overall direction color if opening price unavailable
+				line_color = pct_color
+
+			line = Line(x1, y1, x2, y2, color=line_color)
 			state.main_group.append(line)
 
 	# Add cache indicator when displaying stocks outside market hours (inline)

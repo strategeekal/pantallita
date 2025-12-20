@@ -264,6 +264,7 @@ def run_test_cycle():
 										'price': quote['price'],
 										'change_percent': quote['change_percent'],
 										'direction': quote['direction'],
+										'open_price': quote.get('open_price', 0),
 										'symbol': symbol,
 										'display_name': current_stock.get('display_name', symbol)
 									}
