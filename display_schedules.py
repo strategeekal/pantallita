@@ -100,7 +100,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 	# Weather icon (13×13, left side below clock) - inline with LRU cache
 	if weather_data:
 		try:
-			weather_icon = f"{weather_data['weather_icon']}.bmp"
+			weather_icon = f"{weather_data['icon']}.bmp"
 			weather_icon_path = f"{config.Paths.COLUMN_IMAGES}/{weather_icon}"
 
 			# LRU Cache check (inline)
@@ -272,9 +272,9 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 					temp_label.text = temp_text
 
 					# Update weather icon if changed (inline)
-					if new_weather_data['weather_icon'] != weather_data.get('weather_icon'):
+					if new_weather_data['icon'] != weather_data.get('icon'):
 						# Load new weather icon with LRU cache (inline)
-						weather_icon = f"{new_weather_data['weather_icon']}.bmp"
+						weather_icon = f"{new_weather_data['icon']}.bmp"
 						weather_icon_path = f"{config.Paths.COLUMN_IMAGES}/{weather_icon}"
 
 						# LRU Cache check (inline)
