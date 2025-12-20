@@ -178,6 +178,25 @@ def run_test_cycle():
 				is_grace_period = (current_minutes > state.market_close_local_minutes and
 				                  current_minutes <= state.market_grace_end_local_minutes)
 
+				# Dynamic grace period extension (only when respect_market_hours = false)
+				# Ensures all stocks get closing prices before switching to 24/7 cached display
+				respect_hours = config_manager.get_stocks_respect_market_hours()
+				if not respect_hours and current_minutes > state.market_grace_end_local_minutes and is_weekday:
+					# Past normal grace period, but respect_market_hours = false (24/7 display mode)
+					# Check if all stocks have been fetched during grace period
+					all_stock_symbols = set([s['symbol'] for s in state.cached_stocks])
+					unfetched_stocks = all_stock_symbols - state.grace_period_fetched_symbols
+
+					if len(unfetched_stocks) > 0:
+						# Still have unfetched stocks - extend grace period
+						is_grace_period = True
+						logger.log(f"Grace period auto-extension: {len(unfetched_stocks)} stocks remaining ({', '.join(list(unfetched_stocks)[:3])}{'...' if len(unfetched_stocks) > 3 else ''})", config.LogLevel.INFO, area="STOCKS")
+					else:
+						# All stocks fetched - end grace period, continue with cached data
+						if state.previous_grace_period_state:
+							# Log once when transitioning out
+							logger.log("All stocks updated - ending grace period, using cached data", config.LogLevel.INFO, area="STOCKS")
+
 				# Allow fetching during market hours OR grace period
 				state.should_fetch_stocks = is_weekday and (is_market_hours or is_grace_period)
 
@@ -188,8 +207,7 @@ def run_test_cycle():
 					logger.log("Entering grace period - resetting symbol tracking", config.LogLevel.DEBUG, area="STOCKS")
 				state.previous_grace_period_state = is_grace_period
 
-				# Respect market hours if configured
-				respect_hours = config_manager.get_stocks_respect_market_hours()
+				# Respect market hours if configured (already fetched above)
 				should_display_stocks = True
 				if respect_hours and not state.should_fetch_stocks:
 					should_display_stocks = False
