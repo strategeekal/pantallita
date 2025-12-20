@@ -121,6 +121,11 @@ def run_test_cycle():
 
 	# Check for active schedules (Phase 5) - takes priority over normal rotation
 	if state.cached_schedules:
+		# Log current time for debugging
+		now = state.rtc.datetime
+		current_time_str = f"{now.tm_hour}:{now.tm_min:02d}:{now.tm_sec:02d}"
+		logger.log(f"Checking schedules at {current_time_str} (day {now.tm_wday})", config.LogLevel.DEBUG, area="SCHEDULE")
+
 		active_schedule_name, active_schedule_config = schedule_loader.get_active_schedule(state.rtc, state.cached_schedules)
 
 		if active_schedule_name:
@@ -137,6 +142,8 @@ def run_test_cycle():
 				except Exception as e:
 					logger.log(f"Schedule display error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
 					# Fall through to normal rotation on error
+		else:
+			logger.log(f"No active schedule at {current_time_str}", config.LogLevel.DEBUG, area="SCHEDULE")
 
 	# Check WiFi status
 	if not hardware.is_wifi_connected():
