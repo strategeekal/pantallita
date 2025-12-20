@@ -70,7 +70,7 @@ class Layout:
 
 	# Progress bar (bottom of schedule display)
 	PROGRESS_BAR_X = 23              # Starts at x=23
-	PROGRESS_BAR_Y = 28              # Base line at y=28
+	PROGRESS_BAR_Y = 30              # Base line at y=30
 	PROGRESS_BAR_WIDTH = 40          # 40 pixels wide (x23-62)
 
 # ============================================================================

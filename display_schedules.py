@@ -245,17 +245,28 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 				# Fill from last position to current (inline)
 				for col in range(last_progress_column + 1, current_column + 1):
 					if col >= 0 and col < config.Layout.PROGRESS_BAR_WIDTH:
-						# Draw filled pixel (brighter color)
+						# Draw filled pixels (2 pixels tall below the base line)
 						progress_x = config.Layout.PROGRESS_BAR_X + col
-						progress_pixel = Line(
+						# First pixel (immediately below base line)
+						progress_pixel_1 = Line(
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y + 1,  # Below the base line
+							config.Layout.PROGRESS_BAR_Y + 1,
 							progress_x,
 							config.Layout.PROGRESS_BAR_Y + 1,
 							config.Colors.GREEN
 						)
-						state.main_group.append(progress_pixel)
-						progress_pixels.append(progress_pixel)
+						state.main_group.append(progress_pixel_1)
+						progress_pixels.append(progress_pixel_1)
+						# Second pixel (2 pixels below base line)
+						progress_pixel_2 = Line(
+							progress_x,
+							config.Layout.PROGRESS_BAR_Y + 2,
+							progress_x,
+							config.Layout.PROGRESS_BAR_Y + 2,
+							config.Colors.GREEN
+						)
+						state.main_group.append(progress_pixel_2)
+						progress_pixels.append(progress_pixel_2)
 
 				last_progress_column = current_column
 
