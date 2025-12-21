@@ -465,7 +465,7 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	logger.log("==== PANTALLITA 3.0 | PHASE 5: SCHEDULE DISPLAY ====")
+	logger.log("==== PANTALLITA 3.0 | PHASE 6: EVENTS DISPLAY ====")
 
 	try:
 		# Initialize display FIRST (before show_message)
