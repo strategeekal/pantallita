@@ -51,7 +51,9 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ✅ Configurable display frequency and market hours respect
 - ✅ stocks.csv with GitHub remote loading
 
-## Status: Phase 4 - Stock Display ✅ COMPLETE
+## Status: Phase 5 - Schedule Display ✅ COMPLETE
+
+**Display Order:** Forecast >> Weather >> Events >> Stocks >> Schedule (highest priority)
 
 **Completed:**
 - ✅ **Phase 0: Bootstrap** - Foundation validated (2+ hour test)
@@ -144,8 +146,9 @@ Complete rewrite of Pantallita with proper CircuitPython architecture to solve p
 - ~~**Phase 2:** Forecast display (12-hour forecast, 3-column layout)~~ ✅ **COMPLETE**
 - ~~**Phase 3:** Display configuration (toggles, temperature units, remote control)~~ ✅ **COMPLETE**
 - ~~**Phase 4:** Stock display (with intraday charts)~~ ✅ **COMPLETE**
-- **Phase 5:** Events, schedules, transit displays
-- **Phase 6:** Production deployment and 24+ hour stability testing
+- ~~**Phase 5:** Schedule display (time-based activities with progress tracking)~~ ✅ **COMPLETE**
+- **Phase 6:** Events display (date-based special occasions)
+- **Phase 7:** Transit displays and production deployment
 
 ---
 
@@ -710,7 +713,7 @@ temperature_unit,F
 
 **Success Criteria:** ✅ Stocks display works in all market conditions, optimized API usage, no stack exhaustion, memory stable
 
-## Phase 5: Schedule Display ⏳ NEXT
+## Phase 5: Schedule Display ✅ COMPLETE
 
 ### Overview
 Time-based activity reminders and routines (e.g., "Get Dressed" at 7:00 AM, "Bedtime" at 8:45 PM). Schedules take over the display during configured time windows, showing a custom image with progress tracking and weather context.
@@ -783,65 +786,62 @@ Sleep,1,0123456,20,45,21,30,bedtime.bmp,0
 - **Size**: 40 pixels wide × 28 pixels tall
 - **Examples**: `breakfast.bmp`, `bedtime.bmp`, `get_dressed.bmp`, `homework.bmp`
 
-### Implementation Plan
+### Implementation Completed ✅
 
-**Step 5.1: Schedule Loading & Parsing** ⏳ NEXT
-- [ ] Create `schedule_loader.py` (inline CSV parsing)
-- [ ] Implement date-based GitHub fetch logic
-  - [ ] Get current date (YYYY-MM-DD format)
-  - [ ] Try date-specific CSV first
-  - [ ] Fallback to default.csv if not found
-  - [ ] Fallback to local schedules.csv if GitHub fails
-- [ ] Parse schedule CSV content (inline, no helpers)
-- [ ] Schedule activation detection
-  - [ ] Check current time against schedule windows
-  - [ ] Day-of-week filtering
-  - [ ] Return active schedule (if any)
+**Step 5.1: Schedule Loading & Parsing** ✅ COMPLETE
+- [x] Created `schedule_loader.py` (inline CSV parsing)
+- [x] Implemented date-based GitHub fetch logic (GitHub > Local priority)
+- [x] Date-specific override support (YYYY-MM-DD.csv > default.csv)
+- [x] Parse schedule CSV content (inline, no helpers)
+- [x] Schedule activation detection (time windows + day-of-week filtering)
 
-**Step 5.2: Schedule Display Rendering** ⏳ NEXT
-- [ ] Create `display_schedules.py`
-- [ ] Implement `show_schedule()` function (inline rendering)
-  - [ ] Single long display loop (no segmentation)
-  - [ ] Clock updates (every minute)
-  - [ ] Progress bar updates (continuous)
-  - [ ] Weather refresh (every 15 minutes with cleanup)
-- [ ] Layout rendering (inline):
-  - [ ] Clock label (top-left, 12-hour format)
-  - [ ] Weather icon (13×13, below clock)
-  - [ ] Temperature (below icon)
-  - [ ] UV bar (always visible, empty when UV=0)
-  - [ ] Schedule image (40×28, right side)
-  - [ ] Progress bar with markers (bottom, aligned with image)
+**Step 5.2: Schedule Display Rendering** ✅ COMPLETE
+- [x] Created `display_schedules.py` with inline rendering
+- [x] Implemented `show_schedule()` function with single long loop
+- [x] Clock updates (every minute, 12-hour format)
+- [x] Progress bar updates (continuous, LILAC fill over MINT base)
+- [x] Weather refresh (every 15 minutes with cleanup - **now 5 min for stress test**)
+- [x] Complete layout rendering:
+  - [x] Clock label (top-left, 12-hour format)
+  - [x] Weather icon (13×13, dynamic positioning based on UV)
+  - [x] Temperature (dynamic positioning based on UV)
+  - [x] UV bar (always visible, empty when UV=0)
+  - [x] Schedule image (40×28, right side, LRU image cache)
+  - [x] Progress bar with markers (bottom, 1-pixel wide at fixed positions)
 
-**Step 5.3: Progress Bar Implementation**
-- [ ] Draw progress bar base (horizontal bar)
-- [ ] Add marker system:
-  - [ ] Long markers at 0%, 50%, 100% (3 pixels tall)
-  - [ ] Short markers at 25%, 75% (2 pixels tall)
-- [ ] Update progress in display loop (continuous)
-- [ ] Calculate elapsed vs total duration
+**Step 5.3: Progress Bar Implementation** ✅ COMPLETE
+- [x] Progress bar base (MINT, 2 pixels tall, y=29-30)
+- [x] Progress fill (LILAC, 2 pixels tall, grows upward above base)
+- [x] Marker system (1 pixel wide, WHITE):
+  - [x] Long markers (0%, 50%, 100%): 5 pixels tall (y=31 to y=27)
+  - [x] Short markers (25%, 75%): 4 pixels tall (y=31 to y=28)
+  - [x] Fixed positions: x=23, 32, 42, 52, 61
+- [x] Continuous progress updates in display loop
 
-**Step 5.4: Main Loop Integration**
-- [ ] Add schedule check to main cycle
-- [ ] Priority logic: Check schedules BEFORE normal displays
-- [ ] If schedule active:
-  - [ ] Call `show_schedule()` with duration
-  - [ ] Skip normal rotation for this cycle
-- [ ] If no schedule active:
-  - [ ] Continue normal rotation (weather, forecast, stocks)
+**Step 5.4: Main Loop Integration** ✅ COMPLETE
+- [x] Schedule check with priority (overrides all displays)
+- [x] Config toggle: `display_schedules` (on/off control)
+- [x] Button interrupt support (UP button raises KeyboardInterrupt)
+- [x] Schedule reload every 10 cycles (~50 minutes)
 
-**Step 5.5: Testing & Validation**
-- [ ] Test short schedule (15 minutes)
-- [ ] Test medium schedule (1 hour)
-- [ ] Test long schedule (4+ hours)
-- [ ] Verify weather refresh (every 15 min)
-- [ ] Verify clock updates (every minute)
-- [ ] Verify progress bar animation
-- [ ] Test date-specific GitHub override
-- [ ] Test GitHub fallback to default.csv
-- [ ] Test local fallback when GitHub unavailable
-- [ ] Monitor socket exhaustion (long schedules)
-- [ ] Memory stability check
+**Step 5.5: Testing & Validation** ✅ COMPLETE
+- [x] Initial test: 5 schedules, 1h 35min continuous, perfect transitions
+- [x] Extended stress test: 10 schedules, 4h 20min, starting at 9:25 PM
+- [x] Weather refresh validated (working correctly every 5 min - stress test mode)
+- [x] Clock updates validated (every minute)
+- [x] Progress bar rendering validated (markers, fill, colors)
+- [x] Memory stability: 5.3% → 15.0% over 3.6 hours
+- [x] Zero errors, seamless schedule transitions
+
+### Pending To-Do Items
+
+**Night Mode Minimal Display Toggle**
+- [ ] Add `night_mode_minimal_display` setting to config.csv and config_manager.py
+- [ ] Detect night mode schedules (by name pattern or CSV flag)
+- [ ] Conditionally hide weather icon when:
+  - `night_mode_minimal_display = true` AND
+  - Current schedule is a night mode schedule (e.g., "Sleep", "Night Mode")
+- [ ] Purpose: Reduce screen clutter during sleep schedules for minimal distraction
 
 ### Technical Details
 
@@ -903,30 +903,396 @@ def show_schedule(schedule, duration):
 
 ---
 
-## Phase 6: Events & Transit (Future)
+## Phase 6: Events Display ⏳ NEXT
 
-### Step 6.1: Events Display
-- [ ] Load events.csv (local and GitHub)
-- [ ] Event activation detection (date-based)
-- [ ] Create event display (inline)
+### Overview
+Date-based special calendar events (birthdays, anniversaries, holidays) with custom images and colored text. Events are displayed based on calendar dates and can have optional time windows for when they should appear during the day.
 
-### Step 6.2: CTA Transit
-- [ ] Create `transit_api.py`
-- [ ] Fetch train/bus arrivals
-- [ ] Transit display rendering
+### Purpose
+- Display special occasions and reminders
+- Birthday celebrations with custom messages
+- Holiday greetings (New Year, Valentine's Day, etc.)
+- Anniversary reminders
+- Flexible time-windowed events (e.g., show only during waking hours)
 
-### Step 6.3: Clock Display
-- [ ] Fallback clock display (when all else disabled)
+### Display Priority
+**Normal Cycle Order:** Forecast (60s) >> Weather (240s) >> Events (remaining time) >> Stocks (60s)
+
+**Note:** Schedules override all displays when active (highest priority)
+
+### Display Layout (64×32 pixels)
+
+```
+┌────────────────────────────────────┐
+│ Top Text (left)    [IMAGE] (right)│  ← Top line: DIMMEST_WHITE
+│                    [25×28]         │
+│                    [IMAGE]         │
+│ Bottom Text (left)                 │  ← Bottom line: Custom color
+│                                    │
+└────────────────────────────────────┘
+```
+
+**Layout Constants:**
+- Event Image: x=37, y=2 (top-right corner)
+- Image Size: 25×28 pixels (BMP, 4-bit indexed color)
+- Text: Left-aligned with margin (x=1 or configurable)
+- Text Positioning: **Bottom-aligned** (calculated dynamically)
+  - Top line: DIMMEST_WHITE color (name/greeting)
+  - Bottom line: Custom color per event (occasion type)
+- No weather integration (unlike schedules)
+- No progress bar (unlike schedules)
+- No day indicator (removed from scope)
+
+### Event Sources (Priority Order)
+
+**1. GitHub Ephemeral Events** (highest priority, date-specific)
+- URL: Configured via `GITHUB_EVENTS_URL` in settings.toml
+- Format: `YYYY-MM-DD,TopLine,BottomLine,ImageFile,Color[,StartHour,EndHour]`
+- Example: `2025-12-25,Merry,Christmas,blank.bmp,GREEN`
+- **Auto-skips past dates** (if event date < current date, exclude from loading)
+- Fetched once at startup (ephemeral, temporary events)
+
+**2. Local Permanent Events** (recurring yearly)
+- File: `events.csv` (root directory)
+- Format: `MM-DD,TopLine,BottomLine,ImageFile,Color[,StartHour,EndHour]`
+- Example: `12-25,Merry,Christmas,blank.bmp,GREEN`
+- **Recurring:** Events repeat every year on same date
+- Always loaded from local file
+
+**3. Merged Events Dictionary**
+- Combined: Permanent + Ephemeral events
+- Key: MMDD format (e.g., "1225" for December 25)
+- Value: Array of event data for that date
+- If multiple events for same date, both are included
+
+### CSV Format
+
+**Local Events (events.csv) - Recurring Yearly:**
+```csv
+# Format: MM-DD,TopLine,BottomLine,ImageFile,Color[,StartHour,EndHour]
+01-01,Happy,New Year,new_year.bmp,BUGAMBILIA
+02-14,Dia,Didiculo,heart.bmp,RED,8,20
+12-25,Merry,Christmas,blank.bmp,GREEN
+```
+
+**GitHub Ephemeral Events - Specific Dates:**
+```csv
+# Format: YYYY-MM-DD,TopLine,BottomLine,ImageFile,Color[,StartHour,EndHour]
+2025-01-15,Puchis,Cumple,cake.bmp,BUGAMBILIA,8,20
+2025-02-14,Happy,Valentine,heart.bmp,RED
+```
+
+**Fields:**
+- `date`: MM-DD (local) or YYYY-MM-DD (GitHub)
+- `TopLine`: Text shown at top (e.g., "Happy", "Puchis")
+- `BottomLine`: Text shown at bottom (e.g., "Birthday", "Cumple")
+- `ImageFile`: Filename in `/img/events/` (25×28 BMP)
+- `Color`: Color name for bottom text (e.g., RED, BUGAMBILIA, GREEN, MINT)
+- `StartHour`: Optional (0-23) - hour event becomes active (default: 0)
+- `EndHour`: Optional (0-23) - hour event stops being active (default: 24)
+
+### Event Data Structure
+
+**Event Array:** `[top_line, bottom_line, image, color, start_hour, end_hour]`
+
+**Example:**
+```python
+["Puchis", "Cumple", "cake.bmp", "BUGAMBILIA", 8, 20]
+# Shows "Puchis" (top, DIMMEST_WHITE)
+# Shows "Cumple" (bottom, BUGAMBILIA color)
+# Image: cake.bmp (25×28)
+# Active: 8:00 AM - 8:00 PM only
+```
+
+### Key Features
+
+**1. Time Window Filtering**
+- Events can specify active hours (start_hour to end_hour)
+- Example: Birthday shows only 8 AM - 8 PM
+- All-day events: Omit time fields (active 0:00-23:59)
+- Inactive events: Logged but not displayed
+  - "Event inactive: 1 event(s) today, next active at 8:00"
+  - "Event inactive: 1 event(s) today, time window passed"
+
+**2. Multiple Events Per Day**
+- If multiple events for same date, **time is split equally**
+- Example: 2 events + 60s available = 30s each
+- Minimum duration: `MIN_EVENT_DURATION` (configurable)
+- Events rotate in order loaded
+
+**3. Special Birthday Handling**
+- If `top_line == "Birthday"`: Uses special birthday cake image
+- Different positioning/layout for birthdays (from old code)
+- **Note:** May simplify in new implementation
+
+**4. Image Fallback Chain**
+- Primary: Event-specific image from CSV (`cake.bmp`, `heart.bmp`, etc.)
+- Fallback: `blank.bmp` if primary fails to load
+- Uses LRU image cache (same as schedules/weather)
+
+**5. Bottom-Aligned Text Positioning**
+- Text positions calculated dynamically using helper function
+- Ensures text stays above bottom margin
+- Accounts for variable font heights
+- **Function:** `calculate_bottom_aligned_positions(font, top_text, bottom_text, display_height, bottom_margin, line_spacing)`
+
+**6. Color Support**
+- Colors defined in `config.Colors` class
+- Examples: RED, GREEN, MINT, BUGAMBILIA, LILAC, ORANGE, WHITE, DIMMEST_WHITE
+- Bottom text uses custom color, top text always DIMMEST_WHITE
+
+### Display Logic Flow
+
+```
+1. Get today's date (MMDD format from RTC)
+2. Check merged events dictionary for today's date
+3. Filter events by current time window
+   - Get current hour
+   - Keep only events where: start_hour <= current_hour < end_hour
+4. If no active events:
+   - Check if events exist but are inactive (outside time window)
+   - Log next activation time or "time window passed"
+   - Return False (skip events display)
+5. If 1 active event:
+   - Display for full allocated duration
+6. If multiple active events:
+   - Calculate duration per event (total / count)
+   - Ensure minimum duration per event
+   - Display each event in sequence
+7. For each event:
+   - Clear display
+   - Load event image (with fallback to blank.bmp)
+   - Position image at top-right (x=37, y=2)
+   - Calculate bottom-aligned text positions
+   - Create top text label (DIMMEST_WHITE)
+   - Create bottom text label (custom color)
+   - Display for duration
+   - Memory cleanup between events
+```
+
+### Event Images
+
+**Location:** `/img/events/`
+**Format:** BMP (4-bit indexed color)
+**Size:** 25 pixels wide × 28 pixels tall
+
+**Example Images:**
+- `cake.bmp` - Birthday celebrations
+- `heart.bmp` - Valentine's Day, anniversaries
+- `new_year.bmp` - New Year celebrations
+- `blank.bmp` - Fallback/generic events
+
+**Note:** Events and schedules use different image sizes:
+- Events: 25×28 (smaller, top-right positioning)
+- Schedules: 40×28 (larger, occupies right half)
+
+### Integration with Main Loop
+
+**Priority Logic:**
+1. **Schedules** (highest) - Override all displays when active
+2. **Normal Rotation:**
+   - Forecast: 60 seconds
+   - Weather: 240 seconds
+   - **Events: Remaining time** (if any events today and active)
+   - Stocks: 60 seconds
+
+**Typical Cycle (360s total):**
+```
+Forecast: 60s
+Weather: 240s
+Events: 0-60s (if events exist and active, uses remaining time)
+Stocks: 60s
+```
+
+**Event Display Duration:**
+- Allocated from remaining cycle time
+- If no events: Cycle ends after weather
+- If 1 event: Gets full remaining time
+- If multiple events: Time split equally (min duration enforced)
+
+### Configuration
+
+**settings.toml:**
+```toml
+# GitHub Events (optional - ephemeral, date-specific events)
+GITHUB_EVENTS_URL = "https://raw.githubusercontent.com/user/repo/main/ephemeral_events.csv"
+```
+
+**config.csv:**
+```csv
+setting,value
+display_events,true
+```
+
+**New Setting:**
+- `display_events` - Toggle events display on/off (true/false)
+
+### Implementation Plan
+
+**Step 6.1: Event Loading & Parsing** ⏳ NEXT
+- [ ] Create `event_loader.py` (inline CSV parsing)
+- [ ] Implement local events loading
+  - [ ] Parse MM-DD format dates
+  - [ ] Convert to MMDD key (e.g., "01-15" → "0115")
+  - [ ] Parse event data: [top, bottom, image, color, start_hour, end_hour]
+  - [ ] Store in dictionary: {"0115": [event1, event2, ...]}
+- [ ] Implement GitHub ephemeral events loading
+  - [ ] Parse YYYY-MM-DD format dates
+  - [ ] Skip past events (date < current date)
+  - [ ] Convert to MMDD key for merging
+  - [ ] Fetch once at startup only
+- [ ] Merge events dictionaries (permanent + ephemeral)
+- [ ] Event activation detection
+  - [ ] Check if today has any events
+  - [ ] Filter by current hour (time window)
+  - [ ] Return active events list
+
+**Step 6.2: Event Display Rendering** ⏳ NEXT
+- [ ] Create `display_events.py`
+- [ ] Implement `show_event()` function (inline rendering)
+  - [ ] Clear display
+  - [ ] Load event image (25×28, LRU cache)
+  - [ ] Image fallback to blank.bmp
+  - [ ] Position image at top-right (x=37, y=2)
+  - [ ] Calculate bottom-aligned text positions (inline helper)
+  - [ ] Create text labels (top: DIMMEST_WHITE, bottom: custom color)
+  - [ ] Sleep for duration
+- [ ] Handle multiple events
+  - [ ] Split time equally between events
+  - [ ] Enforce minimum duration per event
+  - [ ] Rotate through events in sequence
+- [ ] Special birthday handling (optional, may simplify)
+
+**Step 6.3: Bottom-Aligned Text Helper**
+- [ ] Create inline helper function for text positioning
+- [ ] Calculate positions based on:
+  - [ ] Font bounding box heights
+  - [ ] Display height (32 pixels)
+  - [ ] Bottom margin (configurable)
+  - [ ] Line spacing between top and bottom text
+- [ ] Return (top_y, bottom_y) positions
+
+**Step 6.4: Config Integration**
+- [ ] Add `display_events` toggle to config.csv
+- [ ] Add to ConfigState in config_manager.py
+- [ ] Create `should_show_events()` getter function
+- [ ] Add to config logging output
+
+**Step 6.5: Main Loop Integration**
+- [ ] Add event check to main cycle
+- [ ] Load events at startup (permanent + ephemeral)
+- [ ] Check for active events after weather display
+- [ ] If events active:
+  - [ ] Calculate remaining cycle time
+  - [ ] Call `show_event()` with duration
+  - [ ] Handle multiple events (time splitting)
+- [ ] If no events or inactive:
+  - [ ] Skip events, continue to stocks
+
+**Step 6.6: Testing & Validation**
+- [ ] Create test events.csv with various dates
+- [ ] Test local recurring events (MM-DD format)
+- [ ] Test GitHub ephemeral events (YYYY-MM-DD format)
+- [ ] Test time window filtering (start_hour/end_hour)
+- [ ] Test multiple events per day (time splitting)
+- [ ] Test image loading and fallback
+- [ ] Test color rendering (various colors)
+- [ ] Test bottom-aligned text positioning
+- [ ] Verify events skip when inactive (outside time window)
+- [ ] Verify past events auto-skipped from GitHub
+- [ ] Memory stability check
+- [ ] Integration with forecast/weather/stocks cycle
+
+### Technical Details
+
+**Display Function Structure:**
+```python
+def show_events(rtc, duration):
+    # Get active events for today
+    active_events = get_active_events(rtc)
+
+    if not active_events:
+        return False  # No events to show
+
+    # Split duration between events
+    event_duration = max(duration // len(active_events), MIN_EVENT_DURATION)
+
+    for event_data in active_events:
+        # Clear display
+        clear_display()
+
+        # Load image (LRU cache)
+        image_path = f"{Paths.EVENT_IMAGES}/{event_data[2]}"
+        bitmap = load_image_with_fallback(image_path, Paths.BLANK_EVENT)
+
+        # Position image (top-right)
+        image_grid = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
+        image_grid.x = 37
+        image_grid.y = 2
+        state.main_group.append(image_grid)
+
+        # Calculate text positions (inline)
+        top_y, bottom_y = calculate_bottom_aligned_positions(
+            font, event_data[0], event_data[1],
+            display_height=32, bottom_margin=2, line_spacing=2
+        )
+
+        # Create text labels
+        top_label = Label(font, text=event_data[0], color=Colors.DIMMEST_WHITE, x=1, y=top_y)
+        bottom_label = Label(font, text=event_data[1], color=get_color(event_data[3]), x=1, y=bottom_y)
+
+        state.main_group.append(top_label)
+        state.main_group.append(bottom_label)
+
+        # Display for duration
+        time.sleep(event_duration)
+```
+
+**Key Design Decisions:**
+- **No weather integration** (simpler than schedules)
+- **No progress bar** (not time-based like schedules)
+- **Bottom-aligned text** (always stays above bottom margin)
+- **LRU image cache** (reuse cache from schedules/weather)
+- **Inline text calculation** (keep stack depth low)
+- **Time window filtering** (show events only during active hours)
+
+**Success Criteria:**
+- [ ] Events display at correct dates
+- [ ] Time window filtering works (inactive events skipped)
+- [ ] Multiple events per day rotate correctly
+- [ ] Images load with proper fallback
+- [ ] Text aligns at bottom correctly
+- [ ] Colors render properly
+- [ ] GitHub ephemeral events load (past dates skipped)
+- [ ] Local recurring events load
+- [ ] Integration with cycle rotation works
+- [ ] Memory remains stable
+- [ ] No stack exhaustion
 
 ---
 
-## Phase 7: Production (Future)
-- [ ] Test schedule priority
-- [ ] Test transit display during commute hours
-- [ ] Test event time filtering
-- [ ] Run for 72 hours (full weekend test)
+## Phase 7: Transit & Production (Future)
 
-**Success Criteria:** All displays work, proper rotation, 72+ hour uptime
+### Step 7.1: CTA Transit Display
+- [ ] Create `transit_api.py`
+- [ ] Fetch train/bus arrivals from CTA APIs
+- [ ] Transit display rendering
+- [ ] Time-based activation (commute hours)
+
+### Step 7.2: Enhanced Clock Display
+- [ ] Fallback clock display (when all displays disabled)
+- [ ] Large centered time display
+- [ ] Optional date display
+
+### Step 7.3: Production Deployment
+- [ ] 72-hour stability test (full weekend)
+- [ ] Test all display priority logic
+- [ ] Test transit during commute hours
+- [ ] Monitor for any errors or crashes
+- [ ] Deploy to production matrix
+- [ ] 7-day validation test
+
+**Success Criteria:** All displays work, proper rotation and priority, 7+ day uptime
 
 ## Phase 5: Error Handling & Polish (Week 5)
 
