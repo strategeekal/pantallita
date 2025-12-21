@@ -49,6 +49,7 @@ def load_local_events():
 def fetch_github_events(rtc):
 	"""
 	Fetch ephemeral events from GitHub (date-specific, auto-skip past dates)
+	Falls back to local ephemeral_events.csv if GitHub fails or not configured
 
 	Args:
 		rtc: Real-time clock object for getting current date
@@ -61,44 +62,65 @@ def fetch_github_events(rtc):
 
 	INLINE - all fetching and parsing inline
 	"""
-	if not config.Env.GITHUB_EVENTS_URL:
-		logger.log("GITHUB_EVENTS_URL not configured", config.LogLevel.DEBUG, area="EVENT")
-		return {}
-
 	response = None
 
+	# Try GitHub first (if configured)
+	if config.Env.GITHUB_EVENTS_URL:
+		try:
+			logger.log(f"Fetching ephemeral events from GitHub...", config.LogLevel.DEBUG, area="EVENT")
+
+			# Fetch from GitHub
+			response = state.session.get(config.Env.GITHUB_EVENTS_URL, timeout=10)
+
+			# Check status
+			if response.status_code == 200:
+				# Get text content
+				content = response.text
+
+				# Parse content (inline)
+				events = parse_event_csv_content(content, is_ephemeral=True, rtc=rtc)
+
+				if events:
+					total_events = sum(len(event_list) for event_list in events.values())
+					logger.log(f"Loaded {total_events} ephemeral events from GitHub", config.LogLevel.INFO, area="EVENT")
+					return events
+				else:
+					logger.log("No valid events found in GitHub CSV", config.LogLevel.DEBUG, area="EVENT")
+
+			else:
+				logger.log(f"GitHub ephemeral events fetch failed: HTTP {response.status_code}", config.LogLevel.WARNING, area="EVENT")
+
+		except Exception as e:
+			logger.log(f"GitHub ephemeral events fetch error: {e}", config.LogLevel.WARNING, area="EVENT")
+
+		finally:
+			if response:
+				response.close()
+
+	# Fallback to local ephemeral_events.csv
 	try:
-		logger.log(f"Fetching events from GitHub...", config.LogLevel.DEBUG, area="EVENT")
+		logger.log("Trying local ephemeral_events.csv...", config.LogLevel.DEBUG, area="EVENT")
 
-		# Fetch from GitHub
-		response = state.session.get(config.Env.GITHUB_EVENTS_URL, timeout=10)
+		with open("ephemeral_events.csv", "r") as f:
+			content = f.read()
 
-		# Check status
-		if response.status_code != 200:
-			logger.log(f"GitHub events fetch failed: HTTP {response.status_code}", config.LogLevel.WARNING, area="EVENT")
-			return {}
-
-		# Get text content
-		content = response.text
-
-		# Parse content (inline)
 		events = parse_event_csv_content(content, is_ephemeral=True, rtc=rtc)
 
 		if events:
 			total_events = sum(len(event_list) for event_list in events.values())
-			logger.log(f"Loaded {total_events} events from GitHub", config.LogLevel.INFO, area="EVENT")
+			logger.log(f"Loaded {total_events} ephemeral events from local file", config.LogLevel.INFO, area="EVENT")
+			return events
 		else:
-			logger.log("No valid events found in GitHub CSV", config.LogLevel.DEBUG, area="EVENT")
+			logger.log("No valid events found in local ephemeral_events.csv", config.LogLevel.DEBUG, area="EVENT")
 
-		return events
+	except OSError:
+		logger.log("Local ephemeral_events.csv not found", config.LogLevel.DEBUG, area="EVENT")
 
 	except Exception as e:
-		logger.log(f"GitHub events fetch error: {e}", config.LogLevel.ERROR, area="EVENT")
-		return {}
+		logger.log(f"Error loading local ephemeral_events.csv: {e}", config.LogLevel.WARNING, area="EVENT")
 
-	finally:
-		if response:
-			response.close()
+	# No ephemeral events available
+	return {}
 
 
 # ============================================================================
