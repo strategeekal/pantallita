@@ -346,8 +346,8 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 
 		# Check for button press (inline)
 		if hardware.button_up_pressed():
-			logger.log("UP button pressed during schedule display", config.LogLevel.INFO, area="SCHEDULE")
-			return  # Exit schedule display early
+			logger.log("UP button pressed - stopping execution", config.LogLevel.INFO, area="SCHEDULE")
+			raise KeyboardInterrupt  # Stop code execution
 
 		# Sleep 1 second between updates
 		time.sleep(1)
