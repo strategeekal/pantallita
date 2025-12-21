@@ -120,7 +120,7 @@ def run_test_cycle():
 				logger.log(f"Reloaded {len(local_schedules)} schedules from local file", config.LogLevel.DEBUG, area="SCHEDULE")
 
 	# Check for active schedules (Phase 5) - takes priority over normal rotation
-	if state.cached_schedules:
+	if config_manager.should_show_schedules() and state.cached_schedules:
 		# Log current time for debugging
 		now = state.rtc.datetime
 		current_time_str = f"{now.tm_hour}:{now.tm_min:02d}:{now.tm_sec:02d}"

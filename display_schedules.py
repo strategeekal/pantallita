@@ -286,8 +286,8 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 
 				last_progress_column = current_column
 
-		# Refresh weather + cleanup (every 15 minutes) - inline
-		if elapsed - last_weather_fetch > 900:  # 15 minutes
+		# Refresh weather + cleanup (every 5 minutes for stress test) - inline
+		if elapsed - last_weather_fetch > 300:  # 5 minutes (stress test)
 			logger.log(f"Schedule weather refresh ({elapsed/60:.1f} min elapsed)", config.LogLevel.DEBUG, area="SCHEDULE")
 
 			try:

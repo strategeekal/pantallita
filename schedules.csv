@@ -3,12 +3,20 @@
 # days: 0-6 for Mon-Sun (e.g., "01234" = Mon-Fri, "5" = Saturday only)
 # progressbar: 1=true, 0=false
 
-# EXTENDED TEST SCHEDULES - Saturday only, starting at 7:50 PM
-# Total duration: 2h 35min continuous (19:50 - 22:25)
-Eat Dinner,1,5,19,50,20,35,dinner.bmp,1
-Medicine pm,1,5,20,35,20,50,medicine.bmp,1
-Bath Time,1,5,20,50,21,20,bath_time.bmp,1
-Pajamas On,1,5,21,20,21,30,get_dressed_night.bmp,1
-Toilet and Teeth PM,1,5,21,30,21,40,toilet_and_teeth.bmp,1
-Story and Sleep,1,5,21,40,21,55,story_and_bed.bmp,1
-Sleep,1,5,21,55,22,25,bed.bmp,0
+# STRESS TEST SCHEDULES - Saturday only, starting at 9:25 PM
+# Tests: Long duration (2h), weather refresh every 5 min, multiple short schedules
+# Total duration: ~4h 20min continuous (21:25 - 01:45+)
+
+# Long schedule - 2 hours to test sustained display and multiple weather refreshes
+Quiet Time,1,5,21,25,23,25,medicine.bmp,1
+
+# Short schedules - 10-20 minutes each
+Art Class,1,5,23,25,23,40,art class.bmp,1
+Soccer Practice,1,5,23,40,23,55,soccer.bmp,1
+Basketball,1,5,23,55,0,10,basketball.bmp,1
+Breakfast,1,5,0,10,0,25,breakfast.bmp,1
+Get Dressed,1,5,0,25,0,40,get_dressed.bmp,1
+Baseball,1,5,0,40,0,58,baseball.bmp,1
+Scooter Time,1,5,0,58,1,13,scooter.bmp,1
+Brush Teeth,1,5,1,13,1,28,brush_teeth.bmp,1
+Football,1,5,1,28,1,45,football.bmp,1
