@@ -98,6 +98,17 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		logger.log(f"Schedule image error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
 		return  # Skip schedule if image fails
 
+	# Dynamic positioning based on UV presence (inline)
+	uv_index = weather_data.get('uv', 0) if weather_data else 0
+	if uv_index > 0:
+		# UV bar shown - move weather icon up to reduce cramping
+		weather_icon_y = config.Layout.SCHEDULE_WEATHER_ICON_Y - 1
+		temp_y = config.Layout.SCHEDULE_TEMP_Y
+	else:
+		# No UV bar - keep icon position, move temp down for spacing
+		weather_icon_y = config.Layout.SCHEDULE_WEATHER_ICON_Y
+		temp_y = config.Layout.SCHEDULE_TEMP_Y + 1
+
 	# Weather icon (13×13, left side below clock) - inline with LRU cache
 	if weather_data:
 		try:
@@ -126,7 +137,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			# Create TileGrid with bitmap's pixel shader
 			weather_img = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
 			weather_img.x = config.Layout.SCHEDULE_WEATHER_ICON_X
-			weather_img.y = config.Layout.SCHEDULE_WEATHER_ICON_Y
+			weather_img.y = weather_icon_y  # Dynamic position
 			state.main_group.append(weather_img)
 
 		except Exception as e:
@@ -140,7 +151,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			color=config.Colors.DIMMEST_WHITE,
 			text=temp_text,
 			x=config.Layout.SCHEDULE_TEMP_X,
-			y=config.Layout.SCHEDULE_TEMP_Y
+			y=temp_y  # Dynamic position
 		)
 		state.main_group.append(temp_label)
 
@@ -197,7 +208,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			(32, 4),    # 25% - short (4 pixels)
 			(42, 5),    # 50% - long (5 pixels)
 			(52, 4),    # 75% - short (4 pixels)
-			(61, 5)     # 100% - long (5 pixels)
+			(62, 5)     # 100% - long (5 pixels)
 		]
 
 		for marker_x, height in marker_positions:
