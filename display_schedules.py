@@ -208,15 +208,26 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 				marker_x = config.Layout.PROGRESS_BAR_X + int(position * config.Layout.PROGRESS_BAR_WIDTH)
 
 			# Draw marker extending upward from y=31 (inline)
+			# Each marker is 2 pixels wide
 			for y_offset in range(height):
-				marker_pixel = Line(
+				# First pixel of marker
+				marker_pixel_1 = Line(
 					marker_x,
 					31 - y_offset,  # Start at y=31, extend upward
 					marker_x,
 					31 - y_offset,
 					config.Colors.WHITE
 				)
-				state.main_group.append(marker_pixel)
+				state.main_group.append(marker_pixel_1)
+				# Second pixel of marker (2 pixels wide)
+				marker_pixel_2 = Line(
+					marker_x + 1,
+					31 - y_offset,
+					marker_x + 1,
+					31 - y_offset,
+					config.Colors.WHITE
+				)
+				state.main_group.append(marker_pixel_2)
 
 	# === DISPLAY LOOP (CONTINUOUS UPDATES) ===
 

@@ -58,19 +58,19 @@ class Layout:
 	# Schedule display (Phase 5)
 	# Layout: Left section (x:0-22) = clock, weather, temp, UV | Right section (x:23-63) = schedule image
 	SCHEDULE_CLOCK_X = 1
-	SCHEDULE_CLOCK_Y = 3
+	SCHEDULE_CLOCK_Y = 1
 	SCHEDULE_WEATHER_ICON_X = 4      # 13×13 weather icon
 	SCHEDULE_WEATHER_ICON_Y = 9
 	SCHEDULE_TEMP_X = 5              # Temperature label (below weather icon)
 	SCHEDULE_TEMP_Y = 23
-	SCHEDULE_UV_X = 23               # UV bar (horizontal, left to right)
-	SCHEDULE_UV_Y = 4
+	SCHEDULE_UV_X = 1               # UV bar (horizontal, left to right)
+	SCHEDULE_UV_Y = 30
 	SCHEDULE_IMAGE_X = 23            # Schedule image (40×28, right side)
 	SCHEDULE_IMAGE_Y = 0
 
 	# Progress bar (bottom of schedule display)
 	PROGRESS_BAR_X = 23              # Starts at x=23
-	PROGRESS_BAR_Y = 30              # Base line at y=30
+	PROGRESS_BAR_Y = 29              # Base line at y=30
 	PROGRESS_BAR_WIDTH = 40          # 40 pixels wide (x23-62)
 
 # ============================================================================
@@ -212,7 +212,7 @@ class Logging:
 	SHOW_CYCLE_SEPARATOR = True  # Show "## CYCLE N ##" markers
 
 # Current log level
-CURRENT_LOG_LEVEL = LogLevel.INFO
+CURRENT_LOG_LEVEL = LogLevel.DEBUG
 
 # ============================================================================
 # TIMING
