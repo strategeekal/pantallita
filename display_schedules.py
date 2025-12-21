@@ -191,43 +191,27 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		# Draw markers (inline)
 		# Long markers: 0%, 50%, 100% (5 pixels tall, y=31 to y=27)
 		# Short markers: 25%, 75% (4 pixels tall, y=31 to y=28)
+		# Fixed positions: x=23, 32, 42, 52, 61 (segments: 9, 10, 10, 9 pixels)
 		marker_positions = [
-			(0.0, 5),    # 0% - long (5 pixels)
-			(0.25, 4),   # 25% - short (4 pixels)
-			(0.5, 5),    # 50% - long (5 pixels)
-			(0.75, 4),   # 75% - short (4 pixels)
-			(1.0, 5)     # 100% - long (5 pixels)
+			(23, 5),    # 0% - long (5 pixels)
+			(32, 4),    # 25% - short (4 pixels)
+			(42, 5),    # 50% - long (5 pixels)
+			(52, 4),    # 75% - short (4 pixels)
+			(61, 5)     # 100% - long (5 pixels)
 		]
 
-		for position, height in marker_positions:
-			# Calculate marker x position
-			# For 100% (position=1.0), use WIDTH-2 to get x=61 instead of x=63
-			if position == 1.0:
-				marker_x = config.Layout.PROGRESS_BAR_X + config.Layout.PROGRESS_BAR_WIDTH - 2
-			else:
-				marker_x = config.Layout.PROGRESS_BAR_X + int(position * config.Layout.PROGRESS_BAR_WIDTH)
-
+		for marker_x, height in marker_positions:
 			# Draw marker extending upward from y=31 (inline)
-			# Each marker is 2 pixels wide
+			# Each marker is 1 pixel wide
 			for y_offset in range(height):
-				# First pixel of marker
-				marker_pixel_1 = Line(
+				marker_pixel = Line(
 					marker_x,
 					31 - y_offset,  # Start at y=31, extend upward
 					marker_x,
 					31 - y_offset,
 					config.Colors.WHITE
 				)
-				state.main_group.append(marker_pixel_1)
-				# Second pixel of marker (2 pixels wide)
-				marker_pixel_2 = Line(
-					marker_x + 1,
-					31 - y_offset,
-					marker_x + 1,
-					31 - y_offset,
-					config.Colors.WHITE
-				)
-				state.main_group.append(marker_pixel_2)
+				state.main_group.append(marker_pixel)
 
 	# === DISPLAY LOOP (CONTINUOUS UPDATES) ===
 
