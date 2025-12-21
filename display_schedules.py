@@ -15,6 +15,7 @@ import config
 import state
 import logger
 import weather_api
+import hardware
 
 
 # ============================================================================
@@ -191,11 +192,11 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		# Long markers: 0%, 50%, 100% (3 pixels tall)
 		# Short markers: 25%, 75% (2 pixels tall)
 		marker_positions = [
-			(0.0, 3),    # 0% - long
-			(0.25, 2),   # 25% - short
-			(0.5, 3),    # 50% - long
-			(0.75, 2),   # 75% - short
-			(1.0, 3)     # 100% - long
+			(0.0, 5),    # 0% - long
+			(0.25, 4),   # 25% - short
+			(0.5, 5),    # 50% - long
+			(0.75, 4),   # 75% - short
+			(1.0, 5)     # 100% - long
 		]
 
 		for position, height in marker_positions:
@@ -205,9 +206,9 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			for y_offset in range(height):
 				marker_pixel = Line(
 					marker_x,
-					config.Layout.PROGRESS_BAR_Y - y_offset,
+					config.Layout.PROGRESS_BAR_Y - 1,
 					marker_x,
-					config.Layout.PROGRESS_BAR_Y - y_offset,
+					config.Layout.PROGRESS_BAR_Y - 1,
 					config.Colors.WHITE
 				)
 				state.main_group.append(marker_pixel)
@@ -251,22 +252,22 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 					if col >= 0 and col < config.Layout.PROGRESS_BAR_WIDTH:
 						# Draw filled pixels (2 pixels tall ABOVE base line, LILAC color)
 						progress_x = config.Layout.PROGRESS_BAR_X + col
-						# First pixel (2 pixels above base line, at y=28)
+						# First pixel
 						progress_pixel_1 = Line(
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y - 2,
+							config.Layout.PROGRESS_BAR_Y,
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y - 2,
+							config.Layout.PROGRESS_BAR_Y,
 							config.Colors.LILAC
 						)
 						state.main_group.append(progress_pixel_1)
 						progress_pixels.append(progress_pixel_1)
-						# Second pixel (1 pixel above base line, at y=29)
+						# Second pixel
 						progress_pixel_2 = Line(
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y - 1,
+							config.Layout.PROGRESS_BAR_Y + 1,
 							progress_x,
-							config.Layout.PROGRESS_BAR_Y - 1,
+							config.Layout.PROGRESS_BAR_Y + 1,
 							config.Colors.LILAC
 						)
 						state.main_group.append(progress_pixel_2)
@@ -326,6 +327,11 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			# Cleanup after fetch (inline)
 			gc.collect()
 			last_weather_fetch = elapsed
+
+		# Check for button press (inline)
+		if hardware.button_up_pressed():
+			logger.log("UP button pressed during schedule display", config.LogLevel.INFO, area="SCHEDULE")
+			return  # Exit schedule display early
 
 		# Sleep 1 second between updates
 		time.sleep(1)
