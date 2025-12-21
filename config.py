@@ -148,6 +148,9 @@ class Env:
 	# Schedules (Phase 5)
 	SCHEDULES_GITHUB_URL = None
 
+	# Events (Phase 6)
+	GITHUB_EVENTS_URL = None
+
 	@classmethod
 	def load(cls):
 		"""Load all environment variables"""
@@ -168,6 +171,9 @@ class Env:
 
 		# Schedules (Phase 5)
 		cls.SCHEDULES_GITHUB_URL = os.getenv("SCHEDULES_GITHUB_URL")
+
+		# Events (Phase 6)
+		cls.GITHUB_EVENTS_URL = os.getenv("GITHUB_EVENTS_URL")
 
 # ============================================================================
 # API ENDPOINTS
