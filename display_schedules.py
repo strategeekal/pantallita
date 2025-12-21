@@ -189,26 +189,31 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			state.main_group.append(pixel_2)
 
 		# Draw markers (inline)
-		# Long markers: 0%, 50%, 100% (3 pixels tall)
-		# Short markers: 25%, 75% (2 pixels tall)
+		# Long markers: 0%, 50%, 100% (5 pixels tall, y=31 to y=27)
+		# Short markers: 25%, 75% (4 pixels tall, y=31 to y=28)
 		marker_positions = [
-			(0.0, 5),    # 0% - long
-			(0.25, 4),   # 25% - short
-			(0.5, 5),    # 50% - long
-			(0.75, 4),   # 75% - short
-			(1.0, 5)     # 100% - long
+			(0.0, 5),    # 0% - long (5 pixels)
+			(0.25, 4),   # 25% - short (4 pixels)
+			(0.5, 5),    # 50% - long (5 pixels)
+			(0.75, 4),   # 75% - short (4 pixels)
+			(1.0, 5)     # 100% - long (5 pixels)
 		]
 
 		for position, height in marker_positions:
-			marker_x = config.Layout.PROGRESS_BAR_X + int(position * config.Layout.PROGRESS_BAR_WIDTH)
+			# Calculate marker x position
+			# For 100% (position=1.0), use WIDTH-2 to get x=61 instead of x=63
+			if position == 1.0:
+				marker_x = config.Layout.PROGRESS_BAR_X + config.Layout.PROGRESS_BAR_WIDTH - 2
+			else:
+				marker_x = config.Layout.PROGRESS_BAR_X + int(position * config.Layout.PROGRESS_BAR_WIDTH)
 
-			# Draw marker extending upward (inline)
+			# Draw marker extending upward from y=31 (inline)
 			for y_offset in range(height):
 				marker_pixel = Line(
 					marker_x,
-					config.Layout.PROGRESS_BAR_Y - 1,
+					31 - y_offset,  # Start at y=31, extend upward
 					marker_x,
-					config.Layout.PROGRESS_BAR_Y - 1,
+					31 - y_offset,
 					config.Colors.WHITE
 				)
 				state.main_group.append(marker_pixel)
