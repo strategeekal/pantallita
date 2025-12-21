@@ -21,6 +21,7 @@ class ConfigState:
 	display_clock = False
 	display_stocks = False
 	display_schedules = True
+	display_events = True
 
 	# Temperature unit (F or C)
 	temperature_unit = "F"
@@ -77,7 +78,7 @@ def apply_setting(setting, value):
 	INLINE - no helper functions.
 	"""
 	# Boolean settings
-	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'stocks_respect_market_hours']:
+	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'display_events', 'stocks_respect_market_hours']:
 		# Parse boolean value
 		if value.lower() in ['true', '1', 'yes', 'on']:
 			bool_value = True
@@ -98,6 +99,8 @@ def apply_setting(setting, value):
 			ConfigState.display_stocks = bool_value
 		elif setting == 'display_schedules':
 			ConfigState.display_schedules = bool_value
+		elif setting == 'display_events':
+			ConfigState.display_events = bool_value
 		elif setting == 'stocks_respect_market_hours':
 			ConfigState.stocks_respect_market_hours = bool_value
 
@@ -278,7 +281,7 @@ def load_config():
 
 	# Log final configuration
 	logger.log(f"Config loaded (source: {ConfigState.last_source})", area="CONFIG")
-	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Stocks: {ConfigState.display_stocks}, Clock: {ConfigState.display_clock}, Schedules: {ConfigState.display_schedules}", area="CONFIG")
+	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Stocks: {ConfigState.display_stocks}, Clock: {ConfigState.display_clock}, Schedules: {ConfigState.display_schedules}, Events: {ConfigState.display_events}", area="CONFIG")
 	logger.log(f"  Temperature unit: {ConfigState.temperature_unit}", area="CONFIG")
 	logger.log(f"  Stocks frequency: {ConfigState.stocks_display_frequency}, Respect market hours: {ConfigState.stocks_respect_market_hours}, Grace period: {ConfigState.stocks_grace_period_minutes}min", area="CONFIG")
 
@@ -308,6 +311,10 @@ def should_show_stocks():
 def should_show_schedules():
 	"""Check if schedule display is enabled"""
 	return ConfigState.display_schedules
+
+def should_show_events():
+	"""Check if events display is enabled"""
+	return ConfigState.display_events
 
 def get_temperature_unit():
 	"""Get current temperature unit (F or C)"""

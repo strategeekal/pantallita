@@ -15,6 +15,7 @@ display_forecast,true
 display_stocks,true
 display_clock,false
 display_schedules,true
+display_events,true
 
 # Temperature unit (F or C)
 temperature_unit,C

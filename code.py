@@ -40,6 +40,10 @@ import display_stocks
 import schedule_loader
 import display_schedules
 
+# Import event modules (Phase 6)
+import event_loader
+import display_events
+
 # ============================================================================
 # DISPLAY FUNCTIONS
 # ============================================================================
@@ -196,6 +200,18 @@ def run_test_cycle():
 			# Then display current weather
 			if need_weather:
 				display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
+				showed_display = True
+
+		# Event display (Phase 6) - After weather, before stocks
+		if config_manager.should_show_events() and state.cached_events:
+			# Get active events for today (filtered by date + time window)
+			active_events = event_loader.get_active_events(state.rtc, state.cached_events)
+			if active_events:
+				# Calculate remaining cycle time for events (flexible duration)
+				# Typical cycle: Forecast(60s) + Weather(240s) + Events(remaining) + Stocks(60s)
+				# Events get whatever time is left (usually 0-60s)
+				# For now, use fixed 60s for events
+				display_events.show_events(active_events, config.Timing.STOCK_DISPLAY_DURATION)
 				showed_display = True
 
 		# Stock display (Phase 4)
@@ -554,6 +570,21 @@ def initialize():
 				logger.log(f"Loaded {len(local_schedules)} schedules from local file", area="SCHEDULE")
 			else:
 				logger.log("No schedules loaded (no GitHub or local schedules.csv)", config.LogLevel.WARNING, area="SCHEDULE")
+
+		# Load events (Phase 6)
+		if config_manager.should_show_events():
+			show_message("EVENTS...", config.Colors.GREEN, 16)
+			# Load local recurring events
+			local_events = event_loader.load_local_events()
+			# Load GitHub ephemeral events (date-specific, auto-skip past)
+			github_events = event_loader.fetch_github_events(state.rtc)
+			# Merge local + GitHub
+			state.cached_events = event_loader.merge_events(local_events, github_events)
+			total_events = sum(len(event_list) for event_list in state.cached_events.values())
+			if total_events > 0:
+				logger.log(f"Loaded {total_events} events across {len(state.cached_events)} dates", area="EVENT")
+			else:
+				logger.log("No events loaded", config.LogLevel.DEBUG, area="EVENT")
 
 		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)

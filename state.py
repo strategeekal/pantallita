@@ -116,3 +116,6 @@ previous_grace_period_state = False  # Track previous cycle to detect transition
 
 # Schedules from GitHub or local schedules.csv (loaded at startup, reloaded every 10 cycles)
 cached_schedules = {}  # {schedule_name: {enabled, days, start_hour, start_min, end_hour, end_min, image, progressbar}}
+
+# Events from GitHub ephemeral + local recurring (loaded at startup)
+cached_events = {}  # {MMDD: [[top, bottom, image, color, start_hour, end_hour], ...]}

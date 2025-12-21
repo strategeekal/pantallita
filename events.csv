@@ -1,0 +1,25 @@
+# Format: MM-DD,TopLine,BottomLine,ImageFile,Color[,StartHour,EndHour]
+# Date: MM-DD (recurring yearly)
+# TopLine: Top text (greeting/name)
+# BottomLine: Bottom text (occasion)
+# ImageFile: Filename in /img/events/ (25×28 BMP)
+# Color: Color name (RED, GREEN, BUGAMBILIA, MINT, LILAC, ORANGE, WHITE, DIMMEST_WHITE)
+# StartHour: Optional hour event becomes active (0-23, default: 0)
+# EndHour: Optional hour event stops being active (1-24, default: 24)
+
+# TEST EVENTS - For validating Phase 6
+# Today's date for testing (12-21)
+12-21,Happy,Holidays,blank.bmp,GREEN,8,20
+12-21,Season,Greetings,blank.bmp,MINT,20,24
+
+# New Year
+01-01,Happy,New Year,blank.bmp,BUGAMBILIA
+
+# Valentine's Day
+02-14,Happy,Valentine,heart.bmp,RED,8,20
+
+# Example birthday with time window
+03-15,Birthday,Celebration,cake.bmp,BUGAMBILIA,8,20
+
+# Christmas
+12-25,Merry,Christmas,blank.bmp,GREEN
