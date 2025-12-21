@@ -68,6 +68,14 @@ class Layout:
 	SCHEDULE_IMAGE_X = 23            # Schedule image (40×28, right side)
 	SCHEDULE_IMAGE_Y = 0
 
+	# Event display positioning (Phase 6)
+	EVENT_IMAGE_X = 37               # Event image (25×28, top-right corner)
+	EVENT_IMAGE_Y = 2
+	EVENT_TEXT_X = 1                 # Text left margin
+	EVENT_BOTTOM_MARGIN = 1          # Pixels from bottom edge
+	EVENT_LINE_SPACING = 2           # Spacing between top and bottom text lines
+	EVENT_MIN_DURATION = 10          # Minimum seconds per event
+
 	# Progress bar (bottom of schedule display)
 	PROGRESS_BAR_X = 23              # Starts at x=23
 	PROGRESS_BAR_Y = 29              # Base line at y=30
@@ -192,6 +200,9 @@ class Paths:
 
 	# Schedule images (Phase 5)
 	SCHEDULE_IMAGES = "/img/schedules"
+
+	# Event images (Phase 6)
+	EVENT_IMAGES = "/img/events"
 
 # ============================================================================
 # LOGGING
