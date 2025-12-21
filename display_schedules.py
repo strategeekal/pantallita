@@ -51,15 +51,26 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 
 	logger.log(f"Starting schedule: {schedule_name} ({duration/60:.1f} min)", config.LogLevel.INFO, area="SCHEDULE")
 
-	# Check if weather should be shown in schedules (from config)
-	show_weather_in_schedule = config_manager.should_show_weather_in_schedules()
+	# Get night_mode level from schedule config (0=normal, 1=temp only, 2=clock only)
+	night_mode = schedule_config.get("night_mode", 0)
 
-	if not show_weather_in_schedule:
-		logger.log("Schedule weather disabled - skipping weather fetch", config.LogLevel.DEBUG, area="SCHEDULE")
+	# Determine what to fetch and show based on night_mode
+	# Level 0: Show icon, temp, UV (fetch weather)
+	# Level 1: Show temp only, no icon/UV (fetch weather)
+	# Level 2: Clock only, no weather (skip fetch)
+	should_fetch_weather = (night_mode <= 1)  # Fetch for levels 0 and 1
+	show_weather_icon = (night_mode == 0)     # Show icon only for level 0
+	show_temperature = (night_mode <= 1)      # Show temp for levels 0 and 1
+	show_uv_bar = (night_mode == 0)           # Show UV only for level 0
 
-	# Fetch initial weather data (inline) - skip if weather disabled in schedules
+	if night_mode == 1:
+		logger.log("Night mode 1: Temperature only (no icon/UV)", config.LogLevel.DEBUG, area="SCHEDULE")
+	elif night_mode == 2:
+		logger.log("Night mode 2: Clock only (no weather fetch)", config.LogLevel.DEBUG, area="SCHEDULE")
+
+	# Fetch initial weather data (inline) - skip for night_mode 2
 	weather_data = None
-	if show_weather_in_schedule:
+	if should_fetch_weather:
 		try:
 			weather_data = weather_api.fetch_current()
 			if weather_data:
@@ -118,7 +129,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		temp_y = config.Layout.SCHEDULE_TEMP_Y + 1
 
 	# Weather icon (13×13, left side below clock) - inline with LRU cache
-	if weather_data and show_weather_in_schedule:
+	if weather_data and show_weather_icon:
 		try:
 			weather_icon = f"{weather_data['icon']}.bmp"
 			weather_icon_path = f"{config.Paths.COLUMN_IMAGES}/{weather_icon}"
@@ -152,7 +163,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			logger.log(f"Weather icon error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
 
 	# Temperature label (below weather icon) - inline
-	if weather_data and show_weather_in_schedule:
+	if weather_data and show_temperature:
 		temp_text = f"{round(weather_data['feels_like'])}°"
 		temp_label = bitmap_label.Label(
 			state.font_small,
@@ -163,8 +174,8 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		)
 		state.main_group.append(temp_label)
 
-	# UV bar (always visible, empty when UV=0) - inline
-	if weather_data and show_weather_in_schedule:
+	# UV bar (only shown in night_mode 0) - inline
+	if weather_data and show_uv_bar:
 		uv_index = weather_data.get('uv', 0)
 		if uv_index > 0:
 			# Calculate UV bar length (inline)
@@ -295,20 +306,20 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 				last_progress_column = current_column
 
 		# Refresh weather + cleanup (every 5 minutes for stress test) - inline
-		# Skip weather fetch entirely if schedules_show_weather is disabled
-		if show_weather_in_schedule and elapsed - last_weather_fetch > 300:  # 5 minutes (stress test)
+		# Skip weather fetch for night_mode 2 (clock only)
+		if should_fetch_weather and elapsed - last_weather_fetch > 300:  # 5 minutes (stress test)
 			logger.log(f"Schedule weather refresh ({elapsed/60:.1f} min elapsed)", config.LogLevel.DEBUG, area="SCHEDULE")
 
 			try:
 				new_weather_data = weather_api.fetch_current()
 
-				if new_weather_data:
+				if new_weather_data and show_temperature:
 					# Update temperature label (inline)
 					temp_text = f"{round(new_weather_data['feels_like'])}°"
 					temp_label.text = temp_text
 
-					# Update weather icon if changed (inline)
-					if new_weather_data['icon'] != weather_data.get('icon'):
+					# Update weather icon if changed (inline) - only for night_mode 0
+					if show_weather_icon and new_weather_data['icon'] != weather_data.get('icon'):
 						# Load new weather icon with LRU cache (inline)
 						weather_icon = f"{new_weather_data['icon']}.bmp"
 						weather_icon_path = f"{config.Paths.COLUMN_IMAGES}/{weather_icon}"

@@ -1,15 +1,13 @@
-# Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar
+# Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar,night_mode
 # enabled: 1=true, 0=false
 # days: 0-6 for Mon-Sun (e.g., "01234" = Mon-Fri, "5" = Saturday only)
 # progressbar: 1=true, 0=false
+# night_mode: 0=normal (icon+temp+UV), 1=temp only (no icon/UV), 2=clock only (no fetch)
 
-# STRESS TEST SCHEDULES - Saturday only, starting at 9:25 PM
-# Tests: Long duration (2h), weather refresh every 5 min, multiple short schedules
-# Total duration: ~4h 20min continuous (21:25 - 01:45+)
-
-# Long schedule - 2 hours to test sustained display and multiple weather refreshes
-Quiet Times,1,0123456,22,00,23,25,medicine.bmp,1
+# NIGHTMODE TEST - chek the 3 night mode display options on consecutive tests. total duration 1 hour
 
 # Short schedules - 10-20 minutes each
-Night Mode,1,0123456,10,30,13,30,night_mode.bmp,0
+Night Mode,1,0123456,12,20,12,40,night_mode.bmp,0,0
+Night Mode2,1,0123456,12,40,13,00,night_mode.bmp,0,1
+Night Mode3,1,0123456,13,00,13,20,night_mode.bmp,0,2
 
