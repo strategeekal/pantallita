@@ -25,9 +25,6 @@ class ConfigState:
 	# Temperature unit (F or C)
 	temperature_unit = "F"
 
-	# Schedule settings
-	schedules_show_weather = True  # Show weather during schedule displays
-
 	# Stock settings
 	stocks_display_frequency = 3  # Show stocks every N cycles
 	stocks_respect_market_hours = True  # Only show during market hours
@@ -80,7 +77,7 @@ def apply_setting(setting, value):
 	INLINE - no helper functions.
 	"""
 	# Boolean settings
-	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'schedules_show_weather', 'stocks_respect_market_hours']:
+	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'stocks_respect_market_hours']:
 		# Parse boolean value
 		if value.lower() in ['true', '1', 'yes', 'on']:
 			bool_value = True
@@ -101,8 +98,6 @@ def apply_setting(setting, value):
 			ConfigState.display_stocks = bool_value
 		elif setting == 'display_schedules':
 			ConfigState.display_schedules = bool_value
-		elif setting == 'schedules_show_weather':
-			ConfigState.schedules_show_weather = bool_value
 		elif setting == 'stocks_respect_market_hours':
 			ConfigState.stocks_respect_market_hours = bool_value
 
@@ -313,10 +308,6 @@ def should_show_stocks():
 def should_show_schedules():
 	"""Check if schedule display is enabled"""
 	return ConfigState.display_schedules
-
-def should_show_weather_in_schedules():
-	"""Check if weather should be shown during schedule displays"""
-	return ConfigState.schedules_show_weather
 
 def get_temperature_unit():
 	"""Get current temperature unit (F or C)"""

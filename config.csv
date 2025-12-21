@@ -16,9 +16,6 @@ display_stocks,true
 display_clock,false
 display_schedules,true
 
-# Schedule display settings
-schedules_show_weather,true
-
 # Temperature unit (F or C)
 temperature_unit,C
 
