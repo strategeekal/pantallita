@@ -12,6 +12,7 @@ from adafruit_display_shapes.rect import Rect
 import displayio
 
 import config
+import config_manager
 import state
 import logger
 import weather_api
@@ -98,6 +99,12 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		logger.log(f"Schedule image error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
 		return  # Skip schedule if image fails
 
+	# Check if we should show weather (hide during night mode if enabled)
+	show_weather_in_schedule = not (schedule_config.get("night_mode", False) and config_manager.is_night_mode_minimal_display_enabled())
+
+	if not show_weather_in_schedule:
+		logger.log("Night mode minimal display active - hiding weather", config.LogLevel.DEBUG, area="SCHEDULE")
+
 	# Dynamic positioning based on UV presence (inline)
 	uv_index = weather_data.get('uv', 0) if weather_data else 0
 	if uv_index > 0:
@@ -110,7 +117,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		temp_y = config.Layout.SCHEDULE_TEMP_Y + 1
 
 	# Weather icon (13×13, left side below clock) - inline with LRU cache
-	if weather_data:
+	if weather_data and show_weather_in_schedule:
 		try:
 			weather_icon = f"{weather_data['icon']}.bmp"
 			weather_icon_path = f"{config.Paths.COLUMN_IMAGES}/{weather_icon}"
@@ -144,7 +151,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			logger.log(f"Weather icon error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
 
 	# Temperature label (below weather icon) - inline
-	if weather_data:
+	if weather_data and show_weather_in_schedule:
 		temp_text = f"{round(weather_data['feels_like'])}°"
 		temp_label = bitmap_label.Label(
 			state.font_small,
@@ -156,7 +163,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 		state.main_group.append(temp_label)
 
 	# UV bar (always visible, empty when UV=0) - inline
-	if weather_data:
+	if weather_data and show_weather_in_schedule:
 		uv_index = weather_data.get('uv', 0)
 		if uv_index > 0:
 			# Calculate UV bar length (inline)
@@ -293,7 +300,7 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 			try:
 				new_weather_data = weather_api.fetch_current()
 
-				if new_weather_data:
+				if new_weather_data and show_weather_in_schedule:
 					# Update temperature label (inline)
 					temp_text = f"{round(new_weather_data['feels_like'])}°"
 					temp_label.text = temp_text

@@ -21,6 +21,7 @@ class ConfigState:
 	display_clock = False
 	display_stocks = False
 	display_schedules = True
+	night_mode_minimal_display = False
 
 	# Temperature unit (F or C)
 	temperature_unit = "F"
@@ -77,7 +78,7 @@ def apply_setting(setting, value):
 	INLINE - no helper functions.
 	"""
 	# Boolean settings
-	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'stocks_respect_market_hours']:
+	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'night_mode_minimal_display', 'stocks_respect_market_hours']:
 		# Parse boolean value
 		if value.lower() in ['true', '1', 'yes', 'on']:
 			bool_value = True
@@ -98,6 +99,8 @@ def apply_setting(setting, value):
 			ConfigState.display_stocks = bool_value
 		elif setting == 'display_schedules':
 			ConfigState.display_schedules = bool_value
+		elif setting == 'night_mode_minimal_display':
+			ConfigState.night_mode_minimal_display = bool_value
 		elif setting == 'stocks_respect_market_hours':
 			ConfigState.stocks_respect_market_hours = bool_value
 
@@ -308,6 +311,10 @@ def should_show_stocks():
 def should_show_schedules():
 	"""Check if schedule display is enabled"""
 	return ConfigState.display_schedules
+
+def is_night_mode_minimal_display_enabled():
+	"""Check if night mode minimal display is enabled"""
+	return ConfigState.night_mode_minimal_display
 
 def get_temperature_unit():
 	"""Get current temperature unit (F or C)"""
