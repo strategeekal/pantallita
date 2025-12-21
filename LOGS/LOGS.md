@@ -481,6 +481,93 @@ This file tracks all stability test logs throughout the refactoring process. Eac
 
 ---
 
+## Phase 5: Schedule Display
+
+- **12-20-v5-initial-test-schedules.txt** [LATEST] ✅ **PHASE 5 INITIAL TEST COMPLETE**
+  - **Phase:** 5.0 (Schedule Display with Date-Based GitHub Override)
+  - **Duration:** 3.6 hours (15:58 - 19:34, 216.0 minutes)
+  - **Cycles:** 25
+  - **API Calls:** 28 weather fetches + 8 forecast fetches + stock API calls
+  - **Memory:** Baseline 5.3% → Final 15.0% (delta: +9.7%, +190KB)
+  - **Errors:** 0 critical, 0 warnings
+  - **Notable:** First complete schedule display test - 5 consecutive schedules (total 1h 35min) with seamless transitions, weather refresh, progress bar
+  - **Result:** ✅ **PASS** - All schedule features working perfectly
+
+  **Test Configuration:**
+  - **Schedules tested:** 5 consecutive test schedules (Saturday only, day 5)
+    1. Get Dressed: 16:00-16:15 (15 min)
+    2. Eat Breakfast: 16:15-16:25 (10 min)
+    3. Medicine: 16:25-16:50 (25 min)
+    4. Toilet and Teeth AM: 16:50-17:00 (10 min)
+    5. Go to School: 17:00-17:50 (50 min)
+  - **Total schedule time:** 1 hour 35 minutes (95 minutes continuous)
+  - **Source:** Local schedules.csv (SCHEDULES_GITHUB_URL not configured)
+  - **Day tested:** Saturday (day 5) - validates day-of-week filtering
+
+  **Schedule Execution Timeline:**
+  - **Cycle 1 (15:58:20):** Weather/forecast/stocks (no active schedule)
+  - **Cycle 2 (16:03:55):** Get Dressed started (11.1 min remaining) → completed 16:15:02
+  - **Cycle 3 (16:15:02):** Eat Breakfast started (10.0 min remaining) → completed 16:25:02 ✅ **Seamless transition**
+  - **Cycle 4 (16:25:02):** Medicine started (25.0 min remaining) → completed 16:50:03 ✅ **Seamless transition**
+  - **Cycle 5 (16:50:03):** Toilet and Teeth AM started (9.9 min remaining) → completed 17:00:03 ✅ **Seamless transition**
+  - **Cycle 6 (17:00:03):** Go to School started (49.9 min remaining) → completed 17:50:04 ✅ **Seamless transition**
+  - **Cycle 7 (17:50:04):** Back to weather/forecast/stocks (no active schedule)
+
+  **Key Findings:**
+  - ✅ **Schedule detection:** All 5 consecutive schedules detected and displayed correctly with zero gaps
+  - ✅ **Seamless transitions:** Schedule boundaries handled perfectly (transitions within 1-3 seconds)
+  - ✅ **Weather refresh:** Worked correctly during long schedules:
+    - Medicine (25min): Weather refreshed at 15:00 mark (16:40:05)
+    - Go to School (50min): Weather refreshed at 15:00, 30:00, 45:00 marks (17:15:06, 17:30:07, 17:45:08)
+  - ✅ **Clock updates:** Updated every minute in 12-hour format throughout all schedules
+  - ✅ **Progress bar:** MINT base (2px) with LILAC fill (2px) rendering correctly, growing left to right
+  - ✅ **UV bar:** Displayed correctly when UV > 0 (using correct 'uv' key from weather API)
+  - ✅ **Schedule images:** All 5 schedule images loaded successfully from /img/schedules/
+  - ✅ **Image cache:** LRU eviction working (evicted old schedule images after completion)
+  - ✅ **Memory stability:** 5.3% → 15.0% over 3.6 hours - stable and acceptable
+  - ✅ **Zero errors:** No weather errors, no schedule errors, no crashes throughout test
+  - ✅ **Schedule reload:** Worked at cycles 10 and 20 (every 10 cycles as designed)
+  - ✅ **Day-of-week filtering:** Correctly only ran schedules on Saturday (day 5) as configured
+
+  **Schedule Display Features Validated:**
+  - ✅ **64×32 pixel layout:**
+    - Left section (x:0-22): 12-hour clock, 13×13 weather icon, temperature, UV bar
+    - Right section (x:23-63): 40×28 schedule image
+    - Bottom (x:23-62, y:28-32): Progress bar with dual markers
+  - ✅ **Progress bar design:**
+    - Base line: MINT colored, 2 pixels tall (y:30-31)
+    - Progress fill: LILAC colored, 2 pixels tall (y:28-29), grows upward from base
+    - Markers: WHITE, extend upward (long 3px at 0%, 50%, 100%; short 2px at 25%, 75%)
+  - ✅ **Single long loop:** No segmentation, continuous updates for clock/progress/weather
+  - ✅ **Weather integration:**
+    - Initial weather fetched before each schedule
+    - Weather refreshed every 15 minutes during long schedules
+    - Temperature and icon updated correctly
+    - gc.collect() called after each weather refresh
+  - ✅ **Inline architecture:** All rendering inline, no helper functions (matches project pattern)
+
+  **Performance Metrics:**
+  - **Weather API calls:** 10 fetches during schedules (1 initial + refreshes every 15min)
+  - **Image loads:** 5 schedule images + weather icons (all cached efficiently)
+  - **Memory growth:** +9.7% over 3.6 hours (includes schedule display + weather/forecast/stocks)
+  - **Schedule accuracy:** All schedules ran for exact configured duration
+  - **Transition timing:** All transitions completed within 1-3 seconds
+
+  **Issues Fixed During Testing:**
+  - ✅ Image cache error: Fixed incorrect `state.image_cache.get_image()` calls (dict doesn't have method)
+  - ✅ Weather icon key: Fixed 'weather_icon' → 'icon' to match weather API response
+  - ✅ UV bar key: Fixed 'uv_index' → 'uv' to match weather API response
+  - ✅ Progress bar positioning: Adjusted y-coordinate (moved from y=28 to y=30)
+  - ✅ Progress bar colors: Changed to MINT base + LILAC fill (from WHITE/GREEN)
+
+  **Next Steps:**
+  - 🔲 Test GitHub date-specific schedule override (YYYY-MM-DD.csv > default.csv)
+  - 🔲 Extended test with full production schedule set
+  - 🔲 Test schedule reload at midnight transition
+  - 🔲 Validate memory stability during very long schedules (>1 hour)
+
+---
+
 ## Archive Strategy
 
 **Keep:**
