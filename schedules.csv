@@ -1,31 +1,15 @@
-# Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar,night_mode
+# Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar
 # enabled: 1=true, 0=false
 # days: 0-6 for Mon-Sun (e.g., "01234" = Mon-Fri, "5" = Saturday only)
 # progressbar: 1=true, 0=false
-# night_mode: 1=true (minimal display - hide weather), 0=false
 
 # STRESS TEST SCHEDULES - Saturday only, starting at 9:25 PM
 # Tests: Long duration (2h), weather refresh every 5 min, multiple short schedules
 # Total duration: ~4h 20min continuous (21:25 - 01:45+)
 
 # Long schedule - 2 hours to test sustained display and multiple weather refreshes
-Quiet Times,1,0123456,22,00,23,25,medicine.bmp,1,0
+Quiet Times,1,0123456,22,00,23,25,medicine.bmp,1
 
 # Short schedules - 10-20 minutes each
-Art Class,1,0123456,23,25,23,40,art class.bmp,1,0
-Soccer Practice,1,0123456,23,40,23,55,soccer.bmp,1,0
-Basketball,1,0123456,23,55,0,10,basketball.bmp,1,0
-Breakfast,1,0123456,0,10,0,25,breakfast.bmp,1,0
-Get Dressed,1,0123456,0,25,0,40,get_dressed.bmp,1,0
-Baseball,1,0123456,0,40,0,58,baseball.bmp,1,0
-Scooter Time,1,0123456,0,58,1,13,scooter.bmp,1,0
-Brush Teeth,1,0123456,1,13,1,28,brush_teeth.bmp,1,0
-Football,1,0123456,1,28,1,45,football.bmp,1,0
-Dress Up,1,0123456,2,30,3,30,get_dressed_halloween.bmp,1,0
-Bath Time,1,0123456,3,30,4,30,bath_time.bmp,1,0
-Pajamas On,1,0123456,5,00,5,15,get_dressed_night.bmp,1,0
-Toilet and Teeth PM,1,0123456,5,15,5,25,toilet_and_teeth.bmp,1,0
-Sleep,1,0123456,5,25,5,50,bed.bmp,0,1
-Trick or Treat,1,0123456,5,50,7,50,trick_or_treat.bmp,0,0
-Go to School,1,0123456,7,50,8,15,go_to_school.bmp,1,0
+Night Mode,1,0123456,10,30,13,30,night_mode.bmp,0
 

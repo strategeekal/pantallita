@@ -51,15 +51,22 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 
 	logger.log(f"Starting schedule: {schedule_name} ({duration/60:.1f} min)", config.LogLevel.INFO, area="SCHEDULE")
 
-	# Fetch initial weather data (inline)
+	# Check if weather should be shown in schedules (from config)
+	show_weather_in_schedule = config_manager.should_show_weather_in_schedules()
+
+	if not show_weather_in_schedule:
+		logger.log("Schedule weather disabled - skipping weather fetch", config.LogLevel.DEBUG, area="SCHEDULE")
+
+	# Fetch initial weather data (inline) - skip if weather disabled in schedules
 	weather_data = None
-	try:
-		weather_data = weather_api.fetch_current()
-		if weather_data:
-			uv_index = weather_data.get('uv', 0)
-			logger.log(f"Weather: {weather_data['feels_like']}°, UV:{uv_index}", config.LogLevel.DEBUG, area="SCHEDULE")
-	except Exception as e:
-		logger.log(f"Schedule weather fetch error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
+	if show_weather_in_schedule:
+		try:
+			weather_data = weather_api.fetch_current()
+			if weather_data:
+				uv_index = weather_data.get('uv', 0)
+				logger.log(f"Weather: {weather_data['feels_like']}°, UV:{uv_index}", config.LogLevel.DEBUG, area="SCHEDULE")
+		except Exception as e:
+			logger.log(f"Schedule weather fetch error: {e}", config.LogLevel.WARNING, area="SCHEDULE")
 
 	# === DRAW STATIC ELEMENTS (ONCE) ===
 
@@ -98,12 +105,6 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 	except Exception as e:
 		logger.log(f"Schedule image error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
 		return  # Skip schedule if image fails
-
-	# Check if we should show weather (hide during night mode if enabled)
-	show_weather_in_schedule = not (schedule_config.get("night_mode", False) and config_manager.is_night_mode_minimal_display_enabled())
-
-	if not show_weather_in_schedule:
-		logger.log("Night mode minimal display active - hiding weather", config.LogLevel.DEBUG, area="SCHEDULE")
 
 	# Dynamic positioning based on UV presence (inline)
 	uv_index = weather_data.get('uv', 0) if weather_data else 0
@@ -294,13 +295,14 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 				last_progress_column = current_column
 
 		# Refresh weather + cleanup (every 5 minutes for stress test) - inline
-		if elapsed - last_weather_fetch > 300:  # 5 minutes (stress test)
+		# Skip weather fetch entirely if schedules_show_weather is disabled
+		if show_weather_in_schedule and elapsed - last_weather_fetch > 300:  # 5 minutes (stress test)
 			logger.log(f"Schedule weather refresh ({elapsed/60:.1f} min elapsed)", config.LogLevel.DEBUG, area="SCHEDULE")
 
 			try:
 				new_weather_data = weather_api.fetch_current()
 
-				if new_weather_data and show_weather_in_schedule:
+				if new_weather_data:
 					# Update temperature label (inline)
 					temp_text = f"{round(new_weather_data['feels_like'])}°"
 					temp_label.text = temp_text

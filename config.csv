@@ -15,7 +15,9 @@ display_forecast,true
 display_stocks,true
 display_clock,false
 display_schedules,true
-night_mode_minimal_display,false
+
+# Schedule display settings
+schedules_show_weather,true
 
 # Temperature unit (F or C)
 temperature_unit,C

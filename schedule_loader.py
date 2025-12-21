@@ -129,14 +129,14 @@ def parse_schedule_csv_content(csv_content):
 	"""
 	Parse schedule CSV content directly from string (no file I/O)
 
-	Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar,night_mode
-	Example: Get Dressed,1,0123456,7,0,7,15,get_dressed.bmp,1,0
+	Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar
+	Example: Get Dressed,1,0123456,7,0,7,15,get_dressed.bmp,1
 
 	Args:
 		csv_content: CSV string content
 
 	Returns:
-		dict: {schedule_name: {enabled, days, start_hour, start_min, end_hour, end_min, image, progressbar, night_mode}}
+		dict: {schedule_name: {enabled, days, start_hour, start_min, end_hour, end_min, image, progressbar}}
 
 	INLINE - all parsing inline, no helpers
 	"""
@@ -169,8 +169,7 @@ def parse_schedule_csv_content(csv_content):
 					"end_hour": int(parts[5]),
 					"end_min": int(parts[6]),
 					"image": parts[7],
-					"progressbar": parts[8] == "1" if len(parts) > 8 else True,
-					"night_mode": parts[9] == "1" if len(parts) > 9 else False
+					"progressbar": parts[8] == "1" if len(parts) > 8 else True
 				}
 
 				schedules[name] = schedule
