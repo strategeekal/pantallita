@@ -1,0 +1,108 @@
+SCHEDULES ITEMS TETED:
+
+# Format: name,enabled,days,start_hour,start_min,end_hour,end_min,image,progressbar,night_mode
+# enabled: 1=true, 0=false
+# days: 0-6 for Mon-Sun (e.g., "01234" = Mon-Fri, "5" = Saturday only)
+# progressbar: 1=true, 0=false
+# night_mode: 0=normal (icon+temp+UV), 1=temp only (no icon/UV), 2=clock only (no fetch)
+
+# NIGHTMODE TEST - check the 3 night mode display options on consecutive tests. total duration 1 hour
+
+# Short schedules - 10-20 minutes each
+Normal Weather Night Mode,1,0123456,13,40,14,00,night_mode.bmp,0,0
+Minimal Night Mode,1,0123456,14,00,14,20,night_mode.bmp,0,1
+Just Clock Night Mode,1,0123456,14,20,14,40,night_mode.bmp,0,2
+
+LOGS =====
+
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 5: SCHEDULE DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-21 13:35:01] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-21 13:35:01] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-21 13:35:04] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-21 13:35:07] [HW:INFO] Time synced: 12/21 1:35 PM
+[12-21 13:35:07] [CONFIG:INFO] Loaded 9 settings from local config.csv
+[12-21 13:35:08] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-21 13:35:08] [CONFIG:INFO] Config loaded (source: local)
+[12-21 13:35:08] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True
+[12-21 13:35:08] [CONFIG:INFO]   Temperature unit: C
+[12-21 13:35:08] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-21 13:35:08] [STOCKS:WARN] GitHub stocks fetch failed: HTTP 404
+[12-21 13:35:08] [STOCKS:INFO] Loaded 16 stocks from local stocks.csv
+[12-21 13:35:08] [MAIN:INFO] Loaded 16 stocks from CSV
+[12-21 13:35:08] [STOCKS:INFO] Market hours (local): 8:30 - 15:00 (grace: +90min)
+[12-21 13:35:09] [SCHEDULE:INFO] Loaded 3 schedules from local file
+[12-21 13:35:12] [MAIN:INFO] Hardware ready
+[12-21 13:35:12] [MAIN:INFO] === Initialization complete ===
+[12-21 13:35:12] [MAIN:INFO] Press UP button to stop test
+[12-21 13:35:12] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-21 13:35:12] [MAIN:INFO] Baseline memory: 5.3% used (104KB) 
+
+[12-21 13:35:12] [MAIN:INFO] ### CYCLE 1 ###
+[12-21 13:35:12] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 13:35:12] [WEATHER:INFO] Weather: 0°C, Sunny, UV:2
+[12-21 13:35:12] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-21 13:35:12] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 13:35:13] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Sunny
+[12-21 13:35:13] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-21 13:35:13] [FORECAST:INFO] Displaying forecast: Current 3°C → 2P -5°C, 3P -5°C
+[12-21 13:36:17] [DISPLAY:INFO] Displaying weather: 0°C Sunny
+[12-21 13:40:18] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 13:40:18] [MAIN:INFO] ### CYCLE 2 ###
+[12-21 13:40:18] [SCHEDULE:INFO] Active schedule: Normal Weather Night Mode (19.7 min remaining)
+[12-21 13:40:18] [SCHEDULE:INFO] Starting schedule: Normal Weather Night Mode (19.7 min)
+[12-21 13:40:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 13:40:18] [WEATHER:INFO] Weather: 0°C, Sunny, UV:2
+[12-21 13:40:18] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-21 13:40:18] [SCHEDULE:INFO] Displaying schedule: Normal Weather Night Mode
+[12-21 13:45:19] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 13:45:19] [WEATHER:INFO] Weather: 0°C, Sunny, UV:2
+[12-21 13:45:19] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-21 13:50:19] [WEATHER:INFO] Using cached weather (4m old)
+[12-21 13:55:20] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 13:55:22] [WEATHER:INFO] Weather: 0°C, Sunny, UV:2
+[12-21 13:55:22] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-21 14:00:01] [SCHEDULE:INFO] Schedule complete: Normal Weather Night Mode
+[12-21 14:00:01] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-21 14:00:01] [MAIN:INFO] ### CYCLE 3 ###
+[12-21 14:00:01] [SCHEDULE:INFO] Active schedule: Minimal Night Mode (20.0 min remaining)
+[12-21 14:00:01] [SCHEDULE:INFO] Starting schedule: Minimal Night Mode (20.0 min)
+[12-21 14:00:01] [WEATHER:INFO] Using cached weather (4m old)
+[12-21 14:00:01] [SCHEDULE:INFO] Displaying schedule: Minimal Night Mode
+[12-21 14:05:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 14:05:04] [WEATHER:INFO] Weather: 0°C, Sunny, UV:2
+[12-21 14:05:04] [WEATHER:INFO] Fetch #5, Errors: 0
+[12-21 14:10:02] [WEATHER:INFO] Using cached weather (4m old)
+[12-21 14:15:03] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 14:15:05] [WEATHER:INFO] Weather: 0°C, Sunny, UV:2
+[12-21 14:15:05] [WEATHER:INFO] Fetch #6, Errors: 0
+[12-21 14:20:00] [SCHEDULE:INFO] Schedule complete: Minimal Night Mode
+[12-21 14:20:00] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-21 14:20:00] [MAIN:INFO] ### CYCLE 4 ###
+[12-21 14:20:00] [SCHEDULE:INFO] Active schedule: Just Clock Night Mode (20.0 min remaining)
+[12-21 14:20:00] [SCHEDULE:INFO] Starting schedule: Just Clock Night Mode (20.0 min)
+[12-21 14:20:00] [SCHEDULE:INFO] Displaying schedule: Just Clock Night Mode
+[12-21 14:40:01] [SCHEDULE:INFO] Schedule complete: Just Clock Night Mode
+[12-21 14:40:01] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-21 14:40:01] [MAIN:INFO] ### CYCLE 5 ###
+[12-21 14:40:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 14:40:03] [WEATHER:INFO] Weather: 1°C, Sunny, UV:2
+[12-21 14:40:03] [WEATHER:INFO] Fetch #7, Errors: 0
+[12-21 14:40:03] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 14:40:03] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Sunny
+[12-21 14:40:03] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-21 14:40:04] [FORECAST:INFO] Displaying forecast: Current 4°C → 3P -5°C, 4P -6°C
+[12-21 14:41:04] [DISPLAY:INFO] Displaying weather: 1°C Sunny
+[12-21 14:44:09] [DISPLAY:INFO] UP button pressed during weather display
+[12-21 14:44:09] [MAIN:INFO] === Test stopped by button press ===
+[12-21 14:44:12] [MAIN:INFO] Final memory: 8.9% used (174KB)
+[12-21 14:44:12] [MAIN:INFO] Total cycles: 5
+[12-21 14:44:12] [MAIN:INFO] Weather fetches: 7
+[12-21 14:44:12] [MAIN:INFO] Weather errors: 0
+[12-21 14:44:12] [MAIN:INFO] Uptime: 1.2 hours (69.0 minutes)
