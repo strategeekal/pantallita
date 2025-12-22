@@ -226,7 +226,15 @@ def is_schedule_active(rtc, schedule_name, schedule_config):
 	start_mins = schedule_config["start_hour"] * 60 + schedule_config["start_min"]
 	end_mins = schedule_config["end_hour"] * 60 + schedule_config["end_min"]
 
-	return start_mins <= current_mins < end_mins
+	# Handle midnight crossover (e.g., 22:30-00:00)
+	# If end_mins < start_mins, schedule spans midnight
+	if end_mins <= start_mins:
+		# Treat end_mins as next day (add 24 hours)
+		# Schedule is active if: current >= start OR current < end
+		return current_mins >= start_mins or current_mins < end_mins
+	else:
+		# Normal case: schedule doesn't cross midnight
+		return start_mins <= current_mins < end_mins
 
 
 def get_active_schedule(rtc, schedules):
@@ -264,9 +272,21 @@ def get_remaining_schedule_time(rtc, schedule_config):
 	"""
 	current = rtc.datetime
 	current_mins = current.tm_hour * 60 + current.tm_min
+	start_mins = schedule_config["start_hour"] * 60 + schedule_config["start_min"]
 	end_mins = schedule_config["end_hour"] * 60 + schedule_config["end_min"]
 
-	remaining_mins = end_mins - current_mins
+	# Handle midnight crossover (e.g., 22:30-00:00)
+	if end_mins <= start_mins:
+		# Schedule spans midnight
+		if current_mins >= start_mins:
+			# Before midnight: remaining = (1440 - current) + end
+			remaining_mins = (1440 - current_mins) + end_mins
+		else:
+			# After midnight: normal calculation
+			remaining_mins = end_mins - current_mins
+	else:
+		# Normal case: schedule doesn't cross midnight
+		remaining_mins = end_mins - current_mins
 
 	if remaining_mins <= 0:
 		return 0
