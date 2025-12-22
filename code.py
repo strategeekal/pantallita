@@ -1,10 +1,11 @@
 """
-Pantallita 3.0 - Phase 4: Stock Display
+Pantallita 3.0 - Phase 5: Schedule Display
 Tests CircuitPython 10 foundation before implementing features (v3.0.0)
 Phase 1: Current weather display (v3.0.1)
 Phase 2: 12-hour forecast with smart precipitation detection (v3.0.2)
 Phase 3: Display toggles and temperature unit control (v3.0.3)
 Phase 4: Stock/forex/crypto/commodity display with market hours (v3.0.4)
+Phase 5: Schedule display with date-based GitHub override (v3.0.5)
 
 """
 
@@ -34,6 +35,14 @@ import config_manager
 # Import stocks modules (Phase 4)
 import stocks_api
 import display_stocks
+
+# Import schedule modules (Phase 5)
+import schedule_loader
+import display_schedules
+
+# Import event modules (Phase 6)
+import event_loader
+import display_events
 
 # ============================================================================
 # DISPLAY FUNCTIONS
@@ -99,10 +108,47 @@ def run_test_cycle():
 	if config.Logging.SHOW_CYCLE_SEPARATOR:
 		logger.log_cycle_start(state.cycle_count, config.LogLevel.INFO)
 
-	# Reload config periodically (every 10 cycles = ~50 minutes)
+	# Reload config and schedules periodically (every 10 cycles = ~50 minutes)
 	if state.cycle_count % 10 == 0:
 		config_manager.load_config()
-	
+
+		# Reload schedules (GitHub > local)
+		github_schedules, source = schedule_loader.fetch_github_schedules(state.rtc)
+		if github_schedules:
+			state.cached_schedules = github_schedules
+			logger.log(f"Reloaded {len(github_schedules)} schedules from {source}", config.LogLevel.DEBUG, area="SCHEDULE")
+		else:
+			local_schedules = schedule_loader.load_local_schedules()
+			if local_schedules:
+				state.cached_schedules = local_schedules
+				logger.log(f"Reloaded {len(local_schedules)} schedules from local file", config.LogLevel.DEBUG, area="SCHEDULE")
+
+	# Check for active schedules (Phase 5) - takes priority over normal rotation
+	if config_manager.should_show_schedules() and state.cached_schedules:
+		# Log current time for debugging
+		now = state.rtc.datetime
+		current_time_str = f"{now.tm_hour}:{now.tm_min:02d}:{now.tm_sec:02d}"
+		logger.log(f"Checking schedules at {current_time_str} (day {now.tm_wday})", config.LogLevel.DEBUG, area="SCHEDULE")
+
+		active_schedule_name, active_schedule_config = schedule_loader.get_active_schedule(state.rtc, state.cached_schedules)
+
+		if active_schedule_name:
+			# Active schedule found - display it for remaining duration
+			remaining_time = schedule_loader.get_remaining_schedule_time(state.rtc, active_schedule_config)
+
+			if remaining_time > 0:
+				logger.log(f"Active schedule: {active_schedule_name} ({remaining_time/60:.1f} min remaining)", config.LogLevel.INFO, area="SCHEDULE")
+
+				try:
+					display_schedules.show_schedule(state.rtc, active_schedule_name, active_schedule_config, remaining_time)
+					logger.log("### CYCLE COMPLETE (SCHEDULE) ### \n", config.LogLevel.INFO, area="MAIN")
+					return  # Skip normal display rotation
+				except Exception as e:
+					logger.log(f"Schedule display error: {e}", config.LogLevel.ERROR, area="SCHEDULE")
+					# Fall through to normal rotation on error
+		else:
+			logger.log(f"No active schedule at {current_time_str}", config.LogLevel.DEBUG, area="SCHEDULE")
+
 	# Check WiFi status
 	if not hardware.is_wifi_connected():
 		logger.log("WiFi disconnected!", config.LogLevel.WARNING)
@@ -156,6 +202,18 @@ def run_test_cycle():
 				display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
 				showed_display = True
 
+		# Event display (Phase 6) - After weather, before stocks
+		if config_manager.should_show_events() and state.cached_events:
+			# Get active events for today (filtered by date + time window)
+			active_events = event_loader.get_active_events(state.rtc, state.cached_events)
+			if active_events:
+				# Calculate remaining cycle time for events (flexible duration)
+				# Typical cycle: Forecast(60s) + Weather(240s) + Events(remaining) + Stocks(60s)
+				# Events get whatever time is left (usually 0-60s)
+				# For now, use fixed 60s for events
+				display_events.show_events(active_events, config.Timing.STOCKS_DISPLAY_DURATION)
+				showed_display = True
+
 		# Stock display (Phase 4)
 		if config_manager.should_show_stocks() and state.cached_stocks:
 			# Check if we should show stocks this cycle
@@ -178,11 +236,36 @@ def run_test_cycle():
 				is_grace_period = (current_minutes > state.market_close_local_minutes and
 				                  current_minutes <= state.market_grace_end_local_minutes)
 
+				# Dynamic grace period extension (only when respect_market_hours = false)
+				# Ensures all stocks get closing prices before switching to 24/7 cached display
+				respect_hours = config_manager.get_stocks_respect_market_hours()
+				if not respect_hours and current_minutes > state.market_grace_end_local_minutes and is_weekday:
+					# Past normal grace period, but respect_market_hours = false (24/7 display mode)
+					# Check if all stocks have been fetched during grace period
+					all_stock_symbols = set([s['symbol'] for s in state.cached_stocks])
+					unfetched_stocks = all_stock_symbols - state.grace_period_fetched_symbols
+
+					if len(unfetched_stocks) > 0:
+						# Still have unfetched stocks - extend grace period
+						is_grace_period = True
+						logger.log(f"Grace period auto-extension: {len(unfetched_stocks)} stocks remaining ({', '.join(list(unfetched_stocks)[:3])}{'...' if len(unfetched_stocks) > 3 else ''})", config.LogLevel.INFO, area="STOCKS")
+					else:
+						# All stocks fetched - end grace period, continue with cached data
+						if state.previous_grace_period_state:
+							# Log once when transitioning out
+							logger.log("All stocks updated - ending grace period, using cached data", config.LogLevel.INFO, area="STOCKS")
+
 				# Allow fetching during market hours OR grace period
 				state.should_fetch_stocks = is_weekday and (is_market_hours or is_grace_period)
 
-				# Respect market hours if configured
-				respect_hours = config_manager.get_stocks_respect_market_hours()
+				# Grace period optimization: detect transition into grace period and reset tracking
+				if is_grace_period and not state.previous_grace_period_state:
+					# Entering grace period - clear the set of fetched symbols
+					state.grace_period_fetched_symbols.clear()
+					logger.log("Entering grace period - resetting symbol tracking", config.LogLevel.DEBUG, area="STOCKS")
+				state.previous_grace_period_state = is_grace_period
+
+				# Respect market hours if configured (already fetched above)
 				should_display_stocks = True
 				if respect_hours and not state.should_fetch_stocks:
 					should_display_stocks = False
@@ -207,14 +290,21 @@ def run_test_cycle():
 
 							# Fetch logic:
 							# - Market hours: always fetch (respecting rate limit)
+							# - Grace period: fetch ONCE per symbol, then reuse
 							# - Outside hours: fetch ONCE to cache, then reuse forever
 							should_fetch = False
 							if symbol not in state.cached_intraday_data:
 								# No cache - need to fetch regardless of market hours
 								should_fetch = True
 							elif state.should_fetch_stocks:
-								# Market hours - always fetch fresh data
-								should_fetch = True
+								# During market hours or grace period
+								if is_grace_period:
+									# Grace period - only fetch if not already fetched this grace period
+									if symbol not in state.grace_period_fetched_symbols:
+										should_fetch = True
+								else:
+									# Market hours - always fetch fresh data
+									should_fetch = True
 							# else: Outside market hours with cache - DO NOT fetch
 
 							# Respect rate limiting
@@ -233,6 +323,11 @@ def run_test_cycle():
 									}
 									state.last_stock_fetch_time = now_time
 
+									# Track symbol as fetched during grace period (optimization)
+									if is_grace_period:
+										state.grace_period_fetched_symbols.add(symbol)
+										logger.log(f"Added {symbol} to grace period tracking", config.LogLevel.DEBUG, area="STOCKS")
+
 							# Get cached data and display
 							if symbol in state.cached_intraday_data:
 								cached = state.cached_intraday_data[symbol]
@@ -245,6 +340,7 @@ def run_test_cycle():
 										'price': quote['price'],
 										'change_percent': quote['change_percent'],
 										'direction': quote['direction'],
+										'open_price': quote.get('open_price', 0),
 										'symbol': symbol,
 										'display_name': current_stock.get('display_name', symbol)
 									}
@@ -284,8 +380,14 @@ def run_test_cycle():
 								# slicing [:4] is safe even if list is shorter
 								symbols_to_fetch = [s['symbol'] for s in stocks_to_show[:4]]
 
+								# Grace period optimization: filter out already-fetched symbols during grace period
+								if is_grace_period:
+									symbols_to_fetch = [sym for sym in symbols_to_fetch
+									                   if sym not in state.grace_period_fetched_symbols]
+
 								# Fetch logic:
 								# - Market hours: always fetch (respecting rate limit)
+								# - Grace period: fetch ONCE per symbol (already filtered above), then reuse
 								# - Outside hours: fetch ONCE to cache, then reuse forever
 								should_fetch = False
 								for sym in symbols_to_fetch:
@@ -294,7 +396,8 @@ def run_test_cycle():
 										should_fetch = True
 										break
 									elif state.should_fetch_stocks:
-										# Market hours - always fetch fresh data
+										# Market hours OR grace period - fetch
+										# (Grace period symbols already filtered to only unfetched ones)
 										should_fetch = True
 										break
 								# else: Outside market hours with cache - DO NOT fetch
@@ -313,6 +416,12 @@ def run_test_cycle():
 												'timestamp': now_time
 											}
 										state.last_stock_fetch_time = now_time
+
+										# Track symbols as fetched during grace period (optimization)
+										if is_grace_period:
+											for sym in quotes.keys():
+												state.grace_period_fetched_symbols.add(sym)
+											logger.log(f"Added {len(quotes)} symbols to grace period tracking", config.LogLevel.DEBUG, area="STOCKS")
 
 								# Attach cached prices to stocks for display
 								stocks_with_prices = []
@@ -372,7 +481,7 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	logger.log("==== PANTALLITA 3.0 | PHASE 4: STOCK DISPLAY ====")
+	logger.log("==== PANTALLITA 3.0 | PHASE 6: EVENTS DISPLAY ====")
 
 	try:
 		# Initialize display FIRST (before show_message)
@@ -445,6 +554,37 @@ def initialize():
 				state.market_close_local_minutes = 960  # 4:00 PM
 				state.market_grace_end_local_minutes = 960 + grace_period
 				logger.log("No timezone info - using ET market hours", config.LogLevel.WARNING, area="STOCKS")
+
+		# Load schedules (Phase 5)
+		show_message("SCHEDULES", config.Colors.GREEN, 16)
+		# Try GitHub first (date-specific > default), then fallback to local
+		github_schedules, source = schedule_loader.fetch_github_schedules(state.rtc)
+		if github_schedules:
+			state.cached_schedules = github_schedules
+			logger.log(f"Loaded {len(github_schedules)} schedules from {source}", area="SCHEDULE")
+		else:
+			# Fallback to local schedules.csv
+			local_schedules = schedule_loader.load_local_schedules()
+			if local_schedules:
+				state.cached_schedules = local_schedules
+				logger.log(f"Loaded {len(local_schedules)} schedules from local file", area="SCHEDULE")
+			else:
+				logger.log("No schedules loaded (no GitHub or local schedules.csv)", config.LogLevel.WARNING, area="SCHEDULE")
+
+		# Load events (Phase 6)
+		if config_manager.should_show_events():
+			show_message("EVENTS...", config.Colors.GREEN, 16)
+			# Load local recurring events
+			local_events = event_loader.load_local_events()
+			# Load GitHub ephemeral events (date-specific, auto-skip past)
+			github_events = event_loader.fetch_github_events(state.rtc)
+			# Merge local + GitHub
+			state.cached_events = event_loader.merge_events(local_events, github_events)
+			total_events = sum(len(event_list) for event_list in state.cached_events.values())
+			if total_events > 0:
+				logger.log(f"Loaded {total_events} events across {len(state.cached_events)} dates", area="EVENT")
+			else:
+				logger.log("No events loaded", config.LogLevel.DEBUG, area="EVENT")
 
 		# Ready!
 		show_message("READY!", config.Colors.GREEN, 16)

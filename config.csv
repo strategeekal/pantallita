@@ -14,11 +14,14 @@ display_weather,true
 display_forecast,true
 display_stocks,true
 display_clock,false
+display_schedules,true
+display_events,true
 
 # Temperature unit (F or C)
 temperature_unit,C
 
 # Stock display settings
 stocks_display_frequency,1
-stocks_respect_market_hours,false
-stocks_grace_period_minutes,60
+stocks_respect_market_hours,true
+stocks_grace_period_minutes,90
+ 

@@ -1,0 +1,163 @@
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 4: STOCK DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-19 22:20:25] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-19 22:20:25] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-19 22:20:28] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-19 22:20:31] [HW:INFO] Time synced: 12/19 10:20 PM
+[12-19 22:20:31] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-19 22:20:31] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-19 22:20:31] [CONFIG:INFO] Config loaded (source: local)
+[12-19 22:20:31] [CONFIG:INFO]   Weather: False, Forecast: True, Stocks: True, Clock: False
+[12-19 22:20:31] [CONFIG:INFO]   Temperature unit: C
+[12-19 22:20:31] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: False, Grace period: 540min
+[12-19 22:20:32] [STOCKS:WARN] GitHub stocks fetch failed: HTTP 404
+[12-19 22:20:32] [STOCKS:INFO] Loaded 16 stocks from local stocks.csv
+[12-19 22:20:32] [MAIN:INFO] Loaded 16 stocks from CSV
+[12-19 22:20:32] [STOCKS:INFO] Market hours (local): 8:30 - 15:00 (grace: +540min)
+[12-19 22:20:34] [MAIN:INFO] Hardware ready
+[12-19 22:20:34] [MAIN:INFO] === Initialization complete ===
+[12-19 22:20:34] [MAIN:INFO] Press UP button to stop test
+[12-19 22:20:34] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-19 22:20:34] [MAIN:INFO] Baseline memory: 4.8% used (93KB) 
+
+[12-19 22:20:34] [MAIN:INFO] ### CYCLE 1 ###
+[12-19 22:20:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-19 22:20:35] [WEATHER:INFO] Weather: -5°C, Mostly cloudy, UV:0
+[12-19 22:20:35] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-19 22:20:35] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-19 22:20:35] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -12°C Mostly cloudy
+[12-19 22:20:35] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-19 22:20:36] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:21:38] [STOCKS:INFO] Fetched 78 data points for CRM
+[12-19 22:21:38] [STOCKS:INFO] Fetched 1/1 quotes
+[12-19 22:21:38] [STOCKS:INFO] Displaying stock chart: CRM $259.91 +0.80%
+[12-19 22:22:09] [STOCKS:INFO] Stock chart display complete
+[12-19 22:22:09] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:22:09] [MAIN:INFO] ### CYCLE 2 ###
+[12-19 22:22:09] [WEATHER:INFO] Using cached weather (1m old)
+[12-19 22:22:09] [WEATHER:INFO] Using cached forecast (1m old)
+[12-19 22:22:09] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:23:10] [STOCKS:INFO] Fetched 4/4 quotes
+[12-19 22:23:10] [STOCKS:INFO] Displaying multi-stock: SPY +0.6%, SOXQ +2.9%, IBIT +4.1%
+[12-19 22:23:41] [STOCKS:INFO] Multi-stock display complete
+[12-19 22:23:41] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:23:41] [MAIN:INFO] ### CYCLE 3 ###
+[12-19 22:23:41] [WEATHER:INFO] Using cached weather (3m old)
+[12-19 22:23:41] [WEATHER:INFO] Using cached forecast (3m old)
+[12-19 22:23:41] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:24:42] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-19 22:24:42] [STOCKS:INFO] Fetched 1/1 quotes
+[12-19 22:24:42] [STOCKS:INFO] Displaying stock chart: FDIG $40.83 +4.12%
+[12-19 22:25:13] [STOCKS:INFO] Stock chart display complete
+[12-19 22:25:13] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:25:13] [MAIN:INFO] ### CYCLE 4 ###
+[12-19 22:25:13] [WEATHER:INFO] Using cached weather (4m old)
+[12-19 22:25:13] [WEATHER:INFO] Using cached forecast (4m old)
+[12-19 22:25:13] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:26:13] [STOCKS:INFO] Fetched 3/3 quotes
+[12-19 22:26:13] [STOCKS:INFO] Displaying multi-stock: MXN $18.04, EUR $21.12, CAD $13.07
+[12-19 22:26:44] [STOCKS:INFO] Multi-stock display complete
+[12-19 22:26:44] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:26:44] [MAIN:INFO] ### CYCLE 5 ###
+[12-19 22:26:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-19 22:26:44] [WEATHER:INFO] Weather: -5°C, Mostly cloudy, UV:0
+[12-19 22:26:44] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-19 22:26:44] [WEATHER:INFO] Using cached forecast (6m old)
+[12-19 22:26:44] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:27:45] [STOCKS:INFO] Fetched 78 data points for LUMN
+[12-19 22:27:45] [STOCKS:INFO] Fetched 1/1 quotes
+[12-19 22:27:45] [STOCKS:INFO] Displaying stock chart: LUMN $8.19 +4.46%
+[12-19 22:28:15] [STOCKS:INFO] Stock chart display complete
+[12-19 22:28:15] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:28:16] [MAIN:INFO] Memory: 9.6% used (186KB) [-95648]
+[12-19 22:28:16] [MAIN:INFO] ### CYCLE 6 ###
+[12-19 22:28:16] [WEATHER:INFO] Using cached weather (1m old)
+[12-19 22:28:16] [WEATHER:INFO] Using cached forecast (7m old)
+[12-19 22:28:16] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:29:16] [STOCKS:INFO] Fetched 3/3 quotes
+[12-19 22:29:16] [STOCKS:INFO] Displaying multi-stock: ETH $2,981, XAU $4,338, GBP $24.13
+[12-19 22:29:47] [STOCKS:INFO] Multi-stock display complete
+[12-19 22:29:47] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:29:47] [MAIN:INFO] ### CYCLE 7 ###
+[12-19 22:29:47] [WEATHER:INFO] Using cached weather (3m old)
+[12-19 22:29:47] [WEATHER:INFO] Using cached forecast (9m old)
+[12-19 22:29:47] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:30:47] [STOCKS:INFO] Fetched 78 data points for BTC/USD
+[12-19 22:30:47] [STOCKS:INFO] Fetched 1/1 quotes
+[12-19 22:30:47] [STOCKS:INFO] Displaying stock chart: BTC $88178.34 +0.10%
+[12-19 22:31:18] [STOCKS:INFO] Stock chart display complete
+[12-19 22:31:18] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:31:18] [MAIN:INFO] ### CYCLE 8 ###
+[12-19 22:31:18] [WEATHER:INFO] Using cached weather (4m old)
+[12-19 22:31:18] [WEATHER:INFO] Using cached forecast (10m old)
+[12-19 22:31:18] [FORECAST:INFO] Displaying forecast: Current -7°C → 11P -12°C, 12A -12°C
+[12-19 22:32:18] [STOCKS:INFO] Fetched 2/2 quotes
+[12-19 22:32:18] [STOCKS:INFO] Displaying multi-stock: AAPL +0.5%, GOOGL +1.6%, NVDA +3.9%
+[12-19 22:32:49] [STOCKS:INFO] Multi-stock display complete
+[12-19 22:32:49] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:32:49] [MAIN:INFO] ### CYCLE 9 ###
+[12-19 22:32:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-19 22:32:49] [WEATHER:INFO] Weather: -5°C, Mostly cloudy, UV:0
+[12-19 22:32:49] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-19 22:32:49] [WEATHER:INFO] Using cached forecast (12m old)
+[12-19 22:32:49] [FORECAST:INFO] Displaying forecast: Current -8°C → 11P -12°C, 12A -12°C
+[12-19 22:33:49] [STOCKS:INFO] Displaying stock chart: CRM $259.91 +0.80%
+[12-19 22:34:20] [STOCKS:INFO] Stock chart display complete
+[12-19 22:34:20] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:34:20] [MAIN:INFO] ### CYCLE 10 ###
+[12-19 22:34:20] [CONFIG:INFO] Loaded 8 settings from local config.csv
+[12-19 22:34:21] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-19 22:34:21] [CONFIG:INFO] Config loaded (source: local)
+[12-19 22:34:21] [CONFIG:INFO]   Weather: False, Forecast: True, Stocks: True, Clock: False
+[12-19 22:34:21] [CONFIG:INFO]   Temperature unit: C
+[12-19 22:34:21] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: False, Grace period: 540min
+[12-19 22:34:21] [WEATHER:INFO] Using cached weather (1m old)
+[12-19 22:34:21] [WEATHER:INFO] Using cached forecast (13m old)
+[12-19 22:34:21] [FORECAST:INFO] Displaying forecast: Current -8°C → 11P -12°C, 12A -12°C
+[12-19 22:35:21] [STOCKS:INFO] Displaying multi-stock: SPY +0.6%, SOXQ +2.9%, IBIT +4.1%
+[12-19 22:35:51] [STOCKS:INFO] Multi-stock display complete
+[12-19 22:35:51] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:35:51] [MAIN:INFO] Memory: 9.2% used (180KB) [+6880]
+[12-19 22:35:51] [MAIN:INFO] ### CYCLE 11 ###
+[12-19 22:35:51] [WEATHER:INFO] Using cached weather (3m old)
+[12-19 22:35:51] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-19 22:35:52] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -12°C Mostly cloudy
+[12-19 22:35:52] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-19 22:35:52] [FORECAST:INFO] Displaying forecast: Current -8°C → 11P -12°C, 12A -12°C
+[12-19 22:36:52] [STOCKS:INFO] Displaying stock chart: FDIG $40.83 +4.12%
+[12-19 22:37:22] [STOCKS:INFO] Stock chart display complete
+[12-19 22:37:22] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:37:22] [MAIN:INFO] ### CYCLE 12 ###
+[12-19 22:37:22] [WEATHER:INFO] Using cached weather (4m old)
+[12-19 22:37:22] [WEATHER:INFO] Using cached forecast (1m old)
+[12-19 22:37:22] [FORECAST:INFO] Displaying forecast: Current -8°C → 11P -12°C, 12A -12°C
+[12-19 22:38:22] [STOCKS:INFO] Displaying multi-stock: MXN $18.04, EUR $21.12, CAD $13.07
+[12-19 22:38:53] [STOCKS:INFO] Multi-stock display complete
+[12-19 22:38:53] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-19 22:38:53] [MAIN:INFO] ### CYCLE 13 ###
+[12-19 22:38:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-19 22:38:53] [WEATHER:INFO] Weather: -5°C, Mostly cloudy, UV:0
+[12-19 22:38:53] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-19 22:38:53] [WEATHER:INFO] Using cached forecast (3m old)
+[12-19 22:38:53] [FORECAST:INFO] Displaying forecast: Current -6°C → 11P -12°C, 12A -12°C
+[12-19 22:39:27] [FORECAST:INFO] UP button pressed during forecast display
+[12-19 22:39:27] [MAIN:INFO] === Test stopped by button press ===
+[12-19 22:39:29] [MAIN:INFO] Final memory: 9.9% used (193KB)
+[12-19 22:39:29] [MAIN:INFO] Total cycles: 13
+[12-19 22:39:29] [MAIN:INFO] Weather fetches: 4
+[12-19 22:39:29] [MAIN:INFO] Weather errors: 0
+[12-19 22:39:29] [MAIN:INFO] Uptime: 0.3 hours (18.9 minutes)

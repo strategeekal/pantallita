@@ -73,13 +73,14 @@ forecast_fetch_errors = 0
 # IMAGE CACHE (Phase 2)
 # ============================================================================
 
-# Shared LRU image cache for all displays (weather, forecast, schedules, events)
+# Shared LRU image cache for frequently-reused images (weather, forecast, events)
 # - Stores OnDiskBitmap objects by file path
 # - LRU eviction: removes oldest when cache exceeds IMAGE_CACHE_MAX
-# - Reduces SD card reads and memory churn
+# - Reduces SD card reads and memory churn for images used multiple times per day
+# - Schedule images NOT cached (loaded once per schedule, then garbage collected)
 image_cache = {}  # {path: OnDiskBitmap}
 image_cache_order = []  # LRU tracking list (oldest first, newest last)
-IMAGE_CACHE_MAX = 12  # Max images to cache (like v2.5)
+IMAGE_CACHE_MAX = 12  # Max images to cache
 
 # ============================================================================
 # STOCKS CACHE (Phase 4)
@@ -105,3 +106,17 @@ should_fetch_stocks = False  # True if within market hours, False if outside
 market_open_local_minutes = 0  # Market open time in minutes since midnight (local time)
 market_close_local_minutes = 0  # Market close time in minutes since midnight (local time)
 market_grace_end_local_minutes = 0  # Grace period end time in minutes since midnight (local time)
+
+# Grace period optimization - track which symbols already fetched during current grace period
+grace_period_fetched_symbols = set()  # Set of symbols fetched during current grace period
+previous_grace_period_state = False  # Track previous cycle to detect transition into grace period
+
+# ============================================================================
+# SCHEDULES CACHE (Phase 5)
+# ============================================================================
+
+# Schedules from GitHub or local schedules.csv (loaded at startup, reloaded every 10 cycles)
+cached_schedules = {}  # {schedule_name: {enabled, days, start_hour, start_min, end_hour, end_min, image, progressbar}}
+
+# Events from GitHub ephemeral + local recurring (loaded at startup)
+cached_events = {}  # {MMDD: [[top, bottom, image, color, start_hour, end_hour], ...]}
