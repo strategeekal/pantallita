@@ -81,31 +81,13 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 
 	# === DRAW STATIC ELEMENTS (ONCE) ===
 
-	# Schedule image (40×28, right side) - inline with LRU cache
+	# Schedule image (40×28, right side) - no cache (loaded once per schedule)
 	try:
 		schedule_image_path = f"{config.Paths.SCHEDULE_IMAGES}/{schedule_config['image']}"
 
-		# LRU Cache check (inline)
-		if schedule_image_path in state.image_cache:
-			# Cache hit - move to end (mark as recently used)
-			state.image_cache_order.remove(schedule_image_path)
-			state.image_cache_order.append(schedule_image_path)
-			bitmap = state.image_cache[schedule_image_path]
-			logger.log(f"Using cached schedule image: {schedule_image_path}", config.LogLevel.DEBUG, area="SCHEDULE")
-		else:
-			# Cache miss - load from SD card
-			logger.log(f"Loading schedule image from SD: {schedule_image_path}", config.LogLevel.DEBUG, area="SCHEDULE")
-			bitmap = displayio.OnDiskBitmap(schedule_image_path)
-
-			# Add to cache
-			state.image_cache[schedule_image_path] = bitmap
-			state.image_cache_order.append(schedule_image_path)
-
-			# LRU eviction: remove oldest if cache is full
-			if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
-				oldest_path = state.image_cache_order.pop(0)
-				del state.image_cache[oldest_path]
-				logger.log(f"Evicted oldest image from cache: {oldest_path}", config.LogLevel.DEBUG, area="SCHEDULE")
+		# Load directly without caching (schedules only run once per day)
+		logger.log(f"Loading schedule image: {schedule_image_path}", config.LogLevel.DEBUG, area="SCHEDULE")
+		bitmap = displayio.OnDiskBitmap(schedule_image_path)
 
 		# Create TileGrid with bitmap's pixel shader
 		schedule_img = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
