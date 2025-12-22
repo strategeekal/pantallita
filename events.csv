@@ -7,19 +7,44 @@
 # StartHour: Optional hour event becomes active (0-23, default: 0)
 # EndHour: Optional hour event stops being active (1-24, default: 24)
 
-# TEST EVENTS - For validating Phase 6
-# Today's date for testing (12-21)
-12-21,Happy,Holidays,blank.bmp,GREEN,8,20
-12-21,Season,Greetings,blank.bmp,MINT,20,24
-
-# New Year
-01-01,Happy,New Year,blank.bmp,BUGAMBILIA
-
-# Valentine's Day
-02-14,Happy,Valentine,heart.bmp,RED,8,20
-
-# Example birthday with time window
-03-15,Birthday,Celebration,cake.bmp,BUGAMBILIA,8,20
-
-# Christmas
-12-25,Merry,Christmas,blank.bmp,GREEN
+01-01,Happy,New Year,new_year.bmp,BUGAMBILIA
+01-04,Cumple,Lu,small_cake.bmp,PINK
+01-05,Cumple,Anto,small_cake.bmp,PINK
+01-12,Cumple,Lorencita,small_cake.bmp,LILAC
+01-18,Cumple,Abuelo,small_cake.bmp,MINT
+01-18,Cumple,Rafa,small_cake.bmp,BLUE
+01-19,Cumple,Pallis,small_cake.bmp,LILAC
+02-10,Birthday,Emilio,cake.bmp,MINT
+02-14,Dia,Didiculo,heart.bmp,RED
+03-06,Cumple,Tay,small_cake.bmp,AQUA
+03-19,Cumple,Pichono,small_cake.bmp,MINT
+03-27,Cumple,Lupis,small_cake.bmp,LILAC
+04-16,Cumple,Pa,small_cake.bmp,MINT
+04-18,Cumple,Nico,small_cake.bmp,ORANGE
+05-18,Cumple,Jime,small_cake.bmp,BLUE
+06-07,Cumple,Erin,small_cake.bmp,LILAC
+06-07,Cumple,Luquitas,small_cake.bmp,AQUA
+06-11,Cumple,Pablito,small_cake.bmp,CYAN
+06-16,Happy,Aniversary,anniversary.bmp,LILAC
+06-22,Cumple,Jose,small_cake.bmp,AQUA
+07-03,Birthday,Gaby,cake.bmp,MINT
+07-04,4th of,July,us_flag.bmp,BUGAMBILIA
+07-10,Cumple,Lucia,small_cake.bmp,LILAC
+07-11,Cumple,Tio Paco,small_cake.bmp,MINT
+08-11,Cumple,Alan,small_cake.bmp,MINT
+08-12,Cumple,Isa,small_cake.bmp,BUGAMBILIA
+08-14,Cumple,Tia Sofi,small_cake.bmp,LILAC
+08-24,Cumple,Abuela,small_cake.bmp,MINT
+08-25,Birthday,Diego,cake.bmp,MINT
+09-16,Viva,Mexico,mexico_flag_v3.bmp,BUGAMBILIA
+09-22,Cumple,Puchis,panzon.bmp,MINT
+10-09,Cumple,Alvaro,small_cake.bmp,MINT
+10-09,Cumple,Popi,small_cake.bmp,PINK
+10-26,Cumple,Jack,small_cake.bmp,YELLOW
+10-31,Happy,Halloween,halloween_pumpkin.bmp,BUGAMBILIA
+11-02,Dia de,Muertos,calaverita.bmp,BUGAMBILIA
+11-09,Birthday,Tiago,cake.bmp,MINT
+11-21,Cumple,Nicoshi,small_cake.bmp,ORANGE
+11-23,Cumple,Ric,small_cake.bmp,MINT
+12-24,Christmas,Eve,christmas_tree.bmp,MINT
+12-25,Merry,X-MAS,santa_claus.bmp,BUGAMBILIA

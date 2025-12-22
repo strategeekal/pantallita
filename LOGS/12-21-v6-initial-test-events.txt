@@ -1,0 +1,512 @@
+[MAIN:INFO] ==== PANTALLITA 3.0 | PHASE 6: EVENTS DISPLAY ====
+[HW:INFO] Initializing display...
+[HW:INFO] Initializing RTC...
+[12-21 21:06:51] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-21 21:06:51] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-21 21:06:53] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-21 21:06:56] [HW:INFO] Time synced: 12/21 9:06 PM
+[12-21 21:06:56] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-21 21:06:56] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-21 21:06:56] [CONFIG:INFO] Config loaded (source: local)
+[12-21 21:06:56] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-21 21:06:56] [CONFIG:INFO]   Temperature unit: C
+[12-21 21:06:56] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-21 21:06:57] [STOCKS:WARN] GitHub stocks fetch failed: HTTP 404
+[12-21 21:06:57] [STOCKS:INFO] Loaded 16 stocks from local stocks.csv
+[12-21 21:06:57] [MAIN:INFO] Loaded 16 stocks from CSV
+[12-21 21:06:57] [STOCKS:INFO] Market hours (local): 8:30 - 15:00 (grace: +90min)
+[12-21 21:06:58] [SCHEDULE:INFO] Loaded 17 schedules from local file
+[12-21 21:06:59] [EVENT:INFO] Loaded 23 ephemeral events from local file
+[12-21 21:06:59] [EVENT:INFO] Merged events: 64 total events across 55 dates
+[12-21 21:06:59] [EVENT:INFO] Loaded 64 events across 55 dates
+[12-21 21:07:01] [MAIN:INFO] Hardware ready
+[12-21 21:07:01] [MAIN:INFO] === Initialization complete ===
+[12-21 21:07:01] [MAIN:INFO] Press UP button to stop test
+[12-21 21:07:01] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-21 21:07:02] [MAIN:INFO] Baseline memory: 6.6% used (127KB) 
+
+[12-21 21:07:02] [MAIN:INFO] ### CYCLE 1 ###
+[12-21 21:07:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:07:02] [WEATHER:INFO] Weather: -3°C, Partly cloudy, UV:0
+[12-21 21:07:02] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-21 21:07:02] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 21:07:03] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Mostly clear
+[12-21 21:07:03] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-21 21:07:03] [FORECAST:INFO] Displaying forecast: Current -5°C → 10P -6°C, 11P -5°C
+[12-21 21:08:12] [DISPLAY:INFO] Displaying weather: -3°C Partly cloudy
+[12-21 21:12:15] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:12:15] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:12:24] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:12:39] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:12:47] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:13:02] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:13:02] [MAIN:INFO] ### CYCLE 2 ###
+[12-21 21:13:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:13:02] [WEATHER:INFO] Weather: -3°C, Partly cloudy, UV:0
+[12-21 21:13:02] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-21 21:13:02] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 21:13:02] [FORECAST:INFO] Displaying forecast: Current -5°C → 10P -6°C, 11P -5°C
+[12-21 21:14:02] [DISPLAY:INFO] Displaying weather: -3°C Partly cloudy
+[12-21 21:18:03] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:18:03] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:18:03] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:18:18] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:18:18] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:18:33] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:18:33] [MAIN:INFO] ### CYCLE 3 ###
+[12-21 21:18:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:18:34] [WEATHER:INFO] Weather: -2°C, Partly cloudy, UV:0
+[12-21 21:18:34] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-21 21:18:34] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 21:18:34] [FORECAST:INFO] Displaying forecast: Current -1°C → 10P -6°C, 11P -5°C
+[12-21 21:19:34] [DISPLAY:INFO] Displaying weather: -2°C Partly cloudy
+[12-21 21:23:35] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:23:35] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:23:35] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:23:50] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:23:50] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:24:05] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:24:05] [MAIN:INFO] ### CYCLE 4 ###
+[12-21 21:24:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:24:06] [WEATHER:INFO] Weather: -2°C, Partly cloudy, UV:0
+[12-21 21:24:06] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-21 21:24:06] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 21:24:07] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -6°C Partly cloudy
+[12-21 21:24:07] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-21 21:24:07] [FORECAST:INFO] Displaying forecast: Current -1°C → 10P -6°C, 11P -5°C
+[12-21 21:25:07] [DISPLAY:INFO] Displaying weather: -2°C Partly cloudy
+[12-21 21:29:07] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:29:07] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:29:07] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:29:22] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:29:22] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:29:38] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:29:38] [MAIN:INFO] ### CYCLE 5 ###
+[12-21 21:29:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:29:38] [WEATHER:INFO] Weather: -2°C, Partly cloudy, UV:0
+[12-21 21:29:38] [WEATHER:INFO] Fetch #5, Errors: 0
+[12-21 21:29:38] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 21:29:38] [FORECAST:INFO] Displaying forecast: Current -1°C → 10P -6°C, 11P -5°C
+[12-21 21:30:38] [DISPLAY:INFO] Displaying weather: -2°C Partly cloudy
+[12-21 21:34:38] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:34:38] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:34:39] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:34:54] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:34:54] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:35:09] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:35:09] [MAIN:INFO] Memory: 9.2% used (178KB) [-52048]
+[12-21 21:35:09] [MAIN:INFO] ### CYCLE 6 ###
+[12-21 21:35:09] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:35:09] [WEATHER:INFO] Weather: -2°C, Partly cloudy, UV:0
+[12-21 21:35:09] [WEATHER:INFO] Fetch #6, Errors: 0
+[12-21 21:35:10] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 21:35:10] [FORECAST:INFO] Displaying forecast: Current -1°C → 10P -6°C, 11P -5°C
+[12-21 21:36:10] [DISPLAY:INFO] Displaying weather: -2°C Partly cloudy
+[12-21 21:40:10] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:40:10] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:40:10] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:40:25] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:40:25] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:40:40] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:40:40] [MAIN:INFO] ### CYCLE 7 ###
+[12-21 21:40:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:40:41] [WEATHER:INFO] Weather: -2°C, Mostly cloudy, UV:0
+[12-21 21:40:41] [WEATHER:INFO] Fetch #7, Errors: 0
+[12-21 21:40:41] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 21:40:41] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -6°C Partly cloudy
+[12-21 21:40:41] [WEATHER:INFO] Forecast fetch #3, Errors: 0
+[12-21 21:40:41] [FORECAST:INFO] Displaying forecast: Current -2°C → 10P -6°C, 11P -5°C
+[12-21 21:41:42] [DISPLAY:INFO] Displaying weather: -2°C Mostly cloudy
+[12-21 21:45:42] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:45:42] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:45:42] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:45:57] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:45:57] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:46:12] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:46:12] [MAIN:INFO] ### CYCLE 8 ###
+[12-21 21:46:12] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:46:13] [WEATHER:INFO] Weather: -2°C, Mostly cloudy, UV:0
+[12-21 21:46:13] [WEATHER:INFO] Fetch #8, Errors: 0
+[12-21 21:46:13] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 21:46:13] [FORECAST:INFO] Displaying forecast: Current -2°C → 10P -6°C, 11P -5°C
+[12-21 21:47:13] [DISPLAY:INFO] Displaying weather: -2°C Mostly cloudy
+[12-21 21:51:13] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:51:13] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:51:13] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:51:28] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:51:28] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:51:44] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:51:44] [MAIN:INFO] ### CYCLE 9 ###
+[12-21 21:51:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:51:44] [WEATHER:INFO] Weather: -2°C, Mostly cloudy, UV:0
+[12-21 21:51:44] [WEATHER:INFO] Fetch #9, Errors: 0
+[12-21 21:51:44] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 21:51:44] [FORECAST:INFO] Displaying forecast: Current -1°C → 10P -6°C, 11P -5°C
+[12-21 21:52:44] [DISPLAY:INFO] Displaying weather: -2°C Mostly cloudy
+[12-21 21:56:44] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 21:56:45] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 21:56:45] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 21:57:00] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 21:57:00] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 21:57:15] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 21:57:15] [MAIN:INFO] ### CYCLE 10 ###
+[12-21 21:57:15] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-21 21:57:16] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-21 21:57:16] [CONFIG:INFO] Config loaded (source: local)
+[12-21 21:57:16] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-21 21:57:16] [CONFIG:INFO]   Temperature unit: C
+[12-21 21:57:16] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-21 21:57:16] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 21:57:16] [WEATHER:INFO] Weather: -2°C, Mostly cloudy, UV:0
+[12-21 21:57:16] [WEATHER:INFO] Fetch #10, Errors: 0
+[12-21 21:57:16] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 21:57:17] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -6°C Partly cloudy
+[12-21 21:57:17] [WEATHER:INFO] Forecast fetch #4, Errors: 0
+[12-21 21:57:17] [FORECAST:INFO] Displaying forecast: Current -1°C → 10P -6°C, 11P -5°C
+[12-21 21:58:17] [DISPLAY:INFO] Displaying weather: -2°C Mostly cloudy
+[12-21 22:02:17] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:02:17] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:02:17] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:02:33] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:02:33] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:02:48] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:02:48] [MAIN:INFO] Memory: 11.7% used (228KB) [-50896]
+[12-21 22:02:48] [MAIN:INFO] ### CYCLE 11 ###
+[12-21 22:02:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:02:49] [WEATHER:INFO] Weather: -2°C, Mostly cloudy, UV:0
+[12-21 22:02:49] [WEATHER:INFO] Fetch #11, Errors: 0
+[12-21 22:02:49] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 22:02:49] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:03:50] [DISPLAY:INFO] Displaying weather: -2°C Mostly cloudy
+[12-21 22:07:50] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:07:50] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:07:50] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:08:05] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:08:05] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:08:20] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:08:21] [MAIN:INFO] ### CYCLE 12 ###
+[12-21 22:08:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:08:21] [WEATHER:INFO] Weather: -2°C, Mostly cloudy, UV:0
+[12-21 22:08:21] [WEATHER:INFO] Fetch #12, Errors: 0
+[12-21 22:08:21] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 22:08:21] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:09:21] [DISPLAY:INFO] Displaying weather: -2°C Mostly cloudy
+[12-21 22:13:21] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:13:21] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:13:21] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:13:37] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:13:37] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:13:52] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:13:52] [MAIN:INFO] ### CYCLE 13 ###
+[12-21 22:13:52] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:13:52] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 22:13:52] [WEATHER:INFO] Fetch #13, Errors: 0
+[12-21 22:13:52] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 22:13:53] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Intermittent clouds
+[12-21 22:13:53] [WEATHER:INFO] Forecast fetch #5, Errors: 0
+[12-21 22:13:53] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:14:53] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 22:18:54] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:18:54] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:18:54] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:19:10] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:19:10] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:19:25] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:19:25] [MAIN:INFO] ### CYCLE 14 ###
+[12-21 22:19:25] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:19:26] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 22:19:26] [WEATHER:INFO] Fetch #14, Errors: 0
+[12-21 22:19:26] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 22:19:26] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:20:26] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 22:24:26] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:24:26] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:24:26] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:24:41] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:24:41] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:24:57] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:24:57] [MAIN:INFO] ### CYCLE 15 ###
+[12-21 22:24:57] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:24:57] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 22:24:57] [WEATHER:INFO] Fetch #15, Errors: 0
+[12-21 22:24:57] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 22:24:57] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:25:57] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 22:29:57] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:29:57] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:29:57] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:30:13] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:30:13] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:30:28] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:30:28] [MAIN:INFO] Memory: 9.6% used (187KB) [+41808]
+[12-21 22:30:28] [MAIN:INFO] ### CYCLE 16 ###
+[12-21 22:30:28] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:30:28] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 22:30:28] [WEATHER:INFO] Fetch #16, Errors: 0
+[12-21 22:30:28] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 22:30:29] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Partly cloudy
+[12-21 22:30:29] [WEATHER:INFO] Forecast fetch #6, Errors: 0
+[12-21 22:30:29] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:31:29] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 22:35:30] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:35:30] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:35:30] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:35:45] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:35:45] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:36:00] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:36:00] [MAIN:INFO] ### CYCLE 17 ###
+[12-21 22:36:00] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:36:01] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 22:36:01] [WEATHER:INFO] Fetch #17, Errors: 0
+[12-21 22:36:01] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 22:36:01] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:37:01] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 22:41:01] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:41:01] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:41:01] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:41:16] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:41:16] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:41:32] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:41:32] [MAIN:INFO] ### CYCLE 18 ###
+[12-21 22:41:32] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:41:32] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 22:41:32] [WEATHER:INFO] Fetch #18, Errors: 0
+[12-21 22:41:32] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 22:41:32] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:42:32] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 22:46:32] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:46:32] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:46:33] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:46:48] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:46:48] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:47:03] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:47:03] [MAIN:INFO] ### CYCLE 19 ###
+[12-21 22:47:03] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:47:03] [WEATHER:INFO] Weather: -1°C, Mostly clear, UV:0
+[12-21 22:47:03] [WEATHER:INFO] Fetch #19, Errors: 0
+[12-21 22:47:03] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 22:47:04] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Partly cloudy
+[12-21 22:47:04] [WEATHER:INFO] Forecast fetch #7, Errors: 0
+[12-21 22:47:04] [FORECAST:INFO] Displaying forecast: Current -2°C → 11P -5°C, 12A -5°C
+[12-21 22:48:04] [DISPLAY:INFO] Displaying weather: -1°C Mostly clear
+[12-21 22:52:04] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:52:04] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:52:05] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:52:20] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:52:20] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:52:35] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:52:35] [MAIN:INFO] ### CYCLE 20 ###
+[12-21 22:52:35] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-21 22:52:36] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-21 22:52:36] [CONFIG:INFO] Config loaded (source: local)
+[12-21 22:52:36] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-21 22:52:36] [CONFIG:INFO]   Temperature unit: C
+[12-21 22:52:36] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-21 22:52:36] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:52:36] [WEATHER:INFO] Weather: -1°C, Mostly clear, UV:0
+[12-21 22:52:36] [WEATHER:INFO] Fetch #20, Errors: 0
+[12-21 22:52:36] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 22:52:36] [FORECAST:INFO] Displaying forecast: Current -2°C → 11P -5°C, 12A -5°C
+[12-21 22:53:36] [DISPLAY:INFO] Displaying weather: -1°C Mostly clear
+[12-21 22:57:37] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-21 22:57:37] [EVENT:INFO] Showing event 1/2: Hello Winter (15s)
+[12-21 22:57:37] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 22:57:52] [EVENT:INFO] Showing event 2/2: H. Prog. 2 Days (15s)
+[12-21 22:57:52] [EVENT:INFO] Event: 'H. Prog.' / '2 Days' (color: LILAC)
+[12-21 22:58:07] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 22:58:07] [MAIN:INFO] Memory: 10.1% used (196KB) [-8848]
+[12-21 22:58:07] [MAIN:INFO] ### CYCLE 21 ###
+[12-21 22:58:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 22:58:08] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 22:58:08] [WEATHER:INFO] Fetch #21, Errors: 0
+[12-21 22:58:08] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 22:58:08] [FORECAST:INFO] Displaying forecast: Current -1°C → 11P -5°C, 12A -5°C
+[12-21 22:59:08] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 23:03:08] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:03:08] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:03:08] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:03:38] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:03:38] [MAIN:INFO] ### CYCLE 22 ###
+[12-21 23:03:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:03:39] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 23:03:39] [WEATHER:INFO] Fetch #22, Errors: 0
+[12-21 23:03:39] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 23:03:39] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Intermittent clouds
+[12-21 23:03:39] [WEATHER:INFO] Forecast fetch #8, Errors: 0
+[12-21 23:03:39] [FORECAST:INFO] Displaying forecast: Current -1°C → 12A -5°C, 1A -5°C
+[12-21 23:04:40] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 23:08:40] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:08:40] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:08:40] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:09:10] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:09:10] [MAIN:INFO] ### CYCLE 23 ###
+[12-21 23:09:10] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:09:11] [WEATHER:INFO] Weather: -3°C, Mostly clear, UV:0
+[12-21 23:09:11] [WEATHER:INFO] Fetch #23, Errors: 0
+[12-21 23:09:11] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 23:09:11] [FORECAST:INFO] Displaying forecast: Current -6°C → 12A -5°C, 1A -5°C
+[12-21 23:10:11] [DISPLAY:INFO] Displaying weather: -3°C Mostly clear
+[12-21 23:14:11] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:14:11] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:14:11] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:14:41] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:14:41] [MAIN:INFO] ### CYCLE 24 ###
+[12-21 23:14:41] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:14:42] [WEATHER:INFO] Weather: -3°C, Mostly clear, UV:0
+[12-21 23:14:42] [WEATHER:INFO] Fetch #24, Errors: 0
+[12-21 23:14:42] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 23:14:42] [FORECAST:INFO] Displaying forecast: Current -7°C → 12A -5°C, 1A -5°C
+[12-21 23:15:42] [DISPLAY:INFO] Displaying weather: -3°C Mostly clear
+[12-21 23:19:42] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:19:42] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:19:42] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:20:12] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:20:12] [MAIN:INFO] ### CYCLE 25 ###
+[12-21 23:20:12] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:20:13] [WEATHER:INFO] Weather: -3°C, Mostly clear, UV:0
+[12-21 23:20:13] [WEATHER:INFO] Fetch #25, Errors: 0
+[12-21 23:20:13] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 23:20:13] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Intermittent clouds
+[12-21 23:20:13] [WEATHER:INFO] Forecast fetch #9, Errors: 0
+[12-21 23:20:13] [FORECAST:INFO] Displaying forecast: Current -7°C → 12A -5°C, 1A -5°C
+[12-21 23:21:13] [DISPLAY:INFO] Displaying weather: -3°C Mostly clear
+[12-21 23:25:14] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:25:14] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:25:14] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:25:44] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:25:44] [MAIN:INFO] Memory: 12.1% used (237KB) [-41904]
+[12-21 23:25:44] [MAIN:INFO] ### CYCLE 26 ###
+[12-21 23:25:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:25:45] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 23:25:45] [WEATHER:INFO] Fetch #26, Errors: 0
+[12-21 23:25:45] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 23:25:45] [FORECAST:INFO] Displaying forecast: Current -2°C → 12A -5°C, 1A -5°C
+[12-21 23:26:45] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 23:30:45] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:30:45] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:30:45] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:31:15] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:31:15] [MAIN:INFO] ### CYCLE 27 ###
+[12-21 23:31:15] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:31:16] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 23:31:16] [WEATHER:INFO] Fetch #27, Errors: 0
+[12-21 23:31:16] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 23:31:16] [FORECAST:INFO] Displaying forecast: Current -4°C → 12A -5°C, 1A -5°C
+[12-21 23:32:16] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 23:36:16] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:36:16] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:36:16] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:36:46] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:36:46] [MAIN:INFO] ### CYCLE 28 ###
+[12-21 23:36:46] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:36:47] [WEATHER:INFO] Weather: -1°C, Partly cloudy, UV:0
+[12-21 23:36:47] [WEATHER:INFO] Fetch #28, Errors: 0
+[12-21 23:36:47] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 23:36:48] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -7°C Partly cloudy
+[12-21 23:36:48] [WEATHER:INFO] Forecast fetch #10, Errors: 0
+[12-21 23:36:48] [FORECAST:INFO] Displaying forecast: Current -4°C → 12A -7°C, 1A -6°C
+[12-21 23:37:48] [DISPLAY:INFO] Displaying weather: -1°C Partly cloudy
+[12-21 23:41:48] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:41:48] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:41:48] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:42:18] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:42:18] [MAIN:INFO] ### CYCLE 29 ###
+[12-21 23:42:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:42:19] [WEATHER:INFO] Weather: -1°C, Mostly cloudy, UV:0
+[12-21 23:42:19] [WEATHER:INFO] Fetch #29, Errors: 0
+[12-21 23:42:19] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 23:42:19] [FORECAST:INFO] Displaying forecast: Current -2°C → 12A -7°C, 1A -6°C
+[12-21 23:43:19] [DISPLAY:INFO] Displaying weather: -1°C Mostly cloudy
+[12-21 23:47:19] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:47:19] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:47:19] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:47:49] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:47:49] [MAIN:INFO] ### CYCLE 30 ###
+[12-21 23:47:49] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-21 23:47:50] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-21 23:47:50] [CONFIG:INFO] Config loaded (source: local)
+[12-21 23:47:50] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-21 23:47:50] [CONFIG:INFO]   Temperature unit: C
+[12-21 23:47:50] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-21 23:47:50] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:47:50] [WEATHER:INFO] Weather: -1°C, Mostly cloudy, UV:0
+[12-21 23:47:50] [WEATHER:INFO] Fetch #30, Errors: 0
+[12-21 23:47:50] [WEATHER:INFO] Using cached forecast (11m old)
+[12-21 23:47:50] [FORECAST:INFO] Displaying forecast: Current -2°C → 12A -7°C, 1A -6°C
+[12-21 23:48:51] [DISPLAY:INFO] Displaying weather: -1°C Mostly cloudy
+[12-21 23:52:51] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:52:51] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:52:51] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:53:21] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:53:21] [MAIN:INFO] Memory: 10.0% used (196KB) [+42000]
+[12-21 23:53:21] [MAIN:INFO] ### CYCLE 31 ###
+[12-21 23:53:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:53:22] [WEATHER:INFO] Weather: -1°C, Mostly cloudy, UV:0
+[12-21 23:53:22] [WEATHER:INFO] Fetch #31, Errors: 0
+[12-21 23:53:22] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-21 23:53:22] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -7°C Partly cloudy
+[12-21 23:53:22] [WEATHER:INFO] Forecast fetch #11, Errors: 0
+[12-21 23:53:22] [FORECAST:INFO] Displaying forecast: Current 0°C → 12A -7°C, 1A -6°C
+[12-21 23:54:22] [DISPLAY:INFO] Displaying weather: -1°C Mostly cloudy
+[12-21 23:58:23] [EVENT:INFO] Displaying 1 event(s) for 30s total
+[12-21 23:58:23] [EVENT:INFO] Showing event 1/1: Hello Winter (30s)
+[12-21 23:58:23] [EVENT:INFO] Event: 'Hello' / 'Winter' (color: RED)
+[12-21 23:58:53] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-21 23:58:53] [MAIN:INFO] ### CYCLE 32 ###
+[12-21 23:58:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-21 23:58:53] [WEATHER:INFO] Weather: -1°C, Mostly cloudy, UV:0
+[12-21 23:58:53] [WEATHER:INFO] Fetch #32, Errors: 0
+[12-21 23:58:53] [WEATHER:INFO] Using cached forecast (5m old)
+[12-21 23:58:53] [FORECAST:INFO] Displaying forecast: Current 0°C → 12A -7°C, 1A -6°C
+[12-21 23:59:54] [DISPLAY:INFO] Displaying weather: -1°C Mostly cloudy
+[12-22 00:03:54] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 00:03:54] [MAIN:INFO] ### CYCLE 33 ###
+[12-22 00:03:54] [SCHEDULE:INFO] Active schedule: Night Mode AM (86.1 min remaining)
+[12-22 00:03:54] [SCHEDULE:INFO] Starting schedule: Night Mode AM (86.1 min)
+[12-22 00:03:54] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 00:03:54] [WEATHER:INFO] Weather: -1°C, Mostly cloudy, UV:0
+[12-22 00:03:54] [WEATHER:INFO] Fetch #33, Errors: 0
+[12-22 00:03:54] [SCHEDULE:INFO] Displaying schedule: Night Mode AM
+[12-22 00:08:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 00:08:55] [WEATHER:INFO] Weather: -1°C, Mostly cloudy, UV:0
+[12-22 00:08:55] [WEATHER:INFO] Fetch #34, Errors: 0
+[12-22 00:09:29] [SCHEDULE:INFO] UP button pressed - stopping execution
+[12-22 00:09:29] [MAIN:INFO] === Test stopped by button press ===
+[12-22 00:09:33] [MAIN:INFO] Final memory: 10.2% used (199KB)
+[12-22 00:09:33] [MAIN:INFO] Total cycles: 33
+[12-22 00:09:33] [MAIN:INFO] Weather fetches: 34
+[12-22 00:09:33] [MAIN:INFO] Weather errors: 0
+[12-22 00:09:33] [MAIN:INFO] Uptime: 3.0 hours (182.5 minutes)
