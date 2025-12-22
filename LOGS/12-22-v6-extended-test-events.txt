@@ -1,0 +1,1202 @@
+[12-22 00:33:52] [WEATHER:INFO] Location: Sheffield And Depaul, IL | Timezone: America/Chicago (UTC-6)
+[12-22 00:33:55] [HW:INFO] Time synced: 12/22 12:33 AM
+[12-22 00:33:55] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 00:33:55] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-22 00:33:55] [CONFIG:INFO] Config loaded (source: local)
+[12-22 00:33:55] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 00:33:55] [CONFIG:INFO]   Temperature unit: C
+[12-22 00:33:55] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 00:33:56] [STOCKS:WARN] GitHub stocks fetch failed: HTTP 404
+[12-22 00:33:56] [STOCKS:INFO] Loaded 16 stocks from local stocks.csv
+[12-22 00:33:56] [MAIN:INFO] Loaded 16 stocks from CSV
+[12-22 00:33:56] [STOCKS:INFO] Market hours (local): 8:30 - 15:00 (grace: +90min)
+[12-22 00:33:57] [SCHEDULE:INFO] Loaded 17 schedules from local file
+[12-22 00:33:58] [EVENT:INFO] Loaded 23 ephemeral events from local file
+[12-22 00:33:58] [EVENT:INFO] Merged events: 64 total events across 54 dates
+[12-22 00:33:58] [EVENT:INFO] Loaded 64 events across 54 dates
+[12-22 00:34:00] [MAIN:INFO] Hardware ready
+[12-22 00:34:00] [MAIN:INFO] === Initialization complete ===
+[12-22 00:34:00] [MAIN:INFO] Press UP button to stop test
+[12-22 00:34:00] [MAIN:INFO] === Starting weather display cycle === 
+
+[12-22 00:34:01] [MAIN:INFO] Baseline memory: 6.6% used (128KB) 
+
+[12-22 00:34:01] [MAIN:INFO] ### CYCLE 1 ###
+[12-22 00:34:01] [SCHEDULE:INFO] Active schedule: Night Mode AM (56.0 min remaining)
+[12-22 00:34:01] [SCHEDULE:INFO] Starting schedule: Night Mode AM (56.0 min)
+[12-22 00:34:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 00:34:01] [WEATHER:INFO] Weather: 0°C, Mostly cloudy, UV:0
+[12-22 00:34:01] [WEATHER:INFO] Fetch #1, Errors: 0
+[12-22 00:34:02] [SCHEDULE:INFO] Displaying schedule: Night Mode AM
+[12-22 00:39:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 00:39:03] [WEATHER:INFO] Weather: 0°C, Mostly cloudy, UV:0
+[12-22 00:39:03] [WEATHER:INFO] Fetch #2, Errors: 0
+[12-22 00:44:03] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 00:44:04] [WEATHER:INFO] Weather: 0°C, Mostly cloudy, UV:0
+[12-22 00:44:04] [WEATHER:INFO] Fetch #3, Errors: 0
+[12-22 00:49:04] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 00:54:04] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 00:54:07] [WEATHER:INFO] Weather: 0°C, Mostly cloudy, UV:0
+[12-22 00:54:07] [WEATHER:INFO] Fetch #4, Errors: 0
+[12-22 00:59:05] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 01:04:06] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 01:04:08] [WEATHER:INFO] Weather: 0°C, Mostly cloudy, UV:0
+[12-22 01:04:08] [WEATHER:INFO] Fetch #5, Errors: 0
+[12-22 01:09:06] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 01:14:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 01:14:09] [WEATHER:INFO] Weather: 0°C, Mostly cloudy, UV:0
+[12-22 01:14:09] [WEATHER:INFO] Fetch #6, Errors: 0
+[12-22 01:19:07] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 01:24:08] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 01:24:10] [WEATHER:INFO] Weather: 0°C, Mostly cloudy, UV:0
+[12-22 01:24:10] [WEATHER:INFO] Fetch #7, Errors: 0
+[12-22 01:29:08] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 01:30:02] [SCHEDULE:INFO] Schedule complete: Night Mode AM
+[12-22 01:30:02] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-22 01:30:02] [MAIN:INFO] ### CYCLE 2 ###
+[12-22 01:30:02] [SCHEDULE:INFO] Active schedule: Deep Night AM (240.0 min remaining)
+[12-22 01:30:02] [SCHEDULE:INFO] Starting schedule: Deep Night AM (240.0 min)
+[12-22 01:30:02] [SCHEDULE:INFO] Displaying schedule: Deep Night AM
+[12-22 05:30:01] [SCHEDULE:INFO] Schedule complete: Deep Night AM
+[12-22 05:30:01] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-22 05:30:01] [MAIN:INFO] ### CYCLE 3 ###
+[12-22 05:30:01] [SCHEDULE:INFO] Active schedule: Night Mode end AM (60.0 min remaining)
+[12-22 05:30:01] [SCHEDULE:INFO] Starting schedule: Night Mode end AM (60.0 min)
+[12-22 05:30:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 05:30:03] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 05:30:03] [WEATHER:INFO] Fetch #8, Errors: 0
+[12-22 05:30:03] [SCHEDULE:INFO] Displaying schedule: Night Mode end AM
+[12-22 05:35:04] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 05:35:04] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 05:35:04] [WEATHER:INFO] Fetch #9, Errors: 0
+[12-22 05:40:04] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 05:45:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 05:45:07] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 05:45:07] [WEATHER:INFO] Fetch #10, Errors: 0
+[12-22 05:50:05] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 05:55:06] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 05:55:08] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 05:55:08] [WEATHER:INFO] Fetch #11, Errors: 0
+[12-22 06:00:06] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 06:05:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:05:09] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:05:09] [WEATHER:INFO] Fetch #12, Errors: 0
+[12-22 06:10:07] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 06:15:08] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:15:10] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:15:10] [WEATHER:INFO] Fetch #13, Errors: 0
+[12-22 06:20:08] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 06:25:09] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:25:11] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:25:11] [WEATHER:INFO] Fetch #14, Errors: 0
+[12-22 06:30:02] [SCHEDULE:INFO] Schedule complete: Night Mode end AM
+[12-22 06:30:02] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-22 06:30:02] [MAIN:INFO] ### CYCLE 4 ###
+[12-22 06:30:02] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 06:30:02] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 06:30:03] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -6°C Cloudy
+[12-22 06:30:03] [WEATHER:INFO] Forecast fetch #1, Errors: 0
+[12-22 06:30:03] [FORECAST:INFO] Displaying forecast: Current 1°C → 7A -6°C, 8A -6°C
+[12-22 06:31:04] [DISPLAY:INFO] Displaying weather: 1°C Cloudy
+[12-22 06:35:07] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-22 06:35:07] [EVENT:INFO] Showing event 1/2: H. Prog. Today (15s)
+[12-22 06:35:18] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:35:33] [EVENT:INFO] Showing event 2/2: H. Prog. Today (15s)
+[12-22 06:35:33] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:35:49] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 06:35:49] [MAIN:INFO] ### CYCLE 5 ###
+[12-22 06:35:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:35:49] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:35:49] [WEATHER:INFO] Fetch #15, Errors: 0
+[12-22 06:35:49] [WEATHER:INFO] Using cached forecast (5m old)
+[12-22 06:35:49] [FORECAST:INFO] Displaying forecast: Current 1°C → 7A -6°C, 8A -6°C
+[12-22 06:36:49] [DISPLAY:INFO] Displaying weather: 1°C Cloudy
+[12-22 06:40:49] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-22 06:40:49] [EVENT:INFO] Showing event 1/2: H. Prog. Today (15s)
+[12-22 06:40:49] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:41:05] [EVENT:INFO] Showing event 2/2: H. Prog. Today (15s)
+[12-22 06:41:05] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:41:20] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 06:41:20] [MAIN:INFO] Memory: 8.9% used (173KB) [-46512]
+[12-22 06:41:20] [MAIN:INFO] ### CYCLE 6 ###
+[12-22 06:41:20] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:41:21] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:41:21] [WEATHER:INFO] Fetch #16, Errors: 0
+[12-22 06:41:21] [WEATHER:INFO] Using cached forecast (11m old)
+[12-22 06:41:21] [FORECAST:INFO] Displaying forecast: Current 1°C → 7A -6°C, 8A -6°C
+[12-22 06:42:21] [DISPLAY:INFO] Displaying weather: 1°C Cloudy
+[12-22 06:46:21] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-22 06:46:21] [EVENT:INFO] Showing event 1/2: H. Prog. Today (15s)
+[12-22 06:46:21] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:46:37] [EVENT:INFO] Showing event 2/2: H. Prog. Today (15s)
+[12-22 06:46:37] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:46:52] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 06:46:52] [MAIN:INFO] ### CYCLE 7 ###
+[12-22 06:46:52] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:46:52] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:46:52] [WEATHER:INFO] Fetch #17, Errors: 0
+[12-22 06:46:52] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 06:46:53] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -6°C Cloudy
+[12-22 06:46:53] [WEATHER:INFO] Forecast fetch #2, Errors: 0
+[12-22 06:46:53] [FORECAST:INFO] Displaying forecast: Current 1°C → 7A -6°C, 8A -6°C
+[12-22 06:47:53] [DISPLAY:INFO] Displaying weather: 1°C Cloudy
+[12-22 06:51:53] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-22 06:51:53] [EVENT:INFO] Showing event 1/2: H. Prog. Today (15s)
+[12-22 06:51:53] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:52:08] [EVENT:INFO] Showing event 2/2: H. Prog. Today (15s)
+[12-22 06:52:08] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:52:24] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 06:52:24] [MAIN:INFO] ### CYCLE 8 ###
+[12-22 06:52:24] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:52:24] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:52:24] [WEATHER:INFO] Fetch #18, Errors: 0
+[12-22 06:52:24] [WEATHER:INFO] Using cached forecast (5m old)
+[12-22 06:52:24] [FORECAST:INFO] Displaying forecast: Current 1°C → 7A -6°C, 8A -6°C
+[12-22 06:53:24] [DISPLAY:INFO] Displaying weather: 1°C Cloudy
+[12-22 06:57:24] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-22 06:57:24] [EVENT:INFO] Showing event 1/2: H. Prog. Today (15s)
+[12-22 06:57:24] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:57:40] [EVENT:INFO] Showing event 2/2: H. Prog. Today (15s)
+[12-22 06:57:40] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 06:57:55] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 06:57:55] [MAIN:INFO] ### CYCLE 9 ###
+[12-22 06:57:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 06:57:55] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 06:57:55] [WEATHER:INFO] Fetch #19, Errors: 0
+[12-22 06:57:55] [WEATHER:INFO] Using cached forecast (11m old)
+[12-22 06:57:55] [FORECAST:INFO] Displaying forecast: Current 1°C → 7A -6°C, 8A -6°C
+[12-22 06:58:55] [DISPLAY:INFO] Displaying weather: 1°C Cloudy
+[12-22 07:02:55] [EVENT:INFO] Displaying 2 event(s) for 30s total
+[12-22 07:02:55] [EVENT:INFO] Showing event 1/2: H. Prog. Today (15s)
+[12-22 07:02:56] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 07:03:11] [EVENT:INFO] Showing event 2/2: H. Prog. Today (15s)
+[12-22 07:03:11] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 07:03:26] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 07:03:26] [MAIN:INFO] ### CYCLE 10 ###
+[12-22 07:03:26] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 07:03:27] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-22 07:03:27] [CONFIG:INFO] Config loaded (source: local)
+[12-22 07:03:27] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 07:03:27] [CONFIG:INFO]   Temperature unit: C
+[12-22 07:03:27] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 07:03:27] [SCHEDULE:INFO] Active schedule: Get Dressed (11.5 min remaining)
+[12-22 07:03:27] [SCHEDULE:INFO] Starting schedule: Get Dressed (11.5 min)
+[12-22 07:03:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:03:27] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 07:03:27] [WEATHER:INFO] Fetch #20, Errors: 0
+[12-22 07:03:28] [SCHEDULE:INFO] Displaying schedule: Get Dressed
+[12-22 07:08:28] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:08:28] [WEATHER:INFO] Weather: 1°C, Cloudy, UV:0
+[12-22 07:08:28] [WEATHER:INFO] Fetch #21, Errors: 0
+[12-22 07:13:29] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:13:29] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 07:13:29] [WEATHER:INFO] Fetch #22, Errors: 0
+[12-22 07:15:01] [SCHEDULE:INFO] Schedule complete: Get Dressed
+[12-22 07:15:01] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-22 07:15:01] [MAIN:INFO] ### CYCLE 11 ###
+[12-22 07:15:01] [SCHEDULE:INFO] Active schedule: Eat Breakfast (25.0 min remaining)
+[12-22 07:15:01] [SCHEDULE:INFO] Starting schedule: Eat Breakfast (25.0 min)
+[12-22 07:15:01] [WEATHER:INFO] Using cached weather (1m old)
+[12-22 07:15:01] [SCHEDULE:INFO] Displaying schedule: Eat Breakfast
+[12-22 07:20:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:20:02] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 07:20:02] [WEATHER:INFO] Fetch #23, Errors: 0
+[12-22 07:25:02] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 07:30:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:30:04] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 07:30:04] [WEATHER:INFO] Fetch #24, Errors: 0
+[12-22 07:35:03] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 07:40:01] [SCHEDULE:INFO] Schedule complete: Eat Breakfast
+[12-22 07:40:01] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-22 07:40:01] [MAIN:INFO] ### CYCLE 12 ###
+[12-22 07:40:01] [SCHEDULE:INFO] Active schedule: Toilet and Teeth AM (10.0 min remaining)
+[12-22 07:40:01] [SCHEDULE:INFO] Starting schedule: Toilet and Teeth AM (10.0 min)
+[12-22 07:40:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:40:03] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 07:40:03] [WEATHER:INFO] Fetch #25, Errors: 0
+[12-22 07:40:04] [SCHEDULE:INFO] Displaying schedule: Toilet and Teeth AM
+[12-22 07:45:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:45:05] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 07:45:05] [WEATHER:INFO] Fetch #26, Errors: 0
+[12-22 07:50:04] [SCHEDULE:INFO] Schedule complete: Toilet and Teeth AM
+[12-22 07:50:04] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-22 07:50:04] [MAIN:INFO] ### CYCLE 13 ###
+[12-22 07:50:04] [SCHEDULE:INFO] Active schedule: Go to School (24.9 min remaining)
+[12-22 07:50:04] [SCHEDULE:INFO] Starting schedule: Go to School (24.9 min)
+[12-22 07:50:04] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 07:50:04] [SCHEDULE:INFO] Displaying schedule: Go to School
+[12-22 07:55:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 07:55:07] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 07:55:07] [WEATHER:INFO] Fetch #27, Errors: 0
+[12-22 08:00:05] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 08:05:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:05:17] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 08:05:17] [WEATHER:INFO] Fetch #28, Errors: 0
+[12-22 08:10:06] [WEATHER:INFO] Using cached weather (4m old)
+[12-22 08:15:01] [SCHEDULE:INFO] Schedule complete: Go to School
+[12-22 08:15:01] [MAIN:INFO] ### CYCLE COMPLETE (SCHEDULE) ### 
+
+[12-22 08:15:01] [MAIN:INFO] ### CYCLE 14 ###
+[12-22 08:15:01] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:15:04] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 08:15:04] [WEATHER:INFO] Fetch #29, Errors: 0
+[12-22 08:15:04] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 08:15:05] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Cloudy
+[12-22 08:15:05] [WEATHER:INFO] Forecast fetch #3, Errors: 0
+[12-22 08:15:05] [FORECAST:INFO] Displaying forecast: Current 2°C → 9A -5°C, 10A -3°C
+[12-22 08:16:05] [DISPLAY:INFO] Displaying weather: 2°C Cloudy
+[12-22 08:20:06] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 08:20:06] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 08:20:06] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:20:17] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 08:20:22] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 08:20:33] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 08:20:33] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:20:43] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 08:20:43] [MAIN:INFO] ### CYCLE 15 ###
+[12-22 08:20:43] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:20:44] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 08:20:44] [WEATHER:INFO] Fetch #30, Errors: 0
+[12-22 08:20:44] [WEATHER:INFO] Using cached forecast (5m old)
+[12-22 08:20:44] [FORECAST:INFO] Displaying forecast: Current 2°C → 9A -5°C, 10A -3°C
+[12-22 08:21:44] [DISPLAY:INFO] Displaying weather: 2°C Cloudy
+[12-22 08:25:44] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 08:25:44] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 08:25:44] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:25:55] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 08:25:55] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 08:26:05] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 08:26:05] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:26:15] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 08:26:15] [MAIN:INFO] Memory: 10.0% used (195KB) [-22848]
+[12-22 08:26:15] [MAIN:INFO] ### CYCLE 16 ###
+[12-22 08:26:15] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:26:16] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 08:26:16] [WEATHER:INFO] Fetch #31, Errors: 0
+[12-22 08:26:16] [WEATHER:INFO] Using cached forecast (11m old)
+[12-22 08:26:16] [FORECAST:INFO] Displaying forecast: Current 2°C → 9A -5°C, 10A -3°C
+[12-22 08:27:16] [DISPLAY:INFO] Displaying weather: 2°C Cloudy
+[12-22 08:31:16] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 08:31:16] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 08:31:16] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:31:26] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 08:31:26] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 08:31:36] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 08:31:37] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:31:48] [STOCKS:INFO] Fetched 78 data points for CRM
+[12-22 08:31:49] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 08:31:49] [STOCKS:INFO] Displaying stock chart: CRM $260.05 +0.05%
+[12-22 08:32:24] [STOCKS:INFO] Stock chart display complete
+[12-22 08:32:24] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 08:32:24] [MAIN:INFO] ### CYCLE 17 ###
+[12-22 08:32:24] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:32:24] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 08:32:24] [WEATHER:INFO] Fetch #32, Errors: 0
+[12-22 08:32:24] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 08:32:25] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -5°C Cloudy
+[12-22 08:32:25] [WEATHER:INFO] Forecast fetch #4, Errors: 0
+[12-22 08:32:25] [FORECAST:INFO] Displaying forecast: Current 2°C → 9A -5°C, 10A -3°C
+[12-22 08:33:25] [DISPLAY:INFO] Displaying weather: 2°C Cloudy
+[12-22 08:37:25] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 08:37:25] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 08:37:25] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:37:36] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 08:37:36] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 08:37:46] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 08:37:46] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:37:57] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 08:37:57] [STOCKS:INFO] Displaying multi-stock: SPY +0.4%, SOXQ +1.2%, IBIT +2.0%
+[12-22 08:38:33] [STOCKS:INFO] Multi-stock display complete
+[12-22 08:38:33] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 08:38:33] [MAIN:INFO] ### CYCLE 18 ###
+[12-22 08:38:33] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:38:33] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 08:38:33] [WEATHER:INFO] Fetch #33, Errors: 0
+[12-22 08:38:33] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 08:38:33] [FORECAST:INFO] Displaying forecast: Current 1°C → 9A -5°C, 10A -3°C
+[12-22 08:39:33] [DISPLAY:INFO] Displaying weather: 2°C Cloudy
+[12-22 08:43:33] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 08:43:33] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 08:43:34] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:43:44] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 08:43:44] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 08:43:54] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 08:43:54] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:44:05] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-22 08:44:05] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 08:44:05] [STOCKS:INFO] Displaying stock chart: FDIG $41.56 +1.78%
+[12-22 08:44:38] [STOCKS:INFO] Stock chart display complete
+[12-22 08:44:38] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 08:44:38] [MAIN:INFO] ### CYCLE 19 ###
+[12-22 08:44:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:44:38] [WEATHER:INFO] Weather: 2°C, Cloudy, UV:0
+[12-22 08:44:38] [WEATHER:INFO] Fetch #34, Errors: 0
+[12-22 08:44:38] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 08:44:38] [FORECAST:INFO] Displaying forecast: Current 1°C → 9A -5°C, 10A -3°C
+[12-22 08:45:38] [DISPLAY:INFO] Displaying weather: 2°C Cloudy
+[12-22 08:49:38] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 08:49:38] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 08:49:38] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:49:48] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 08:49:48] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 08:49:59] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 08:49:59] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:50:11] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 08:50:11] [STOCKS:INFO] Displaying multi-stock: MXN $17.97, EUR $21.15, CAD $13.08
+[12-22 08:50:44] [STOCKS:INFO] Multi-stock display complete
+[12-22 08:50:44] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 08:50:44] [MAIN:INFO] ### CYCLE 20 ###
+[12-22 08:50:44] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 08:50:45] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-22 08:50:45] [CONFIG:INFO] Config loaded (source: local)
+[12-22 08:50:45] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 08:50:45] [CONFIG:INFO]   Temperature unit: C
+[12-22 08:50:45] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 08:50:45] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:50:45] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-22 08:50:45] [WEATHER:INFO] Fetch #35, Errors: 0
+[12-22 08:50:45] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 08:50:46] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Cloudy
+[12-22 08:50:46] [WEATHER:INFO] Forecast fetch #5, Errors: 0
+[12-22 08:50:46] [FORECAST:INFO] Displaying forecast: Current 0°C → 9A -3°C, 10A -3°C
+[12-22 08:51:46] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-22 08:55:46] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 08:55:46] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 08:55:46] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:55:57] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 08:55:57] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 08:56:07] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 08:56:07] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 08:56:18] [STOCKS:INFO] Fetched 78 data points for LUMN
+[12-22 08:56:18] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 08:56:18] [STOCKS:INFO] Displaying stock chart: LUMN $8.25 +0.79%
+[12-22 08:56:49] [STOCKS:INFO] Stock chart display complete
+[12-22 08:56:49] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 08:56:49] [MAIN:INFO] Memory: 13.2% used (258KB) [-63840]
+[12-22 08:56:49] [MAIN:INFO] ### CYCLE 21 ###
+[12-22 08:56:49] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 08:56:50] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-22 08:56:50] [WEATHER:INFO] Fetch #36, Errors: 0
+[12-22 08:56:50] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 08:56:50] [FORECAST:INFO] Displaying forecast: Current 2°C → 9A -3°C, 10A -3°C
+[12-22 08:57:50] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-22 09:01:50] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:01:50] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:01:50] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:02:00] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:02:01] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:02:11] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:02:11] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:02:22] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 09:02:22] [STOCKS:INFO] Displaying multi-stock: ETH $3,058, XAU $4,421, GBP $24.19
+[12-22 09:02:53] [STOCKS:INFO] Multi-stock display complete
+[12-22 09:02:53] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:02:53] [MAIN:INFO] ### CYCLE 22 ###
+[12-22 09:02:53] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:02:54] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-22 09:02:54] [WEATHER:INFO] Fetch #37, Errors: 0
+[12-22 09:02:54] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 09:02:54] [FORECAST:INFO] Displaying forecast: Current 2°C → 10A -3°C, 11A -2°C
+[12-22 09:03:54] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-22 09:07:54] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:07:54] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:07:55] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:08:05] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:08:05] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:08:15] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:08:15] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:08:26] [STOCKS:INFO] Fetched 78 data points for BTC/USD
+[12-22 09:08:26] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 09:08:26] [STOCKS:INFO] Displaying stock chart: BTC $90104.38 +1.65%
+[12-22 09:08:56] [STOCKS:INFO] Stock chart display complete
+[12-22 09:08:56] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:08:56] [MAIN:INFO] ### CYCLE 23 ###
+[12-22 09:08:56] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:08:57] [WEATHER:INFO] Weather: 3°C, Mostly cloudy, UV:0
+[12-22 09:08:57] [WEATHER:INFO] Fetch #38, Errors: 0
+[12-22 09:08:57] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 09:08:57] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Cloudy
+[12-22 09:08:57] [WEATHER:INFO] Forecast fetch #6, Errors: 0
+[12-22 09:08:57] [FORECAST:INFO] Displaying forecast: Current 2°C → 10A -3°C, 11A -2°C
+[12-22 09:09:57] [DISPLAY:INFO] Displaying weather: 3°C Mostly cloudy
+[12-22 09:14:00] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:14:00] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:14:00] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:14:10] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:14:10] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:14:20] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:14:20] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:14:31] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 09:14:32] [STOCKS:INFO] Displaying multi-stock: AAPL -0.5%, GOOGL -0.2%, NVDA +1.2%
+[12-22 09:15:02] [STOCKS:INFO] Multi-stock display complete
+[12-22 09:15:02] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:15:02] [MAIN:INFO] ### CYCLE 24 ###
+[12-22 09:15:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:15:03] [WEATHER:INFO] Weather: 3°C, Mostly cloudy, UV:0
+[12-22 09:15:03] [WEATHER:INFO] Fetch #39, Errors: 0
+[12-22 09:15:03] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 09:15:03] [FORECAST:INFO] Displaying forecast: Current 2°C → 10A -3°C, 11A -2°C
+[12-22 09:16:03] [DISPLAY:INFO] Displaying weather: 3°C Mostly cloudy
+[12-22 09:20:03] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:20:03] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:20:03] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:20:13] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:20:14] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:20:24] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:20:24] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:20:34] [STOCKS:INFO] Fetched 78 data points for CRM
+[12-22 09:20:35] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 09:20:35] [STOCKS:INFO] Displaying stock chart: CRM $263.78 +1.49%
+[12-22 09:21:05] [STOCKS:INFO] Stock chart display complete
+[12-22 09:21:05] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:21:05] [MAIN:INFO] ### CYCLE 25 ###
+[12-22 09:21:05] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:21:05] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:1
+[12-22 09:21:05] [WEATHER:INFO] Fetch #40, Errors: 0
+[12-22 09:21:05] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 09:21:05] [FORECAST:INFO] Displaying forecast: Current 2°C → 10A -3°C, 11A -2°C
+[12-22 09:22:05] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-22 09:26:05] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:26:05] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:26:06] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:26:16] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:26:16] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:26:26] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:26:26] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:26:37] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 09:26:37] [STOCKS:INFO] Displaying multi-stock: SPY +0.5%, SOXQ +1.3%, IBIT +1.8%
+[12-22 09:27:07] [STOCKS:INFO] Multi-stock display complete
+[12-22 09:27:07] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:27:07] [MAIN:INFO] Memory: 14.1% used (274KB) [-17040]
+[12-22 09:27:08] [MAIN:INFO] ### CYCLE 26 ###
+[12-22 09:27:08] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:27:08] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-22 09:27:08] [WEATHER:INFO] Fetch #41, Errors: 0
+[12-22 09:27:08] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 09:27:08] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Cloudy
+[12-22 09:27:08] [WEATHER:INFO] Forecast fetch #7, Errors: 0
+[12-22 09:27:08] [FORECAST:INFO] Displaying forecast: Current -1°C → 10A -3°C, 11A -2°C
+[12-22 09:28:09] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-22 09:32:09] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:32:09] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:32:09] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:32:19] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:32:19] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:32:30] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:32:30] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:32:41] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-22 09:32:41] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 09:32:41] [STOCKS:INFO] Displaying stock chart: FDIG $42.25 +3.47%
+[12-22 09:33:11] [STOCKS:INFO] Stock chart display complete
+[12-22 09:33:11] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:33:11] [MAIN:INFO] ### CYCLE 27 ###
+[12-22 09:33:11] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:33:11] [WEATHER:INFO] Weather: 2°C, Mostly cloudy, UV:0
+[12-22 09:33:11] [WEATHER:INFO] Fetch #42, Errors: 0
+[12-22 09:33:11] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 09:33:12] [FORECAST:INFO] Displaying forecast: Current -1°C → 10A -3°C, 11A -2°C
+[12-22 09:34:12] [DISPLAY:INFO] Displaying weather: 2°C Mostly cloudy
+[12-22 09:38:12] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:38:12] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:38:12] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:38:22] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:38:22] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:38:32] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:38:33] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:38:44] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 09:38:44] [STOCKS:INFO] Displaying multi-stock: MXN $17.96, EUR $21.13, CAD $13.07
+[12-22 09:39:14] [STOCKS:INFO] Multi-stock display complete
+[12-22 09:39:14] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:39:14] [MAIN:INFO] ### CYCLE 28 ###
+[12-22 09:39:14] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:39:14] [WEATHER:INFO] Weather: 4°C, Mostly cloudy, UV:0
+[12-22 09:39:14] [WEATHER:INFO] Fetch #43, Errors: 0
+[12-22 09:39:14] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 09:39:14] [FORECAST:INFO] Displaying forecast: Current 4°C → 10A -3°C, 11A -2°C
+[12-22 09:40:14] [DISPLAY:INFO] Displaying weather: 4°C Mostly cloudy
+[12-22 09:44:15] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:44:15] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:44:15] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:44:26] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:44:26] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:44:36] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:44:36] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:44:47] [STOCKS:INFO] Fetched 78 data points for LUMN
+[12-22 09:44:47] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 09:44:47] [STOCKS:INFO] Displaying stock chart: LUMN $8.06 -1.59%
+[12-22 09:45:17] [STOCKS:INFO] Stock chart display complete
+[12-22 09:45:17] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:45:17] [MAIN:INFO] ### CYCLE 29 ###
+[12-22 09:45:17] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:45:18] [WEATHER:INFO] Weather: 4°C, Mostly cloudy, UV:0
+[12-22 09:45:18] [WEATHER:INFO] Fetch #44, Errors: 0
+[12-22 09:45:18] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 09:45:18] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Mostly cloudy
+[12-22 09:45:18] [WEATHER:INFO] Forecast fetch #8, Errors: 0
+[12-22 09:45:18] [FORECAST:INFO] Displaying forecast: Current 4°C → 10A -3°C, 11A -2°C
+[12-22 09:46:18] [DISPLAY:INFO] Displaying weather: 4°C Mostly cloudy
+[12-22 09:50:18] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:50:18] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:50:19] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:50:29] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:50:29] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:50:39] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:50:39] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:50:50] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 09:50:50] [STOCKS:INFO] Displaying multi-stock: ETH $3,033, XAU $4,429, GBP $24.17
+[12-22 09:51:21] [STOCKS:INFO] Multi-stock display complete
+[12-22 09:51:21] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:51:21] [MAIN:INFO] ### CYCLE 30 ###
+[12-22 09:51:21] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 09:51:21] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-22 09:51:21] [CONFIG:INFO] Config loaded (source: local)
+[12-22 09:51:21] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 09:51:21] [CONFIG:INFO]   Temperature unit: C
+[12-22 09:51:21] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 09:51:21] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:51:22] [WEATHER:INFO] Weather: 5°C, Mostly cloudy, UV:0
+[12-22 09:51:22] [WEATHER:INFO] Fetch #45, Errors: 0
+[12-22 09:51:22] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 09:51:22] [FORECAST:INFO] Displaying forecast: Current 4°C → 10A -3°C, 11A -2°C
+[12-22 09:52:22] [DISPLAY:INFO] Displaying weather: 5°C Mostly cloudy
+[12-22 09:56:23] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 09:56:23] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 09:56:23] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:56:33] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 09:56:33] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 09:56:44] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 09:56:44] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 09:56:55] [STOCKS:INFO] Fetched 78 data points for BTC/USD
+[12-22 09:56:55] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 09:56:55] [STOCKS:INFO] Displaying stock chart: BTC $89682.38 +1.18%
+[12-22 09:57:25] [STOCKS:INFO] Stock chart display complete
+[12-22 09:57:25] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 09:57:25] [MAIN:INFO] Memory: 13.8% used (269KB) [+4944]
+[12-22 09:57:25] [MAIN:INFO] ### CYCLE 31 ###
+[12-22 09:57:25] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 09:57:26] [WEATHER:INFO] Weather: 5°C, Mostly cloudy, UV:0
+[12-22 09:57:26] [WEATHER:INFO] Fetch #46, Errors: 0
+[12-22 09:57:26] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 09:57:26] [FORECAST:INFO] Displaying forecast: Current 4°C → 10A -3°C, 11A -2°C
+[12-22 09:58:26] [DISPLAY:INFO] Displaying weather: 5°C Mostly cloudy
+[12-22 10:02:26] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:02:26] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:02:26] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:02:36] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:02:36] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:02:47] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:02:47] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:02:58] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 10:02:58] [STOCKS:INFO] Displaying multi-stock: AAPL -0.5%, GOOGL -0.0%, NVDA +1.4%
+[12-22 10:03:28] [STOCKS:INFO] Multi-stock display complete
+[12-22 10:03:28] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:03:28] [MAIN:INFO] ### CYCLE 32 ###
+[12-22 10:03:28] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:03:28] [WEATHER:INFO] Weather: 5°C, Mostly cloudy, UV:1
+[12-22 10:03:28] [WEATHER:INFO] Fetch #47, Errors: 0
+[12-22 10:03:28] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 10:03:29] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: -3°C Mostly cloudy
+[12-22 10:03:29] [WEATHER:INFO] Forecast fetch #9, Errors: 0
+[12-22 10:03:29] [FORECAST:INFO] Displaying forecast: Current 4°C → 11A -2°C, 12P -1°C
+[12-22 10:04:29] [DISPLAY:INFO] Displaying weather: 5°C Mostly cloudy
+[12-22 10:08:29] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:08:29] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:08:29] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:08:39] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:08:39] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:08:50] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:08:50] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:09:01] [STOCKS:INFO] Fetched 78 data points for CRM
+[12-22 10:09:01] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 10:09:01] [STOCKS:INFO] Displaying stock chart: CRM $263.03 +1.20%
+[12-22 10:09:31] [STOCKS:INFO] Stock chart display complete
+[12-22 10:09:31] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:09:31] [MAIN:INFO] ### CYCLE 33 ###
+[12-22 10:09:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:09:32] [WEATHER:INFO] Weather: 5°C, Mostly cloudy, UV:1
+[12-22 10:09:32] [WEATHER:INFO] Fetch #48, Errors: 0
+[12-22 10:09:32] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 10:09:32] [FORECAST:INFO] Displaying forecast: Current 4°C → 11A -2°C, 12P -1°C
+[12-22 10:10:32] [DISPLAY:INFO] Displaying weather: 5°C Mostly cloudy
+[12-22 10:14:32] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:14:32] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:14:32] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:14:42] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:14:42] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:14:53] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:14:53] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:15:04] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 10:15:04] [STOCKS:INFO] Displaying multi-stock: SPY +0.6%, SOXQ +1.1%, IBIT +2.1%
+[12-22 10:15:34] [STOCKS:INFO] Multi-stock display complete
+[12-22 10:15:34] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:15:34] [MAIN:INFO] ### CYCLE 34 ###
+[12-22 10:15:34] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:15:35] [WEATHER:INFO] Weather: 5°C, Mostly cloudy, UV:1
+[12-22 10:15:35] [WEATHER:INFO] Fetch #49, Errors: 0
+[12-22 10:15:35] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 10:15:35] [FORECAST:INFO] Displaying forecast: Current 4°C → 11A -2°C, 12P -1°C
+[12-22 10:16:35] [DISPLAY:INFO] Displaying weather: 5°C Mostly cloudy
+[12-22 10:20:35] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:20:35] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:20:35] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:20:45] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:20:45] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:20:56] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:20:56] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:21:06] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-22 10:21:07] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 10:21:07] [STOCKS:INFO] Displaying stock chart: FDIG $42.25 +3.47%
+[12-22 10:21:37] [STOCKS:INFO] Stock chart display complete
+[12-22 10:21:37] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:21:37] [MAIN:INFO] ### CYCLE 35 ###
+[12-22 10:21:37] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:21:37] [WEATHER:INFO] Weather: 5°C, Mostly cloudy, UV:1
+[12-22 10:21:37] [WEATHER:INFO] Fetch #50, Errors: 0
+[12-22 10:21:37] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 10:21:38] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Cloudy
+[12-22 10:21:38] [WEATHER:INFO] Forecast fetch #10, Errors: 0
+[12-22 10:21:38] [FORECAST:INFO] Displaying forecast: Current 5°C → 11A 0°C, 12P 0°C
+[12-22 10:22:38] [DISPLAY:INFO] Displaying weather: 5°C Mostly cloudy
+[12-22 10:26:38] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:26:38] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:26:38] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:26:48] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:26:49] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:26:59] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:26:59] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:27:10] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 10:27:10] [STOCKS:INFO] Displaying multi-stock: MXN $17.99, EUR $21.15, CAD $13.09
+[12-22 10:27:40] [STOCKS:INFO] Multi-stock display complete
+[12-22 10:27:40] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:27:40] [MAIN:INFO] Memory: 14.2% used (276KB) [-6752]
+[12-22 10:27:40] [MAIN:INFO] ### CYCLE 36 ###
+[12-22 10:27:40] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:27:41] [WEATHER:INFO] Weather: 5°C, Mostly cloudy, UV:1
+[12-22 10:27:41] [WEATHER:INFO] Fetch #51, Errors: 0
+[12-22 10:27:41] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 10:27:41] [FORECAST:INFO] Displaying forecast: Current 5°C → 11A 0°C, 12P 0°C
+[12-22 10:28:41] [DISPLAY:INFO] Displaying weather: 5°C Mostly cloudy
+[12-22 10:32:41] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:32:41] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:32:41] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:32:51] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:32:51] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:33:02] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:33:02] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:33:13] [STOCKS:INFO] Fetched 78 data points for LUMN
+[12-22 10:33:13] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 10:33:13] [STOCKS:INFO] Displaying stock chart: LUMN $7.97 -2.63%
+[12-22 10:33:44] [STOCKS:INFO] Stock chart display complete
+[12-22 10:33:44] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:33:44] [MAIN:INFO] ### CYCLE 37 ###
+[12-22 10:33:44] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:33:44] [WEATHER:INFO] Weather: 6°C, Mostly cloudy, UV:1
+[12-22 10:33:44] [WEATHER:INFO] Fetch #52, Errors: 0
+[12-22 10:33:44] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 10:33:44] [FORECAST:INFO] Displaying forecast: Current 5°C → 11A 0°C, 12P 0°C
+[12-22 10:34:44] [DISPLAY:INFO] Displaying weather: 6°C Mostly cloudy
+[12-22 10:38:45] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:38:45] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:38:46] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:38:56] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:38:56] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:39:06] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:39:06] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:39:18] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 10:39:18] [STOCKS:INFO] Displaying multi-stock: ETH $3,050, XAU $4,438, GBP $24.20
+[12-22 10:39:48] [STOCKS:INFO] Multi-stock display complete
+[12-22 10:39:48] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:39:48] [MAIN:INFO] ### CYCLE 38 ###
+[12-22 10:39:48] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:39:48] [WEATHER:INFO] Weather: 6°C, Partly sunny, UV:1
+[12-22 10:39:48] [WEATHER:INFO] Fetch #53, Errors: 0
+[12-22 10:39:48] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 10:39:49] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Mostly cloudy
+[12-22 10:39:49] [WEATHER:INFO] Forecast fetch #11, Errors: 0
+[12-22 10:39:49] [FORECAST:INFO] Displaying forecast: Current 6°C → 11A 0°C, 12P 0°C
+[12-22 10:40:49] [DISPLAY:INFO] Displaying weather: 6°C Partly sunny
+[12-22 10:44:49] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:44:49] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:44:49] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:45:00] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:45:00] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:45:10] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:45:10] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:45:21] [STOCKS:INFO] Fetched 78 data points for BTC/USD
+[12-22 10:45:21] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 10:45:21] [STOCKS:INFO] Displaying stock chart: BTC $89649.53 +1.14%
+[12-22 10:45:51] [STOCKS:INFO] Stock chart display complete
+[12-22 10:45:51] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:45:51] [MAIN:INFO] ### CYCLE 39 ###
+[12-22 10:45:51] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:45:52] [WEATHER:INFO] Weather: 6°C, Partly sunny, UV:1
+[12-22 10:45:52] [WEATHER:INFO] Fetch #54, Errors: 0
+[12-22 10:45:52] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 10:45:52] [FORECAST:INFO] Displaying forecast: Current 6°C → 11A 0°C, 12P 0°C
+[12-22 10:46:52] [DISPLAY:INFO] Displaying weather: 6°C Partly sunny
+[12-22 10:50:52] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:50:52] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:50:53] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:51:03] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:51:03] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:51:13] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:51:13] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:51:24] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 10:51:24] [STOCKS:INFO] Displaying multi-stock: AAPL -0.6%, GOOGL +0.6%, NVDA +1.4%
+[12-22 10:51:54] [STOCKS:INFO] Multi-stock display complete
+[12-22 10:51:54] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:51:54] [MAIN:INFO] ### CYCLE 40 ###
+[12-22 10:51:54] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 10:51:55] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-22 10:51:55] [CONFIG:INFO] Config loaded (source: local)
+[12-22 10:51:55] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 10:51:55] [CONFIG:INFO]   Temperature unit: C
+[12-22 10:51:55] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 10:51:55] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:51:56] [WEATHER:INFO] Weather: 6°C, Mostly cloudy, UV:1
+[12-22 10:51:56] [WEATHER:INFO] Fetch #55, Errors: 0
+[12-22 10:51:56] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 10:51:56] [FORECAST:INFO] Displaying forecast: Current 5°C → 11A 0°C, 12P 0°C
+[12-22 10:52:56] [DISPLAY:INFO] Displaying weather: 6°C Mostly cloudy
+[12-22 10:56:56] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 10:56:56] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 10:56:56] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:57:06] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 10:57:06] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 10:57:17] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 10:57:17] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 10:57:27] [STOCKS:INFO] Fetched 78 data points for CRM
+[12-22 10:57:28] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 10:57:28] [STOCKS:INFO] Displaying stock chart: CRM $263.23 +1.28%
+[12-22 10:57:58] [STOCKS:INFO] Stock chart display complete
+[12-22 10:57:58] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 10:57:58] [MAIN:INFO] Memory: 14.2% used (277KB) [-864]
+[12-22 10:57:58] [MAIN:INFO] ### CYCLE 41 ###
+[12-22 10:57:58] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 10:57:59] [WEATHER:INFO] Weather: 6°C, Mostly cloudy, UV:1
+[12-22 10:57:59] [WEATHER:INFO] Fetch #56, Errors: 0
+[12-22 10:57:59] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 10:57:59] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Mostly cloudy
+[12-22 10:57:59] [WEATHER:INFO] Forecast fetch #12, Errors: 0
+[12-22 10:57:59] [FORECAST:INFO] Displaying forecast: Current 5°C → 11A 0°C, 12P 0°C
+[12-22 10:58:59] [DISPLAY:INFO] Displaying weather: 6°C Mostly cloudy
+[12-22 11:02:59] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:02:59] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:03:00] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:03:10] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:03:10] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:03:20] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:03:20] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:03:31] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 11:03:31] [STOCKS:INFO] Displaying multi-stock: SPY +0.7%, SOXQ +1.1%, IBIT +1.6%
+[12-22 11:04:02] [STOCKS:INFO] Multi-stock display complete
+[12-22 11:04:02] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:04:02] [MAIN:INFO] ### CYCLE 42 ###
+[12-22 11:04:02] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:04:02] [WEATHER:INFO] Weather: 6°C, Mostly cloudy, UV:1
+[12-22 11:04:02] [WEATHER:INFO] Fetch #57, Errors: 0
+[12-22 11:04:02] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 11:04:02] [FORECAST:INFO] Displaying forecast: Current 6°C → 12P 0°C, 1P 0°C
+[12-22 11:05:02] [DISPLAY:INFO] Displaying weather: 6°C Mostly cloudy
+[12-22 11:09:02] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:09:02] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:09:02] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:09:13] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:09:13] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:09:23] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:09:23] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:09:34] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-22 11:09:34] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 11:09:34] [STOCKS:INFO] Displaying stock chart: FDIG $42.15 +3.22%
+[12-22 11:10:04] [STOCKS:INFO] Stock chart display complete
+[12-22 11:10:04] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:10:04] [MAIN:INFO] ### CYCLE 43 ###
+[12-22 11:10:04] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:10:05] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:1
+[12-22 11:10:05] [WEATHER:INFO] Fetch #58, Errors: 0
+[12-22 11:10:05] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 11:10:05] [FORECAST:INFO] Displaying forecast: Current 2°C → 12P 0°C, 1P 0°C
+[12-22 11:11:05] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-22 11:15:05] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:15:05] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:15:05] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:15:15] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:15:15] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:15:26] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:15:26] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:15:37] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 11:15:37] [STOCKS:INFO] Displaying multi-stock: MXN $17.98, EUR $21.14, CAD $13.08
+[12-22 11:16:07] [STOCKS:INFO] Multi-stock display complete
+[12-22 11:16:07] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:16:07] [MAIN:INFO] ### CYCLE 44 ###
+[12-22 11:16:07] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:16:07] [WEATHER:INFO] Weather: 5°C, Cloudy, UV:1
+[12-22 11:16:07] [WEATHER:INFO] Fetch #59, Errors: 0
+[12-22 11:16:07] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 11:16:08] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Intermittent clouds
+[12-22 11:16:08] [WEATHER:INFO] Forecast fetch #13, Errors: 0
+[12-22 11:16:08] [FORECAST:INFO] Displaying forecast: Current 2°C → 12P 0°C, 1P 0°C
+[12-22 11:17:08] [DISPLAY:INFO] Displaying weather: 5°C Cloudy
+[12-22 11:21:08] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:21:08] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:21:08] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:21:19] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:21:19] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:21:29] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:21:29] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:21:40] [STOCKS:INFO] Fetched 78 data points for LUMN
+[12-22 11:21:40] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 11:21:40] [STOCKS:INFO] Displaying stock chart: LUMN $7.98 -2.50%
+[12-22 11:22:10] [STOCKS:INFO] Stock chart display complete
+[12-22 11:22:10] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:22:10] [MAIN:INFO] ### CYCLE 45 ###
+[12-22 11:22:10] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:22:11] [WEATHER:INFO] Weather: 7°C, Mostly cloudy, UV:1
+[12-22 11:22:11] [WEATHER:INFO] Fetch #60, Errors: 0
+[12-22 11:22:11] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 11:22:11] [FORECAST:INFO] Displaying forecast: Current 7°C → 12P 0°C, 1P 0°C
+[12-22 11:23:11] [DISPLAY:INFO] Displaying weather: 7°C Mostly cloudy
+[12-22 11:27:13] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:27:13] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:27:13] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:27:23] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:27:23] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:27:34] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:27:34] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:28:01] [STOCKS:ERROR] Stock quotes fetch failed: (-2, 'Name or service not known')
+[12-22 11:28:01] [STOCKS:INFO] Displaying multi-stock: ETH $3,034, XAU $4,438, GBP $24.20
+[12-22 11:28:31] [STOCKS:INFO] Multi-stock display complete
+[12-22 11:28:31] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:28:31] [MAIN:INFO] Memory: 13.9% used (271KB) [+6160]
+[12-22 11:28:31] [MAIN:INFO] ### CYCLE 46 ###
+[12-22 11:28:31] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:28:48] [WEATHER:ERROR] Weather fetch failed: (-2, 'Name or service not known')
+[12-22 11:28:48] [WEATHER:WARN] Using stale cache (6m old)
+[12-22 11:28:48] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 11:28:49] [FORECAST:INFO] Displaying forecast: Current 7°C → 12P 0°C, 1P 0°C
+[12-22 11:29:49] [DISPLAY:INFO] Displaying weather: 7°C Mostly cloudy
+[12-22 11:33:49] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:33:49] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:33:49] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:33:59] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:33:59] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:34:09] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:34:10] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:34:27] [STOCKS:ERROR] Time series fetch failed for BTC/USD: (-2, 'Name or service not known')
+[12-22 11:34:34] [STOCKS:ERROR] Stock quotes fetch failed: (-2, 'Name or service not known')
+[12-22 11:34:34] [STOCKS:INFO] Displaying stock chart: BTC $89649.53 +1.14%
+[12-22 11:35:04] [STOCKS:INFO] Stock chart display complete
+[12-22 11:35:04] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:35:04] [MAIN:INFO] ### CYCLE 47 ###
+[12-22 11:35:04] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:35:11] [WEATHER:ERROR] Weather fetch failed: (-2, 'Name or service not known')
+[12-22 11:35:11] [WEATHER:WARN] Using stale cache (13m old)
+[12-22 11:35:11] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 11:35:18] [WEATHER:ERROR] Forecast fetch failed: (-2, 'Name or service not known')
+[12-22 11:35:18] [WEATHER:WARN] Using stale forecast cache (19m old)
+[12-22 11:35:18] [FORECAST:INFO] Displaying forecast: Current 7°C → 12P 0°C, 1P 0°C
+[12-22 11:36:18] [DISPLAY:INFO] Displaying weather: 7°C Mostly cloudy
+[12-22 11:40:18] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:40:18] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:40:19] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:40:29] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:40:29] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:40:39] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:40:39] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:40:56] [STOCKS:ERROR] Stock quotes fetch failed: (-2, 'Name or service not known')
+[12-22 11:40:56] [STOCKS:INFO] Displaying multi-stock: AAPL -0.6%, GOOGL +0.6%, NVDA +1.4%
+[12-22 11:41:26] [STOCKS:INFO] Multi-stock display complete
+[12-22 11:41:26] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:41:26] [MAIN:INFO] ### CYCLE 48 ###
+[12-22 11:41:27] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:41:34] [WEATHER:ERROR] Weather fetch failed: (-2, 'Name or service not known')
+[12-22 11:41:34] [WEATHER:WARN] Using stale cache (19m old)
+[12-22 11:41:34] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 11:41:41] [WEATHER:ERROR] Forecast fetch failed: (-2, 'Name or service not known')
+[12-22 11:41:41] [WEATHER:WARN] Using stale forecast cache (25m old)
+[12-22 11:41:41] [FORECAST:INFO] Displaying forecast: Current 7°C → 12P 0°C, 1P 0°C
+[12-22 11:42:41] [DISPLAY:INFO] Displaying weather: 7°C Mostly cloudy
+[12-22 11:46:41] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:46:41] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:46:41] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:46:51] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:46:51] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:47:01] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:47:02] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:47:19] [STOCKS:ERROR] Time series fetch failed for CRM: (-2, 'Name or service not known')
+[12-22 11:47:26] [STOCKS:ERROR] Stock quotes fetch failed: (-2, 'Name or service not known')
+[12-22 11:47:26] [STOCKS:INFO] Displaying stock chart: CRM $263.23 +1.28%
+[12-22 11:47:56] [STOCKS:INFO] Stock chart display complete
+[12-22 11:47:56] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:47:56] [MAIN:INFO] ### CYCLE 49 ###
+[12-22 11:47:56] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 11:48:03] [WEATHER:ERROR] Weather fetch failed: (-2, 'Name or service not known')
+[12-22 11:48:03] [WEATHER:WARN] Using stale cache (25m old)
+[12-22 11:48:03] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 11:48:10] [WEATHER:ERROR] Forecast fetch failed: (-2, 'Name or service not known')
+[12-22 11:48:10] [WEATHER:WARN] Using stale forecast cache (32m old)
+[12-22 11:48:10] [FORECAST:INFO] Displaying forecast: Current 7°C → 12P 0°C, 1P 0°C
+[12-22 11:49:10] [DISPLAY:INFO] Displaying weather: 7°C Mostly cloudy
+[12-22 11:53:10] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 11:53:10] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 11:53:10] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:53:21] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 11:53:21] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 11:53:31] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 11:53:31] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 11:53:48] [STOCKS:ERROR] Stock quotes fetch failed: (-2, 'Name or service not known')
+[12-22 11:53:48] [STOCKS:INFO] Displaying multi-stock: SPY +0.7%, SOXQ +1.1%, IBIT +1.6%
+[12-22 11:54:18] [STOCKS:INFO] Multi-stock display complete
+[12-22 11:54:18] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 11:54:18] [MAIN:INFO] ### CYCLE 50 ###
+[12-22 11:54:18] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 11:54:25] [CONFIG:WARN] GitHub config fetch failed: (-2, 'Name or service not known')
+[12-22 11:54:25] [CONFIG:INFO] Config loaded (source: local)
+[12-22 11:54:25] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 11:54:25] [CONFIG:INFO]   Temperature unit: C
+[12-22 11:54:25] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 11:54:26] [MAIN:WARN] WiFi disconnected!
+[12-22 11:54:31] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:54:31] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:54:35] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:54:35] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:54:35] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:54:46] [MAIN:INFO] ### CYCLE 51 ###
+[12-22 11:54:47] [MAIN:WARN] WiFi disconnected!
+[12-22 11:54:52] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:54:52] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:54:55] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:54:55] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:54:55] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:55:05] [MAIN:INFO] ### CYCLE 52 ###
+[12-22 11:55:05] [MAIN:WARN] WiFi disconnected!
+[12-22 11:55:10] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:55:10] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:55:14] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:55:14] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:55:14] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:55:24] [MAIN:INFO] ### CYCLE 53 ###
+[12-22 11:55:24] [MAIN:WARN] WiFi disconnected!
+[12-22 11:55:29] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:55:29] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:55:31] [HW:ERROR] WiFi connection failed: No network with that ssid
+[12-22 11:55:31] [HW:ERROR] WiFi reconnect failed: No network with that ssid
+[12-22 11:55:31] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:55:41] [MAIN:INFO] ### CYCLE 54 ###
+[12-22 11:55:41] [MAIN:WARN] WiFi disconnected!
+[12-22 11:55:46] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:55:46] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:55:50] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:55:50] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:55:50] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:56:00] [MAIN:INFO] ### CYCLE 55 ###
+[12-22 11:56:00] [MAIN:WARN] WiFi disconnected!
+[12-22 11:56:05] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:56:05] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:56:08] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:56:08] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:56:08] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:56:18] [MAIN:INFO] ### CYCLE 56 ###
+[12-22 11:56:18] [MAIN:WARN] WiFi disconnected!
+[12-22 11:56:23] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:56:23] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:56:27] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:56:27] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:56:27] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:56:37] [MAIN:INFO] ### CYCLE 57 ###
+[12-22 11:56:37] [MAIN:WARN] WiFi disconnected!
+[12-22 11:56:42] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:56:42] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:56:45] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:56:45] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:56:45] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:56:55] [MAIN:INFO] ### CYCLE 58 ###
+[12-22 11:56:55] [MAIN:WARN] WiFi disconnected!
+[12-22 11:57:00] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:57:00] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:57:04] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:57:04] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:57:04] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:57:14] [MAIN:INFO] ### CYCLE 59 ###
+[12-22 11:57:14] [MAIN:WARN] WiFi disconnected!
+[12-22 11:57:19] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:57:19] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:57:22] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:57:22] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:57:22] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:57:32] [MAIN:INFO] ### CYCLE 60 ###
+[12-22 11:57:32] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 11:57:39] [CONFIG:WARN] GitHub config fetch failed: (-2, 'Name or service not known')
+[12-22 11:57:39] [CONFIG:INFO] Config loaded (source: local)
+[12-22 11:57:39] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 11:57:39] [CONFIG:INFO]   Temperature unit: C
+[12-22 11:57:39] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 11:57:39] [MAIN:WARN] WiFi disconnected!
+[12-22 11:57:44] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:57:44] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:57:48] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:57:48] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:57:48] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:57:58] [MAIN:INFO] ### CYCLE 61 ###
+[12-22 11:57:58] [MAIN:WARN] WiFi disconnected!
+[12-22 11:58:03] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:58:03] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:58:06] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:58:06] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:58:06] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:58:17] [MAIN:INFO] ### CYCLE 62 ###
+[12-22 11:58:17] [MAIN:WARN] WiFi disconnected!
+[12-22 11:58:22] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:58:22] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:58:26] [HW:ERROR] WiFi connection failed: Unknown failure 2
+[12-22 11:58:26] [HW:ERROR] WiFi reconnect failed: Unknown failure 2
+[12-22 11:58:26] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:58:36] [MAIN:INFO] ### CYCLE 63 ###
+[12-22 11:58:36] [MAIN:WARN] WiFi disconnected!
+[12-22 11:58:41] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:58:41] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:58:43] [HW:ERROR] WiFi connection failed: No network with that ssid
+[12-22 11:58:43] [HW:ERROR] WiFi reconnect failed: No network with that ssid
+[12-22 11:58:43] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:58:53] [MAIN:INFO] ### CYCLE 64 ###
+[12-22 11:58:53] [MAIN:WARN] WiFi disconnected!
+[12-22 11:58:58] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:58:58] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:59:01] [HW:ERROR] WiFi connection failed: No network with that ssid
+[12-22 11:59:01] [HW:ERROR] WiFi reconnect failed: No network with that ssid
+[12-22 11:59:01] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:59:12] [MAIN:INFO] ### CYCLE 65 ###
+[12-22 11:59:12] [MAIN:WARN] WiFi disconnected!
+[12-22 11:59:17] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:59:17] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:59:19] [HW:ERROR] WiFi connection failed: No network with that ssid
+[12-22 11:59:19] [HW:ERROR] WiFi reconnect failed: No network with that ssid
+[12-22 11:59:19] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:59:29] [MAIN:INFO] ### CYCLE 66 ###
+[12-22 11:59:29] [MAIN:WARN] WiFi disconnected!
+[12-22 11:59:34] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:59:34] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 11:59:37] [HW:ERROR] WiFi connection failed: No network with that ssid
+[12-22 11:59:37] [HW:ERROR] WiFi reconnect failed: No network with that ssid
+[12-22 11:59:37] [MAIN:ERROR] WiFi reconnect failed - showing clock
+[12-22 11:59:47] [MAIN:INFO] ### CYCLE 67 ###
+[12-22 11:59:47] [MAIN:WARN] WiFi disconnected!
+[12-22 11:59:52] [HW:INFO] Attempting WiFi reconnect...
+[12-22 11:59:52] [HW:INFO] Connecting to WiFi: o==[]:::::::::::::::::::::::::>...
+[12-22 12:00:16] [HW:INFO] WiFi connected - IP: 192.168.101.249
+[12-22 12:00:18] [MAIN:INFO] ### CYCLE 68 ###
+[12-22 12:00:18] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 12:00:28] [WEATHER:ERROR] Weather fetch failed: [Errno 116] ETIMEDOUT
+[12-22 12:00:28] [WEATHER:WARN] Using stale cache (38m old)
+[12-22 12:00:28] [WEATHER:INFO] Fetching 12-hour forecast from AccuWeather...
+[12-22 12:00:30] [WEATHER:INFO] Forecast: 12 hours fetched, next hour: 0°C Cloudy
+[12-22 12:00:30] [WEATHER:INFO] Forecast fetch #14, Errors: 3
+[12-22 12:00:30] [FORECAST:INFO] Displaying forecast: Current 7°C → 1P 0°C, 2P 0°C
+[12-22 12:01:30] [DISPLAY:INFO] Displaying weather: 7°C Mostly cloudy
+[12-22 12:05:31] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 12:05:31] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 12:05:31] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 12:05:41] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 12:05:41] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 12:05:51] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 12:05:52] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 12:06:04] [STOCKS:INFO] Fetched 78 data points for FDIG
+[12-22 12:06:04] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 12:06:04] [STOCKS:INFO] Displaying stock chart: FDIG $41.93 +2.68%
+[12-22 12:06:35] [STOCKS:INFO] Stock chart display complete
+[12-22 12:06:35] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 12:06:35] [MAIN:INFO] ### CYCLE 69 ###
+[12-22 12:06:35] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 12:06:35] [WEATHER:INFO] Weather: 8°C, Mostly cloudy, UV:1
+[12-22 12:06:35] [WEATHER:INFO] Fetch #61, Errors: 5
+[12-22 12:06:35] [WEATHER:INFO] Using cached forecast (6m old)
+[12-22 12:06:35] [FORECAST:INFO] Displaying forecast: Current 9°C → 1P 0°C, 2P 0°C
+[12-22 12:07:35] [DISPLAY:INFO] Displaying weather: 8°C Mostly cloudy
+[12-22 12:11:35] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 12:11:35] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 12:11:35] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 12:11:46] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 12:11:46] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 12:11:56] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 12:11:56] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 12:12:07] [STOCKS:INFO] Fetched 4/4 quotes
+[12-22 12:12:07] [STOCKS:INFO] Displaying multi-stock: MXN $17.98, EUR $21.13, CAD $13.09
+[12-22 12:12:37] [STOCKS:INFO] Multi-stock display complete
+[12-22 12:12:37] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 12:12:37] [MAIN:INFO] ### CYCLE 70 ###
+[12-22 12:12:37] [CONFIG:INFO] Loaded 10 settings from local config.csv
+[12-22 12:12:38] [CONFIG:WARN] GitHub config fetch failed: HTTP 404
+[12-22 12:12:38] [CONFIG:INFO] Config loaded (source: local)
+[12-22 12:12:38] [CONFIG:INFO]   Weather: True, Forecast: True, Stocks: True, Clock: False, Schedules: True, Events: True
+[12-22 12:12:38] [CONFIG:INFO]   Temperature unit: C
+[12-22 12:12:38] [CONFIG:INFO]   Stocks frequency: 1, Respect market hours: True, Grace period: 90min
+[12-22 12:12:38] [WEATHER:INFO] Fetching weather from AccuWeather...
+[12-22 12:12:38] [WEATHER:INFO] Weather: 8°C, Mostly cloudy, UV:1
+[12-22 12:12:38] [WEATHER:INFO] Fetch #62, Errors: 5
+[12-22 12:12:38] [WEATHER:INFO] Using cached forecast (12m old)
+[12-22 12:12:38] [FORECAST:INFO] Displaying forecast: Current 9°C → 1P 0°C, 2P 0°C
+[12-22 12:13:38] [DISPLAY:INFO] Displaying weather: 8°C Mostly cloudy
+[12-22 12:17:39] [EVENT:INFO] Displaying 3 event(s) for 30s total
+[12-22 12:17:39] [EVENT:INFO] Showing event 1/3: H. Prog. Today (10s)
+[12-22 12:17:39] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 12:17:49] [EVENT:INFO] Showing event 2/3: Viva Peru (10s)
+[12-22 12:17:49] [EVENT:INFO] Event: 'Viva' / 'Peru' (color: red)
+[12-22 12:17:59] [EVENT:INFO] Showing event 3/3: H. Prog. Today (10s)
+[12-22 12:17:59] [EVENT:INFO] Event: 'H. Prog.' / 'Today' (color: LILAC)
+[12-22 12:18:10] [STOCKS:INFO] Fetched 78 data points for LUMN
+[12-22 12:18:10] [STOCKS:INFO] Fetched 1/1 quotes
+[12-22 12:18:11] [STOCKS:INFO] Displaying stock chart: LUMN $7.91 -3.36%
+[12-22 12:18:41] [STOCKS:INFO] Stock chart display complete
+[12-22 12:18:41] [MAIN:INFO] ### CYCLE COMPLETE ### 
+
+[12-22 12:18:41] [MAIN:INFO] Memory: 14.6% used (284KB) [-13504]
