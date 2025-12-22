@@ -211,7 +211,7 @@ def run_test_cycle():
 				# Typical cycle: Forecast(60s) + Weather(240s) + Events(remaining) + Stocks(60s)
 				# Events get whatever time is left (usually 0-60s)
 				# For now, use fixed 60s for events
-				display_events.show_events(active_events, config.Timing.STOCK_DISPLAY_DURATION)
+				display_events.show_events(active_events, config.Timing.STOCKS_DISPLAY_DURATION)
 				showed_display = True
 
 		# Stock display (Phase 4)
