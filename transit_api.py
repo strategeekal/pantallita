@@ -292,7 +292,9 @@ def fetch_train_arrivals(route_config):
 
 		# Parse arrivals (inline)
 		arrivals = []
-		current_time = time.time()
+
+		# Get current time from CTA API response (v2.5 method)
+		tmst = ctatt.get('tmst', '')
 
 		for eta in eta_list:
 			# Get route and destination
@@ -316,39 +318,39 @@ def fetch_train_arrivals(route_config):
 			if is_approaching:
 				minutes = 0
 			else:
-				# Parse arrival time (inline)
+				# Calculate minutes until arrival (v2.5 method using tmst)
 				try:
-					# Parse ISO time: "2025-12-22T09:15:00"
-					# Split by 'T'
-					date_part, time_part = arr_time_str.split('T')
-					year_str, month_str, day_str = date_part.split('-')
-					hour_str, minute_str, second_str = time_part.split(':')
+					# Parse times: "2025-12-22T09:15:00"
+					if 'T' in arr_time_str and 'T' in tmst:
+						# Get time parts only (HH:MM:SS)
+						arr_time_part = arr_time_str.split('T')[1]
+						cur_time_part = tmst.split('T')[1]
 
-					# Create time struct
-					arr_year = int(year_str)
-					arr_month = int(month_str)
-					arr_day = int(day_str)
-					arr_hour = int(hour_str)
-					arr_minute = int(minute_str)
-					arr_second = int(second_str)
+						# Parse hours and minutes
+						arr_hms = arr_time_part.split(':')
+						cur_hms = cur_time_part.split(':')
 
-					# Convert to epoch time (inline - manual calculation)
-					# This is approximate but good enough for arrival calculations
-					# Days since epoch for date
-					arr_struct = time.struct_time((arr_year, arr_month, arr_day, arr_hour, arr_minute, arr_second, 0, 0, -1))
-					arr_epoch = time.mktime(arr_struct)
+						# Convert to total minutes
+						total_arr_mins = int(arr_hms[0]) * 60 + int(arr_hms[1])
+						total_cur_mins = int(cur_hms[0]) * 60 + int(cur_hms[1])
 
-					# Calculate minutes until arrival
-					seconds_until = arr_epoch - current_time
-					minutes = int(seconds_until / 60)
+						# Calculate difference
+						diff_mins = total_arr_mins - total_cur_mins
 
-					# Clamp to 0 minimum
-					if minutes < 0:
-						minutes = 0
+						# Handle day rollover (arrival after midnight)
+						if diff_mins < 0:
+							diff_mins += 24 * 60
+
+						minutes = diff_mins
+					else:
+						raise ValueError("Invalid time format")
 
 				except Exception as e:
 					logger.log(f"Error parsing arrival time '{arr_time_str}': {e}", config.LogLevel.WARNING, area="TRANSIT")
-					continue
+					# Default to "DUE" if can't parse
+					minutes = 0 if is_approaching else None
+					if minutes is None:
+						continue
 
 			# Filter by min_time (inline)
 			if minutes < min_time:

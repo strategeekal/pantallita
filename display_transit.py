@@ -22,12 +22,13 @@ import hardware
 # TRANSIT DISPLAY (V2.5 FORMAT)
 # ============================================================================
 
-def show_transit(duration):
+def show_transit(duration, current_data=None):
 	"""
 	Display transit arrivals for specified duration (v2.5 format)
 
 	Layout (64×32 pixels) - v2.5 style:
-	- Header: "CTA HH:MM TEMP" or "CTA HH:MM" (top-left, y=1)
+	- Header: "CTA HH:MM TEMP" or "MMM DD HH:MM" (top-left, y=1)
+	- Clock: "HH:MM" (top-right, y=1)
 	- 3 route rows (y=9, y=17, y=25):
 		- Route indicator: 5×6 colored rectangle or text (x=1)
 		- Destination label: (x=8)
@@ -36,9 +37,11 @@ def show_transit(duration):
 
 	Updates continuously during display duration:
 	- Refresh transit data every 60 seconds
+	- Update clock every minute
 
 	Args:
 		duration: Total duration in seconds
+		current_data: Optional weather data dict with 'feels_like' temp
 
 	INLINE - all rendering and update logic inline
 	"""
@@ -58,13 +61,22 @@ def show_transit(duration):
 		return
 
 	# === DRAW HEADER ===
-	# Header: "CTA HH:MM" (v2.5 style)
+	# Header: "CTA HH:MM TEMP" or "MMM DD HH:MM" (v2.5 style)
 	now = state.rtc.datetime
 	hour_12 = now.tm_hour % 12
 	if hour_12 == 0:
 		hour_12 = 12
 	time_str = f"{hour_12}:{now.tm_min:02d}"
-	header_text = f"CTA {time_str}"
+
+	# Build dynamic header based on weather availability
+	if current_data and "feels_like" in current_data:
+		temp = round(current_data["feels_like"])
+		header_text = f"CTA {time_str} {temp}°"
+	else:
+		# Month abbreviations
+		months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+		month_abbr = months[now.tm_mon - 1] if 1 <= now.tm_mon <= 12 else "???"
+		header_text = f"{month_abbr} {now.tm_mday:02d} {time_str}"
 
 	header_label = bitmap_label.Label(
 		state.font_small,
@@ -74,6 +86,17 @@ def show_transit(duration):
 		y=1
 	)
 	state.main_group.append(header_label)
+
+	# Clock at top right (will update every minute)
+	clock_label = bitmap_label.Label(
+		state.font_small,
+		color=config.Colors.WHITE,
+		text=time_str,
+		x=63,
+		y=1,
+		anchor_point=(1.0, 0.0)  # Right-aligned
+	)
+	state.main_group.append(clock_label)
 
 	# Weekday indicator (if enabled) - AFTER header
 	if config_manager.should_show_weekday_indicator():
@@ -110,7 +133,7 @@ def show_transit(duration):
 			state.font_small,
 			color=config.Colors.WHITE,
 			text="",
-			x=52,  # Will adjust for right-align
+			x=30,  # Will adjust for right-align
 			y=y_pos,
 			anchor_point=(1.0, 0.0)  # Right-aligned
 		)
@@ -121,7 +144,7 @@ def show_transit(duration):
 			state.font_small,
 			color=config.Colors.WHITE,
 			text="",
-			x=63,  # Will adjust for right-align
+			x=40,  # Will adjust for right-align
 			y=y_pos,
 			anchor_point=(1.0, 0.0)  # Right-aligned
 		)
@@ -132,11 +155,24 @@ def show_transit(duration):
 
 	start_time = time.monotonic()
 	last_transit_fetch = 0
+	last_minute = -1
+	need_display_update = True  # Flag to update display only when needed
 
 	logger.log(f"Displaying transit arrivals", config.LogLevel.INFO, area="TRANSIT")
 
 	while time.monotonic() - start_time < duration:
 		elapsed = time.monotonic() - start_time
+		current_minute = state.rtc.datetime.tm_min
+
+		# Update clock every minute
+		if current_minute != last_minute:
+			now = state.rtc.datetime
+			hour_12 = now.tm_hour % 12
+			if hour_12 == 0:
+				hour_12 = 12
+			time_str = f"{hour_12}:{now.tm_min:02d}"
+			clock_label.text = time_str
+			last_minute = current_minute
 
 		# Refresh transit data (every 60 seconds)
 		if elapsed - last_transit_fetch > 60:
@@ -147,6 +183,7 @@ def show_transit(duration):
 
 				if new_transit_data:
 					transit_data = new_transit_data
+					need_display_update = True  # Mark for update
 				else:
 					logger.log("Transit refresh returned no data", config.LogLevel.WARNING, area="TRANSIT")
 
@@ -157,69 +194,72 @@ def show_transit(duration):
 			gc.collect()
 			last_transit_fetch = elapsed
 
-		# Update display with current transit_data (inline)
-		# Take up to 3 routes
-		routes_to_show = transit_data[:3]
+		# Update display with current transit_data (only when data changes)
+		if need_display_update:
+			need_display_update = False  # Reset flag
 
-		for i, route_data in enumerate(routes_to_show):
-			# route_data = {'label': str, 'color': str, 'icon': str, 'arrivals': [...]}
-			label = route_data['label']
-			color_name = route_data['color']
-			arrivals = route_data['arrivals']
-			route_type = route_data.get('type', 'train')  # Need to add this in transit_api
+			# Take up to 3 routes
+			routes_to_show = transit_data[:3]
 
-			y_pos = row_y_positions[i]
+			for i, route_data in enumerate(routes_to_show):
+				# route_data = {'label': str, 'color': str, 'icon': str, 'arrivals': [...]}
+				label = route_data['label']
+				color_name = route_data['color']
+				arrivals = route_data['arrivals']
+				route_type = route_data.get('type', 'train')
 
-			# Get color from config.Colors (inline)
-			try:
-				color = getattr(config.Colors, color_name, config.Colors.WHITE)
-			except AttributeError:
-				logger.log(f"Unknown color: {color_name}, using WHITE", config.LogLevel.WARNING, area="TRANSIT")
-				color = config.Colors.WHITE
+				y_pos = row_y_positions[i]
 
-			# Create route indicator if not exists (inline)
-			if route_indicators[i] is None:
-				if route_type == 'bus':
-					# Bus: Show route number as text (v2.5 style)
-					route_num = route_data.get('route', '8')
-					indicator = bitmap_label.Label(
-						state.font_small,
-						color=color,
-						text=route_num,
-						x=3,
-						y=y_pos
-					)
-					state.main_group.append(indicator)
-					route_indicators[i] = indicator
-				else:
-					# Train: Show 5×6 colored rectangle (v2.5 style)
-					rect_bitmap = displayio.Bitmap(5, 6, 1)
-					rect_palette = displayio.Palette(1)
-					rect_palette[0] = color
-					rect_grid = displayio.TileGrid(rect_bitmap, pixel_shader=rect_palette, x=1, y=y_pos)
-					state.main_group.append(rect_grid)
-					route_indicators[i] = rect_grid
-
-			# Update destination label (inline)
-			destination_labels[i].text = label
-
-			# Update arrival times (take first 2) (inline)
-			time1_labels[i].text = str(arrivals[0]['minutes']) if len(arrivals) >= 1 else ""
-			time2_labels[i].text = str(arrivals[1]['minutes']) if len(arrivals) >= 2 else ""
-
-		# Clear unused rows (inline)
-		for i in range(len(routes_to_show), 3):
-			destination_labels[i].text = ""
-			time1_labels[i].text = ""
-			time2_labels[i].text = ""
-
-			# Remove indicator if present
-			if route_indicators[i] is not None:
+				# Get color from config.Colors (inline)
 				try:
-					state.main_group.remove(route_indicators[i])
-				except ValueError:
-					pass
-				route_indicators[i] = None
+					color = getattr(config.Colors, color_name, config.Colors.WHITE)
+				except AttributeError:
+					logger.log(f"Unknown color: {color_name}, using WHITE", config.LogLevel.WARNING, area="TRANSIT")
+					color = config.Colors.WHITE
+
+				# Create route indicator if not exists (inline)
+				if route_indicators[i] is None:
+					if route_type == 'bus':
+						# Bus: Show route number as text (v2.5 style)
+						route_num = route_data.get('route', '8')
+						indicator = bitmap_label.Label(
+							state.font_small,
+							color=color,
+							text=route_num,
+							x=3,
+							y=y_pos
+						)
+						state.main_group.append(indicator)
+						route_indicators[i] = indicator
+					else:
+						# Train: Show 5×6 colored rectangle (v2.5 style)
+						rect_bitmap = displayio.Bitmap(5, 6, 1)
+						rect_palette = displayio.Palette(1)
+						rect_palette[0] = color
+						rect_grid = displayio.TileGrid(rect_bitmap, pixel_shader=rect_palette, x=1, y=y_pos)
+						state.main_group.append(rect_grid)
+						route_indicators[i] = rect_grid
+
+				# Update destination label (inline)
+				destination_labels[i].text = label
+
+				# Update arrival times (take first 2) (inline)
+				time1_labels[i].text = str(arrivals[0]['minutes']) if len(arrivals) >= 1 else ""
+				time2_labels[i].text = str(arrivals[1]['minutes']) if len(arrivals) >= 2 else ""
+
+			# Clear unused rows (inline)
+			for i in range(len(routes_to_show), 3):
+				destination_labels[i].text = ""
+				time1_labels[i].text = ""
+				time2_labels[i].text = ""
+
+				# Remove indicator if present
+				if route_indicators[i] is None:
+					try:
+						state.main_group.remove(route_indicators[i])
+					except ValueError:
+						pass
+					route_indicators[i] = None
 
 		# Check for button press (inline)
 		if hardware.button_up_pressed():
