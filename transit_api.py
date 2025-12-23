@@ -335,7 +335,6 @@ def fetch_train_arrivals(route_config):
 					# Convert to epoch time (inline - manual calculation)
 					# This is approximate but good enough for arrival calculations
 					# Days since epoch for date
-					import time
 					arr_struct = time.struct_time((arr_year, arr_month, arr_day, arr_hour, arr_minute, arr_second, 0, 0, -1))
 					arr_epoch = time.mktime(arr_struct)
 
