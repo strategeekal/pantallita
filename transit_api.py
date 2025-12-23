@@ -250,11 +250,9 @@ def fetch_train_arrivals(route_config):
 		logger.log("CTA_API_KEY not configured", config.LogLevel.WARNING, area="TRANSIT")
 		return []
 
-	# Build URL with multiple mapid parameters (inline)
-	url = f"http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key={config.Env.CTA_API_KEY}&max=5&outputType=json"
-
-	for stop_id in stops:
-		url += f"&mapid={stop_id}"
+	# Build URL with comma-separated mapid parameter (v2.5 format)
+	mapid_param = ",".join(stops)
+	url = f"http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key={config.Env.CTA_API_KEY}&mapid={mapid_param}&outputType=JSON"
 
 	response = None
 
@@ -278,10 +276,10 @@ def fetch_train_arrivals(route_config):
 
 		ctatt = data['ctatt']
 
-		# Check for error message
-		if 'errNm' in ctatt or 'errCd' in ctatt:
-			err_code = ctatt.get('errCd', 'N/A')
-			err_msg = ctatt.get('errNm') or 'No error message provided'
+		# Check for error message (errCd "0" means SUCCESS, anything else is error)
+		err_code = ctatt.get('errCd', '0')
+		if err_code != '0':
+			err_msg = ctatt.get('errNm', 'Unknown error')
 			logger.log(f"CTA Train API error: [{err_code}] {err_msg} (route: {route}, stops: {stops})", config.LogLevel.WARNING, area="TRANSIT")
 			return []
 
@@ -297,8 +295,17 @@ def fetch_train_arrivals(route_config):
 		current_time = time.time()
 
 		for eta in eta_list:
-			# Get destination
+			# Get route and destination
+			train_route = eta.get('rt', '??')
 			destination = eta.get('destNm', 'Unknown')
+
+			# Route filtering (v2.5 logic):
+			# - Red line: all trains
+			# - Brown/Purple lines: only trains to Loop
+			if route == 'Brn' and train_route == 'Brn' and 'Loop' not in destination:
+				continue  # Skip non-Loop Brown trains
+			if route == 'P' and train_route == 'P' and 'Loop' not in destination:
+				continue  # Skip non-Loop Purple trains
 
 			# Get arrival time string (ISO format: "2025-12-22T09:15:00")
 			arr_time_str = eta.get('arrT', '')
