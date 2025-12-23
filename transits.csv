@@ -28,11 +28,11 @@
 # EXAMPLE ROUTES - Replace with your actual CTA routes
 # Uncomment and customize these examples:
 
-# Red Line to Loop (weekday morning commute)
-#train,Red,RedToLoop,40900,3,RED,train.bmp,6-9
+# Red Line southbound from Fullerton Station (41220) - morning commute
+train,Red,RedSouth,41220,3,RED,train.bmp,6-10
 
-# Brown Line to Loop (weekday morning commute)
-#train,Brn,BrnToLoop,41380,3,BROWN,train.bmp,6-9
+# Brown/Purple Lines to Loop from Diversey Station (40530) - morning commute
+train,Brn,BrnToLoop,40530,3,BROWN,train.bmp,6-10
 
-# Bus 22 Northbound (weekday evening commute)
-#bus,22,Bus22Nrth,1234,5,ORANGE,bus.bmp,16-19
+# Bus 8 southbound at Halsted & Wrightwood (1446) - morning commute
+bus,8,Bus8South,1446,3,ORANGE,bus.bmp,6-10

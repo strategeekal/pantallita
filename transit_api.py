@@ -279,8 +279,10 @@ def fetch_train_arrivals(route_config):
 		ctatt = data['ctatt']
 
 		# Check for error message
-		if 'errNm' in ctatt:
-			logger.log(f"CTA Train API error: {ctatt.get('errNm', 'unknown')}", config.LogLevel.WARNING, area="TRANSIT")
+		if 'errNm' in ctatt or 'errCd' in ctatt:
+			err_code = ctatt.get('errCd', 'N/A')
+			err_msg = ctatt.get('errNm') or 'No error message provided'
+			logger.log(f"CTA Train API error: [{err_code}] {err_msg} (route: {route}, stops: {stops})", config.LogLevel.WARNING, area="TRANSIT")
 			return []
 
 		# Get arrivals
@@ -449,7 +451,7 @@ def fetch_bus_arrivals(route_config):
 		# Check for error
 		if 'error' in bus_response:
 			error_msg = bus_response['error'][0].get('msg', 'unknown') if bus_response['error'] else 'unknown'
-			logger.log(f"CTA Bus API error: {error_msg}", config.LogLevel.WARNING, area="TRANSIT")
+			logger.log(f"CTA Bus API error: {error_msg} (route: {route}, stops: {stops})", config.LogLevel.WARNING, area="TRANSIT")
 			return []
 
 		# Get predictions
