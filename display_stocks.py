@@ -14,6 +14,7 @@ import state
 import logger
 import config_manager
 import display_weekday
+import hardware
 
 # ============================================================================
 # MULTI-STOCK DISPLAY (INLINE)
@@ -184,7 +185,16 @@ def show_multi_stock(stocks_to_show, duration):
 			state.main_group.append(pixel)
 
 	# Display for duration (inline)
-	time.sleep(duration)
+	# Loop with button check instead of single sleep
+	start_time = time.monotonic()
+	while time.monotonic() - start_time < duration:
+		# Check for button press (inline)
+		if hardware.button_up_pressed():
+			logger.log("UP button pressed - stopping execution", config.LogLevel.INFO, area="STOCKS")
+			raise KeyboardInterrupt  # Stop code execution
+
+		time.sleep(1)
+
 	logger.log("Multi-stock display complete", config.LogLevel.INFO, area="STOCKS")
 
 
@@ -427,5 +437,14 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 			state.main_group.append(pixel)
 
 	# Display for duration (inline)
-	time.sleep(duration)
+	# Loop with button check instead of single sleep
+	start_time = time.monotonic()
+	while time.monotonic() - start_time < duration:
+		# Check for button press (inline)
+		if hardware.button_up_pressed():
+			logger.log("UP button pressed - stopping execution", config.LogLevel.INFO, area="STOCKS")
+			raise KeyboardInterrupt  # Stop code execution
+
+		time.sleep(1)
+
 	logger.log("Stock chart display complete", config.LogLevel.INFO, area="STOCKS")
