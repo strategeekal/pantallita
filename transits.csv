@@ -34,5 +34,5 @@ train,Red,RedSouth,41220,3,RED,train.bmp,6-10
 # Brown/Purple Lines to Loop from Diversey Station (40530) - morning commute
 train,Brn,BrnToLoop,40530,3,BROWN,train.bmp,6-10
 
-# Bus 8 southbound at Halsted & Wrightwood (1446) - morning commute
-bus,8,Bus8South,1446,3,ORANGE,bus.bmp,6-10
+# Bus 8 southbound at stop 5768 - morning commute
+bus,8,Bus8South,5768,3,ORANGE,bus.bmp,6-10

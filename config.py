@@ -152,7 +152,7 @@ class Env:
 	GITHUB_EVENTS_URL = None
 
 	# Transit (Phase 7)
-	CTA_TRAIN_API_KEY = None
+	CTA_API_KEY = None  # Train Tracker API key (backwards compatible with v2.5)
 	CTA_BUS_API_KEY = None
 	TRANSITS_GITHUB_URL = None
 
@@ -181,7 +181,7 @@ class Env:
 		cls.GITHUB_EVENTS_URL = os.getenv("GITHUB_EVENTS_URL")
 
 		# Transit (Phase 7)
-		cls.CTA_TRAIN_API_KEY = os.getenv("CTA_TRAIN_API_KEY")
+		cls.CTA_API_KEY = os.getenv("CTA_API_KEY")  # Train Tracker API (backwards compatible with v2.5)
 		cls.CTA_BUS_API_KEY = os.getenv("CTA_BUS_API_KEY")
 		cls.TRANSITS_GITHUB_URL = os.getenv("TRANSITS_GITHUB_URL")
 

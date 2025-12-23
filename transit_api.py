@@ -246,12 +246,12 @@ def fetch_train_arrivals(route_config):
 	min_time = route_config['min_time']
 
 	# Check if API key is configured
-	if not config.Env.CTA_TRAIN_API_KEY:
-		logger.log("CTA_TRAIN_API_KEY not configured", config.LogLevel.WARNING, area="TRANSIT")
+	if not config.Env.CTA_API_KEY:
+		logger.log("CTA_API_KEY not configured", config.LogLevel.WARNING, area="TRANSIT")
 		return []
 
 	# Build URL with multiple mapid parameters (inline)
-	url = f"http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key={config.Env.CTA_TRAIN_API_KEY}&max=5&outputType=json"
+	url = f"http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key={config.Env.CTA_API_KEY}&max=5&outputType=json"
 
 	for stop_id in stops:
 		url += f"&mapid={stop_id}"
