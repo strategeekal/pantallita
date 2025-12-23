@@ -1271,28 +1271,463 @@ def show_events(rtc, duration):
 
 ---
 
-## Phase 7: Transit & Production (Future)
+## Phase 7: Transit Display ⏳ NEXT
 
-### Step 7.1: CTA Transit Display
-- [ ] Create `transit_api.py`
-- [ ] Fetch train/bus arrivals from CTA APIs
-- [ ] Transit display rendering
-- [ ] Time-based activation (commute hours)
+### Overview
+Real-time CTA (Chicago Transit Authority) train and bus arrival tracking for commute planning. Shows next 2 arrivals per configured route with route indicators, destination labels, and arrival times in minutes.
 
-### Step 7.2: Enhanced Clock Display
-- [ ] Fallback clock display (when all displays disabled)
-- [ ] Large centered time display
-- [ ] Optional date display
+### Purpose
+- Track train/bus arrivals in real-time
+- Plan commutes with accurate arrival predictions
+- Support multiple routes (trains and buses)
+- Optional commute hours control (only show during peak hours)
+- Fully configurable routes via CSV
 
-### Step 7.3: Production Deployment
-- [ ] 72-hour stability test (full weekend)
-- [ ] Test all display priority logic
-- [ ] Test transit during commute hours
-- [ ] Monitor for any errors or crashes
-- [ ] Deploy to production matrix
-- [ ] 7-day validation test
+### Display Layout (64×32 pixels)
 
-**Success Criteria:** All displays work, proper rotation and priority, 7+ day uptime
+```
+┌────────────────────────────────────┐
+│ CTA 9:45 72°              [DAY]   │  ← Header: "CTA HH:MM TEMP" (MINT)
+│                                    │
+│ [■] Loop        5m    12m          │  ← Row 1: Brown/Purple (diagonal rect)
+│                                    │
+│ [■] 95st        14m   22m          │  ← Row 2: Red line (solid rect)
+│                                    │
+│  8  79st        3m    8m           │  ← Row 3: Bus 8 (cyan text)
+│                                    │
+└────────────────────────────────────┘
+```
+
+**Layout Structure:**
+- **Header (y=1):** "CTA HH:MM TEMP°" or "MMM DD HH:MM" (MINT color)
+  - Shows current time (12-hour format) and temperature (if weather available)
+  - If no weather: Shows month abbreviation and date
+- **Route Rows (y=9, 17, 25):** Up to 3 routes displayed
+  - Icon/Indicator (x=2): Colored rectangle or text number
+    - Train routes: 5×6 pixel rectangle (solid color or diagonal split)
+    - Bus routes: Cyan text number (e.g., "8")
+  - Label (x=10): Destination (e.g., "Loop", "95st", "79st")
+  - Times (x=49, x=63): Right-aligned arrival times (next 2 arrivals)
+- **Weekday Indicator:** 4×4 colored square in top-right corner (if enabled)
+
+**Row Height:** 8 pixels per route (3 routes × 8px = 24px for routes section)
+
+### APIs
+
+**1. CTA Train Tracker API**
+- **Endpoint:** `https://lapi.transitchicago.com/api/1.0/ttarrivals.aspx`
+- **Method:** GET
+- **Parameters:**
+  - `key`: API key from CTA (settings.toml)
+  - `mapid`: Station ID(s), comma-separated for multiple stations
+  - `outputType`: JSON
+- **Response:** Train predictions with route, destination, arrival time
+- **Rate Limit:** None specified (reasonable use)
+
+**2. CTA Bus Tracker API**
+- **Endpoint:** `http://www.ctabustracker.com/bustime/api/v2/getpredictions`
+- **Method:** GET
+- **Parameters:**
+  - `key`: API key from CTA (settings.toml)
+  - `stpid`: Stop ID
+  - `rt`: Route number (e.g., "8")
+  - `format`: json
+- **Response:** Bus predictions with route, destination, arrival time in minutes
+- **Rate Limit:** None specified (reasonable use)
+
+### Configuration
+
+**transits.csv Format:**
+```csv
+# Format: type,route,label,stops,min_time,color,icon
+train,Red,95st,40650,14,RED,rectangle
+train,Brn/Ppl,Loop,40800;40810,10,BROWN_PURPLE,diagonal
+bus,8,79st,1446,0,AQUA,text
+```
+
+**Fields:**
+- `type`: "train" or "bus"
+- `route`: Route identifier (e.g., "Red", "Brn/Ppl", "8")
+- `label`: Display label for destination (e.g., "95st", "Loop", "79st")
+- `stops`: Stop/Station ID(s)
+  - Single station: "40650"
+  - Multiple stations: "40800;40810" (semicolon-separated)
+- `min_time`: Minimum arrival time filter in minutes
+  - Filters out arrivals closer than this time
+  - Example: 14 means skip arrivals < 14 minutes
+  - 0 means show all arrivals
+- `color`: Color name from config.Colors (RED, BROWN_PURPLE, AQUA, etc.)
+- `icon`: Icon type ("rectangle", "diagonal", "text")
+  - "rectangle": Solid 5×6 rectangle
+  - "diagonal": 5×6 diagonal split (brown top-left, purple bottom-right)
+  - "text": Route number as cyan text
+
+**Station/Stop IDs:**
+- Find station IDs: https://www.transitchicago.com/developers/ttarrivals.aspx
+- Find stop IDs: https://www.transitchicago.com/developers/bustracker.aspx
+- Examples:
+  - Fullerton Red Line: 40650 (map ID)
+  - Diversey Brown/Purple: 40800, 40810 (map IDs for different platforms)
+  - Halsted & Wrightwood Bus Stop: 1446 (stop ID)
+
+**settings.toml:**
+```toml
+# CTA Transit APIs
+CTA_TRAIN_API_KEY = "your-train-api-key"
+CTA_BUS_API_KEY = "your-bus-api-key"
+
+# Optional: GitHub remote transit configuration
+TRANSITS_GITHUB_URL = "https://raw.githubusercontent.com/user/repo/main/transits.csv"
+```
+
+**config.csv:**
+```csv
+setting,value
+display_transit,true
+transit_respect_commute_hours,true
+transit_commute_start_hour,6
+transit_commute_end_hour,12
+transit_display_frequency,3
+```
+
+**New Settings:**
+- `display_transit`: Enable/disable transit display (true/false)
+- `transit_respect_commute_hours`: Only show during commute hours (true/false)
+- `transit_commute_start_hour`: Commute start hour (0-23, default: 6 = 6 AM)
+- `transit_commute_end_hour`: Commute end hour (0-23, default: 12 = 12 PM)
+- `transit_display_frequency`: Show transit every N cycles (default: 3)
+
+### Features
+
+**1. Configurable Routes**
+- Add/remove routes via transits.csv (not hard-coded)
+- Support unlimited routes (display first 3 with arrivals)
+- Mix trains and buses in any order
+- Multiple stations per route (combined arrivals)
+
+**2. Minimum Time Filtering**
+- Filter out arrivals too close to walk to station
+- Example: Red line from Fullerton ≥ 14 min (14-min walk)
+- Example: Brown/Purple from Diversey ≥ 10 min (10-min walk)
+- Prevents showing trains you can't catch
+
+**3. Route Indicators**
+- **Trains:** Colored rectangles (5×6 pixels)
+  - Solid rectangles: Single route (Red, Blue, etc.)
+  - Diagonal split: Multiple routes (Brown/Purple)
+- **Buses:** Route number in cyan text
+- Visually distinct from train rectangles
+
+**4. Smart Arrival Sorting**
+- Fetches all predictions for route
+- Filters by minimum time
+- Sorts by arrival time (soonest first)
+- Shows next 2 arrivals only
+- Handles "DUE" arrivals (converted to "0" for buses)
+
+**5. Commute Hours Control**
+- Optional time-based activation
+- Only show during configured hours (e.g., 6 AM - 12 PM weekdays)
+- Configurable start/end hours
+- Can disable for all-day display (testing/weekend trips)
+
+**6. GitHub Remote Configuration**
+- Load transits.csv from GitHub (like stocks.csv)
+- Update routes remotely without device access
+- Priority: GitHub > Local > Empty
+- Fallback to local if GitHub fails
+
+**7. Weather Integration**
+- Header shows current temperature (if weather data available)
+- Falls back to date display if no weather
+- Uses cached weather data (no additional API call)
+
+### Display Logic Flow
+
+```
+1. Check display_transit toggle and commute hours
+   - If disabled or outside hours: Skip transit display
+2. Load transits.csv (GitHub > Local priority)
+   - Parse route configurations
+   - Validate route data
+3. Fetch arrivals from CTA APIs
+   - Group routes by type (train vs bus)
+   - Batch train requests (multiple stations in one call)
+   - Individual bus requests per route
+4. Process arrivals
+   - Parse API responses
+   - Filter by route (match configured routes only)
+   - Apply minimum time filters
+   - Calculate arrival minutes from timestamps
+   - Sort by arrival time
+5. Render display
+   - Clear display
+   - Add weekday indicator (if enabled)
+   - Draw header with time/temp or date
+   - For each route (max 3):
+     - Draw route icon/indicator
+     - Draw destination label
+     - Draw next 2 arrival times (right-aligned)
+6. Display for duration (default: 30-60 seconds)
+```
+
+### Implementation Plan
+
+**Step 7.1: Transit Configuration** ⏳ NEXT
+- [ ] Create `transits.csv` with route definitions
+- [ ] Add to config.csv: `display_transit`, `transit_respect_commute_hours`, hours, frequency
+- [ ] Update config_manager.py to load transit settings
+- [ ] Add getters: `should_show_transit()`, `get_transit_commute_hours()`, `get_transit_frequency()`
+
+**Step 7.2: Transit API Module** ⏳ NEXT
+- [ ] Create `transit_api.py` (inline architecture)
+- [ ] Implement `load_transits_csv()` (GitHub > Local priority)
+  - [ ] Parse CSV format (inline)
+  - [ ] Validate route data
+  - [ ] Store in list: `[{type, route, label, stops, min_time, color, icon}, ...]`
+- [ ] Implement `fetch_train_arrivals(stops_list)` (inline)
+  - [ ] Build mapid parameter (comma-separated station IDs)
+  - [ ] Fetch from CTA Train Tracker API
+  - [ ] Parse JSON response (inline)
+  - [ ] Extract: route, destination, arrival time
+  - [ ] Calculate minutes until arrival (inline)
+  - [ ] Return list: `[{route, destination, minutes}, ...]`
+- [ ] Implement `fetch_bus_arrivals(route_num, stop_id)` (inline)
+  - [ ] Fetch from CTA Bus Tracker API
+  - [ ] Parse JSON response (inline)
+  - [ ] Extract: route, destination, minutes ("DUE" → "0")
+  - [ ] Return list: `[{route, destination, minutes}, ...]`
+- [ ] Implement `fetch_all_arrivals(transit_routes)` (inline)
+  - [ ] Iterate configured routes
+  - [ ] Fetch train/bus arrivals per route
+  - [ ] Apply minimum time filters
+  - [ ] Group arrivals by route
+  - [ ] Sort by arrival time
+  - [ ] Return dict: `{route_key: [time1, time2], ...}`
+
+**Step 7.3: Transit Display Rendering** ⏳ NEXT
+- [ ] Create `display_transit.py` (inline architecture)
+- [ ] Implement `show_transit(transit_data, weather_data, duration)` (inline)
+  - [ ] Clear display
+  - [ ] Add weekday indicator (if enabled)
+  - [ ] Draw header (inline)
+    - [ ] If weather available: "CTA HH:MM TEMP°"
+    - [ ] If no weather: "MMM DD HH:MM"
+  - [ ] For each route with arrivals (max 3):
+    - [ ] Draw route icon/indicator (inline)
+      - [ ] "rectangle": Solid 5×6 bitmap
+      - [ ] "diagonal": 5×6 diagonal split bitmap
+      - [ ] "text": Route number label
+    - [ ] Draw destination label
+    - [ ] Draw arrival times (right-aligned, 2 columns)
+  - [ ] Sleep for duration
+- [ ] Implement icon rendering (inline)
+  - [ ] Create displayio.Bitmap for rectangles
+  - [ ] Diagonal fill logic for Brown/Purple split
+  - [ ] Solid fill for single-route trains
+  - [ ] Text labels for buses
+
+**Step 7.4: Main Loop Integration** ⏳ NEXT
+- [ ] Load transits at startup (GitHub > Local)
+- [ ] Add transit check to main cycle
+- [ ] Check `should_show_transit()` and commute hours
+- [ ] Check frequency (every N cycles)
+- [ ] If active:
+  - [ ] Fetch transit arrivals
+  - [ ] Pass weather data for header
+  - [ ] Call `show_transit()` with duration
+- [ ] If inactive or no arrivals:
+  - [ ] Log reason (disabled, outside hours, no arrivals)
+  - [ ] Skip transit display
+
+**Step 7.5: Testing & Validation** ⏳ NEXT
+- [ ] Create test transits.csv with multiple routes
+- [ ] Test train API (single station, multiple stations)
+- [ ] Test bus API (route predictions)
+- [ ] Test minimum time filtering
+- [ ] Test arrival sorting (shows next 2 soonest)
+- [ ] Test route icons (rectangle, diagonal, text)
+- [ ] Test header (with/without weather)
+- [ ] Test commute hours control (inside/outside window)
+- [ ] Test display frequency (every N cycles)
+- [ ] Test GitHub remote configuration
+- [ ] Memory stability check
+- [ ] Integration with full display rotation
+
+### Technical Details
+
+**Display Function Structure:**
+```python
+def show_transit(arrivals_by_route, weather_data, duration):
+    # Clear display
+    clear_display()
+
+    # Add weekday indicator (if enabled)
+    if config_manager.should_show_weekday_indicator():
+        display_weekday.add_weekday_indicator(state.rtc)
+
+    # Draw header (inline)
+    if weather_data:
+        temp = round(weather_data['feels_like'])
+        header_text = f"CTA {time_str} {temp}°"
+    else:
+        month_abbr = MONTHS[rtc.datetime.tm_mon - 1]
+        header_text = f"{month_abbr} {rtc.datetime.tm_mday:02d} {time_str}"
+
+    header_label = Label(font_small, text=header_text, color=MINT, x=1, y=1)
+    state.main_group.append(header_label)
+
+    # Draw routes (max 3, inline)
+    y_pos = 9
+    for route_config, times in arrivals_by_route.items():
+        if y_pos > 25:  # Max 3 routes (y=9, 17, 25)
+            break
+
+        # Draw icon/indicator (inline)
+        if route_config['icon'] == 'rectangle':
+            # Create 5×6 solid rectangle
+            bitmap = displayio.Bitmap(5, 6, 1)
+            palette = displayio.Palette(1)
+            palette[0] = route_config['color']
+            icon = displayio.TileGrid(bitmap, pixel_shader=palette, x=2, y=y_pos)
+            state.main_group.append(icon)
+
+        elif route_config['icon'] == 'diagonal':
+            # Create 5×6 diagonal split
+            bitmap = displayio.Bitmap(5, 6, 2)
+            palette = displayio.Palette(2)
+            palette[0] = Colors.BROWN
+            palette[1] = Colors.PURPLE
+            # Fill diagonal (inline)
+            for y in range(6):
+                for x in range(5):
+                    bitmap[x, y] = 0 if x + y < 5 else 1
+            icon = displayio.TileGrid(bitmap, pixel_shader=palette, x=2, y=y_pos)
+            state.main_group.append(icon)
+
+        elif route_config['icon'] == 'text':
+            # Route number as text
+            label = Label(font_small, text=route_config['route'], color=AQUA, x=3, y=y_pos)
+            state.main_group.append(label)
+
+        # Draw destination label (inline)
+        dest_label = Label(font_small, text=route_config['label'], color=WHITE, x=10, y=y_pos)
+        state.main_group.append(dest_label)
+
+        # Draw arrival times (right-aligned, inline)
+        if len(times) > 0:
+            time1_text = f"{times[0]}m"
+            time1_width = get_text_width(time1_text, font_small)
+            time1_label = Label(font_small, text=time1_text, color=WHITE, x=49 - time1_width, y=y_pos)
+            state.main_group.append(time1_label)
+
+        if len(times) > 1:
+            time2_text = f"{times[1]}m"
+            time2_width = get_text_width(time2_text, font_small)
+            time2_label = Label(font_small, text=time2_text, color=WHITE, x=63 - time2_width, y=y_pos)
+            state.main_group.append(time2_label)
+
+        y_pos += 8  # Next row
+
+    # Display for duration
+    time.sleep(duration)
+```
+
+**Key Design Decisions:**
+- **Configurable routes** (not hard-coded like v2.5)
+- **Multiple stations per route** (Brown/Purple uses 2 stations combined)
+- **Minimum time filtering** (prevents showing uncatchable trains)
+- **Batch train requests** (single API call for multiple stations)
+- **Individual bus requests** (separate call per route)
+- **Inline rendering** (no helper functions, low stack depth)
+- **Weather integration** (shows temp in header if available)
+- **Commute hours optional** (can disable for all-day display)
+
+**API Response Parsing:**
+
+**Train API Response (simplified):**
+```json
+{
+  "ctatt": {
+    "errCd": "0",
+    "tmst": "2025-12-22T21:30:00",
+    "eta": [
+      {
+        "rt": "Red",
+        "destNm": "95th/Dan Ryan",
+        "arrT": "2025-12-22T21:45:00",
+        "isApp": "0"
+      }
+    ]
+  }
+}
+```
+
+**Bus API Response (simplified):**
+```json
+{
+  "bustime-response": {
+    "prd": [
+      {
+        "rt": "8",
+        "des": "South to 79th",
+        "prdctdn": "5"
+      }
+    ]
+  }
+}
+```
+
+**Commute Hours Logic:**
+```python
+def is_commute_hours(rtc):
+    current_hour = rtc.datetime.tm_hour
+    start_hour = config_manager.get_transit_commute_start_hour()  # Default: 6
+    end_hour = config_manager.get_transit_commute_end_hour()      # Default: 12
+
+    # Monday-Friday only
+    if rtc.datetime.tm_wday > 4:  # 5=Saturday, 6=Sunday
+        return False
+
+    # Check if current hour is within window
+    return start_hour <= current_hour < end_hour
+```
+
+### Success Criteria
+
+- [ ] Transit routes loaded from transits.csv (GitHub > Local priority)
+- [ ] CTA APIs fetch train and bus arrivals correctly
+- [ ] Minimum time filtering works (filters out close arrivals)
+- [ ] Arrival times sorted correctly (soonest first)
+- [ ] Icons/indicators display correctly (rectangle, diagonal, text)
+- [ ] Destination labels display
+- [ ] Arrival times right-aligned in 2 columns
+- [ ] Header shows time + temp or date
+- [ ] Commute hours control works (only shows during configured hours)
+- [ ] Display frequency works (every N cycles)
+- [ ] Multiple stations per route works (Brown/Purple combined)
+- [ ] GitHub remote configuration works
+- [ ] Weekday indicator appears (if enabled)
+- [ ] Memory remains stable
+- [ ] No stack exhaustion
+- [ ] Integrates cleanly with display rotation
+
+### Files to Create/Modify
+
+**New Files:**
+- `transit_api.py` - CTA API integration (inline architecture)
+- `display_transit.py` - Transit rendering (inline architecture)
+- `transits.csv` - Route configuration (local fallback)
+
+**Modified Files:**
+- `config.csv` - Add transit settings
+- `config_manager.py` - Load transit configuration
+- `config.py` - Add transit layout constants
+- `state.py` - Add transit cache/tracking
+- `code.py` - Integrate transit into main loop
+- `settings.toml` - Add CTA API keys
+
+---
 
 ## Phase 5: Error Handling & Polish (Week 5)
 
