@@ -235,7 +235,7 @@ def run_test_cycle():
 
 			if should_show_transit_this_cycle:
 				try:
-					display_transit.show_transit(config.Timing.TRANSIT_DISPLAY_DURATION)
+					display_transit.show_transit(config.Timing.TRANSIT_DISPLAY_DURATION, weather_data)
 					showed_display = True
 				except Exception as e:
 					logger.log(f"Transit display error: {e}", config.LogLevel.ERROR, area="TRANSIT")
