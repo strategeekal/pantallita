@@ -14,6 +14,8 @@ import config
 import state
 import hardware
 import logger
+import config_manager
+import display_weekday
 
 # ============================================================================
 # WEATHER DISPLAY (EVERYTHING INLINE)
@@ -48,7 +50,6 @@ def show(weather_data, duration):
 	except IndexError:
 		pass  # Group is empty
 
-	
 	# ========================================================================
 	# LOAD WEATHER ICON WITH LRU CACHE (INLINE)
 	# ========================================================================
@@ -97,6 +98,12 @@ def show(weather_data, duration):
 		import traceback
 		traceback.print_exception(e)
 		# Continue without icon
+
+	# ========================================================================
+	# WEEKDAY INDICATOR (if enabled) - AFTER weather icon so it appears on top
+	# ========================================================================
+	if config_manager.should_show_weekday_indicator():
+		display_weekday.add_weekday_indicator(state.rtc)
 
 	# ========================================================================
 	# TEMPERATURE LABELS (v2 Logic - Correct)

@@ -12,6 +12,8 @@ import config
 import state
 import hardware
 import logger
+import config_manager
+import display_weekday
 
 # ============================================================================
 # FORECAST DISPLAY (EVERYTHING INLINE)
@@ -114,6 +116,12 @@ def show(current_data, forecast_data, duration):
 			state.main_group.pop()
 	except IndexError:
 		pass  # Group is empty
+
+	# ========================================================================
+	# WEEKDAY INDICATOR (if enabled)
+	# ========================================================================
+	if config_manager.should_show_weekday_indicator():
+		display_weekday.add_weekday_indicator(state.rtc)
 
 	# ========================================================================
 	# CALCULATE TIME LABELS AND COLORS (INLINE)

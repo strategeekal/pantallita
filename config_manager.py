@@ -31,6 +31,9 @@ class ConfigState:
 	stocks_respect_market_hours = True  # Only show during market hours
 	stocks_grace_period_minutes = 30  # Minutes after market close to fetch/show stocks
 
+	# Weekday indicator settings
+	show_weekday_indicator = True  # Show colored day-of-week square in top-right corner
+
 	# Last config load time
 	last_load_time = 0
 	load_count = 0
@@ -78,7 +81,7 @@ def apply_setting(setting, value):
 	INLINE - no helper functions.
 	"""
 	# Boolean settings
-	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'display_events', 'stocks_respect_market_hours']:
+	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'display_events', 'stocks_respect_market_hours', 'show_weekday_indicator']:
 		# Parse boolean value
 		if value.lower() in ['true', '1', 'yes', 'on']:
 			bool_value = True
@@ -103,6 +106,8 @@ def apply_setting(setting, value):
 			ConfigState.display_events = bool_value
 		elif setting == 'stocks_respect_market_hours':
 			ConfigState.stocks_respect_market_hours = bool_value
+		elif setting == 'show_weekday_indicator':
+			ConfigState.show_weekday_indicator = bool_value
 
 		return True
 
@@ -284,6 +289,7 @@ def load_config():
 	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Stocks: {ConfigState.display_stocks}, Clock: {ConfigState.display_clock}, Schedules: {ConfigState.display_schedules}, Events: {ConfigState.display_events}", area="CONFIG")
 	logger.log(f"  Temperature unit: {ConfigState.temperature_unit}", area="CONFIG")
 	logger.log(f"  Stocks frequency: {ConfigState.stocks_display_frequency}, Respect market hours: {ConfigState.stocks_respect_market_hours}, Grace period: {ConfigState.stocks_grace_period_minutes}min", area="CONFIG")
+	logger.log(f"  Weekday indicator: {ConfigState.show_weekday_indicator}", area="CONFIG")
 
 	return True
 
@@ -331,3 +337,7 @@ def get_stocks_respect_market_hours():
 def get_stocks_grace_period_minutes():
 	"""Get grace period after market close (in minutes)"""
 	return ConfigState.stocks_grace_period_minutes
+
+def should_show_weekday_indicator():
+	"""Check if weekday indicator should be shown"""
+	return ConfigState.show_weekday_indicator

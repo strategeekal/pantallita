@@ -12,6 +12,8 @@ from adafruit_display_shapes.line import Line
 import config
 import state
 import logger
+import config_manager
+import display_weekday
 
 # ============================================================================
 # MULTI-STOCK DISPLAY (INLINE)
@@ -36,6 +38,10 @@ def show_multi_stock(stocks_to_show, duration):
 	# Clear display (inline)
 	while len(state.main_group) > 0:
 		state.main_group.pop()
+
+	# Weekday indicator (if enabled)
+	if config_manager.should_show_weekday_indicator():
+		display_weekday.add_weekday_indicator(state.rtc)
 
 	# Log start with prices (inline)
 	log_parts = []
@@ -206,6 +212,10 @@ def show_single_stock_chart(stock_symbol, stock_quote, time_series, duration):
 	# Clear display (inline)
 	while len(state.main_group) > 0:
 		state.main_group.pop()
+
+	# Weekday indicator (if enabled)
+	if config_manager.should_show_weekday_indicator():
+		display_weekday.add_weekday_indicator(state.rtc)
 
 	# Get display name (inline)
 	display_name = stock_quote.get("display_name", stock_symbol)

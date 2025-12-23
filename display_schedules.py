@@ -17,6 +17,7 @@ import state
 import logger
 import weather_api
 import hardware
+import display_weekday
 
 
 # ============================================================================
@@ -224,6 +225,12 @@ def show_schedule(rtc, schedule_name, schedule_config, duration):
 					config.Colors.WHITE
 				)
 				state.main_group.append(marker_pixel)
+
+	# Weekday indicator (if enabled and in normal mode only) - AFTER all static elements
+	# Hide during night modes (1=temp only, 2=clock only)
+	night_mode = schedule_config.get("night_mode", 0)
+	if config_manager.should_show_weekday_indicator() and night_mode == 0:
+		display_weekday.add_weekday_indicator(state.rtc)
 
 	# === DISPLAY LOOP (CONTINUOUS UPDATES) ===
 

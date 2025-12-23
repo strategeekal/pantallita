@@ -12,6 +12,8 @@ import displayio
 import config
 import state
 import logger
+import config_manager
+import display_weekday
 
 
 # ============================================================================
@@ -226,6 +228,10 @@ def show_event(top_text, bottom_text, image_file, color_name, duration):
 		y=bottom_y
 	)
 	state.main_group.append(bottom_label)
+
+	# === WEEKDAY INDICATOR (if enabled) - AFTER all elements so it appears on top ===
+	if config_manager.should_show_weekday_indicator():
+		display_weekday.add_weekday_indicator(state.rtc)
 
 	# Display for duration (inline)
 	logger.log(f"Event: '{top_text}' / '{bottom_text}' (color: {color_name})", config.LogLevel.INFO, area="EVENT")

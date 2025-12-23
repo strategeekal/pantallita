@@ -44,6 +44,9 @@ import display_schedules
 import event_loader
 import display_events
 
+# Import weekday indicator module (Phase 7)
+import display_weekday
+
 # ============================================================================
 # DISPLAY FUNCTIONS
 # ============================================================================
@@ -66,7 +69,11 @@ def show_clock():
 	"""Show current time from RTC"""
 	while len(state.main_group) > 0:
 		state.main_group.pop()
-	
+
+	# Weekday indicator (if enabled)
+	if config_manager.should_show_weekday_indicator():
+		display_weekday.add_weekday_indicator(state.rtc)
+
 	now = state.rtc.datetime
 	hour = now.tm_hour
 	minute = now.tm_min
