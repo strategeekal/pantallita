@@ -14,6 +14,7 @@ import state
 import logger
 import config_manager
 import display_weekday
+import hardware
 
 
 # ============================================================================
@@ -235,4 +236,13 @@ def show_event(top_text, bottom_text, image_file, color_name, duration):
 
 	# Display for duration (inline)
 	logger.log(f"Event: '{top_text}' / '{bottom_text}' (color: {color_name})", config.LogLevel.INFO, area="EVENT")
-	time.sleep(duration)
+
+	# Loop with button check instead of single sleep
+	start_time = time.monotonic()
+	while time.monotonic() - start_time < duration:
+		# Check for button press (inline)
+		if hardware.button_up_pressed():
+			logger.log("UP button pressed - stopping execution", config.LogLevel.INFO, area="EVENT")
+			raise KeyboardInterrupt  # Stop code execution
+
+		time.sleep(1)

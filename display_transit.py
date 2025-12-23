@@ -15,6 +15,7 @@ import logger
 import config_manager
 import display_weekday
 import transit_api
+import hardware
 
 
 # ============================================================================
@@ -224,6 +225,11 @@ def show_transit(duration):
 				except ValueError:
 					pass
 				route_icons[i] = None
+
+		# Check for button press (inline)
+		if hardware.button_up_pressed():
+			logger.log("UP button pressed - stopping execution", config.LogLevel.INFO, area="TRANSIT")
+			raise KeyboardInterrupt  # Stop code execution
 
 		# Sleep 1 second between updates
 		time.sleep(1)
