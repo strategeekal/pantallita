@@ -1,11 +1,13 @@
 """
-Pantallita 3.0 - Phase 5: Schedule Display
+Pantallita 3.0 - Phase 7: Transit Display
 Tests CircuitPython 10 foundation before implementing features (v3.0.0)
 Phase 1: Current weather display (v3.0.1)
 Phase 2: 12-hour forecast with smart precipitation detection (v3.0.2)
 Phase 3: Display toggles and temperature unit control (v3.0.3)
 Phase 4: Stock/forex/crypto/commodity display with market hours (v3.0.4)
 Phase 5: Schedule display with date-based GitHub override (v3.0.5)
+Phase 6: Event display with recurring and ephemeral events (v3.0.6)
+Phase 7: CTA transit arrivals with commute hours (v3.0.7)
 
 """
 
@@ -44,8 +46,12 @@ import display_schedules
 import event_loader
 import display_events
 
-# Import weekday indicator module (Phase 7)
+# Import weekday indicator module (Phase 6)
 import display_weekday
+
+# Import transit modules (Phase 7)
+import transit_api
+import display_transit
 
 # ============================================================================
 # DISPLAY FUNCTIONS
@@ -209,17 +215,30 @@ def run_test_cycle():
 				display_weather.show(weather_data, config.Timing.WEATHER_DISPLAY_DURATION)
 				showed_display = True
 
-		# Event display (Phase 6) - After weather, before stocks
+		# Event display (Phase 6) - After weather, before transit/stocks
 		if config_manager.should_show_events() and state.cached_events:
 			# Get active events for today (filtered by date + time window)
 			active_events = event_loader.get_active_events(state.rtc, state.cached_events)
 			if active_events:
 				# Calculate remaining cycle time for events (flexible duration)
-				# Typical cycle: Forecast(60s) + Weather(240s) + Events(remaining) + Stocks(60s)
+				# Typical cycle: Forecast(60s) + Weather(240s) + Events(remaining) + Transit(30s) + Stocks(30s)
 				# Events get whatever time is left (usually 0-60s)
-				# For now, use fixed 60s for events
-				display_events.show_events(active_events, config.Timing.STOCKS_DISPLAY_DURATION)
+				# For now, use fixed 30s for events
+				display_events.show_events(active_events, config.Timing.TRANSIT_DISPLAY_DURATION)
 				showed_display = True
+
+		# Transit display (Phase 7) - After events, before stocks
+		if config_manager.should_show_transit():
+			# Check if we should show transit this cycle
+			freq = config_manager.get_transit_display_frequency()
+			should_show_transit_this_cycle = (state.cycle_count % freq == 0)
+
+			if should_show_transit_this_cycle:
+				try:
+					display_transit.show_transit(config.Timing.TRANSIT_DISPLAY_DURATION)
+					showed_display = True
+				except Exception as e:
+					logger.log(f"Transit display error: {e}", config.LogLevel.ERROR, area="TRANSIT")
 
 		# Stock display (Phase 4)
 		if config_manager.should_show_stocks() and state.cached_stocks:
@@ -488,7 +507,7 @@ def run_test_cycle():
 
 def initialize():
 	"""Initialize all hardware and services"""
-	logger.log("==== PANTALLITA 3.0 | PHASE 6: EVENTS DISPLAY ====")
+	logger.log("==== PANTALLITA 3.0 | PHASE 7: TRANSIT DISPLAY ====")
 
 	try:
 		# Initialize display FIRST (before show_message)

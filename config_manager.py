@@ -34,6 +34,11 @@ class ConfigState:
 	# Weekday indicator settings
 	show_weekday_indicator = True  # Show colored day-of-week square in top-right corner
 
+	# Transit settings
+	display_transit = False  # Show transit arrivals display
+	transit_respect_commute_hours = True  # Only show transit during configured commute hours
+	transit_display_frequency = 3  # Show transit every N cycles
+
 	# Last config load time
 	last_load_time = 0
 	load_count = 0
@@ -81,7 +86,7 @@ def apply_setting(setting, value):
 	INLINE - no helper functions.
 	"""
 	# Boolean settings
-	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'display_events', 'stocks_respect_market_hours', 'show_weekday_indicator']:
+	if setting in ['display_weather', 'display_forecast', 'display_clock', 'display_stocks', 'display_schedules', 'display_events', 'stocks_respect_market_hours', 'show_weekday_indicator', 'display_transit', 'transit_respect_commute_hours']:
 		# Parse boolean value
 		if value.lower() in ['true', '1', 'yes', 'on']:
 			bool_value = True
@@ -108,6 +113,10 @@ def apply_setting(setting, value):
 			ConfigState.stocks_respect_market_hours = bool_value
 		elif setting == 'show_weekday_indicator':
 			ConfigState.show_weekday_indicator = bool_value
+		elif setting == 'display_transit':
+			ConfigState.display_transit = bool_value
+		elif setting == 'transit_respect_commute_hours':
+			ConfigState.transit_respect_commute_hours = bool_value
 
 		return True
 
@@ -145,6 +154,19 @@ def apply_setting(setting, value):
 			return True
 		except ValueError:
 			logger.log(f"Invalid integer for stocks_grace_period_minutes: {value}", config.LogLevel.WARNING, area="CONFIG")
+			return False
+
+	# Transit display frequency
+	elif setting == 'transit_display_frequency':
+		try:
+			freq = int(value)
+			if freq < 1:
+				logger.log(f"Invalid transit_display_frequency: {value} (must be >= 1)", config.LogLevel.WARNING, area="CONFIG")
+				return False
+			ConfigState.transit_display_frequency = freq
+			return True
+		except ValueError:
+			logger.log(f"Invalid integer for transit_display_frequency: {value}", config.LogLevel.WARNING, area="CONFIG")
 			return False
 
 	else:
@@ -286,9 +308,10 @@ def load_config():
 
 	# Log final configuration
 	logger.log(f"Config loaded (source: {ConfigState.last_source})", area="CONFIG")
-	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Stocks: {ConfigState.display_stocks}, Clock: {ConfigState.display_clock}, Schedules: {ConfigState.display_schedules}, Events: {ConfigState.display_events}", area="CONFIG")
+	logger.log(f"  Weather: {ConfigState.display_weather}, Forecast: {ConfigState.display_forecast}, Stocks: {ConfigState.display_stocks}, Clock: {ConfigState.display_clock}, Schedules: {ConfigState.display_schedules}, Events: {ConfigState.display_events}, Transit: {ConfigState.display_transit}", area="CONFIG")
 	logger.log(f"  Temperature unit: {ConfigState.temperature_unit}", area="CONFIG")
 	logger.log(f"  Stocks frequency: {ConfigState.stocks_display_frequency}, Respect market hours: {ConfigState.stocks_respect_market_hours}, Grace period: {ConfigState.stocks_grace_period_minutes}min", area="CONFIG")
+	logger.log(f"  Transit frequency: {ConfigState.transit_display_frequency}, Respect commute hours: {ConfigState.transit_respect_commute_hours}", area="CONFIG")
 	logger.log(f"  Weekday indicator: {ConfigState.show_weekday_indicator}", area="CONFIG")
 
 	return True
@@ -341,3 +364,15 @@ def get_stocks_grace_period_minutes():
 def should_show_weekday_indicator():
 	"""Check if weekday indicator should be shown"""
 	return ConfigState.show_weekday_indicator
+
+def should_show_transit():
+	"""Check if transit display is enabled"""
+	return ConfigState.display_transit
+
+def get_transit_display_frequency():
+	"""Get transit display frequency (every N cycles)"""
+	return ConfigState.transit_display_frequency
+
+def get_transit_respect_commute_hours():
+	"""Check if transit should only show during commute hours"""
+	return ConfigState.transit_respect_commute_hours

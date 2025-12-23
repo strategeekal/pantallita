@@ -151,6 +151,11 @@ class Env:
 	# Events (Phase 6)
 	GITHUB_EVENTS_URL = None
 
+	# Transit (Phase 7)
+	CTA_TRAIN_API_KEY = None
+	CTA_BUS_API_KEY = None
+	TRANSITS_GITHUB_URL = None
+
 	@classmethod
 	def load(cls):
 		"""Load all environment variables"""
@@ -174,6 +179,11 @@ class Env:
 
 		# Events (Phase 6)
 		cls.GITHUB_EVENTS_URL = os.getenv("GITHUB_EVENTS_URL")
+
+		# Transit (Phase 7)
+		cls.CTA_TRAIN_API_KEY = os.getenv("CTA_TRAIN_API_KEY")
+		cls.CTA_BUS_API_KEY = os.getenv("CTA_BUS_API_KEY")
+		cls.TRANSITS_GITHUB_URL = os.getenv("TRANSITS_GITHUB_URL")
 
 # ============================================================================
 # API ENDPOINTS
@@ -255,6 +265,10 @@ class Timing:
 	STOCKS_FETCH_INTERVAL = 65      # 65 seconds (rate limit: 8 calls/minute)
 	STOCKS_CACHE_MAX_AGE = 900      # 15 minutes
 	INTRADAY_CACHE_MAX_AGE = 900    # 15 minutes
+
+	# Transit display (Phase 7)
+	TRANSIT_DISPLAY_DURATION = 30   # 30 seconds
+	TRANSIT_UPDATE_INTERVAL = 60    # 1 minute (refresh during display loop)
 
 # Load environment variables at import
 Env.load()

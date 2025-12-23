@@ -1,0 +1,38 @@
+# Transit Routes Configuration
+# Format: type,route,label,stops,min_time,color,icon,commute_hours
+#
+# type: train or bus
+# route: CTA route identifier (e.g., "Red" for Red Line, "22" for Bus 22)
+# label: Short display name (max 9 chars, e.g., "RedToLoop", "Bus22Nrth")
+# stops: Comma-separated stop IDs (map IDs for trains, stop IDs for buses)
+#        Multiple stops = "any of these stations" (shows earliest arrival)
+# min_time: Minimum minutes to display (hide arrivals closer than this)
+# color: Display color name (e.g., RED, BLUE, ORANGE, etc.)
+# icon: Icon filename from /images/column/ (e.g., "train.bmp", "bus.bmp")
+# commute_hours: Pipe-separated time ranges in 24h format (e.g., "6-9|16-19")
+#                Shows only during these hours. Omit or use empty string for always show.
+#
+# Example configurations:
+# train,Red,RedToLoop,40900|41380,3,RED,train.bmp,6-9|16-19
+# bus,22,Bus22Nrth,1234,5,ORANGE,bus.bmp,6-9|16-19
+#
+# Multiple stops example (Red Line northbound from either Howard or Jarvis):
+# train,Red,RedNorth,40900|40100,3,RED,train.bmp,
+#
+# Notes:
+# - Times use 24-hour format (0-23)
+# - End hour is EXCLUSIVE (6-9 means 6:00-8:59)
+# - Empty commute_hours shows route all day
+# - min_time prevents "Train arriving in 1 min" clutter when you can't make it
+
+# EXAMPLE ROUTES - Replace with your actual CTA routes
+# Uncomment and customize these examples:
+
+# Red Line to Loop (weekday morning commute)
+#train,Red,RedToLoop,40900,3,RED,train.bmp,6-9
+
+# Brown Line to Loop (weekday morning commute)
+#train,Brn,BrnToLoop,41380,3,BROWN,train.bmp,6-9
+
+# Bus 22 Northbound (weekday evening commute)
+#bus,22,Bus22Nrth,1234,5,ORANGE,bus.bmp,16-19
