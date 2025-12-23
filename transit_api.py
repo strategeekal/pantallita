@@ -588,6 +588,8 @@ def fetch_transit_data():
 			'label': route_config['label'],
 			'color': route_config['color'],
 			'icon': route_config['icon'],
+			'type': route_config['type'],  # 'train' or 'bus'
+			'route': route_config['route'],  # Route identifier (e.g., 'Red', '8')
 			'arrivals': arrivals
 		})
 

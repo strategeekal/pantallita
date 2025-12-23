@@ -1,6 +1,6 @@
 """
-Pantallita 3.0 - Transit Display Module
-Renders CTA train and bus arrival predictions
+Pantallita 3.0 - Transit Display Module (v2.5 format)
+Renders CTA train and bus arrival predictions using v2.5 display layout
 INLINE ARCHITECTURE - all logic inline, no helper functions
 """
 
@@ -19,23 +19,23 @@ import hardware
 
 
 # ============================================================================
-# TRANSIT DISPLAY (INLINE)
+# TRANSIT DISPLAY (V2.5 FORMAT)
 # ============================================================================
 
 def show_transit(duration):
 	"""
-	Display transit arrivals for specified duration
+	Display transit arrivals for specified duration (v2.5 format)
 
-	Layout (64×32 pixels):
-	- Header: "CTA" label (top-left, x=1, y=1)
+	Layout (64×32 pixels) - v2.5 style:
+	- Header: "CTA HH:MM TEMP" or "CTA HH:MM" (top-left, y=1)
 	- 3 route rows (y=9, y=17, y=25):
-		- Route icon (13×13, left side)
-		- Route label (right of icon, max 9 chars, DIMMEST_WHITE)
-		- Arrival times (right side, custom color, "5,12,18")
+		- Route indicator: 5×6 colored rectangle or text (x=1)
+		- Destination label: (x=8)
+		- Up to 2 arrival times: right-aligned columns (x=43-52, x=54-63)
 	- Weekday indicator (top-right corner, 4×4 colored square)
 
 	Updates continuously during display duration:
-	- Refresh transit data every TRANSIT_UPDATE_INTERVAL (1 minute)
+	- Refresh transit data every 60 seconds
 
 	Args:
 		duration: Total duration in seconds
@@ -57,13 +57,19 @@ def show_transit(duration):
 		show_no_transit_message(duration)
 		return
 
-	# === DRAW STATIC ELEMENTS (ONCE) ===
+	# === DRAW HEADER ===
+	# Header: "CTA HH:MM" (v2.5 style)
+	now = state.rtc.datetime
+	hour_12 = now.tm_hour % 12
+	if hour_12 == 0:
+		hour_12 = 12
+	time_str = f"{hour_12}:{now.tm_min:02d}"
+	header_text = f"CTA {time_str}"
 
-	# Header label "CTA" (top-left) - inline
 	header_label = bitmap_label.Label(
 		state.font_small,
-		color=config.Colors.DIMMEST_WHITE,
-		text="CTA",
+		color=config.Colors.MINT,
+		text=header_text,
 		x=1,
 		y=1
 	)
@@ -73,44 +79,54 @@ def show_transit(duration):
 	if config_manager.should_show_weekday_indicator():
 		display_weekday.add_weekday_indicator(state.rtc)
 
-	# Route row Y positions (inline)
+	# Route row Y positions (v2.5 layout)
 	row_y_positions = [9, 17, 25]  # Y positions for 3 route rows
 
-	# Icons and labels for routes (inline)
-	# We'll create placeholders that get updated in the loop
-	# Each row: icon (13×13) at x=1, label at x=16, arrivals at x=28
-	route_icons = []   # List of TileGrid objects (or None)
-	route_labels = []  # List of Label objects
-	arrival_labels = []  # List of Label objects
+	# Store route elements for updates
+	route_indicators = [None, None, None]  # TileGrids or Labels
+	destination_labels = [None, None, None]
+	time1_labels = [None, None, None]
+	time2_labels = [None, None, None]
 
-	# Pre-create labels for 3 routes (inline)
+	# Pre-create labels (will be updated in loop)
 	for i in range(3):
 		y_pos = row_y_positions[i]
 
-		# Route label (initially empty, will be updated)
-		route_label = bitmap_label.Label(
+		# Destination label (x=8, white)
+		dest_label = bitmap_label.Label(
 			state.font_small,
-			color=config.Colors.DIMMEST_WHITE,
+			color=config.Colors.WHITE,
 			text="",
-			x=16,
+			x=8,
 			y=y_pos
 		)
-		state.main_group.append(route_label)
-		route_labels.append(route_label)
+		state.main_group.append(dest_label)
+		destination_labels[i] = dest_label
 
-		# Arrival times label (initially empty, will be updated)
-		arrival_label = bitmap_label.Label(
+		# Time labels (right-aligned columns)
+		# Column 1: x=43-52 (right-align from x=52)
+		# Column 2: x=54-63 (right-align from x=63)
+		time1_label = bitmap_label.Label(
 			state.font_small,
-			color=config.Colors.WHITE,  # Will be updated with route color
+			color=config.Colors.WHITE,
 			text="",
-			x=28,
-			y=y_pos
+			x=52,  # Will adjust for right-align
+			y=y_pos,
+			anchor_point=(1.0, 0.0)  # Right-aligned
 		)
-		state.main_group.append(arrival_label)
-		arrival_labels.append(arrival_label)
+		state.main_group.append(time1_label)
+		time1_labels[i] = time1_label
 
-		# Icon placeholder (will be loaded per route)
-		route_icons.append(None)
+		time2_label = bitmap_label.Label(
+			state.font_small,
+			color=config.Colors.WHITE,
+			text="",
+			x=63,  # Will adjust for right-align
+			y=y_pos,
+			anchor_point=(1.0, 0.0)  # Right-aligned
+		)
+		state.main_group.append(time2_label)
+		time2_labels[i] = time2_label
 
 	# === DISPLAY LOOP (CONTINUOUS UPDATES) ===
 
@@ -122,8 +138,8 @@ def show_transit(duration):
 	while time.monotonic() - start_time < duration:
 		elapsed = time.monotonic() - start_time
 
-		# Refresh transit data (every TRANSIT_UPDATE_INTERVAL = 60 seconds)
-		if elapsed - last_transit_fetch > config.Timing.TRANSIT_UPDATE_INTERVAL:
+		# Refresh transit data (every 60 seconds)
+		if elapsed - last_transit_fetch > 60:
 			logger.log(f"Transit refresh ({elapsed:.0f}s elapsed)", config.LogLevel.DEBUG, area="TRANSIT")
 
 			try:
@@ -149,49 +165,10 @@ def show_transit(duration):
 			# route_data = {'label': str, 'color': str, 'icon': str, 'arrivals': [...]}
 			label = route_data['label']
 			color_name = route_data['color']
-			icon_file = route_data['icon']
 			arrivals = route_data['arrivals']
+			route_type = route_data.get('type', 'train')  # Need to add this in transit_api
 
 			y_pos = row_y_positions[i]
-
-			# Update route label (inline)
-			route_labels[i].text = label
-
-			# Update icon if changed (inline)
-			icon_path = f"{config.Paths.COLUMN_IMAGES}/{icon_file}"
-
-			# Check if icon needs loading (inline)
-			if route_icons[i] is None:
-				# First time - load icon
-				try:
-					# LRU Cache check (inline)
-					if icon_path in state.image_cache:
-						# Cache hit - move to end (mark as recently used)
-						state.image_cache_order.remove(icon_path)
-						state.image_cache_order.append(icon_path)
-						bitmap = state.image_cache[icon_path]
-					else:
-						# Cache miss - load from SD card
-						bitmap = displayio.OnDiskBitmap(icon_path)
-
-						# Add to cache
-						state.image_cache[icon_path] = bitmap
-						state.image_cache_order.append(icon_path)
-
-						# LRU eviction: remove oldest if cache is full
-						if len(state.image_cache_order) > state.IMAGE_CACHE_MAX:
-							oldest_path = state.image_cache_order.pop(0)
-							del state.image_cache[oldest_path]
-
-					# Create TileGrid with bitmap's pixel shader
-					icon_grid = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
-					icon_grid.x = 1
-					icon_grid.y = y_pos
-					state.main_group.append(icon_grid)
-					route_icons[i] = icon_grid
-
-				except Exception as e:
-					logger.log(f"Transit icon error ({icon_file}): {e}", config.LogLevel.WARNING, area="TRANSIT")
 
 			# Get color from config.Colors (inline)
 			try:
@@ -200,31 +177,49 @@ def show_transit(duration):
 				logger.log(f"Unknown color: {color_name}, using WHITE", config.LogLevel.WARNING, area="TRANSIT")
 				color = config.Colors.WHITE
 
-			# Update arrival times (inline)
-			# Format: "5,12,18" (comma-separated minutes)
-			# Take first 3 arrivals
-			arrival_times = []
-			for arrival in arrivals[:3]:
-				minutes = arrival['minutes']
-				arrival_times.append(str(minutes))
+			# Create route indicator if not exists (inline)
+			if route_indicators[i] is None:
+				if route_type == 'bus':
+					# Bus: Show route number as text (v2.5 style)
+					route_num = route_data.get('route', '8')
+					indicator = bitmap_label.Label(
+						state.font_small,
+						color=color,
+						text=route_num,
+						x=3,
+						y=y_pos
+					)
+					state.main_group.append(indicator)
+					route_indicators[i] = indicator
+				else:
+					# Train: Show 5×6 colored rectangle (v2.5 style)
+					rect_bitmap = displayio.Bitmap(5, 6, 1)
+					rect_palette = displayio.Palette(1)
+					rect_palette[0] = color
+					rect_grid = displayio.TileGrid(rect_bitmap, pixel_shader=rect_palette, x=1, y=y_pos)
+					state.main_group.append(rect_grid)
+					route_indicators[i] = rect_grid
 
-			arrivals_text = ",".join(arrival_times) if arrival_times else "---"
+			# Update destination label (inline)
+			destination_labels[i].text = label
 
-			arrival_labels[i].text = arrivals_text
-			arrival_labels[i].color = color
+			# Update arrival times (take first 2) (inline)
+			time1_labels[i].text = str(arrivals[0]['minutes']) if len(arrivals) >= 1 else ""
+			time2_labels[i].text = str(arrivals[1]['minutes']) if len(arrivals) >= 2 else ""
 
 		# Clear unused rows (inline)
 		for i in range(len(routes_to_show), 3):
-			route_labels[i].text = ""
-			arrival_labels[i].text = ""
+			destination_labels[i].text = ""
+			time1_labels[i].text = ""
+			time2_labels[i].text = ""
 
-			# Remove icon if present
-			if route_icons[i] is not None:
+			# Remove indicator if present
+			if route_indicators[i] is not None:
 				try:
-					state.main_group.remove(route_icons[i])
+					state.main_group.remove(route_indicators[i])
 				except ValueError:
 					pass
-				route_icons[i] = None
+				route_indicators[i] = None
 
 		# Check for button press (inline)
 		if hardware.button_up_pressed():
@@ -264,6 +259,14 @@ def show_no_transit_message(duration):
 	)
 	state.main_group.append(message_label)
 
-	# Display for duration (inline)
+	# Display for duration with button check (inline)
 	logger.log(f"No transit data - showing message for {duration}s", config.LogLevel.INFO, area="TRANSIT")
-	time.sleep(duration)
+
+	start_time = time.monotonic()
+	while time.monotonic() - start_time < duration:
+		# Check for button press (inline)
+		if hardware.button_up_pressed():
+			logger.log("UP button pressed - stopping execution", config.LogLevel.INFO, area="TRANSIT")
+			raise KeyboardInterrupt  # Stop code execution
+
+		time.sleep(1)
