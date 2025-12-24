@@ -108,7 +108,7 @@ def show_transit(duration, current_data=None):
 			state.font_small,
 			color=config.Colors.WHITE,
 			text="",
-			x=8,
+			x=7,
 			y=y_pos
 		)
 		state.main_group.append(dest_label)
@@ -121,22 +121,20 @@ def show_transit(duration, current_data=None):
 		time1_label = bitmap_label.Label(
 			state.font_small,
 			color=config.Colors.WHITE,
-			text="",
-			x=51,  # Right-aligned first column
-			y=y_pos,
-			anchor_point=(1.0, 0.0)  # Right-aligned
+			text=""
 		)
+		time1_label.anchor_point = (1.0, 0.0)  # Set anchor AFTER creation
+		time1_label.anchored_position = (51, y_pos)  # Then set position
 		state.main_group.append(time1_label)
 		time1_labels[i] = time1_label
 
 		time2_label = bitmap_label.Label(
 			state.font_small,
 			color=config.Colors.WHITE,
-			text="",
-			x=63,  # Right-aligned second column
-			y=y_pos,
-			anchor_point=(1.0, 0.0)  # Right-aligned
+			text=""
 		)
+		time2_label.anchor_point = (1.0, 0.0)  # Set anchor AFTER creation
+		time2_label.anchored_position = (63, y_pos)  # Then set position
 		state.main_group.append(time2_label)
 		time2_labels[i] = time2_label
 
@@ -234,7 +232,7 @@ def show_transit(duration, current_data=None):
 							state.font_small,
 							color=color,
 							text=route_num,
-							x=3,
+							x=1,
 							y=y_pos
 						)
 						state.main_group.append(indicator)
