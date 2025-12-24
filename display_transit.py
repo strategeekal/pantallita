@@ -114,27 +114,28 @@ def show_transit(duration, current_data=None):
 		state.main_group.append(dest_label)
 		destination_labels[i] = dest_label
 
-		# Time labels (right-aligned columns)
+		# Time labels (right-aligned columns - manual alignment)
 		# Destination has space from x=8 to ~x=40 (32 pixels for longer names)
 		# Column 1: right-align at x=51 (2-digit numbers)
 		# Column 2: right-align at x=63 (2-digit numbers)
+		# Note: We'll manually calculate x position based on text width
 		time1_label = bitmap_label.Label(
 			state.font_small,
 			color=config.Colors.WHITE,
-			text=""
+			text="",
+			x=51,  # Will be adjusted per text length
+			y=y_pos
 		)
-		time1_label.anchor_point = (1.0, 0.0)  # Set anchor AFTER creation
-		time1_label.anchored_position = (51, y_pos)  # Then set position
 		state.main_group.append(time1_label)
 		time1_labels[i] = time1_label
 
 		time2_label = bitmap_label.Label(
 			state.font_small,
 			color=config.Colors.WHITE,
-			text=""
+			text="",
+			x=63,  # Will be adjusted per text length
+			y=y_pos
 		)
-		time2_label.anchor_point = (1.0, 0.0)  # Set anchor AFTER creation
-		time2_label.anchored_position = (63, y_pos)  # Then set position
 		state.main_group.append(time2_label)
 		time2_labels[i] = time2_label
 
@@ -267,9 +268,21 @@ def show_transit(duration, current_data=None):
 				# Update destination label (inline)
 				destination_labels[i].text = label
 
-				# Update arrival times (take first 2) (inline)
-				time1_labels[i].text = str(arrivals[0]['minutes']) if len(arrivals) >= 1 else ""
-				time2_labels[i].text = str(arrivals[1]['minutes']) if len(arrivals) >= 2 else ""
+				# Update arrival times with manual right-alignment (inline)
+				# font_small is 5 pixels per character, so right-align by calculating: anchor_x - (len * 5)
+				if len(arrivals) >= 1:
+					time1_text = str(arrivals[0]['minutes'])
+					time1_labels[i].text = time1_text
+					time1_labels[i].x = 51 - (len(time1_text) * 5)  # Right-align at x=51
+				else:
+					time1_labels[i].text = ""
+
+				if len(arrivals) >= 2:
+					time2_text = str(arrivals[1]['minutes'])
+					time2_labels[i].text = time2_text
+					time2_labels[i].x = 63 - (len(time2_text) * 5)  # Right-align at x=63
+				else:
+					time2_labels[i].text = ""
 
 			# Clear unused rows (inline)
 			for i in range(len(routes_to_show), 3):
