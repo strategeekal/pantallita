@@ -30,9 +30,9 @@ def show_transit(duration, current_data=None):
 	- Header: "CTA HH:MM TEMP" or "MMM DD HH:MM" (top-left, y=1)
 	- Clock: "HH:MM" (top-right, y=1)
 	- 3 route rows (y=9, y=17, y=25):
-		- Route indicator: 5×6 colored rectangle or text (x=1)
+		- Route indicator: 4×6 colored rectangle or text (x=1)
 		- Destination label: (x=8)
-		- Up to 2 arrival times: right-aligned columns (x=43-52, x=54-63)
+		- Up to 2 arrival times: right-aligned columns (x=51, x=63)
 	- Weekday indicator (top-right corner, 4×4 colored square)
 
 	Updates continuously during display duration:
@@ -244,25 +244,25 @@ def show_transit(duration, current_data=None):
 						state.main_group.append(indicator)
 						route_indicators[i] = indicator
 					else:
-						# Train: Show 5×6 colored rectangle (v2.5 style)
-						# If color2 specified, create split rectangle (left=color1, right=color2)
+						# Train: Show 4×6 colored rectangle
+						# If color2 specified, create split rectangle (left 2px + right 2px)
 						if color2:
-							# Split rectangle: 3 pixels color1 (x=0-2), 2 pixels color2 (x=3-4)
-							rect_bitmap = displayio.Bitmap(5, 6, 2)
+							# Split rectangle: 2 pixels color1 (x=0-1), 2 pixels color2 (x=2-3)
+							rect_bitmap = displayio.Bitmap(4, 6, 2)
 							rect_palette = displayio.Palette(2)
 							rect_palette[0] = color   # Left side
 							rect_palette[1] = color2  # Right side
 							# Fill left half with color1
 							for y in range(6):
-								for x in range(3):  # x=0,1,2
+								for x in range(2):  # x=0,1
 									rect_bitmap[x, y] = 0
 							# Fill right half with color2
 							for y in range(6):
-								for x in range(3, 5):  # x=3,4
+								for x in range(2, 4):  # x=2,3
 									rect_bitmap[x, y] = 1
 						else:
 							# Single color rectangle
-							rect_bitmap = displayio.Bitmap(5, 6, 1)
+							rect_bitmap = displayio.Bitmap(4, 6, 1)
 							rect_palette = displayio.Palette(1)
 							rect_palette[0] = color
 

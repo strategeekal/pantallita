@@ -28,8 +28,8 @@
 # - End hour is EXCLUSIVE (6-9 means 6:00-8:59)
 # - Empty commute_hours shows route all day
 # - Empty or "all" for days shows route every day
-# - Empty color2 = single color rectangle
-# - color2 specified = split rectangle (left=color, right=color2)
+# - Empty color2 = single color rectangle (4×6 pixels)
+# - color2 specified = split rectangle (2px left color, 2px right color2)
 # - min_time prevents "Train arriving in 1 min" clutter when you can't make it
 
 # EXAMPLE ROUTES - Replace with your actual CTA routes
