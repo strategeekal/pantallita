@@ -30,6 +30,6 @@ show_weekday_indicator,true
 
 # Transit display settings
 display_transit,true
-transit_respect_commute_hours,false
+transit_respect_commute_hours,true
 transit_display_frequency,1
  
