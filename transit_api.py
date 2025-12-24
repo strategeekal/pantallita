@@ -27,8 +27,8 @@ def load_transits_config():
 			'stops': ['40900', '41380'],  # Map IDs for trains, stop IDs for buses
 			'min_time': 3,
 			'color': 'RED',
-			'icon': 'train.bmp',
-			'commute_hours': [(6, 9), (16, 19)]  # List of (start, end) tuples, empty for all day
+			'commute_hours': [(6, 9), (16, 19)],  # List of (start, end) tuples, empty for all day
+			'days': [0, 1, 2, 3, 4]  # List of weekdays (0=Mon, 6=Sun), empty for all days
 		},
 		...
 	]
@@ -89,7 +89,7 @@ def load_transits_config():
 		# Split by comma
 		parts = line.split(',')
 
-		# Expect 8 fields: type,route,label,stops,min_time,color,icon,commute_hours
+		# Expect 8 fields: type,route,label,stops,min_time,color,commute_hours,days
 		if len(parts) != 8:
 			logger.log(f"Invalid transits.csv line (expected 8 fields): {line}", config.LogLevel.WARNING, area="TRANSIT")
 			continue
@@ -101,8 +101,8 @@ def load_transits_config():
 		stops_str = parts[3].strip()
 		min_time_str = parts[4].strip()
 		color_name = parts[5].strip()
-		icon = parts[6].strip()
-		commute_hours_str = parts[7].strip()
+		commute_hours_str = parts[6].strip()
+		days_str = parts[7].strip()
 
 		# Validate type
 		if transit_type not in ['train', 'bus']:
@@ -151,6 +151,32 @@ def load_transits_config():
 						logger.log(f"Invalid hour range '{hour_range}': {line}", config.LogLevel.WARNING, area="TRANSIT")
 						continue
 
+		# Parse days (e.g., "weekday", "weekend", "all", "0,1,2", or empty for all)
+		days = []
+		if days_str:
+			days_lower = days_str.lower()
+			if days_lower == 'weekday':
+				days = [0, 1, 2, 3, 4]  # Monday-Friday
+			elif days_lower == 'weekend':
+				days = [5, 6]  # Saturday-Sunday
+			elif days_lower == 'all':
+				days = []  # Empty = all days
+			else:
+				# Parse comma-separated day numbers (0=Monday, 6=Sunday)
+				for day_str in days_str.split(','):
+					day_str = day_str.strip()
+					if day_str:
+						try:
+							day_num = int(day_str)
+							# Validate day (0-6)
+							if day_num < 0 or day_num > 6:
+								logger.log(f"Invalid day '{day_num}' (must be 0-6): {line}", config.LogLevel.WARNING, area="TRANSIT")
+								continue
+							days.append(day_num)
+						except ValueError:
+							logger.log(f"Invalid day '{day_str}' (must be integer or weekday/weekend/all): {line}", config.LogLevel.WARNING, area="TRANSIT")
+							continue
+
 		# Create route config
 		route_config = {
 			'type': transit_type,
@@ -159,8 +185,8 @@ def load_transits_config():
 			'stops': stops,
 			'min_time': min_time,
 			'color': color_name,
-			'icon': icon,
-			'commute_hours': commute_hours
+			'commute_hours': commute_hours,
+			'days': days
 		}
 
 		routes.append(route_config)
@@ -199,6 +225,27 @@ def is_within_commute_hours(commute_hours, current_hour):
 			return True
 
 	return False
+
+
+def is_active_today(days, current_weekday):
+	"""
+	Check if current weekday matches configured days filter
+
+	Args:
+		days: List of weekday numbers (0=Monday, 6=Sunday), e.g., [0, 1, 2, 3, 4] for weekdays
+		current_weekday: Current weekday (0=Monday, 6=Sunday)
+
+	Returns:
+		True if today matches, or if days is empty (show all days)
+
+	INLINE - simple membership check
+	"""
+	# Empty days = show all days
+	if not days:
+		return True
+
+	# Check if current weekday is in list (inline)
+	return current_weekday in days
 
 
 # ============================================================================
@@ -530,7 +577,8 @@ def fetch_transit_data():
 		{
 			'label': 'RedToLoop',
 			'color': 'RED',
-			'icon': 'train.bmp',
+			'type': 'train',
+			'route': 'Red',
 			'arrivals': [
 				{'destination': 'Howard', 'minutes': 5},
 				{'destination': 'Howard', 'minutes': 12},
@@ -541,7 +589,7 @@ def fetch_transit_data():
 
 	Returns empty list if:
 	- No routes configured
-	- All routes filtered by commute hours
+	- All routes filtered by day or commute hours
 	- All API calls fail
 
 	INLINE - all logic inline
@@ -553,8 +601,9 @@ def fetch_transit_data():
 		logger.log("No transit routes configured", config.LogLevel.DEBUG, area="TRANSIT")
 		return []
 
-	# Get current hour for commute hours check
+	# Get current hour and weekday for filtering
 	current_hour = state.rtc.datetime.tm_hour
+	current_weekday = state.rtc.datetime.tm_wday  # 0=Monday, 6=Sunday
 
 	# Check if we should respect commute hours
 	import config_manager
@@ -564,6 +613,11 @@ def fetch_transit_data():
 	transit_data = []
 
 	for route_config in routes:
+		# Check day filter (inline)
+		if not is_active_today(route_config['days'], current_weekday):
+			logger.log(f"Route {route_config['label']} filtered by day (current: {current_weekday})", config.LogLevel.DEBUG, area="TRANSIT")
+			continue
+
 		# Check commute hours (inline)
 		if respect_commute_hours:
 			if not is_within_commute_hours(route_config['commute_hours'], current_hour):
@@ -588,7 +642,6 @@ def fetch_transit_data():
 		transit_data.append({
 			'label': route_config['label'],
 			'color': route_config['color'],
-			'icon': route_config['icon'],
 			'type': route_config['type'],  # 'train' or 'bus'
 			'route': route_config['route'],  # Route identifier (e.g., 'Red', '8')
 			'arrivals': arrivals
