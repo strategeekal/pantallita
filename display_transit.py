@@ -87,20 +87,21 @@ def show_transit(duration, current_data=None):
 	)
 	state.main_group.append(header_label)
 
+	# Weekday indicator (if enabled) - BEFORE clock so clock appears on top
+	if config_manager.should_show_weekday_indicator():
+		display_weekday.add_weekday_indicator(state.rtc)
+
 	# Clock at top right (will update every minute)
+	# Positioned at x=54 to avoid overlap with weekday indicator (x=59-63)
 	clock_label = bitmap_label.Label(
 		state.font_small,
 		color=config.Colors.WHITE,
 		text=time_str,
-		x=63,
+		x=54,
 		y=1,
 		anchor_point=(1.0, 0.0)  # Right-aligned
 	)
 	state.main_group.append(clock_label)
-
-	# Weekday indicator (if enabled) - AFTER header
-	if config_manager.should_show_weekday_indicator():
-		display_weekday.add_weekday_indicator(state.rtc)
 
 	# Route row Y positions (v2.5 layout)
 	row_y_positions = [9, 17, 25]  # Y positions for 3 route rows
@@ -127,13 +128,14 @@ def show_transit(duration, current_data=None):
 		destination_labels[i] = dest_label
 
 		# Time labels (right-aligned columns)
-		# Column 1: x=43-52 (right-align from x=52)
-		# Column 2: x=54-63 (right-align from x=63)
+		# Destination has space from x=8 to ~x=40 (32 pixels for longer names)
+		# Column 1: right-align at x=51 (2-digit numbers)
+		# Column 2: right-align at x=63 (2-digit numbers)
 		time1_label = bitmap_label.Label(
 			state.font_small,
 			color=config.Colors.WHITE,
 			text="",
-			x=30,  # Will adjust for right-align
+			x=51,  # Right-aligned first column
 			y=y_pos,
 			anchor_point=(1.0, 0.0)  # Right-aligned
 		)
@@ -144,7 +146,7 @@ def show_transit(duration, current_data=None):
 			state.font_small,
 			color=config.Colors.WHITE,
 			text="",
-			x=40,  # Will adjust for right-align
+			x=63,  # Right-aligned second column
 			y=y_pos,
 			anchor_point=(1.0, 0.0)  # Right-aligned
 		)
@@ -202,9 +204,10 @@ def show_transit(duration, current_data=None):
 			routes_to_show = transit_data[:3]
 
 			for i, route_data in enumerate(routes_to_show):
-				# route_data = {'label': str, 'color': str, 'icon': str, 'arrivals': [...]}
+				# route_data = {'label': str, 'color': str, 'color2': str or None, 'arrivals': [...]}
 				label = route_data['label']
 				color_name = route_data['color']
+				color2_name = route_data.get('color2')  # Optional second color
 				arrivals = route_data['arrivals']
 				route_type = route_data.get('type', 'train')
 
@@ -216,6 +219,15 @@ def show_transit(duration, current_data=None):
 				except AttributeError:
 					logger.log(f"Unknown color: {color_name}, using WHITE", config.LogLevel.WARNING, area="TRANSIT")
 					color = config.Colors.WHITE
+
+				# Get second color if specified (inline)
+				color2 = None
+				if color2_name:
+					try:
+						color2 = getattr(config.Colors, color2_name, None)
+					except AttributeError:
+						logger.log(f"Unknown color2: {color2_name}, ignoring", config.LogLevel.WARNING, area="TRANSIT")
+						color2 = None
 
 				# Create route indicator if not exists (inline)
 				if route_indicators[i] is None:
@@ -233,9 +245,27 @@ def show_transit(duration, current_data=None):
 						route_indicators[i] = indicator
 					else:
 						# Train: Show 5×6 colored rectangle (v2.5 style)
-						rect_bitmap = displayio.Bitmap(5, 6, 1)
-						rect_palette = displayio.Palette(1)
-						rect_palette[0] = color
+						# If color2 specified, create split rectangle (left=color1, right=color2)
+						if color2:
+							# Split rectangle: 3 pixels color1 (x=0-2), 2 pixels color2 (x=3-4)
+							rect_bitmap = displayio.Bitmap(5, 6, 2)
+							rect_palette = displayio.Palette(2)
+							rect_palette[0] = color   # Left side
+							rect_palette[1] = color2  # Right side
+							# Fill left half with color1
+							for y in range(6):
+								for x in range(3):  # x=0,1,2
+									rect_bitmap[x, y] = 0
+							# Fill right half with color2
+							for y in range(6):
+								for x in range(3, 5):  # x=3,4
+									rect_bitmap[x, y] = 1
+						else:
+							# Single color rectangle
+							rect_bitmap = displayio.Bitmap(5, 6, 1)
+							rect_palette = displayio.Palette(1)
+							rect_palette[0] = color
+
 						rect_grid = displayio.TileGrid(rect_bitmap, pixel_shader=rect_palette, x=1, y=y_pos)
 						state.main_group.append(rect_grid)
 						route_indicators[i] = rect_grid

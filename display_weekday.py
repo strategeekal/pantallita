@@ -16,14 +16,15 @@ import logger
 
 def add_weekday_indicator(rtc):
 	"""
-	Add 4×4 colored day-of-week indicator to top-right corner with 1px black margin
+	Add 4×4 colored day-of-week indicator to top-right corner with black margin
 
 	Position: x=59, y=0 (top-right corner)
-	Size: 5×5 bitmap (4×4 colored square + 1px black margin on left/bottom)
+	Size: 5×7 bitmap (4×4 colored square + 1px left margin + 3px bottom margin)
 	Colors: Monday=RED, Tuesday=ORANGE, Wednesday=YELLOW, Thursday=GREEN,
 	        Friday=AQUA, Saturday=PURPLE, Sunday=PINK
 
 	Uses displayio.Bitmap for memory efficiency (1 object vs 25 Line objects)
+	Bottom margin extended to y=6 to clear any stray pixels
 
 	Args:
 		rtc: Real-time clock object for getting current day
@@ -51,14 +52,14 @@ def add_weekday_indicator(rtc):
 	else:
 		day_color = config.Colors.WHITE    # Fallback (should never happen)
 
-	# Create 5×5 bitmap (4×4 square + 1px margin on left/bottom) - inline
-	bitmap = displayio.Bitmap(5, 5, 2)  # 2 colors: black, day color
+	# Create 5×7 bitmap (4×4 square + 1px left margin + 3px bottom margin) - inline
+	bitmap = displayio.Bitmap(5, 7, 2)  # 2 colors: black, day color
 	palette = displayio.Palette(2)
 	palette[0] = config.Colors.BLACK    # Margin color
 	palette[1] = day_color              # Day color
 
 	# Fill entire bitmap with black (margin) - inline
-	for y in range(5):
+	for y in range(7):
 		for x in range(5):
 			bitmap[x, y] = 0
 

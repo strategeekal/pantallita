@@ -89,9 +89,9 @@ def load_transits_config():
 		# Split by comma
 		parts = line.split(',')
 
-		# Expect 8 fields: type,route,label,stops,min_time,color,commute_hours,days
-		if len(parts) != 8:
-			logger.log(f"Invalid transits.csv line (expected 8 fields): {line}", config.LogLevel.WARNING, area="TRANSIT")
+		# Expect 9 fields: type,route,label,stops,min_time,color,commute_hours,days,color2
+		if len(parts) != 9:
+			logger.log(f"Invalid transits.csv line (expected 9 fields): {line}", config.LogLevel.WARNING, area="TRANSIT")
 			continue
 
 		# Parse fields (inline)
@@ -103,6 +103,7 @@ def load_transits_config():
 		color_name = parts[5].strip()
 		commute_hours_str = parts[6].strip()
 		days_str = parts[7].strip()
+		color2_name = parts[8].strip()  # Optional second color for split rectangles
 
 		# Validate type
 		if transit_type not in ['train', 'bus']:
@@ -185,6 +186,7 @@ def load_transits_config():
 			'stops': stops,
 			'min_time': min_time,
 			'color': color_name,
+			'color2': color2_name if color2_name else None,  # Optional second color
 			'commute_hours': commute_hours,
 			'days': days
 		}
@@ -642,6 +644,7 @@ def fetch_transit_data():
 		transit_data.append({
 			'label': route_config['label'],
 			'color': route_config['color'],
+			'color2': route_config.get('color2'),  # Optional second color for split rectangles
 			'type': route_config['type'],  # 'train' or 'bus'
 			'route': route_config['route'],  # Route identifier (e.g., 'Red', '8')
 			'arrivals': arrivals
