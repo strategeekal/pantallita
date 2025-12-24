@@ -26,14 +26,14 @@ def show_transit(duration, current_data=None):
 	"""
 	Display transit arrivals for specified duration (v2.5 format)
 
-	Layout (64×32 pixels) - v2.5 style:
-	- Header: "CTA HH:MM TEMP" or "MMM DD HH:MM" (top-left, y=1)
-	- Clock: "HH:MM" (top-right, y=1)
+	Layout (64×32 pixels):
+	- Header: "CTA TEMP°" or "MMM DD" (top-left, y=1, MINT color)
+	- Clock: "HH:MM" (right side, y=1, WHITE color)
+	- Weekday indicator: 4×4 colored square (top-right corner)
 	- 3 route rows (y=9, y=17, y=25):
 		- Route indicator: 4×6 colored rectangle or text (x=1)
 		- Destination label: (x=8)
 		- Up to 2 arrival times: right-aligned columns (x=51, x=63)
-	- Weekday indicator (top-right corner, 4×4 colored square)
 
 	Updates continuously during display duration:
 	- Refresh transit data every 60 seconds
@@ -61,7 +61,7 @@ def show_transit(duration, current_data=None):
 		return
 
 	# === DRAW HEADER ===
-	# Header: "CTA HH:MM TEMP" or "MMM DD HH:MM" (v2.5 style)
+	# Header: "CTA TEMP°" or "MMM DD" (time shown separately as white clock)
 	now = state.rtc.datetime
 	hour_12 = now.tm_hour % 12
 	if hour_12 == 0:
@@ -71,12 +71,12 @@ def show_transit(duration, current_data=None):
 	# Build dynamic header based on weather availability
 	if current_data and "feels_like" in current_data:
 		temp = round(current_data["feels_like"])
-		header_text = f"CTA {time_str} {temp}°"
+		header_text = f"CTA {temp}°"
 	else:
 		# Month abbreviations
 		months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 		month_abbr = months[now.tm_mon - 1] if 1 <= now.tm_mon <= 12 else "???"
-		header_text = f"{month_abbr} {now.tm_mday:02d} {time_str}"
+		header_text = f"{month_abbr} {now.tm_mday:02d}"
 
 	header_label = bitmap_label.Label(
 		state.font_small,
