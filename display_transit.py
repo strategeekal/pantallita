@@ -27,8 +27,7 @@ def show_transit(duration, current_data=None):
 	Display transit arrivals for specified duration (v2.5 format)
 
 	Layout (64×32 pixels):
-	- Header: "CTA TEMP°" or "MMM DD" (top-left, y=1, MINT color)
-	- Clock: "HH:MM" (right side, y=1, WHITE color)
+	- Header: "CTA HH:MM TEMP°" or "MMM DD HH:MM" (top-left, y=1, MINT color)
 	- Weekday indicator: 4×4 colored square (top-right corner)
 	- 3 route rows (y=9, y=17, y=25):
 		- Route indicator: 4×6 colored rectangle or text (x=1)
@@ -61,7 +60,7 @@ def show_transit(duration, current_data=None):
 		return
 
 	# === DRAW HEADER ===
-	# Header: "CTA TEMP°" or "MMM DD" (time shown separately as white clock)
+	# Header: "CTA HH:MM TEMP°" or "MMM DD HH:MM" (all-in-one header, no separate clock)
 	now = state.rtc.datetime
 	hour_12 = now.tm_hour % 12
 	if hour_12 == 0:
@@ -71,12 +70,12 @@ def show_transit(duration, current_data=None):
 	# Build dynamic header based on weather availability
 	if current_data and "feels_like" in current_data:
 		temp = round(current_data["feels_like"])
-		header_text = f"CTA {temp}°"
+		header_text = f"CTA {time_str} {temp}°"
 	else:
 		# Month abbreviations
 		months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 		month_abbr = months[now.tm_mon - 1] if 1 <= now.tm_mon <= 12 else "???"
-		header_text = f"{month_abbr} {now.tm_mday:02d}"
+		header_text = f"{month_abbr} {now.tm_mday:02d} {time_str}"
 
 	header_label = bitmap_label.Label(
 		state.font_small,
@@ -87,21 +86,9 @@ def show_transit(duration, current_data=None):
 	)
 	state.main_group.append(header_label)
 
-	# Weekday indicator (if enabled) - BEFORE clock so clock appears on top
+	# Weekday indicator (if enabled)
 	if config_manager.should_show_weekday_indicator():
 		display_weekday.add_weekday_indicator(state.rtc)
-
-	# Clock at top right (will update every minute)
-	# Positioned at x=54 to avoid overlap with weekday indicator (x=59-63)
-	clock_label = bitmap_label.Label(
-		state.font_small,
-		color=config.Colors.WHITE,
-		text=time_str,
-		x=54,
-		y=1,
-		anchor_point=(1.0, 0.0)  # Right-aligned
-	)
-	state.main_group.append(clock_label)
 
 	# Route row Y positions (v2.5 layout)
 	row_y_positions = [9, 17, 25]  # Y positions for 3 route rows
@@ -166,14 +153,23 @@ def show_transit(duration, current_data=None):
 		elapsed = time.monotonic() - start_time
 		current_minute = state.rtc.datetime.tm_min
 
-		# Update clock every minute
+		# Update header time every minute
 		if current_minute != last_minute:
 			now = state.rtc.datetime
 			hour_12 = now.tm_hour % 12
 			if hour_12 == 0:
 				hour_12 = 12
 			time_str = f"{hour_12}:{now.tm_min:02d}"
-			clock_label.text = time_str
+
+			# Update header text with new time
+			if current_data and "feels_like" in current_data:
+				temp = round(current_data["feels_like"])
+				header_label.text = f"CTA {time_str} {temp}°"
+			else:
+				months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+				month_abbr = months[now.tm_mon - 1] if 1 <= now.tm_mon <= 12 else "???"
+				header_label.text = f"{month_abbr} {now.tm_mday:02d} {time_str}"
+
 			last_minute = current_minute
 
 		# Refresh transit data (every 60 seconds)
