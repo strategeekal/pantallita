@@ -134,7 +134,7 @@ def show_transit(duration, current_data=None):
 			text="",
 			color=config.Colors.WHITE,
 			anchor_point=(1.0, 0.0),  # Right-top anchor
-			anchored_position=(63, y_pos - 6)  # Compensate for 6px offset
+			anchored_position=(64, y_pos - 6)  # Compensate for 6px offset
 		)
 		state.main_group.append(time2_label)
 		time2_labels[i] = time2_label

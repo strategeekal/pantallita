@@ -36,11 +36,11 @@
 # Uncomment and customize these examples:
 
 # Red Line southbound from Fullerton Station (41220) - morning commute weekdays only
-train,Red,96St,41220,3,RED,6-10,weekday,
+train,Red,96St,41220,10,RED,6-10,weekday,
 
 # Brown/Purple Lines to Loop from Diversey Station (40530) - morning commute weekdays only
 # Shows split brown/purple rectangle since both lines share the route
-train,Brn,Loop,40530,3,BROWN,6-10,weekday,PURPLE
+train,Brn,Loop,40530,10,BROWN,6-10,weekday,PURPLE
 
 # Bus 8 southbound at stop 5768 - morning commute weekdays only
-bus,8,79St,5768,3,ORANGE,6-10,weekday,
+bus,8,79st,5768,3,AQUA,6-10,weekday,
